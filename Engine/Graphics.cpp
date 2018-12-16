@@ -364,7 +364,7 @@ void Graphics::DrawCircle( const Vei2& pos,int radius,Color c )
 		for( int x = pos.x - radius; x < pos.x + radius; ++x )
 		{
 			const auto diff = pos - Vei2{ x,y };
-			if( diff.GetLengthSq() < radSq )
+			if( diff.GetLengthSq<int>() < radSq )
 			{
 				PutPixel( x,y,c );
 			}

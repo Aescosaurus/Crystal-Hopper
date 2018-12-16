@@ -78,22 +78,38 @@ public:
 	{
 		return( Vec2_<T>{ -x,-y } );
 	}
-	constexpr T GetLengthSq() const
+	template<typename U>
+	constexpr U GetLengthSq() const
 	{
-		return( x * x + y * y );
+		return( U( x ) * U( x ) + U( y ) * U( y ) );
 	}
-	constexpr T GetLength() const
+	template<typename U>
+	constexpr U GetLength() const
 	{
-		return( sqrt( GetLengthSq() ) );
+		return( U( sqrt( GetLengthSq<U>() ) ) );
 	}
 	constexpr Vec2_<T> GetNormalized() const
 	{
 		const auto len = GetLength();
 		return( Vec2_<T>{ *this } / len );
 	}
-	float GetAngle() const
+	template<typename U>
+	U GetAngle() const
 	{
-		return( atan2( float( y ),float( x ) ) );
+		return( atan2( U( y ),U( x ) ) );
+	}
+	static T Dot( const Vec2_<T>& first,const Vec2_<T>& second )
+	{
+		return( first.x * second.x +
+			first.y * second.y );
+	}
+	Vec2_<T> X() const
+	{
+		return( Vec2_<T>{ x,0.0f } );
+	}
+	Vec2_<T> Y() const
+	{
+		return( Vec2_<T>{ 0.0f,y } );
 	}
 	static constexpr Vec2_<T> Fake()
 	{

@@ -27,6 +27,8 @@
 #include "Player.h"
 #include "FrameTimer.h"
 #include "Line.h"
+#include <vector>
+#include "Floor.h"
 
 class Game
 {
@@ -50,5 +52,6 @@ private:
 	MouseTracker mt;
 	Player guy;
 	Line test;
+	std::vector<Floor> floors;
 	/********************************/
 };

@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "ChiliUtils.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -28,7 +29,10 @@ Game::Game( MainWindow& wnd )
 	mt( wnd.mouse ),
 	guy( mt ),
 	test{ Vec2{ 100.0f,100.0f },Vec2{ 400.0f,450.0f } }
-{}
+{
+	floors.emplace_back( Floor{ { 350.0f,350.0f },
+		{ 160.0f,60.0f },chili::deg2rad( 15.0f ) } );
+}
 
 void Game::Go()
 {
@@ -44,6 +48,13 @@ void Game::UpdateModel()
 
 	mt.Update();
 	guy.Update( dt );
+
+	// float shortest = 9999.0f;
+	// for each platform
+		// if at least one point is on screen
+			// auto curDist = -1.0f;
+			// if( guy.CheckColl( curLine,curDist ) )
+				// if( curDist < shortest ) shortest = curDist;
 }
 
 void Game::ComposeFrame()
@@ -51,17 +62,28 @@ void Game::ComposeFrame()
 	mt.Draw( gfx );
 	guy.Draw( gfx );
 
+	for( const auto& floor : floors )
+	{
+		floor.Draw( gfx );
+	}
+
 	auto col = Colors::Red;
-	const auto x0 = wnd.mouse.GetPosX();
-	const auto y0 = wnd.mouse.GetPosY();
-	const auto x1 = test.start.x;
-	const auto y1 = test.start.y;
-	const auto x2 = test.end.x;
-	const auto y2 = test.end.y;
-	const auto dist = abs( ( y2 - y1 ) * x0 -
-		( x2 - x1 ) * y0 + x2 * y1 - y2 * x1 ) /
-		sqrt( ( y2 - y1 ) * ( y2 - y1 ) +
-		( x2 - x1 ) * ( x2 - x1 ) );
+
+	const auto& msPos = wnd.mouse.GetPos();
+	auto dist = 0.0f;
+	const float lenSq = test.GetDiff().GetLengthSq<float>();
+	if( lenSq == 0.0f )
+	{
+		dist = ( msPos - test.start ).GetLength<float>();
+	}
+	else
+	{
+		const float t = std::max( 0.0f,std::min( 1.0f,
+			Vec2::Dot( msPos - test.start,test.GetDiff() ) / lenSq ) );
+		const Vec2 proj = test.start + ( test.GetDiff() ) * t;
+		dist = ( proj - msPos ).GetLength<float>();
+	}
+
 	if( dist < 10.0f ) col = Colors::Green;
 	gfx.DrawLine( test.start,test.end,col );
 }

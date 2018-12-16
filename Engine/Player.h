@@ -2,6 +2,7 @@
 
 #include "MouseTracker.h"
 #include "Graphics.h"
+#include "Line.h"
 
 class Player
 {
@@ -18,9 +19,12 @@ public:
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
+
+	// Returns true if there's a collision.
+	bool CheckColl( const Line& l,float& dist ) const;
 private:
 	MouseTracker& mt;
-	static constexpr Vei2 size = { 16,16 };
+	static constexpr int size = 16;
 	Vec2 pos;
 	Vec2 vel;
 	static constexpr float velDecay = 0.995f;

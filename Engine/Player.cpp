@@ -20,7 +20,7 @@ void Player::Update( float dt )
 	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt );
 
 	// Hit test stuff.
-	const auto hSize = Vec2( size ) / 2.0f;
+	const auto hSize = Vec2( size,size ) / 2.0f;
 	if( pos.x + hSize.x >= float( Graphics::ScreenWidth ) ||
 		pos.x - hSize.x <= 0.0f )
 	{
@@ -39,6 +39,23 @@ void Player::Update( float dt )
 
 void Player::Draw( Graphics& gfx ) const
 {
-	auto bop = vel;
-	gfx.DrawCircle( Vei2( pos ),8,Colors::Cyan );
+	gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Cyan );
+}
+
+bool Player::CheckColl( const Line& l,float& dist ) const
+{
+	const float lenSq = l.GetDiff().GetLengthSq<float>();
+	if( lenSq == 0.0f )
+	{
+		dist = ( pos - l.start ).GetLength<float>();
+	}
+	else
+	{
+		const float t = std::max( 0.0f,std::min( 1.0f,Vec2
+			::Dot( pos - l.start,l.GetDiff() ) / lenSq ) );
+		const Vec2 proj = l.start + ( l.GetDiff() ) * t;
+		dist = ( proj - pos ).GetLength<float>();
+	}
+
+	return( dist < size );
 }

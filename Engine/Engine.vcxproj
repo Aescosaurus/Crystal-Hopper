@@ -137,16 +137,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ChiliException.h" />
+    <ClInclude Include="ChiliUtils.h" />
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="DXErr.h" />
+    <ClInclude Include="Floor.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MouseTracker.h" />
     <ClInclude Include="Player.h" />
@@ -158,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
