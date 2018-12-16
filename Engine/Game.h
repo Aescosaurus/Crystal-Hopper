@@ -51,7 +51,6 @@ private:
 	FrameTimer time;
 	MouseTracker mt;
 	Player guy;
-	Line test;
 	std::vector<Floor> floors;
 	/********************************/
 };

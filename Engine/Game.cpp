@@ -27,11 +27,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	mt( wnd.mouse ),
-	guy( mt ),
-	test{ Vec2{ 100.0f,100.0f },Vec2{ 400.0f,450.0f } }
+	guy( mt )
 {
-	floors.emplace_back( Floor{ { 350.0f,350.0f },
-		{ 160.0f,60.0f },chili::deg2rad( 15.0f ) } );
+	floors.emplace_back( Floor{ { 150.0f,350.0f },
+		{ 160.0f,60.0f },chili::deg2rad( 0.0f ) } );
 }
 
 void Game::Go()
@@ -44,7 +43,9 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float dt = time.Mark() * 60.0f;
+	float dt = time.Mark();
+	if( dt > 1.0f ) dt = 0.0f;
+	else dt *= 60.0f;
 
 	mt.Update();
 	guy.Update( dt );
@@ -71,7 +72,7 @@ void Game::UpdateModel()
 	}
 	if( closest != nullptr )
 	{
-		guy.CollideWith( *closest );
+		guy.CollideWith( *closest,dt );
 	}
 }
 

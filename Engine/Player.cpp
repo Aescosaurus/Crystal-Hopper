@@ -13,8 +13,12 @@ void Player::Update( float dt )
 
 	vel.y += gravAcc * dt;
 
-	vel.x = std::max( std::min( vel.x,50.0f ),-50.0f );
-	vel.y = std::max( std::min( vel.y,50.0f ),-50.0f );
+	// vel.x = std::max( std::min( vel.x,50.0f ),-50.0f );
+	// vel.y = std::max( std::min( vel.y,50.0f ),-50.0f );
+	if( vel.GetLength<float>() > maxSpeed )
+	{
+		vel = vel.GetNormalized() * maxSpeed;
+	}
 
 	pos += vel * dt;
 	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt );
@@ -42,11 +46,13 @@ void Player::Draw( Graphics& gfx ) const
 	gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Cyan );
 }
 
-void Player::CollideWith( const Line& l )
+void Player::CollideWith( const Line& l,float dt )
 {
 	const auto perp = l.GetDiff().GetPerp().GetNormalized();
 
 	vel = vel - ( perp * ( 2.0f * Vec2::Dot( vel,perp ) ) );
+
+	pos += vel * dt;
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const
