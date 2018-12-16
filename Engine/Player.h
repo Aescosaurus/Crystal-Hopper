@@ -5,6 +5,14 @@
 
 class Player
 {
+private:
+	enum class Dir
+	{
+		Up,
+		Down,
+		Left,
+		Right
+	};
 public:
 	Player( MouseTracker& mt );
 

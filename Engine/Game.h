@@ -26,6 +26,7 @@
 #include "MouseTracker.h"
 #include "Player.h"
 #include "FrameTimer.h"
+#include "Line.h"
 
 class Game
 {
@@ -48,5 +49,6 @@ private:
 	FrameTimer time;
 	MouseTracker mt;
 	Player guy;
+	Line test;
 	/********************************/
 };

@@ -26,7 +26,8 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	mt( wnd.mouse ),
-	guy( mt )
+	guy( mt ),
+	test{ Vec2{ 100.0f,100.0f },Vec2{ 400.0f,450.0f } }
 {}
 
 void Game::Go()
@@ -39,7 +40,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float dt = time.Mark() * 60.0f;
+	float dt = time.Mark() * 60.0f;
 
 	mt.Update();
 	guy.Update( dt );
@@ -49,4 +50,18 @@ void Game::ComposeFrame()
 {
 	mt.Draw( gfx );
 	guy.Draw( gfx );
+
+	auto col = Colors::Red;
+	const auto x0 = wnd.mouse.GetPosX();
+	const auto y0 = wnd.mouse.GetPosY();
+	const auto x1 = test.start.x;
+	const auto y1 = test.start.y;
+	const auto x2 = test.end.x;
+	const auto y2 = test.end.y;
+	const auto dist = abs( ( y2 - y1 ) * x0 -
+		( x2 - x1 ) * y0 + x2 * y1 - y2 * x1 ) /
+		sqrt( ( y2 - y1 ) * ( y2 - y1 ) +
+		( x2 - x1 ) * ( x2 - x1 ) );
+	if( dist < 10.0f ) col = Colors::Green;
+	gfx.DrawLine( test.start,test.end,col );
 }
