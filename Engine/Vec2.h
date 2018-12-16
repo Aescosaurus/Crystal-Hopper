@@ -13,6 +13,7 @@ public:
 		x( x ),
 		y( y )
 	{}
+	constexpr Vec2_( T val ) = delete;
 	template<typename U>
 	constexpr operator Vec2_<U>() const
 	{
@@ -90,7 +91,7 @@ public:
 	}
 	constexpr Vec2_<T> GetNormalized() const
 	{
-		const auto len = GetLength();
+		const auto len = GetLength<T>();
 		return( Vec2_<T>{ *this } / len );
 	}
 	template<typename U>
@@ -102,6 +103,10 @@ public:
 	{
 		return( first.x * second.x +
 			first.y * second.y );
+	}
+	Vec2_<T> GetPerp() const
+	{
+		return( Vec2_<T>{ y,-x } );
 	}
 	Vec2_<T> X() const
 	{

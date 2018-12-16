@@ -20,6 +20,8 @@ public:
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
 
+	void CollideWith( const Line& l );
+
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
 private:

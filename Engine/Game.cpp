@@ -49,12 +49,30 @@ void Game::UpdateModel()
 	mt.Update();
 	guy.Update( dt );
 
-	// float shortest = 9999.0f;
-	// for each platform
+	float shortest = 9999.0f;
+	const Line* closest = nullptr;
+	for( const auto& plat : floors )
+	{
 		// if at least one point is on screen
-			// auto curDist = -1.0f;
-			// if( guy.CheckColl( curLine,curDist ) )
-				// if( curDist < shortest ) shortest = curDist;
+		{
+			for( const auto& curLine : plat.GetLines() )
+			{
+				auto curDist = -1.0f;
+				if( guy.CheckColl( curLine,curDist ) )
+				{
+					if( curDist < shortest )
+					{
+						shortest = curDist;
+						closest = &curLine;
+					}
+				}
+			}
+		}
+	}
+	if( closest != nullptr )
+	{
+		guy.CollideWith( *closest );
+	}
 }
 
 void Game::ComposeFrame()
@@ -66,24 +84,4 @@ void Game::ComposeFrame()
 	{
 		floor.Draw( gfx );
 	}
-
-	auto col = Colors::Red;
-
-	const auto& msPos = wnd.mouse.GetPos();
-	auto dist = 0.0f;
-	const float lenSq = test.GetDiff().GetLengthSq<float>();
-	if( lenSq == 0.0f )
-	{
-		dist = ( msPos - test.start ).GetLength<float>();
-	}
-	else
-	{
-		const float t = std::max( 0.0f,std::min( 1.0f,
-			Vec2::Dot( msPos - test.start,test.GetDiff() ) / lenSq ) );
-		const Vec2 proj = test.start + ( test.GetDiff() ) * t;
-		dist = ( proj - msPos ).GetLength<float>();
-	}
-
-	if( dist < 10.0f ) col = Colors::Green;
-	gfx.DrawLine( test.start,test.end,col );
 }

@@ -42,6 +42,13 @@ void Player::Draw( Graphics& gfx ) const
 	gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Cyan );
 }
 
+void Player::CollideWith( const Line& l )
+{
+	const auto perp = l.GetDiff().GetPerp().GetNormalized();
+
+	vel = vel - ( perp * ( 2.0f * Vec2::Dot( vel,perp ) ) );
+}
+
 bool Player::CheckColl( const Line& l,float& dist ) const
 {
 	const float lenSq = l.GetDiff().GetLengthSq<float>();
@@ -57,5 +64,5 @@ bool Player::CheckColl( const Line& l,float& dist ) const
 		dist = ( proj - pos ).GetLength<float>();
 	}
 
-	return( dist < size );
+	return( dist < size / 2 );
 }
