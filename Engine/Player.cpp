@@ -52,6 +52,13 @@ void Player::CollideWith( const Line& l,float dt )
 	pos += vel * dt;
 }
 
+void Player::CollideWith( const Circle& c,float dt )
+{
+	vel *= -1.0f;
+
+	pos += vel * dt;
+}
+
 void Player::ClampSpeed()
 {
 	// vel.x = std::max( std::min( vel.x,50.0f ),-50.0f );
@@ -83,6 +90,13 @@ bool Player::CheckColl( const Line& l,float& dist ) const
 	}
 
 	return( dist < size / 2 );
+}
+
+bool Player::CheckColl( const Circle& c,float& dist ) const
+{
+	dist = ( c.pos - pos ).GetLength<float>();
+
+	return( dist < size + c.radius );
 }
 
 const Vec2& Player::GetPos() const

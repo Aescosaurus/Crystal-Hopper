@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -27,8 +27,7 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	mt( wnd.mouse ),
-	guy( mt ),
-	fs( floors )
+	guy( mt )
 {
 	floors.emplace_back( Floor{ { 250.0f,350.0f },
 		{ 160.0f,50.0f },chili::deg2rad( 35.0f ) } );
@@ -56,28 +55,42 @@ void Game::UpdateModel()
 	guy.Update( dt );
 
 	float shortest = 9999.0f;
-	const Line* closest = nullptr;
+	const Line* closestLine = nullptr;
+	const Circle* closestCorner = nullptr;
 	for( const auto& plat : floors )
 	{
-		// if at least one point is on screen
+		for( const auto& curLine : plat.GetLines() )
 		{
-			for( const auto& curLine : plat.GetLines() )
+			auto curDist = -1.0f;
+			if( guy.CheckColl( curLine,curDist ) )
 			{
-				auto curDist = -1.0f;
-				if( guy.CheckColl( curLine,curDist ) )
+				if( curDist < shortest )
 				{
-					if( curDist < shortest )
-					{
-						shortest = curDist;
-						closest = &curLine;
-					}
+					shortest = curDist;
+					closestLine = &curLine;
+				}
+			}
+		}
+		for( const auto& curCorner : plat.GetCorners() )
+		{
+			auto curDist = -1.0f;
+			if( guy.CheckColl( curCorner,curDist ) )
+			{
+				if( curDist < shortest )
+				{
+					shortest = curDist;
+					closestCorner = &curCorner;
 				}
 			}
 		}
 	}
-	if( closest != nullptr )
+	if( closestCorner != nullptr )
 	{
-		guy.CollideWith( *closest,dt );
+		guy.CollideWith( *closestCorner,dt );
+	}
+	else if( closestLine != nullptr ) // else if important.
+	{
+		guy.CollideWith( *closestLine,dt );
 	}
 
 	// const auto pixelDiff = guy.GetPos() - origPos;

@@ -5,6 +5,7 @@
 #include <vector>
 #include "Line.h"
 #include "Matrix.h"
+#include "Circle.h"
 
 class Floor
 {
@@ -16,13 +17,12 @@ public:
 	void MoveBy( const Vec2& moveAmount );
 
 	const std::vector<Line>& GetLines() const;
+	const std::vector<Circle>& GetCorners() const;
 private:
 	Vec2 RotatePoint( const Vec2& point,
 		const Vec2& about,const Matrix& rotMat ) const;
 private:
-	// Vec2 ul;
-	// Vec2 ur;
-	// Vec2 dl;
-	// Vec2 dr;
+	static constexpr float cornerSize = 1.0f;
 	std::vector<Line> lines;
+	std::vector<Circle> corners;
 };

@@ -3,6 +3,7 @@
 #include "MouseTracker.h"
 #include "Graphics.h"
 #include "Line.h"
+#include "Circle.h"
 
 class Player
 {
@@ -13,11 +14,14 @@ public:
 	void Draw( Graphics& gfx ) const;
 
 	void CollideWith( const Line& l,float dt );
+	void CollideWith( const Circle& c,float dt );
 	void ClampSpeed();
 	void ResetPos();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
+	// Also returns true on collision.
+	bool CheckColl( const Circle& c,float& dist ) const;
 	const Vec2& GetPos() const;
 private:
 	MouseTracker& mt;

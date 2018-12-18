@@ -29,7 +29,6 @@
 #include "Line.h"
 #include <vector>
 #include "Floor.h"
-#include "FloorSpawner.h"
 
 class Game
 {
@@ -54,6 +53,5 @@ private:
 	Player guy;
 	std::vector<Floor> floors;
 	float pixelsMoved = 0.0f;
-	FloorSpawner fs;
 	/********************************/
 };

@@ -90,10 +90,10 @@
     <ClInclude Include="SpriteEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FloorSpawner.h">
+    <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="Circle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -135,9 +135,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Surface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FloorSpawner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
