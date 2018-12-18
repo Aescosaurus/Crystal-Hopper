@@ -13,16 +13,16 @@ public:
 
 	void Draw( Graphics& gfx ) const;
 
-	void GenerateLines();
+	void MoveBy( const Vec2& moveAmount );
 
 	const std::vector<Line>& GetLines() const;
 private:
 	Vec2 RotatePoint( const Vec2& point,
 		const Vec2& about,const Matrix& rotMat ) const;
 private:
-	Vec2 ul;
-	Vec2 ur;
-	Vec2 dl;
-	Vec2 dr;
+	// Vec2 ul;
+	// Vec2 ur;
+	// Vec2 dl;
+	// Vec2 dr;
 	std::vector<Line> lines;
 };

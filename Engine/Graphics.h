@@ -25,6 +25,9 @@
 #include "ChiliException.h"
 #include "Colors.h"
 #include "Vec2.h"
+#include "Rect.h"
+#include "Surface.h"
+#include "Matrix.h"
 
 class Graphics
 {
@@ -60,6 +63,112 @@ public:
 	void PutPixel( int x,int y,Color c );
 	void DrawLine( Vec2 p0,Vec2 p1,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
+
+	template<typename E>
+	void DrawSprite( int x,int y,const Surface& s,E effect,
+		const Matrix& rotationMatrixrix = Matrix::Rotation( 0.0f ),bool reversed = false )
+	{
+		DrawSprite( x,y,s.GetRect(),s,effect,rotationMatrixrix,reversed );
+	}
+	template<typename E>
+	void DrawSprite( int x,int y,const RectI& srcRect,const Surface& s,E effect,
+		const Matrix& rotationMatrixrix = Matrix::Rotation( 0.0f ),bool reversed = false )
+	{
+		DrawSprite( x,y,srcRect,GetScreenRect(),s,effect,rotationMatrixrix,reversed );
+	}
+	template<typename E>
+	void DrawSprite( int x,int y,RectI srcRect,const RectI& clip,const Surface& s,E effect,
+		const Matrix& rotationMatrixrix = Matrix::Rotation( 0.0f ),bool reversed = false )
+	{
+		assert( srcRect.left >= 0 );
+		assert( srcRect.right <= s.GetWidth() );
+		assert( srcRect.top >= 0 );
+		assert( srcRect.bottom <= s.GetHeight() );
+
+		// Mirror in x depending on reversed bool switch.
+		if( !reversed )
+		{
+			// Clipping is different depending on mirroring status.
+			if( x < clip.left )
+			{
+				srcRect.left += clip.left - x;
+				x = clip.left;
+			}
+			if( y < clip.top )
+			{
+				srcRect.top += clip.top - y;
+				y = clip.top;
+			}
+			if( x + srcRect.GetWidth() > clip.right )
+			{
+				srcRect.right -= x + srcRect.GetWidth() - clip.right;
+			}
+			if( y + srcRect.GetHeight() > clip.bottom )
+			{
+				srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
+			}
+			for( int sy = srcRect.top; sy < srcRect.bottom; sy++ )
+			{
+				for( int sx = srcRect.left; sx < srcRect.right; sx++ )
+				{
+					const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
+					auto drawPos = Vec2( Vei2{ x + sx - srcRect.left,
+						y + sy - srcRect.top } );
+					drawPos -= Vec2( center );
+					drawPos = rotationMatrixrix * drawPos;
+					drawPos += Vec2( center );
+					effect(
+						// No mirroring!
+						s.GetPixel( sx,sy ),
+						drawPos.x,
+						drawPos.y,
+						*this
+					);
+				}
+			}
+		}
+		else
+		{
+			if( x < clip.left )
+			{
+				srcRect.right -= clip.left - x;
+				x = clip.left;
+			}
+			if( y < clip.top )
+			{
+				srcRect.top += clip.top - y;
+				y = clip.top;
+			}
+			if( x + srcRect.GetWidth() > clip.right )
+			{
+				srcRect.left += x + srcRect.GetWidth() - clip.right;
+			}
+			if( y + srcRect.GetHeight() > clip.bottom )
+			{
+				srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
+			}
+			const int xOffset = srcRect.left + srcRect.right - 1;
+			for( int sy = srcRect.top; sy < srcRect.bottom; sy++ )
+			{
+				for( int sx = srcRect.left; sx < srcRect.right; sx++ )
+				{
+					const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
+					auto drawPos = Vec2( Vei2{ x + sx - srcRect.left,
+						y + sy - srcRect.top } );
+					drawPos -= Vec2( center );
+					drawPos = rotationMatrixrix * Vec2( drawPos );
+					drawPos += Vec2( center );
+					effect(
+						// Mirror in x.
+						s.GetPixel( xOffset - sx,sy ),
+						drawPos.x,
+						drawPos.y,
+						*this
+					);
+				}
+			}
+		}
+	}
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;

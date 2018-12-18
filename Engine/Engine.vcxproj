@@ -143,6 +143,7 @@
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="FloorSpawner.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
@@ -153,15 +154,20 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MouseTracker.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="SpriteEffect.h" />
+    <ClInclude Include="Surface.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="FloorSpawner.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -171,6 +177,7 @@
     <ClCompile Include="MouseTracker.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Surface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">

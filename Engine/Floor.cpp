@@ -12,12 +12,16 @@ Floor::Floor( const Vec2& pos,const Vec2& size,float angle )
 	// ur = rotMat * ( pos + hSize.X() - hSize.Y() );
 	// dl = rotMat * ( pos - hSize.X() + hSize.Y() );
 	// dr = rotMat * ( pos + hSize );
-	ul = RotatePoint( pos - hSize,pos,rotMat );
-	ur = RotatePoint( pos + hSize.X() - hSize.Y(),pos,rotMat );
-	dl = RotatePoint( pos - hSize.X() + hSize.Y(),pos,rotMat );
-	dr = RotatePoint( pos + hSize,pos,rotMat );
 
-	GenerateLines();
+	Vec2 ul = RotatePoint( pos - hSize,pos,rotMat );
+	Vec2 ur = RotatePoint( pos + hSize.X() - hSize.Y(),pos,rotMat );
+	Vec2 dl = RotatePoint( pos - hSize.X() + hSize.Y(),pos,rotMat );
+	Vec2 dr = RotatePoint( pos + hSize,pos,rotMat );
+
+	lines.emplace_back( Line{ ul,ur } );
+	lines.emplace_back( Line{ ur,dr } );
+	lines.emplace_back( Line{ dr,dl } );
+	lines.emplace_back( Line{ dl,ul } );
 }
 
 void Floor::Draw( Graphics& gfx ) const
@@ -28,12 +32,13 @@ void Floor::Draw( Graphics& gfx ) const
 	}
 }
 
-void Floor::GenerateLines()
+void Floor::MoveBy( const Vec2& moveAmount )
 {
-	lines.emplace_back( Line{ ul,ur } );
-	lines.emplace_back( Line{ ur,dr } );
-	lines.emplace_back( Line{ dr,dl } );
-	lines.emplace_back( Line{ dl,ul } );
+	for( auto& line : lines )
+	{
+		line.start += moveAmount;
+		line.end += moveAmount;
+	}
 }
 
 const std::vector<Line>& Floor::GetLines() const

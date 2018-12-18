@@ -27,15 +27,18 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	mt( wnd.mouse ),
-	guy( mt )
+	guy( mt ),
+	fs( floors )
 {
-	floors.emplace_back( Floor{ { 150.0f,350.0f },
-		{ 160.0f,60.0f },chili::deg2rad( 0.0f ) } );
+	floors.emplace_back( Floor{ { 250.0f,350.0f },
+		{ 160.0f,50.0f },chili::deg2rad( 35.0f ) } );
+	floors.emplace_back( Floor{ { 650.0f,500.0f },
+		{ 160.0f,50.0f },chili::deg2rad( -35.0f ) } );
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
@@ -46,6 +49,8 @@ void Game::UpdateModel()
 	float dt = time.Mark();
 	if( dt > 1.0f ) dt = 0.0f;
 	else dt *= 60.0f;
+
+	// const auto origPos = guy.GetPos(); // Copy, not ref.
 
 	mt.Update();
 	guy.Update( dt );
@@ -74,6 +79,17 @@ void Game::UpdateModel()
 	{
 		guy.CollideWith( *closest,dt );
 	}
+
+	// const auto pixelDiff = guy.GetPos() - origPos;
+	// 
+	// fs.Update( -pixelDiff.y );
+	// 
+	// for( Floor& plat : floors )
+	// {
+	// 	plat.MoveBy( -pixelDiff.Y() );
+	// }
+	// 
+	// guy.ResetPos();
 }
 
 void Game::ComposeFrame()

@@ -6,14 +6,6 @@
 
 class Player
 {
-private:
-	enum class Dir
-	{
-		Up,
-		Down,
-		Left,
-		Right
-	};
 public:
 	Player( MouseTracker& mt );
 
@@ -21,9 +13,12 @@ public:
 	void Draw( Graphics& gfx ) const;
 
 	void CollideWith( const Line& l,float dt );
+	void ClampSpeed();
+	void ResetPos();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
+	const Vec2& GetPos() const;
 private:
 	MouseTracker& mt;
 	static constexpr int size = 24;
@@ -32,7 +27,8 @@ private:
 	static constexpr float velDecay = 0.995f;
 	static constexpr float speed = 3.0f;
 	float curGrav = 0.0f;
-	static constexpr float gravAcc = 0.14f;
+	static constexpr float gravAcc = 0.14f; // From 0.14.
 	static constexpr float bounceLoss = 0.71f;
-	static constexpr float maxSpeed = float( size - 1 );
+	// Make sure maxSpeed is less than size for hit tests.
+	static constexpr float maxSpeed = float( size / 2 - 1 );
 };

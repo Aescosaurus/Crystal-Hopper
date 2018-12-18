@@ -13,12 +13,7 @@ void Player::Update( float dt )
 
 	vel.y += gravAcc * dt;
 
-	// vel.x = std::max( std::min( vel.x,50.0f ),-50.0f );
-	// vel.y = std::max( std::min( vel.y,50.0f ),-50.0f );
-	if( vel.GetLength<float>() > maxSpeed )
-	{
-		vel = vel.GetNormalized() * maxSpeed;
-	}
+	ClampSpeed();
 
 	pos += vel * dt;
 	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt );
@@ -52,7 +47,24 @@ void Player::CollideWith( const Line& l,float dt )
 
 	vel = vel - ( perp * ( 2.0f * Vec2::Dot( vel,perp ) ) );
 
+	ClampSpeed();
+
 	pos += vel * dt;
+}
+
+void Player::ClampSpeed()
+{
+	// vel.x = std::max( std::min( vel.x,50.0f ),-50.0f );
+	// vel.y = std::max( std::min( vel.y,50.0f ),-50.0f );
+	if( vel.GetLength<float>() > maxSpeed )
+	{
+		vel = vel.GetNormalized() * maxSpeed;
+	}
+}
+
+void Player::ResetPos()
+{
+	pos.y = Vec2( Graphics::GetCenter() ).y;
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const
@@ -71,4 +83,9 @@ bool Player::CheckColl( const Line& l,float& dist ) const
 	}
 
 	return( dist < size / 2 );
+}
+
+const Vec2& Player::GetPos() const
+{
+	return( pos );
 }
