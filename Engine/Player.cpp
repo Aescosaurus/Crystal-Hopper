@@ -96,7 +96,7 @@ bool Player::CheckColl( const Circle& c,float& dist ) const
 {
 	dist = ( c.pos - pos ).GetLength<float>();
 
-	return( dist < size + c.radius );
+	return( dist < size / 2 + c.radius );
 }
 
 const Vec2& Player::GetPos() const

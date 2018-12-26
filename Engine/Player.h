@@ -25,7 +25,7 @@ public:
 	const Vec2& GetPos() const;
 private:
 	MouseTracker& mt;
-	static constexpr int size = 24;
+	static constexpr int size = 24; // Diameter, not radius.
 	Vec2 pos;
 	Vec2 vel;
 	static constexpr float velDecay = 0.995f;

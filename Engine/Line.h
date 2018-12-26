@@ -11,6 +11,14 @@ public:
 		start( first ),
 		end( second )
 	{}
+	void ShrinkBy( float amount )
+	{
+		const auto diff = GetDiff().GetNormalized();
+
+		start += diff * amount;
+		end -= diff * amount;
+	}
+	// Gives difference vector not normalized.
 	Vec2 GetDiff() const
 	{
 		return( end - start );

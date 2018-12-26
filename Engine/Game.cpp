@@ -31,7 +31,7 @@ Game::Game( MainWindow& wnd )
 {
 	floors.emplace_back( Floor{ { 250.0f,350.0f },
 		{ 160.0f,50.0f },chili::deg2rad( 35.0f ) } );
-	floors.emplace_back( Floor{ { 650.0f,500.0f },
+	floors.emplace_back( Floor{ { 650.0f,450.0f },
 		{ 160.0f,50.0f },chili::deg2rad( -35.0f ) } );
 }
 
@@ -46,10 +46,8 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	float dt = time.Mark();
-	if( dt > 1.0f ) dt = 0.0f;
+	if( dt > 1.0f / 15.0f ) dt = 0.0f;
 	else dt *= 60.0f;
-
-	// const auto origPos = guy.GetPos(); // Copy, not ref.
 
 	mt.Update();
 	guy.Update( dt );
@@ -84,25 +82,14 @@ void Game::UpdateModel()
 			}
 		}
 	}
-	if( closestCorner != nullptr )
-	{
-		guy.CollideWith( *closestCorner,dt );
-	}
-	else if( closestLine != nullptr ) // else if important.
+	if( closestLine != nullptr )
 	{
 		guy.CollideWith( *closestLine,dt );
 	}
-
-	// const auto pixelDiff = guy.GetPos() - origPos;
-	// 
-	// fs.Update( -pixelDiff.y );
-	// 
-	// for( Floor& plat : floors )
-	// {
-	// 	plat.MoveBy( -pixelDiff.Y() );
-	// }
-	// 
-	// guy.ResetPos();
+	else if( closestCorner != nullptr ) // else if important.
+	{
+		guy.CollideWith( *closestCorner,dt );
+	}
 }
 
 void Game::ComposeFrame()
