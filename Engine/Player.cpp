@@ -38,17 +38,15 @@ void Player::Update( float dt )
 
 void Player::Draw( Graphics& gfx ) const
 {
-	gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Cyan );
+	gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
 }
 
 void Player::CollideWith( const Line& l,float dt )
 {
 	const auto perp = l.GetDiff().GetPerp().GetNormalized();
-
 	vel = vel - ( perp * ( 2.0f * Vec2::Dot( vel,perp ) ) );
 
 	ClampSpeed();
-
 	pos += vel * dt;
 }
 
@@ -56,6 +54,7 @@ void Player::CollideWith( const Circle& c,float dt )
 {
 	vel *= -1.0f;
 
+	ClampSpeed(); // Just in case.
 	pos += vel * dt;
 }
 

@@ -29,6 +29,7 @@
 #include "Line.h"
 #include <vector>
 #include "Floor.h"
+#include "Crystal.h"
 
 class Game
 {
@@ -52,6 +53,7 @@ private:
 	MouseTracker mt;
 	Player guy;
 	std::vector<Floor> floors;
+	std::vector<Crystal> crystals;
 	float pixelsMoved = 0.0f;
 	/********************************/
 };

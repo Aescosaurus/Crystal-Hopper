@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "ChiliUtils.h"
+#include <functional>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -29,10 +30,14 @@ Game::Game( MainWindow& wnd )
 	mt( wnd.mouse ),
 	guy( mt )
 {
+	// TODO: Find a way to do this by reading files.
 	floors.emplace_back( Floor{ { 250.0f,350.0f },
 		{ 160.0f,50.0f },chili::deg2rad( 35.0f ) } );
 	floors.emplace_back( Floor{ { 650.0f,450.0f },
 		{ 160.0f,50.0f },chili::deg2rad( -35.0f ) } );
+
+	crystals.emplace_back( Crystal{ { 100.0f,450.0f } } );
+	crystals.emplace_back( Crystal{ { 650.0f,150.0f } } );
 }
 
 void Game::Go()
@@ -52,6 +57,7 @@ void Game::UpdateModel()
 	mt.Update();
 	guy.Update( dt );
 
+	// Find which line or corner to collide with.
 	float shortest = 9999.0f;
 	const Line* closestLine = nullptr;
 	const Circle* closestCorner = nullptr;
@@ -90,15 +96,29 @@ void Game::UpdateModel()
 	{
 		guy.CollideWith( *closestCorner,dt );
 	}
+
+	// Find out if you need to collect a crystal.
+	for( auto& cry : crystals )
+	{
+		float tempDist = -1.0f;
+		if( guy.CheckColl( cry.GetCollider(),tempDist ) )
+		{
+			// TODO: Give points or something.
+			cry.Collect();
+		}
+	}
+
+	// Remove crystals that have been collected.
+	// chili::remove_erase_if( crystals,
+	// 	std::mem_fn( &Crystal::WillRemove ) );
 }
 
 void Game::ComposeFrame()
 {
-	mt.Draw( gfx );
-	guy.Draw( gfx );
+	for( const auto& flr : floors ) flr.Draw( gfx );
 
-	for( const auto& floor : floors )
-	{
-		floor.Draw( gfx );
-	}
+	for( const auto& cry : crystals ) cry.Draw( gfx );
+
+	guy.Draw( gfx );
+	mt.Draw( gfx );
 }

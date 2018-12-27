@@ -22,7 +22,7 @@ private:
 	Vec2 RotatePoint( const Vec2& point,
 		const Vec2& about,const Matrix& rotMat ) const;
 private:
-	static constexpr float cornerSize = 1.0f;
+	static constexpr float cornerSize = 0.8f;
 	std::vector<Line> lines;
 	std::vector<Circle> corners;
 };
