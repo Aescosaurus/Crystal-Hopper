@@ -8,7 +8,7 @@
 class Player
 {
 public:
-	Player( MouseTracker& mt );
+	Player( const Mouse& ms );
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
@@ -24,7 +24,7 @@ public:
 	bool CheckColl( const Circle& c,float& dist ) const;
 	const Vec2& GetPos() const;
 private:
-	MouseTracker& mt;
+	MouseTracker mt;
 	static constexpr int size = 24; // Diameter, not radius.
 	Vec2 pos;
 	Vec2 vel;
@@ -35,4 +35,5 @@ private:
 	static constexpr float bounceLoss = 0.71f;
 	// Make sure maxSpeed is less than size for hit tests.
 	static constexpr float maxSpeed = float( size / 2 - 1 );
+	bool canJump = true;
 };

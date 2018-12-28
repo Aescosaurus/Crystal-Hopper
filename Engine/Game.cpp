@@ -30,8 +30,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	mt( wnd.mouse ),
-	guy( mt )
+	guy( wnd.mouse )
 {
 	// TODO: Find a way to do this by reading files.
 	// Edit: Hey I did it!!
@@ -59,7 +58,6 @@ void Game::UpdateModel()
 	if( dt > 1.0f / 15.0f ) dt = 0.0f;
 	else dt *= 60.0f;
 
-	mt.Update();
 	guy.Update( dt );
 
 	// Find which line or corner to collide with.
@@ -125,7 +123,6 @@ void Game::ComposeFrame()
 	for( const auto& cry : crystals ) cry.Draw( gfx );
 
 	guy.Draw( gfx );
-	mt.Draw( gfx );
 }
 
 void Game::ReadFile( const std::string& filename )

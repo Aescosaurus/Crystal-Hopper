@@ -23,7 +23,6 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
-#include "MouseTracker.h"
 #include "Player.h"
 #include "FrameTimer.h"
 #include "Line.h"
@@ -52,7 +51,6 @@ private:
 	/********************************/
 	/*  User Variables              */
 	FrameTimer time;
-	MouseTracker mt;
 	Player guy;
 	std::vector<Floor> floors;
 	std::vector<Crystal> crystals;

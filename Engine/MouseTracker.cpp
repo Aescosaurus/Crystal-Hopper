@@ -1,7 +1,7 @@
 #include "MouseTracker.h"
 #include <cassert>
 
-MouseTracker::MouseTracker( Mouse& mouse )
+MouseTracker::MouseTracker( const Mouse& mouse )
 	:
 	mouse( mouse )
 {}
@@ -33,12 +33,12 @@ void MouseTracker::Update()
 	}
 }
 
-void MouseTracker::Draw( Graphics& gfx ) const
+void MouseTracker::Draw( Color c,Graphics& gfx ) const
 {
 	if( lastMousePos != Vei2::Fake() )
 	{
 		gfx.DrawLine( Vec2( lastMousePos ),
-			Vec2( mouse.GetPos() ),Colors::White );
+			Vec2( mouse.GetPos() ),c );
 	}
 }
 
