@@ -43,6 +43,8 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	// Adds floors and crystals and stuff.
+	void ReadFile( const std::string& filename );
 	/********************************/
 private:
 	MainWindow& wnd;

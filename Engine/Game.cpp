@@ -22,6 +22,9 @@
 #include "Game.h"
 #include "ChiliUtils.h"
 #include <functional>
+#include <string>
+#include <fstream>
+#include <cassert>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -31,13 +34,15 @@ Game::Game( MainWindow& wnd )
 	guy( mt )
 {
 	// TODO: Find a way to do this by reading files.
-	floors.emplace_back( Floor{ { 250.0f,350.0f },
-		{ 160.0f,50.0f },chili::deg2rad( 35.0f ) } );
-	floors.emplace_back( Floor{ { 650.0f,450.0f },
-		{ 160.0f,50.0f },chili::deg2rad( -35.0f ) } );
-
-	crystals.emplace_back( Crystal{ { 100.0f,450.0f } } );
-	crystals.emplace_back( Crystal{ { 650.0f,150.0f } } );
+	// Edit: Hey I did it!!
+	ReadFile( "Levels/TestLevel.txt" );
+	// floors.emplace_back( Floor{ { 250.0f,350.0f },
+	// 	chili::deg2rad( 35.0f ) } );
+	// floors.emplace_back( Floor{ { 650.0f,450.0f },
+	// 	chili::deg2rad( -35.0f ) } );
+	// 
+	// crystals.emplace_back( Crystal{ { 100.0f,450.0f } } );
+	// crystals.emplace_back( Crystal{ { 650.0f,150.0f } } );
 }
 
 void Game::Go()
@@ -121,4 +126,76 @@ void Game::ComposeFrame()
 
 	guy.Draw( gfx );
 	mt.Draw( gfx );
+}
+
+void Game::ReadFile( const std::string& filename )
+{
+	using namespace std;
+
+	const auto read_line = []( ifstream& file_stream )
+	{
+		string temp_str = "";
+		for( char c = file_stream.get();
+			c != '\n';
+			c = file_stream.get() )
+		{
+			temp_str += c;
+		}
+		return( temp_str );
+	};
+
+	ifstream in{ filename };
+	assert( in.good() );
+
+	vector<vector<string>> tokens;
+	string temp = "";
+	tokens.emplace_back( vector<string>{} );
+
+	const string levelName = read_line( in );
+
+	for( char c = in.get(); in.good(); c = in.get() )
+	{
+		if( c == '\n' )
+		{
+			tokens.back().emplace_back( temp );
+			tokens.emplace_back( vector<string>{} );
+			temp = "";
+		}
+		else if( c == '|' )
+		{
+			tokens.back().emplace_back( temp );
+			temp = "";
+		}
+		else
+		{
+			temp += c;
+		}
+	}
+	tokens.back().emplace_back( temp );
+
+	// Add objects to vectors!
+	for( const vector<string>& list : tokens )
+	{
+		const auto& title = list[0];
+
+		if( title == "Floor" )
+		{
+			floors.emplace_back( Floor{
+				Vec2{ stof( list[1] ),stof( list[2] ) },
+				chili::deg2rad( stof( list[3] ) ) } );
+		}
+		else if( title == "Crystal" )
+		{
+			crystals.emplace_back( Crystal{
+				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+		}
+		// else if( title == "" )
+		// {
+		// 
+		// }
+		else
+		{
+			assert( false );
+		}
+	}
 }

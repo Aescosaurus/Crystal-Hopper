@@ -1,7 +1,7 @@
 #include "Floor.h"
 #include "Matrix.h"
 
-Floor::Floor( const Vec2& pos,const Vec2& size,float angle )
+Floor::Floor( const Vec2& pos,float angle )
 {
 	const auto rotMat = Matrix::Rotation( angle );
 
@@ -18,8 +18,6 @@ Floor::Floor( const Vec2& pos,const Vec2& size,float angle )
 	lines.emplace_back( Line{ dr,dl } );
 	lines.emplace_back( Line{ dl,ul } );
 
-	// lines[0].ShrinkBy( -5.0f );
-	// lines[2].ShrinkBy( -5.0f );
 	for( auto& l : lines ) l.ShrinkBy( 2.0f );
 
 	corners.emplace_back( Circle{ ul,cornerSize } );
