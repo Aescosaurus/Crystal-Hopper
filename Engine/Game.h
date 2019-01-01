@@ -29,6 +29,7 @@
 #include <vector>
 #include "Floor.h"
 #include "Crystal.h"
+#include <string>
 
 class Game
 {
@@ -42,8 +43,11 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void GotoNextLevel();
 	// Adds floors and crystals and stuff.
 	void ReadFile( const std::string& filename );
+	// Call this with curLevel++ so I can keep const.
+	std::string GetNextLevelName( int curLevel ) const;
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -54,6 +58,6 @@ private:
 	Player guy;
 	std::vector<Floor> floors;
 	std::vector<Crystal> crystals;
-	float pixelsMoved = 0.0f;
+	int curLevel = 0;
 	/********************************/
 };

@@ -16,7 +16,7 @@ public:
 	void CollideWith( const Line& l,float dt );
 	void CollideWith( const Circle& c,float dt );
 	void ClampSpeed();
-	void ResetPos();
+	void Reset();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;

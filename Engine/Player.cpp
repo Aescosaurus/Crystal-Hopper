@@ -82,9 +82,10 @@ void Player::ClampSpeed()
 	}
 }
 
-void Player::ResetPos()
+void Player::Reset()
 {
-	pos.y = Vec2( Graphics::GetCenter() ).y;
+	pos = Vec2( Graphics::GetCenter() );
+	vel = { 0.0f,0.0f };
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const

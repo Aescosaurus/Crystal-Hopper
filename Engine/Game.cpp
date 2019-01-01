@@ -34,14 +34,8 @@ Game::Game( MainWindow& wnd )
 {
 	// TODO: Find a way to do this by reading files.
 	// Edit: Hey I did it!!
-	ReadFile( "Levels/TestLevel.txt" );
-	// floors.emplace_back( Floor{ { 250.0f,350.0f },
-	// 	chili::deg2rad( 35.0f ) } );
-	// floors.emplace_back( Floor{ { 650.0f,450.0f },
-	// 	chili::deg2rad( -35.0f ) } );
-	// 
-	// crystals.emplace_back( Crystal{ { 100.0f,450.0f } } );
-	// crystals.emplace_back( Crystal{ { 650.0f,150.0f } } );
+	// ReadFile( GetNextLevelName( curLevel++ ) );
+	GotoNextLevel();
 }
 
 void Game::Go()
@@ -64,8 +58,10 @@ void Game::UpdateModel()
 	float shortest = 9999.0f;
 	const Line* closestLine = nullptr;
 	const Circle* closestCorner = nullptr;
+	// For all platforms in the level.
 	for( const auto& plat : floors )
 	{
+		// Check line collisions.
 		for( const auto& curLine : plat.GetLines() )
 		{
 			auto curDist = -1.0f;
@@ -78,25 +74,31 @@ void Game::UpdateModel()
 				}
 			}
 		}
-		for( const auto& curCorner : plat.GetCorners() )
+		// Only check corners if no collision with line.
+		if( closestLine == nullptr )
 		{
-			auto curDist = -1.0f;
-			if( guy.CheckColl( curCorner,curDist ) )
+			for( const auto& curCorner : plat.GetCorners() )
 			{
-				if( curDist < shortest )
+				auto curDist = -1.0f;
+				if( guy.CheckColl( curCorner,curDist ) )
 				{
-					shortest = curDist;
-					closestCorner = &curCorner;
+					if( curDist < shortest )
+					{
+						shortest = curDist;
+						closestCorner = &curCorner;
+					}
 				}
 			}
 		}
 	}
+	// Prefer to collide with a line, collide with a
+	//  corner only if no lines are available.
 	if( closestLine != nullptr )
 	{
 		guy.CollideWith( *closestLine,dt );
 	}
-	else if( closestCorner != nullptr ) // else if important.
-	{
+	else if( closestCorner != nullptr )
+	{ // else if might be important here.
 		guy.CollideWith( *closestCorner,dt );
 	}
 
@@ -112,8 +114,11 @@ void Game::UpdateModel()
 	}
 
 	// Remove crystals that have been collected.
-	// chili::remove_erase_if( crystals,
-	// 	std::mem_fn( &Crystal::WillRemove ) );
+	chili::remove_erase_if( crystals,
+		std::mem_fn( &Crystal::WillRemove ) );
+
+	// Change level when we've collected all the crystals.
+	if( crystals.size() == 0 ) GotoNextLevel();
 }
 
 void Game::ComposeFrame()
@@ -123,6 +128,15 @@ void Game::ComposeFrame()
 	for( const auto& cry : crystals ) cry.Draw( gfx );
 
 	guy.Draw( gfx );
+}
+
+void Game::GotoNextLevel()
+{
+	floors.clear();
+	crystals.clear();
+
+	guy.Reset();
+	ReadFile( GetNextLevelName( curLevel++ ) );
 }
 
 void Game::ReadFile( const std::string& filename )
@@ -195,4 +209,11 @@ void Game::ReadFile( const std::string& filename )
 			assert( false );
 		}
 	}
+}
+
+std::string Game::GetNextLevelName( int curLevel ) const
+{
+	const auto path = "Levels/Level";
+	const auto suffix = ".txt";
+	return( path + std::to_string( curLevel ) + suffix );
 }
