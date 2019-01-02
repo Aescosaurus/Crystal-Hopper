@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BadCrystal.h" />
+    <ClInclude Include="Campaign.h" />
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliUtils.h" />
     <ClInclude Include="ChiliWin.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Campaign.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="Crystal.cpp" />
     <ClCompile Include="DXErr.cpp" />

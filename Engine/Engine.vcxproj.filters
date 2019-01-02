@@ -102,6 +102,9 @@
     <ClInclude Include="BadCrystal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Campaign.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Crystal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Campaign.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

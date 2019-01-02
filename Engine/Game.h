@@ -20,19 +20,16 @@
  ******************************************************************************************/
 #pragma once
 
-#include "Keyboard.h"
-#include "Mouse.h"
-#include "Graphics.h"
-#include "Player.h"
-#include "FrameTimer.h"
-#include "Line.h"
-#include <vector>
-#include "Floor.h"
-#include "Crystal.h"
-#include <string>
+#include "Campaign.h"
 
 class Game
 {
+private:
+	enum class State
+	{
+		Menu,
+		Campaign
+	};
 public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
@@ -43,21 +40,13 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void GotoNextLevel();
-	// Adds floors and crystals and stuff.
-	void ReadFile( const std::string& filename );
-	// Call this with curLevel++ so I can keep const.
-	std::string GetNextLevelName( int curLevel ) const;
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	FrameTimer time;
-	Player guy;
-	std::vector<Floor> floors;
-	std::vector<Crystal> crystals;
-	int curLevel = 0;
+	Campaign mainGame;
+	State gameState = State::Campaign;
 	/********************************/
 };
