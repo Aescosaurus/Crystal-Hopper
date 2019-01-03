@@ -28,6 +28,7 @@
 #include "Rect.h"
 #include "Surface.h"
 #include "Matrix.h"
+#include <cassert>
 
 class Graphics
 {
@@ -56,13 +57,16 @@ public:
 	Graphics& operator=( const Graphics& ) = delete;
 	void EndFrame();
 	void BeginFrame();
+	Color GetPixel( int x,int y );
 	void PutPixel( int x,int y,int r,int g,int b )
 	{
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
+	void PutPixelAlpha( int x,int y,Color c,float alpha );
 	void DrawLine( Vec2 p0,Vec2 p1,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
+	void DrawRect( int x,int y,int width,int height,Color c );
 
 	template<typename E>
 	void DrawSprite( int x,int y,const Surface& s,E effect,
@@ -120,8 +124,8 @@ public:
 					effect(
 						// No mirroring!
 						s.GetPixel( sx,sy ),
-						drawPos.x,
-						drawPos.y,
+						int( drawPos.x ),
+						int( drawPos.y ),
 						*this
 					);
 				}
@@ -161,8 +165,8 @@ public:
 					effect(
 						// Mirror in x.
 						s.GetPixel( xOffset - sx,sy ),
-						drawPos.x,
-						drawPos.y,
+						int( drawPos.x ),
+						int( drawPos.y ),
 						*this
 					);
 				}
@@ -186,6 +190,7 @@ private:
 	Color*                                              pSysBuffer = nullptr;
 public:
 	static Vei2 GetCenter();
+	static RectI GetScreenRect();
 	static constexpr int ScreenWidth = 800;
 	static constexpr int ScreenHeight = 600;
 };

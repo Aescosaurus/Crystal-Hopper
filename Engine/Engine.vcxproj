@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BadCrystal.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Campaign.h" />
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliUtils.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Crystal.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
@@ -167,11 +169,13 @@
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Campaign.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="Crystal.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />

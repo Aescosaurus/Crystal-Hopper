@@ -21,6 +21,7 @@
 #pragma once
 
 #include "Campaign.h"
+#include "Button.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Campaign mainGame;
-	State gameState = State::Campaign;
+	State gameState = State::Menu;
+	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start Campaign" };
 	/********************************/
 };

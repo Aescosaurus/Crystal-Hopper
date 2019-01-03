@@ -41,7 +41,15 @@ void Game::UpdateModel()
 	switch( gameState )
 	{
 	case State::Menu:
-		break;
+	{
+		const auto msPos = wnd.mouse.GetPos();
+		const auto msDown = wnd.mouse.LeftIsPressed();
+		if( startCampaign.Update( msPos,msDown ) )
+		{
+			gameState = State::Campaign;
+		}
+	}
+	break;
 	case State::Campaign:
 		mainGame.Update();
 		break;
@@ -53,6 +61,7 @@ void Game::ComposeFrame()
 	switch( gameState )
 	{
 	case State::Menu:
+		startCampaign.Draw( gfx );
 		break;
 	case State::Campaign:
 		mainGame.Draw();
