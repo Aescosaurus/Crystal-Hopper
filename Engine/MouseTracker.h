@@ -15,7 +15,7 @@ public:
 	const Vec2& GetDiff() const;
 	bool Released() const;
 private:
-	const Mouse& mouse;
+	const Mouse* pMouse;
 	Vei2 lastMousePos;
 	Vec2 diff;
 	bool pressedLastFrame = false;

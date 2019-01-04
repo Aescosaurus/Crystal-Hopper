@@ -18,17 +18,31 @@ Campaign::Campaign( Keyboard& kbd,
 
 void Campaign::Update()
 {
+	const float origDt = time.Mark();
+	// if( origDt > 1.0f / 15.0f ) dt = 0.0f;
+	// else dt *= 60.0f;
+	const float dt = ( origDt > 1.0f / 15.0f )
+		? 0.0f : origDt * 60.0f;
+
+	// if( origDt > 1.0f / 15.0f ) return;
+
 	switch( gameState )
 	{
 	case State::Gameplay:
 	{
-		const float origDt = time.Mark();
-		// if( origDt > 1.0f / 15.0f ) dt = 0.0f;
-		// else dt *= 60.0f;
-		const float dt = ( origDt > 1.0f / 15.0f )
-			? 0.0f : origDt * 60.0f;
-
 		guy.Update( dt );
+
+		// Remove points for jumping and hitting obstacles.
+		points -= guy.GetPointLoss();
+		guy.ResetLostPoints();
+
+		// Remove points over time.
+		pointSubtracter.Update( origDt );
+		if( pointSubtracter.IsDone() )
+		{
+			pointSubtracter.Reset();
+			points -= timePointVal;
+		}
 
 		// Find which line or corner to collide with.
 		float shortest = 9999.0f;
@@ -102,6 +116,10 @@ void Campaign::Update()
 			if( endLevelTimer.IsDone() )
 			{
 				endLevelTimer.Reset();
+
+				endLevelScreen.UpdatePoints(
+					float( points ) / startPoints );
+				points = startPoints;
 				gameState = State::EndLevel;
 			}
 		}

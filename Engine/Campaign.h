@@ -46,4 +46,8 @@ private:
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;
 	Timer endLevelTimer = 1.5f;
+	static constexpr int startPoints = 1200;
+	int points = startPoints;
+	Timer pointSubtracter = 1.0f;
+	static constexpr int timePointVal = 1;
 };

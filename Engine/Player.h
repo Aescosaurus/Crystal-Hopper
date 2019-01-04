@@ -17,13 +17,16 @@ public:
 	void CollideWith( const Circle& c,float dt );
 	void ClampSpeed();
 	void Reset();
+	void ResetLostPoints();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
 	// Also returns true on collision.
 	bool CheckColl( const Circle& c,float& dist ) const;
 	const Vec2& GetPos() const;
+	int GetPointLoss() const;
 private:
+	const Mouse* pMouse;
 	MouseTracker mt;
 	static constexpr int size = 24; // Diameter, not radius.
 	Vec2 pos;
@@ -36,4 +39,6 @@ private:
 	// Make sure maxSpeed is less than size for hit tests.
 	static constexpr float maxSpeed = float( size / 2 - 1 );
 	bool canJump = true;
+	int pointsLost = 0;
+	static constexpr int jumpPenalty = 50;
 };

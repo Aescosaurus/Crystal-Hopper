@@ -2,4 +2,4 @@ Level Name
 Floor|150|350|65
 Floor|650|450|-35
 Crystal|100|450
-Crystal|650|150
+Crystal|650|350

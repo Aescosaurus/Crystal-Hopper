@@ -2,6 +2,7 @@
 
 Player::Player( const Mouse& ms )
 	:
+	pMouse( &ms ),
 	mt( ms ),
 	pos( Vec2( Graphics::GetCenter() ) ),
 	vel( 0.0f,0.0f )
@@ -15,6 +16,7 @@ void Player::Update( float dt )
 	{
 		vel += mt.GetDiff() * speed;
 		canJump = false;
+		pointsLost += jumpPenalty;
 	}
 
 	vel.y += gravAcc * dt;
@@ -84,8 +86,14 @@ void Player::ClampSpeed()
 
 void Player::Reset()
 {
-	pos = Vec2( Graphics::GetCenter() );
-	vel = { 0.0f,0.0f };
+	// pos = Vec2( Graphics::GetCenter() );
+	// vel = { 0.0f,0.0f };
+	*this = Player{ *pMouse };
+}
+
+void Player::ResetLostPoints()
+{
+	pointsLost = 0;
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const
@@ -116,4 +124,9 @@ bool Player::CheckColl( const Circle& c,float& dist ) const
 const Vec2& Player::GetPos() const
 {
 	return( pos );
+}
+
+int Player::GetPointLoss() const
+{
+	return( pointsLost );
 }

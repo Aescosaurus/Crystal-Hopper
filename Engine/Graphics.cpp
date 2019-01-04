@@ -415,6 +415,39 @@ void Graphics::DrawRect( int x,int y,int width,int height,Color c )
 	}
 }
 
+void Graphics::DrawStar( int x,int y,float radius,Color c )
+{
+	const int nFlares = 5;
+	const float outerRadius = radius;
+	const float innerRadius = radius / 2.0f;
+
+	// Generate the star.
+	std::vector<Vec2> star;
+	star.reserve( nFlares * 2 );
+	const float dTheta = 2.0f * 3.14159f / float( nFlares * 2 );
+	for( int i = 0; i < nFlares * 2; i++ )
+	{
+		const float rad = ( i % 2 == 0 ) ? outerRadius : innerRadius;
+		star.emplace_back(
+			rad * cos( float( i ) * dTheta ),
+			rad * sin( float( i ) * dTheta )
+		);
+	}
+
+	// Translate points so they're drawn in the proper spot.
+	for( auto& point : star )
+	{
+		point += Vec2( Vei2{ x,y } );
+	}
+
+	// Actually draw the generated star.
+	for( int i = 0; i < int( star.size() ) - 1; ++i )
+	{
+		DrawLine( star[i],star[i + 1],c );
+	}
+	DrawLine( star.back(),star.front(),c );
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception

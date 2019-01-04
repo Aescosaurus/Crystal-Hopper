@@ -67,6 +67,7 @@ public:
 	void DrawLine( Vec2 p0,Vec2 p1,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
+	void DrawStar( int x,int y,float radius,Color c );
 
 	template<typename E>
 	void DrawSprite( int x,int y,const Surface& s,E effect,

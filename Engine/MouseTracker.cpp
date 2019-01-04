@@ -3,22 +3,22 @@
 
 MouseTracker::MouseTracker( const Mouse& mouse )
 	:
-	mouse( mouse )
+	pMouse( &mouse )
 {}
 
 void MouseTracker::Update()
 {
-	if( mouse.LeftIsPressed() )
+	if( pMouse->LeftIsPressed() )
 	{
 		pressedLastFrame = true;
 		canUnpress = false;
 
 		if( lastMousePos == Vei2::Fake() )
 		{
-			lastMousePos = mouse.GetPos();
+			lastMousePos = pMouse->GetPos();
 		}
 
-		const Vei2 curMousePos = mouse.GetPos();
+		const Vei2 curMousePos = pMouse->GetPos();
 
 		// diff = Vec2( lastMousePos - curMousePos )
 		// 	.GetNormalized();
@@ -38,7 +38,7 @@ void MouseTracker::Draw( Color c,Graphics& gfx ) const
 	if( lastMousePos != Vei2::Fake() )
 	{
 		gfx.DrawLine( Vec2( lastMousePos ),
-			Vec2( mouse.GetPos() ),c );
+			Vec2( pMouse->GetPos() ),c );
 	}
 }
 
@@ -50,7 +50,8 @@ const Vec2& MouseTracker::GetDiff() const
 
 bool MouseTracker::Released() const
 {
-	return( !mouse.LeftIsPressed() &&
+	return( !pMouse->LeftIsPressed() &&
 		diff != Vec2::Fake() &&
-		pressedLastFrame );
+		pressedLastFrame &&
+		diff.GetLengthSq<float>() > 1.0f );
 }
