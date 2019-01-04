@@ -10,9 +10,17 @@
 #include "Floor.h"
 #include "Crystal.h"
 #include <string>
+#include "EndLevelMenu.h"
+#include "Timer.h"
 
 class Campaign
 {
+private:
+	enum class State
+	{
+		Gameplay,
+		EndLevel
+	};
 public:
 	Campaign( Keyboard& kbd,Mouse& mouse,Graphics& gfx );
 
@@ -34,4 +42,8 @@ private:
 	std::vector<Floor> floors;
 	std::vector<Crystal> crystals;
 	int curLevel = 0;
+
+	State gameState = State::Gameplay;
+	EndLevelMenu endLevelScreen;
+	Timer endLevelTimer = 1.5f;
 };

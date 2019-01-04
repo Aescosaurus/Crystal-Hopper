@@ -110,11 +110,11 @@ public:
 	}
 	Vec2_<T> X() const
 	{
-		return( Vec2_<T>{ x,0.0f } );
+		return( Vec2_<T>{ x,T( 0.0f ) } );
 	}
 	Vec2_<T> Y() const
 	{
-		return( Vec2_<T>{ 0.0f,y } );
+		return( Vec2_<T>{ T( 0.0f ),y } );
 	}
 	static constexpr Vec2_<T> Fake()
 	{

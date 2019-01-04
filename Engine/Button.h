@@ -13,6 +13,8 @@ public:
 	// Returns true if pressed.
 	bool Update( const Vei2& mousePos,bool mouseDown );
 	void Draw( Graphics& gfx ) const;
+
+	bool IsPressed() const;
 private:
 	Vei2 GetSize( const std::string& msg ) const;
 	bool ContainsPoint( const Vei2& point ) const;

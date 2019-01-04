@@ -18,77 +18,113 @@ Campaign::Campaign( Keyboard& kbd,
 
 void Campaign::Update()
 {
-	float dt = time.Mark();
-	if( dt > 1.0f / 15.0f ) dt = 0.0f;
-	else dt *= 60.0f;
-
-	guy.Update( dt );
-
-	// Find which line or corner to collide with.
-	float shortest = 9999.0f;
-	const Line* closestLine = nullptr;
-	const Circle* closestCorner = nullptr;
-	// For all platforms in the level.
-	for( const auto& plat : floors )
+	switch( gameState )
 	{
-		// Check line collisions.
-		for( const auto& curLine : plat.GetLines() )
+	case State::Gameplay:
+	{
+		const float origDt = time.Mark();
+		// if( origDt > 1.0f / 15.0f ) dt = 0.0f;
+		// else dt *= 60.0f;
+		const float dt = ( origDt > 1.0f / 15.0f )
+			? 0.0f : origDt * 60.0f;
+
+		guy.Update( dt );
+
+		// Find which line or corner to collide with.
+		float shortest = 9999.0f;
+		const Line* closestLine = nullptr;
+		const Circle* closestCorner = nullptr;
+		// For all platforms in the level.
+		for( const auto& plat : floors )
 		{
-			auto curDist = -1.0f;
-			if( guy.CheckColl( curLine,curDist ) )
-			{
-				if( curDist < shortest )
-				{
-					shortest = curDist;
-					closestLine = &curLine;
-				}
-			}
-		}
-		// Only check corners if no collision with line.
-		if( closestLine == nullptr )
-		{
-			for( const auto& curCorner : plat.GetCorners() )
+			// Check line collisions.
+			for( const auto& curLine : plat.GetLines() )
 			{
 				auto curDist = -1.0f;
-				if( guy.CheckColl( curCorner,curDist ) )
+				if( guy.CheckColl( curLine,curDist ) )
 				{
 					if( curDist < shortest )
 					{
 						shortest = curDist;
-						closestCorner = &curCorner;
+						closestLine = &curLine;
+					}
+				}
+			}
+			// Only check corners if no collision with line.
+			if( closestLine == nullptr )
+			{
+				for( const auto& curCorner : plat.GetCorners() )
+				{
+					auto curDist = -1.0f;
+					if( guy.CheckColl( curCorner,curDist ) )
+					{
+						if( curDist < shortest )
+						{
+							shortest = curDist;
+							closestCorner = &curCorner;
+						}
 					}
 				}
 			}
 		}
-	}
-	// Prefer to collide with a line, collide with a
-	//  corner only if no lines are available.
-	if( closestLine != nullptr )
-	{
-		guy.CollideWith( *closestLine,dt );
-	}
-	else if( closestCorner != nullptr )
-	{ // else if might be important here.
-		guy.CollideWith( *closestCorner,dt );
-	}
-
-	// Find out if you need to collect a crystal.
-	for( auto& cry : crystals )
-	{
-		float tempDist = -1.0f;
-		if( guy.CheckColl( cry.GetCollider(),tempDist ) )
+		// Prefer to collide with a line, collide with a
+		//  corner only if no lines are available.
+		if( closestLine != nullptr )
 		{
-			// TODO: Give points or something.
-			cry.Collect();
+			guy.CollideWith( *closestLine,dt );
 		}
+		else if( closestCorner != nullptr )
+		{ // else if might be important here.
+			guy.CollideWith( *closestCorner,dt );
+		}
+
+		// Find out if you need to collect a crystal.
+		for( auto& cry : crystals )
+		{
+			float tempDist = -1.0f;
+			if( guy.CheckColl( cry.GetCollider(),tempDist ) )
+			{
+				// TODO: Give points or something.
+				cry.Collect();
+			}
+		}
+
+		// Remove crystals that have been collected.
+		chili::remove_erase_if( crystals,
+			std::mem_fn( &Crystal::WillRemove ) );
+
+		// Bring up end level menu when we've collected
+		//  all the crystals.
+		if( crystals.size() == 0 )
+		{
+			endLevelTimer.Update( origDt );
+
+			if( endLevelTimer.IsDone() )
+			{
+				endLevelTimer.Reset();
+				gameState = State::EndLevel;
+			}
+		}
+		break;
 	}
+	case State::EndLevel:
+	{
+		endLevelScreen.Update( mouse );
 
-	// Remove crystals that have been collected.
-	chili::remove_erase_if( crystals,
-		std::mem_fn( &Crystal::WillRemove ) );
-
-	// Change level when we've collected all the crystals.
-	if( crystals.size() == 0 ) GotoNextLevel();
+		if( endLevelScreen.PressedContinue() )
+		{
+			gameState = State::Gameplay;
+			GotoNextLevel();
+		}
+		else if( endLevelScreen.PressedRetry() )
+		{
+			gameState = State::Gameplay;
+			--curLevel; // Lets us reload the same level.
+			GotoNextLevel();
+		}
+		break;
+	}
+	}
 }
 
 void Campaign::Draw()
@@ -98,6 +134,11 @@ void Campaign::Draw()
 	for( const auto& cry : crystals ) cry.Draw( gfx );
 
 	guy.Draw( gfx );
+
+	if( gameState == State::EndLevel )
+	{
+		endLevelScreen.Draw( gfx );
+	}
 }
 
 void Campaign::GotoNextLevel()

@@ -36,6 +36,11 @@ void Button::Draw( Graphics& gfx ) const
 		Colors::White,gfx );
 }
 
+bool Button::IsPressed() const
+{
+	return( clicking );
+}
+
 Vei2 Button::GetSize( const std::string& msg ) const
 {
 	const int msgWidth = int( msg.size() );
