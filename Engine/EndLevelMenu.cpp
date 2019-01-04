@@ -21,7 +21,7 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 	{
 		const auto starCol = stars >= i + 1
 			? Colors::Yellow : Colors::Black;
-		gfx.DrawStar( start + starRadius * 2 * i,190,
+		gfx.DrawStar( start + int( starRadius ) * 2 * i,190,
 			starRadius,starCol );
 	}
 }
@@ -29,6 +29,16 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 void EndLevelMenu::UpdatePoints( float percent )
 {
 	stars = Points2Stars( percent );
+}
+
+void EndLevelMenu::UpdateStarWeights( const std
+	::vector<int>& weights )
+{
+	assert( weights.size() == 5 );
+	for( int i = 0; i < 5; ++i )
+	{
+		starBracketPercents[i] = weights[i];
+	}
 }
 
 bool EndLevelMenu::PressedRetry() const

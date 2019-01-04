@@ -191,7 +191,13 @@ void Campaign::ReadFile( const std::string& filename )
 	string temp = "";
 	tokens.emplace_back( vector<string>{} );
 
-	const string levelName = read_line( in );
+	const string levelName = read_line( in ); // Title.
+	std::vector<int> weights;
+	for( int i = 0; i < 5; ++i )
+	{
+		weights.emplace_back( stoi( read_line( in ) ) );
+	}
+	endLevelScreen.UpdateStarWeights( weights );
 
 	for( char c = in.get(); in.good(); c = in.get() )
 	{

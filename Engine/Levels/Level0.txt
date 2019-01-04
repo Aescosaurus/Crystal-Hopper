@@ -1,4 +1,9 @@
 Level Name
+1
+25
+50
+75
+95
 Floor|150|350|65
 Floor|650|450|-35
 Crystal|100|450
