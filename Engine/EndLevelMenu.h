@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Button.h"
 #include "Mouse.h"
+#include "Codex.h"
 
 class EndLevelMenu
 {
@@ -35,4 +36,5 @@ private:
 	};
 	int points;
 	int stars;
+	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 };

@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include "Font.h"
+#include "Surface.h"
 
 template<typename T>
 class Codex
@@ -42,11 +43,24 @@ public:
 		const auto entryIt = codex.entries.find( path );
 		if( entryIt == codex.entries.end() )
 		{
-			T* pResource = new T{ path };
-			codex.entries.insert( { path,
-				Entry{ pResource } } );
+			T* pData = new T{ path };
+			codex.entries.insert( { path,Entry{ pData } } );
 		}
-		
+
+		return( codex.entries[path].pResource );
+	}
+	// Use this for fetching surfaces.
+	static const Surface* FetchS( const std::string& path,const Vei2& expand )
+	{
+		Codex& codex = Generate();
+
+		const auto entryIt = codex.entries.find( path );
+		if( entryIt == codex.entries.end() )
+		{
+			Surface* pData = new Surface{ path,expand };
+			codex.entries.insert( { path,Entry{ pData } } );
+		}
+
 		return( codex.entries[path].pResource );
 	}
 	static void Purge()
@@ -76,5 +90,7 @@ private:
 };
 
 typedef Codex<Font> FontCodex;
+typedef Codex<Surface> SurfCodex;
 
 typedef const Font* CFontPtr;
+typedef const Surface* CSurfPtr;

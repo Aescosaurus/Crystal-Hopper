@@ -1,9 +1,13 @@
 #include "Floor.h"
 #include "Matrix.h"
+#include "SpriteEffect.h"
 
 Floor::Floor( const Vec2& pos,float angle )
+	:
+	center( pos ),
+	rotationMatrix( Matrix::Rotation( angle ) )
 {
-	const auto rotMat = Matrix::Rotation( angle );
+	const auto& rotMat = rotationMatrix;
 
 	const auto hSize = size / 2.0f;
 
@@ -38,6 +42,11 @@ void Floor::Draw( Graphics& gfx ) const
 		gfx.DrawCircle( Vei2( c.pos ),int( c.radius ),
 			Colors::Gray );
 	}
+
+	gfx.DrawSprite( center.x - size.x / 2,
+		center.y - size.y / 2,*img,
+		SpriteEffect::Chroma{ Colors::Magenta },
+		rotationMatrix );
 }
 
 void Floor::MoveBy( const Vec2& moveAmount )

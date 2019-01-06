@@ -64,6 +64,7 @@ public:
 	}
 	void PutPixel( int x,int y,Color c );
 	void PutPixelAlpha( int x,int y,Color c,float alpha );
+	void PutPixelApprox( float x,float y,Color c );
 	void DrawLine( Vec2 p0,Vec2 p1,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
 	void DrawCircleSafe( const Vei2& pos,int radius,Color c );
@@ -126,8 +127,8 @@ public:
 					effect(
 						// No mirroring!
 						s.GetPixel( sx,sy ),
-						int( drawPos.x ),
-						int( drawPos.y ),
+						drawPos.x,
+						drawPos.y,
 						*this
 					);
 				}
@@ -167,8 +168,8 @@ public:
 					effect(
 						// Mirror in x.
 						s.GetPixel( xOffset - sx,sy ),
-						int( drawPos.x ),
-						int( drawPos.y ),
+						drawPos.x,
+						drawPos.y,
 						*this
 					);
 				}
@@ -193,8 +194,8 @@ private:
 public:
 	static Vei2 GetCenter();
 	static RectI GetScreenRect();
-	static constexpr int ScreenWidth = 800;
-	static constexpr int ScreenHeight = 600;
+	static constexpr int ScreenWidth = 960;
+	static constexpr int ScreenHeight = 540;
 	static constexpr Vei2 ScreenSize = {
 		ScreenWidth,ScreenHeight };
 };

@@ -12,11 +12,11 @@ namespace SpriteEffect
 			:
 			chroma( c )
 		{}
-		void operator()( Color cSrc,int xDest,int yDest,Graphics& gfx ) const
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx ) const
 		{
 			if( cSrc != chroma )
 			{
-				gfx.PutPixel( xDest,yDest,cSrc );
+				gfx.PutPixelApprox( xDest,yDest,cSrc );
 			}
 		}
 	private:
@@ -30,11 +30,11 @@ namespace SpriteEffect
 			chroma( c ),
 			sub( s )
 		{}
-		void operator()( Color cSrc,int xDest,int yDest,Graphics& gfx ) const
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx ) const
 		{
 			if( cSrc != chroma )
 			{
-				gfx.PutPixel( xDest,yDest,sub );
+				gfx.PutPixelApprox( xDest,yDest,sub );
 			}
 		}
 	private:
@@ -44,9 +44,9 @@ namespace SpriteEffect
 	class Copy
 	{
 	public:
-		void operator()( Color cSrc,int xDest,int yDest,Graphics& gfx )
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx )
 		{
-			gfx.PutPixel( xDest,yDest,cSrc );
+			gfx.PutPixelApprox( xDest,yDest,cSrc );
 		}
 	};
 	class Ghost
@@ -56,11 +56,11 @@ namespace SpriteEffect
 			:
 			chroma( c )
 		{}
-		void operator()( Color src,int xDest,int yDest,Graphics& gfx ) const
+		void operator()( Color src,float xDest,float yDest,Graphics& gfx ) const
 		{
 			if( src != chroma )
 			{
-				const Color dest = gfx.GetPixel( xDest,yDest );
+				const Color dest = gfx.GetPixel( int( xDest ),int( yDest ) );
 				const Color blend =
 				{
 					unsigned char( ( src.GetR() + dest.GetR() ) / 2 ),
@@ -84,15 +84,15 @@ namespace SpriteEffect
 			tint_pre( ( tint.dword >> 1u ) & 0b01111111011111110111111101111111u ),
 			filled( int( float( height ) * percent ) )
 		{}
-		void operator()( Color src,int xDest,int yDest,Graphics& gfx ) const
+		void operator()( Color src,float xDest,float yDest,Graphics& gfx ) const
 		{
 			// height mask determines frequency of vertical dissolve sections
-			if( src != chroma && ( yDest & height_mask ) < filled )
+			if( src != chroma && ( int( yDest ) & height_mask ) < filled )
 			{
 				const Color blend = tint_pre.dword +
 					// divide channels by 2 via shift, mask to prevent bleeding between channels
 					( ( src.dword >> 1u ) & 0b01111111011111110111111101111111u );
-				gfx.PutPixel( xDest,yDest,blend );
+				gfx.PutPixelApprox( xDest,yDest,blend );
 			}
 		}
 	private:
@@ -111,12 +111,12 @@ namespace SpriteEffect
 			substitution( sub ),
 			fadeAmount( fadeAmount )
 		{}
-		void operator()( Color cSrc,int xDest,int yDest,Graphics& gfx )
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx )
 		{
 			if( cSrc != chroma )
 			{
-				gfx.PutPixel( xDest,yDest,cSrc );
-				gfx.PutPixelAlpha( xDest,yDest,substitution,fadeAmount );
+				gfx.PutPixelApprox( xDest,yDest,cSrc );
+				gfx.PutPixelAlpha( int( xDest ),int( yDest ),substitution,fadeAmount );
 			}
 		}
 	private:

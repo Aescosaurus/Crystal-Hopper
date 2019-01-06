@@ -26,7 +26,8 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 			starRadius,starCol );
 	}
 
-
+	luckyPixel->DrawText( "Points:" + std::to_string( points ),
+		Vei2{ 270,250 },Colors::Yellow,gfx );
 }
 
 void EndLevelMenu::UpdatePoints( float percent,int points )

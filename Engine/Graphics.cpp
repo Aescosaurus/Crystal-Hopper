@@ -345,6 +345,22 @@ void Graphics::PutPixelAlpha( int x,int y,Color c,float alpha )
 	PutPixel( x,y,blend );
 }
 
+void Graphics::PutPixelApprox( float x,float y,Color c )
+{
+	const auto xData = x - floor( x );
+	const auto yData = y - floor( y );
+
+	const auto x1 = int( floor( x ) );
+	const auto x2 = int( ceil( x ) );
+	const auto y1 = int( floor( y ) );
+	const auto y2 = int( ceil( y ) );
+
+	PutPixel( x1,y1,c );
+	PutPixel( x2,y1,c );
+	PutPixel( x1,y2,c );
+	PutPixel( x2,y2,c );
+}
+
 void Graphics::DrawLine( Vec2 p0,Vec2 p1,Color c )
 {
 	float m = 0.0f;
