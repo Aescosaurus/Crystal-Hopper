@@ -11,7 +11,7 @@ public:
 	void Update( const Mouse& mouse );
 	void Draw( Graphics& gfx ) const;
 
-	void UpdatePoints( float percent );
+	void UpdatePoints( float percent,int points );
 	void UpdateStarWeights( const std::vector<int>& weights );
 
 	bool PressedRetry() const;
@@ -33,5 +33,6 @@ private:
 		75,
 		95
 	};
+	int points;
 	int stars;
 };

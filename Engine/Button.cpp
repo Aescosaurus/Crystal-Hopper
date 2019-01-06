@@ -1,7 +1,5 @@
 #include "Button.h"
 
-const Font Button::luckyPixel = "Fonts/LuckyPixel6x9.bmp";
-
 Button::Button( const Vei2& center,const std::string& text )
 	:
 	size( GetSize( text ) ),
@@ -32,7 +30,7 @@ void Button::Draw( Graphics& gfx ) const
 		: Colors::Gray;
 	gfx.DrawRect( pos.x,pos.y,size.x,size.y,drawCol );
 
-	luckyPixel.DrawText( text,pos + padding / 2,
+	luckyPixel->DrawText( text,pos + padding / 2,
 		Colors::White,gfx );
 }
 
@@ -44,7 +42,7 @@ bool Button::IsPressed() const
 Vei2 Button::GetSize( const std::string& msg ) const
 {
 	const int msgWidth = int( msg.size() );
-	const auto fontCharSize = luckyPixel.GetCharSize();
+	const auto fontCharSize = luckyPixel->GetCharSize();
 	return( Vei2{ fontCharSize.x * msgWidth,
 		fontCharSize.y } + padding );
 }

@@ -143,6 +143,7 @@
     <ClInclude Include="ChiliUtils.h" />
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Codex.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="Crystal.h" />

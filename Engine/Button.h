@@ -4,6 +4,7 @@
 #include <string>
 #include "Graphics.h"
 #include "Font.h"
+#include "Codex.h"
 
 class Button
 {
@@ -19,7 +20,7 @@ private:
 	Vei2 GetSize( const std::string& msg ) const;
 	bool ContainsPoint( const Vei2& point ) const;
 private:
-	static const Font luckyPixel;
+	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 	static constexpr Vei2 padding = { 16,16 };
 	const Vei2 size;
 	const Vei2 pos;

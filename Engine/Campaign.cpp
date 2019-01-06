@@ -123,7 +123,7 @@ void Campaign::Update()
 					std::to_string( int( percent * 100.0f ) ) + "%" );
 #endif
 
-				endLevelScreen.UpdatePoints( percent );
+				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
 
 				gameState = State::EndLevel;

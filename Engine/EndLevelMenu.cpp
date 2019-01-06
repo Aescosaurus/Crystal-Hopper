@@ -13,6 +13,7 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 	retry.Draw( gfx );
 	resume.Draw( gfx );
 
+	// All this work just to draw x/5 stars.
 	const float starRadius = 45.0f;
 	const int center = Graphics::ScreenWidth / 2;
 	const int start = center - ( scoreTiers / 2 ) *
@@ -24,10 +25,13 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 		gfx.DrawStar( start + int( starRadius ) * 2 * i,190,
 			starRadius,starCol );
 	}
+
+
 }
 
-void EndLevelMenu::UpdatePoints( float percent )
+void EndLevelMenu::UpdatePoints( float percent,int points )
 {
+	this->points = points;
 	stars = Points2Stars( percent );
 }
 
