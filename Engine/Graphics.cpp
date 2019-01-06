@@ -355,6 +355,15 @@ void Graphics::PutPixelApprox( float x,float y,Color c )
 	const auto y1 = int( floor( y ) );
 	const auto y2 = int( ceil( y ) );
 
+	// PutPixelAlpha( x1,y1,c,
+	// 	( ( 1.0f - xData ) + ( 1.0f - yData ) ) / 2.0f );
+	// PutPixelAlpha( x2,y1,c,
+	// 	( ( 1.0f - xData ) + yData ) / 2.0f );
+	// PutPixelAlpha( x1,y2,c,
+	// 	( xData + ( 1.0f - yData ) ) / 2.0f );
+	// PutPixelAlpha( x2,y2,c,
+	// 	( xData + yData ) / 2.0f );
+
 	PutPixel( x1,y1,c );
 	PutPixel( x2,y1,c );
 	PutPixel( x1,y2,c );

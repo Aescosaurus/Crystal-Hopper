@@ -43,8 +43,8 @@ void Floor::Draw( Graphics& gfx ) const
 			Colors::Gray );
 	}
 
-	gfx.DrawSprite( center.x - size.x / 2,
-		center.y - size.y / 2,*img,
+	gfx.DrawSprite( center.x - int( size.x / 2.0f ),
+		center.y - int( size.y / 2.0f ),*img,
 		SpriteEffect::Chroma{ Colors::Magenta },
 		rotationMatrix );
 }

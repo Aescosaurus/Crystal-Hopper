@@ -49,20 +49,6 @@ public:
 
 		return( codex.entries[path].pResource );
 	}
-	// Use this for fetching surfaces.
-	static const Surface* FetchS( const std::string& path,const Vei2& expand )
-	{
-		Codex& codex = Generate();
-
-		const auto entryIt = codex.entries.find( path );
-		if( entryIt == codex.entries.end() )
-		{
-			Surface* pData = new Surface{ path,expand };
-			codex.entries.insert( { path,Entry{ pData } } );
-		}
-
-		return( codex.entries[path].pResource );
-	}
 	static void Purge()
 	{
 		Codex& codex = Generate();

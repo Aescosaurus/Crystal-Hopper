@@ -30,5 +30,5 @@ private:
 	std::vector<Line> lines;
 	std::vector<Circle> corners;
 	const Matrix rotationMatrix;
-	CSurfPtr img = SurfCodex::FetchS( "Images/Platform.bmp",{ 4,4 } );
+	CSurfPtr img = SurfCodex::Fetch( "Images/Platform.bmp" );
 };
