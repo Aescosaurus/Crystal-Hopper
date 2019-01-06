@@ -38,6 +38,21 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if( wnd.kbd.KeyIsPressed( VK_CONTROL ) &&
+		wnd.kbd.KeyIsPressed( 'W' ) )
+	{
+		wnd.Kill();
+	}
+	if( wnd.kbd.KeyIsPressed( VK_CONTROL ) &&
+		wnd.kbd.KeyIsPressed( 'F' ) )
+	{
+		wnd.Maximize();
+	}
+	if( wnd.kbd.KeyIsPressed( VK_ESCAPE ) )
+	{
+		wnd.Minimize();
+	}
+
 	switch( gameState )
 	{
 	case State::Menu:
@@ -67,4 +82,5 @@ void Game::ComposeFrame()
 		mainGame.Draw();
 		break;
 	}
+	gfx.DrawCircleSafe( wnd.mouse.GetPos(),5,Colors::White );
 }

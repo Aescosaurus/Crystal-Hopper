@@ -24,8 +24,7 @@ private:
 	Button retry = Button{ pos + size.Y() + Vei2{ 90,-70 },"Retry" };
 	Button resume = Button{ pos + size + Vei2{ -130,-70 },"Continue" };
 	static constexpr int scoreTiers = 5; // 5 stars!
-	// These vary each level,
-	//  defined in the file.
+	// These vary each level, defined in the file.
 	int starBracketPercents[scoreTiers] =
 	{
 		1,

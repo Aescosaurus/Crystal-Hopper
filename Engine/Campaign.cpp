@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <cassert>
+#include "Logger.h"
 
 Campaign::Campaign( Keyboard& kbd,
 	Mouse& mouse,Graphics& gfx )
@@ -116,10 +117,15 @@ void Campaign::Update()
 			if( endLevelTimer.IsDone() )
 			{
 				endLevelTimer.Reset();
+				const auto percent = float( points ) / startPoints;
+#if !NDEBUG
+				Logger::Write( std::to_string( points ) + "pts | " +
+					std::to_string( int( percent * 100.0f ) ) + "%" );
+#endif
 
-				endLevelScreen.UpdatePoints(
-					float( points ) / startPoints );
+				endLevelScreen.UpdatePoints( percent );
 				points = startPoints;
+
 				gameState = State::EndLevel;
 			}
 		}

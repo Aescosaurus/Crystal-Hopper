@@ -404,6 +404,24 @@ void Graphics::DrawCircle( const Vei2& pos,int radius,Color c )
 	}
 }
 
+void Graphics::DrawCircleSafe( const Vei2 & pos,int radius,Color c )
+{
+	const auto radSq = radius * radius;
+	for( int y = pos.y - radius; y < pos.y + radius; ++y )
+	{
+		for( int x = pos.x - radius; x < pos.x + radius; ++x )
+		{
+			const auto diff = pos - Vei2{ x,y };
+			if( diff.GetLengthSq<int>() < radSq &&
+				x >= 0 && y >= 0 &&
+				x < ScreenWidth && y < ScreenHeight )
+			{
+				PutPixel( x,y,c );
+			}
+		}
+	}
+}
+
 void Graphics::DrawRect( int x,int y,int width,int height,Color c )
 {
 	for( int yY = y; yY < y + height; ++yY )

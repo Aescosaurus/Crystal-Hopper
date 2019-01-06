@@ -47,9 +47,12 @@ MainWindow::MainWindow( HINSTANCE hInst,wchar_t * pArgs )
 	wr.bottom = Graphics::ScreenHeight + wr.top;
 	AdjustWindowRect( &wr,WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,FALSE );
 	hWnd = CreateWindow( wndClassName,L"Chili DirectX Framework",
-		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
+		// WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
+		WS_MAXIMIZE,
 		wr.left,wr.top,wr.right - wr.left,wr.bottom - wr.top,
 		nullptr,nullptr,hInst,this );
+
+	SetWindowLong( hWnd,GWL_STYLE,0 );
 
 	// throw exception if something went terribly wrong
 	if( hWnd == nullptr )
@@ -59,7 +62,7 @@ MainWindow::MainWindow( HINSTANCE hInst,wchar_t * pArgs )
 	}
 
 	// show and update
-	ShowWindow( hWnd,SW_SHOWDEFAULT );
+	ShowWindow( hWnd,SW_SHOW );
 	UpdateWindow( hWnd );
 }
 
@@ -95,8 +98,29 @@ bool MainWindow::ProcessMessage()
 		{
 			return false;
 		}
+		while( ShowCursor( false ) >= 0 );
 	}
 	return true;
+}
+
+void MainWindow::Maximize()
+{
+	fullscreen = true;
+
+	SetWindowLongPtr( hWnd,SW_MAXIMIZE,0 );
+	SetWindowPos( hWnd,HWND_TOP,
+		0,0,GetScreenWidth(),GetScreenHeight(),
+		SWP_SHOWWINDOW );
+}
+
+void MainWindow::Minimize()
+{
+	fullscreen = false;
+
+	SetWindowLongPtr( hWnd,SW_SHOW,0 );
+	SetWindowPos( hWnd,HWND_TOP,
+		350,100,Graphics::ScreenWidth,Graphics::ScreenHeight,
+		SWP_SHOWWINDOW );
 }
 
 LRESULT WINAPI MainWindow::_HandleMsgSetup( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam )
@@ -158,15 +182,17 @@ LRESULT MainWindow::HandleMsg( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam )
 	case WM_MOUSEMOVE:
 	{
 		POINTS pt = MAKEPOINTS( lParam );
-		if( pt.x > 0 && pt.x < Graphics::ScreenWidth && pt.y > 0 && pt.y < Graphics::ScreenHeight )
+		// if( pt.x > 0 && pt.x < Graphics::ScreenWidth && pt.y > 0 && pt.y < Graphics::ScreenHeight )
 		{
 			mouse.OnMouseMove( pt.x,pt.y );
+			KeepMouseOnScreen();
 			if( !mouse.IsInWindow() )
 			{
 				SetCapture( hWnd );
 				mouse.OnMouseEnter();
 			}
 		}
+		if( pt.x > 0 && pt.x < Graphics::ScreenWidth && pt.y > 0 && pt.y < Graphics::ScreenHeight ) {}
 		else
 		{
 			if( wParam & (MK_LBUTTON | MK_RBUTTON) )
@@ -229,4 +255,38 @@ LRESULT MainWindow::HandleMsg( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam )
 	}
 
 	return DefWindowProc( hWnd,msg,wParam,lParam );
+}
+
+int MainWindow::GetScreenWidth() const
+{
+	RECT desktop;
+	const auto hDesk = GetDesktopWindow();
+	GetWindowRect( hDesk,&desktop );
+	return( desktop.right );
+}
+
+int MainWindow::GetScreenHeight() const
+{
+	RECT desktop;
+	const auto hDesk = GetDesktopWindow();
+	GetWindowRect( hDesk,&desktop );
+	return( desktop.bottom );
+}
+
+void MainWindow::KeepMouseOnScreen()
+{
+	POINT realMousePos;
+	GetCursorPos( &realMousePos );
+	while( mouse.GetPosX() > Graphics::ScreenWidth - 5 )
+	{
+		--realMousePos.x;
+		SetCursorPos( realMousePos.x,realMousePos.y );
+		mouse.OnMouseMove( realMousePos.x,realMousePos.y );
+	}
+	while( mouse.GetPosY() > Graphics::ScreenHeight - 5 )
+	{
+		--realMousePos.y;
+		SetCursorPos( realMousePos.x,realMousePos.y );
+		mouse.OnMouseMove( realMousePos.x,realMousePos.y );
+	}
 }

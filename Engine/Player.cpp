@@ -27,7 +27,7 @@ void Player::Update( float dt )
 	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt );
 
 	// Hit test stuff.
-	const auto hSize = Vec2( size,size ) / 2.0f;
+	const auto hSize = Vec2( Vei2{ size,size } ) / 2.0f;
 	if( pos.x + hSize.x >= float( Graphics::ScreenWidth ) ||
 		pos.x - hSize.x <= 0.0f )
 	{
