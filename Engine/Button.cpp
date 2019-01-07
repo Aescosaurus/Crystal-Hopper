@@ -34,6 +34,13 @@ void Button::Draw( Graphics& gfx ) const
 		Colors::White,gfx );
 }
 
+void Button::Reset()
+{
+	hovering = false;
+	canClick = false;
+	clicking = false;
+}
+
 bool Button::IsPressed() const
 {
 	return( clicking );

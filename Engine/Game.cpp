@@ -55,9 +55,19 @@ void Game::UpdateModel()
 		wnd.Minimize();
 	}
 
+	menu.Update( wnd.kbd,wnd.mouse );
+	if( menu.WillExit() )
+	{
+		mainGame.RestartLevel();
+		menu.Close();
+		gameState = State::MainMenu;
+	}
+	// Don't update if menu is open.
+	if( menu.IsOpen() && !menu.WillRestart() ) return;
+
 	switch( gameState )
 	{
-	case State::Menu:
+	case State::MainMenu:
 	{
 		const auto msPos = wnd.mouse.GetPos();
 		const auto msDown = wnd.mouse.LeftIsPressed();
@@ -69,12 +79,28 @@ void Game::UpdateModel()
 		{
 			gameState = State::LevelEditor;
 		}
+		if( quitButton.Update( msPos,msDown ) )
+		{
+			wnd.Kill();
+		}
 	}
 	break;
 	case State::Campaign:
+		if( menu.WillRestart() )
+		{
+			menu.Close();
+			mainGame.RestartLevel();
+			return;
+		}
 		mainGame.Update();
 		break;
 	case State::LevelEditor:
+		if( menu.WillRestart() )
+		{
+			menu.Close();
+			// TODO: Implement this.
+			// editor.Reset();
+		}
 		editor.Update();
 		break;
 	}
@@ -84,16 +110,20 @@ void Game::ComposeFrame()
 {
 	switch( gameState )
 	{
-	case State::Menu:
+	case State::MainMenu:
 		startCampaign.Draw( gfx );
 		startLevelEditor.Draw( gfx );
+		quitButton.Draw( gfx );
 		break;
 	case State::Campaign:
 		mainGame.Draw();
+		menu.Draw( gfx );
 		break;
 	case State::LevelEditor:
 		editor.Draw();
+		menu.Draw( gfx );
 		break;
 	}
+
 	gfx.DrawCircleSafe( wnd.mouse.GetPos(),5,Colors::White );
 }

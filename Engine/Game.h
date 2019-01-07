@@ -23,13 +23,14 @@
 #include "Campaign.h"
 #include "Button.h"
 #include "LevelEditor.h"
+#include "OverlayMenu.h"
 
 class Game
 {
 private:
 	enum class State
 	{
-		Menu,
+		MainMenu,
 		Campaign,
 		LevelEditor
 	};
@@ -51,8 +52,10 @@ private:
 	/*  User Variables              */
 	Campaign mainGame;
 	LevelEditor editor;
-	State gameState = State::Menu;
+	OverlayMenu menu;
+	State gameState = State::MainMenu;
 	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start Campaign" };
 	Button startLevelEditor = Button{ Graphics::GetCenter() - Vei2{ 0,10 },"Level Editor" };
+	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Quit" };
 	/********************************/
 };

@@ -15,6 +15,8 @@ public:
 	bool Update( const Vei2& mousePos,bool mouseDown );
 	void Draw( Graphics& gfx ) const;
 
+	void Reset();
+
 	bool IsPressed() const;
 private:
 	Vei2 GetSize( const std::string& msg ) const;

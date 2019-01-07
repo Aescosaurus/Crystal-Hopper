@@ -146,8 +146,7 @@ void Campaign::Update()
 		else if( endLevelScreen.PressedRetry() )
 		{
 			gameState = State::Gameplay;
-			--curLevel; // Lets us reload the same level.
-			GotoNextLevel();
+			RestartLevel();
 		}
 		break;
 	}
@@ -166,6 +165,20 @@ void Campaign::Draw()
 	{
 		endLevelScreen.Draw( gfx );
 	}
+}
+
+void Campaign::RestartLevel()
+{
+	guy.Reset();
+	points = startPoints;
+
+	time.Mark();
+
+	endLevelTimer.Reset();
+	pointSubtracter.Reset();
+
+	--curLevel; // Lets us reload the same level.
+	GotoNextLevel();
 }
 
 void Campaign::GotoNextLevel()

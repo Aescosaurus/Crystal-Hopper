@@ -26,6 +26,8 @@ public:
 
 	void Update();
 	void Draw();
+
+	void RestartLevel();
 private:
 	void GotoNextLevel();
 	// Adds floors and crystals and stuff.
