@@ -96,6 +96,8 @@ void Campaign::Update()
 		// Find out if you need to collect a crystal.
 		for( auto& cry : crystals )
 		{
+			cry.Update( origDt );
+
 			float tempDist = -1.0f;
 			if( guy.CheckColl( cry.GetCollider(),tempDist ) )
 			{

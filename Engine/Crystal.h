@@ -3,6 +3,10 @@
 #include "Vec2.h"
 #include "Graphics.h"
 #include "Circle.h"
+#include "Surface.h"
+#include "Codex.h"
+#include "Animation.h"
+#include "Timer.h"
 
 // Collect these to complete the level.
 class Crystal
@@ -10,6 +14,7 @@ class Crystal
 public:
 	Crystal( const Vec2& pos );
 
+	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
 
 	void Collect();
@@ -20,4 +25,7 @@ private:
 	static constexpr int radius = 24;
 	Vec2 pos;
 	bool collected = false;
+	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/CrystalAnim.bmp" );
+	Animation sparkle;
+	Timer sparkleHold = 1.0f;
 };

@@ -32,16 +32,16 @@ Floor::Floor( const Vec2& pos,float angle )
 
 void Floor::Draw( Graphics& gfx ) const
 {
-	for( const auto& l : lines )
-	{
-		gfx.DrawLine( l.start,l.end,Colors::Gray );
-	}
-
-	for( const auto& c : corners )
-	{
-		gfx.DrawCircle( Vei2( c.pos ),int( c.radius ),
-			Colors::Gray );
-	}
+	// for( const auto& l : lines )
+	// {
+	// 	gfx.DrawLine( l.start,l.end,Colors::Gray );
+	// }
+	// 
+	// for( const auto& c : corners )
+	// {
+	// 	gfx.DrawCircle( Vei2( c.pos ),int( c.radius ),
+	// 		Colors::Gray );
+	// }
 
 	gfx.DrawSprite( center.x - int( size.x / 2.0f ),
 		center.y - int( size.y / 2.0f ),*img,

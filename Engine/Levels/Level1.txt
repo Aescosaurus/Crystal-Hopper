@@ -6,6 +6,6 @@ This is Level 2
 85
 Floor|150|350|5
 Floor|450|150|-25
-Floor|700|500|-50
+Floor|600|450|-50
 Crystal|450|50
 Crystal|150|250

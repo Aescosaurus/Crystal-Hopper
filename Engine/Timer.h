@@ -10,7 +10,7 @@ public:
 	{}
 	void Update( float dt )
 	{
-		if( dt > 1.0f ) // That's HUGE, a 1 second long frame.
+		if( dt > 1.0f ) // That's a HUGE, 1 second long frame.
 		{
 			curTime += 1.0f / 60.0f;
 			// TODO: Some way to let the user know this
@@ -21,6 +21,10 @@ public:
 	void Reset()
 	{
 		curTime = 0.0f;
+	}
+	void ResetRng( float minusAmount )
+	{
+		curTime = minusAmount;
 	}
 	void SetNewMax( float newMax )
 	{
