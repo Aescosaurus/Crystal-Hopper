@@ -370,6 +370,26 @@ void Graphics::PutPixelApprox( float x,float y,Color c )
 	PutPixel( x2,y2,c );
 }
 
+void Graphics::PutPixelSafeApprox( float x,float y,Color c )
+{
+	const auto xData = x - floor( x );
+	const auto yData = y - floor( y );
+
+	const auto x1 = int( floor( x ) );
+	const auto x2 = int( ceil( x ) );
+	const auto y1 = int( floor( y ) );
+	const auto y2 = int( ceil( y ) );
+
+	if( x1 >= 0 && x1 < ScreenWidth &&
+		y1 >= 0 && y1 < ScreenHeight ) PutPixel( x1,y1,c );
+	if( x2 >= 0 && x2 < ScreenWidth &&
+		y1 >= 0 && y1 < ScreenHeight ) PutPixel( x2,y1,c );
+	if( x1 >= 0 && x1 < ScreenWidth &&
+		y2 >= 0 && y2 < ScreenHeight ) PutPixel( x1,y2,c );
+	if( x2 >= 0 && x2 < ScreenWidth &&
+		y2 >= 0 && y2 < ScreenHeight ) PutPixel( x2,y2,c );
+}
+
 void Graphics::DrawLine( Vec2 p0,Vec2 p1,Color c )
 {
 	float m = 0.0f;

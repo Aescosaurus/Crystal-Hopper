@@ -4,6 +4,8 @@
 #include "Graphics.h"
 #include "Line.h"
 #include "Circle.h"
+#include "Surface.h"
+#include "Codex.h"
 
 class Player
 {
@@ -41,4 +43,5 @@ private:
 	bool canJump = true;
 	int pointsLost = 0;
 	static constexpr int jumpPenalty = 50;
+	CSurfPtr pGuySpr = SurfCodex::Fetch( "Images/Player.bmp" );
 };

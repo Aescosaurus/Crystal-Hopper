@@ -65,6 +65,7 @@ public:
 	void PutPixel( int x,int y,Color c );
 	void PutPixelAlpha( int x,int y,Color c,float alpha );
 	void PutPixelApprox( float x,float y,Color c );
+	void PutPixelSafeApprox( float x,float y,Color c );
 	void DrawLine( Vec2 p0,Vec2 p1,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
 	void DrawCircleSafe( const Vei2& pos,int radius,Color c );

@@ -5,6 +5,6 @@ Level Name
 84
 90
 Floor|150|350|65
-Floor|650|450|-35
+Floor|650|400|-35
 Crystal|100|450
-Crystal|650|350
+Crystal|650|300

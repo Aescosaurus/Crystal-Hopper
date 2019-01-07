@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "SpriteEffect.h"
+#include "ChiliUtils.h"
 
 Player::Player( const Mouse& ms )
 	:
@@ -48,7 +50,12 @@ void Player::Update( float dt )
 
 void Player::Draw( Graphics& gfx ) const
 {
-	gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
+	// gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
+
+	gfx.DrawSprite( int( pos.x ) - size / 2 + 2,
+		int( pos.y ) - size / 2,*pGuySpr,
+		SpriteEffect::SafeChroma{ Colors::Magenta },
+		Matrix::Rotation( vel.GetAngle<float>() + chili::pi / 2.0f ) );
 
 	mt.Draw( canJump ? Colors::White : Colors::Red,gfx );
 }

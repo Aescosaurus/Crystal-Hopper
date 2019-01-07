@@ -44,6 +44,7 @@ void Campaign::Update()
 			pointSubtracter.Reset();
 			points -= timePointVal;
 		}
+		points = std::max( points,1 );
 
 		// Find which line or corner to collide with.
 		float shortest = 9999.0f;

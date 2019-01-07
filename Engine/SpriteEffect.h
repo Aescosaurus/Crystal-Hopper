@@ -124,4 +124,21 @@ namespace SpriteEffect
 		Color substitution;
 		float fadeAmount;
 	};
+	class SafeChroma
+	{
+	public:
+		SafeChroma( Color c )
+			:
+			chroma( c )
+		{}
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx ) const
+		{
+			if( cSrc != chroma )
+			{
+				gfx.PutPixelSafeApprox( xDest,yDest,cSrc );
+			}
+		}
+	private:
+		Color chroma;
+	};
 }
