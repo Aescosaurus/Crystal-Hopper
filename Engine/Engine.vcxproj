@@ -150,6 +150,7 @@
     <ClInclude Include="Crystal.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="EndLevelMenu.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FrameTimer.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="Crystal.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="EndLevelMenu.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />

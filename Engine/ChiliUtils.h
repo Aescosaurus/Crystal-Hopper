@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 namespace chili
 {
 	static constexpr float pi = 3.141592653f;

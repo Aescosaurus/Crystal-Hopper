@@ -6,6 +6,9 @@
 #include "Circle.h"
 #include "Surface.h"
 #include "Codex.h"
+#include <vector>
+#include "Explosion.h"
+#include "Timer.h"
 
 class Player
 {
@@ -44,4 +47,9 @@ private:
 	int pointsLost = 0;
 	static constexpr int jumpPenalty = 50;
 	CSurfPtr pGuySpr = SurfCodex::Fetch( "Images/Player.bmp" );
+	std::vector<Explosion> explosionTrail;
+	Timer explSpawnTime = 0.001f;
+	static constexpr int nExplosionsPerJump = 5;
+	int curJumpExplosions = 0;
+	bool makingTrail = false;
 };

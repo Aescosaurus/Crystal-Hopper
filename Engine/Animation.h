@@ -33,6 +33,7 @@ public:
 	void SetFrame( int frame );
 
 	bool IsFinished() const;
+	float GetPercent() const;
 private:
 	const Surface& sheet;
 	std::vector<RectI> frames;

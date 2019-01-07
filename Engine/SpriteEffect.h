@@ -72,6 +72,27 @@ namespace SpriteEffect
 	private:
 		Color chroma;
 	};
+	class Fade
+	{
+	public:
+		Fade( Color chroma,float opacity )
+			:
+			chroma( chroma ),
+			opacity( opacity )
+		{
+			assert( opacity >= 0.0f && opacity <= 1.0f );
+		}
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx )
+		{
+			if( cSrc != chroma )
+			{
+				gfx.PutPixelAlpha( int( xDest ),int( yDest ),cSrc,opacity );
+			}
+		}
+	private:
+		Color chroma;
+		float opacity;
+	};
 	// Dissolves image by scanline and blends drawn pixels with a color,
 	//  good for dying enemies I guess.
 	class DissolveHalfTint

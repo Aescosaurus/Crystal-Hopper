@@ -19,6 +19,25 @@ void Player::Update( float dt )
 		vel += mt.GetDiff() * speed;
 		canJump = false;
 		pointsLost += jumpPenalty;
+		
+		// explosionTrail.emplace_back( Explosion{ pos } );
+		makingTrail = true;
+	}
+
+	if( makingTrail )
+	{
+		explSpawnTime.Update( dt / 60.0f );
+		if( explSpawnTime.IsDone() )
+		{
+			explSpawnTime.Reset();
+			++curJumpExplosions;
+			explosionTrail.emplace_back( Explosion{ pos } );
+			if( curJumpExplosions > nExplosionsPerJump )
+			{
+				curJumpExplosions = 0;
+				makingTrail = false;
+			}
+		}
 	}
 
 	vel.y += gravAcc * dt;
@@ -46,10 +65,23 @@ void Player::Update( float dt )
 		vel.y *= -1.0f;
 		vel *= bounceLoss;
 	}
+
+	for( auto& expl : explosionTrail )
+	{
+		expl.Update( dt / 60.0f );
+	}
+
+	chili::remove_erase_if( explosionTrail,
+		std::mem_fn( &Explosion::Done ) );
 }
 
 void Player::Draw( Graphics& gfx ) const
 {
+	for( const auto& expl : explosionTrail )
+	{
+		expl.Draw( gfx );
+	}
+
 	// gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
 
 	gfx.DrawSprite( int( pos.x ) - size / 2 + 2,

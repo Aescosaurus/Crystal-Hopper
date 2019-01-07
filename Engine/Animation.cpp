@@ -27,6 +27,7 @@ Animation& Animation::operator=( const Animation& rhs )
 {
 	frames = rhs.frames;
 	curFrameTime = rhs.curFrameTime;
+	frameIndex = rhs.frameIndex;
 	finished = rhs.finished;
 
 	return( *this );
@@ -64,4 +65,9 @@ void Animation::SetFrame( int frame )
 bool Animation::IsFinished() const
 {
 	return( finished );
+}
+
+float Animation::GetPercent() const
+{
+	return( float( frameIndex ) / float( frames.size() ) );
 }
