@@ -39,7 +39,7 @@ private:
 	static constexpr float velDecay = 0.995f;
 	static constexpr float speed = 2.2f;
 	float curGrav = 0.0f;
-	static constexpr float gravAcc = 0.14f; // From 0.14.
+	static constexpr float gravAcc = 0.14f;
 	static constexpr float bounceLoss = 0.71f;
 	// Make sure maxSpeed is less than size for hit tests.
 	static constexpr float maxSpeed = float( size / 2 - 1 );
@@ -48,7 +48,7 @@ private:
 	static constexpr int jumpPenalty = 50;
 	CSurfPtr pGuySpr = SurfCodex::Fetch( "Images/Player.bmp" );
 	std::vector<Explosion> explosionTrail;
-	Timer explSpawnTime = 0.001f;
+	Timer explSpawnTime = 0.03f;
 	static constexpr int nExplosionsPerJump = 5;
 	int curJumpExplosions = 0;
 	bool makingTrail = false;

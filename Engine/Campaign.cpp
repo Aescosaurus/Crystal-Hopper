@@ -23,7 +23,7 @@ void Campaign::Update()
 	// if( origDt > 1.0f / 15.0f ) dt = 0.0f;
 	// else dt *= 60.0f;
 	const float dt = ( origDt > 1.0f / 15.0f )
-		? 0.0f : origDt * 60.0f;
+		? 0.0f : origDt/* * 60.0f*/;
 
 	// if( origDt > 1.0f / 15.0f ) return;
 
@@ -38,7 +38,7 @@ void Campaign::Update()
 		guy.ResetLostPoints();
 
 		// Remove points over time.
-		pointSubtracter.Update( origDt );
+		pointSubtracter.Update( dt );
 		if( pointSubtracter.IsDone() )
 		{
 			pointSubtracter.Reset();
@@ -97,7 +97,7 @@ void Campaign::Update()
 		// Find out if you need to collect a crystal.
 		for( auto& cry : crystals )
 		{
-			cry.Update( origDt );
+			cry.Update( dt );
 
 			float tempDist = -1.0f;
 			if( guy.CheckColl( cry.GetCollider(),tempDist ) )
@@ -115,7 +115,7 @@ void Campaign::Update()
 		//  all the crystals.
 		if( crystals.size() == 0 )
 		{
-			endLevelTimer.Update( origDt );
+			endLevelTimer.Update( dt );
 
 			if( endLevelTimer.IsDone() )
 			{

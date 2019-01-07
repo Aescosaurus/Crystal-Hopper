@@ -26,7 +26,7 @@ void Player::Update( float dt )
 
 	if( makingTrail )
 	{
-		explSpawnTime.Update( dt / 60.0f );
+		explSpawnTime.Update( dt );
 		if( explSpawnTime.IsDone() )
 		{
 			explSpawnTime.Reset();
@@ -40,12 +40,12 @@ void Player::Update( float dt )
 		}
 	}
 
-	vel.y += gravAcc * dt;
+	vel.y += gravAcc * dt * 60.0f;
 
 	ClampSpeed();
 
-	pos += vel * dt;
-	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt );
+	pos += vel * dt * 60.0f;
+	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt * 60.0f );
 
 	// Hit test stuff.
 	const auto hSize = Vec2( Vei2{ size,size } ) / 2.0f;
@@ -53,7 +53,7 @@ void Player::Update( float dt )
 		pos.x - hSize.x <= 0.0f )
 	{
 		canJump = true;
-		pos.x -= vel.x * dt * 1.1f;
+		pos.x -= vel.x * dt * 60.0f * 1.1f;
 		vel.x *= -1.0f;
 		vel *= bounceLoss;
 	}
@@ -61,14 +61,14 @@ void Player::Update( float dt )
 		pos.y - hSize.y <= 0.0f )
 	{
 		canJump = true;
-		pos.y -= vel.y * dt * 1.1f;
+		pos.y -= vel.y * dt * 60.0f * 1.1f;
 		vel.y *= -1.0f;
 		vel *= bounceLoss;
 	}
 
 	for( auto& expl : explosionTrail )
 	{
-		expl.Update( dt / 60.0f );
+		expl.Update( dt );
 	}
 
 	chili::remove_erase_if( explosionTrail,
