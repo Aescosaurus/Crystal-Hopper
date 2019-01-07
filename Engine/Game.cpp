@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	mainGame( wnd.kbd,wnd.mouse,gfx )
+	mainGame( wnd.kbd,wnd.mouse,gfx ),
+	editor( wnd.kbd,wnd.mouse,gfx )
 {}
 
 void Game::Go()
@@ -38,6 +39,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	// Fullscreen control stuff.
 	if( wnd.kbd.KeyIsPressed( VK_CONTROL ) &&
 		wnd.kbd.KeyIsPressed( 'W' ) )
 	{
@@ -63,10 +65,17 @@ void Game::UpdateModel()
 		{
 			gameState = State::Campaign;
 		}
+		if( startLevelEditor.Update( msPos,msDown ) )
+		{
+			gameState = State::LevelEditor;
+		}
 	}
 	break;
 	case State::Campaign:
 		mainGame.Update();
+		break;
+	case State::LevelEditor:
+		editor.Update();
 		break;
 	}
 }
@@ -77,9 +86,13 @@ void Game::ComposeFrame()
 	{
 	case State::Menu:
 		startCampaign.Draw( gfx );
+		startLevelEditor.Draw( gfx );
 		break;
 	case State::Campaign:
 		mainGame.Draw();
+		break;
+	case State::LevelEditor:
+		editor.Draw();
 		break;
 	}
 	gfx.DrawCircleSafe( wnd.mouse.GetPos(),5,Colors::White );

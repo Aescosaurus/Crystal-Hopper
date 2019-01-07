@@ -22,6 +22,7 @@
 
 #include "Campaign.h"
 #include "Button.h"
+#include "LevelEditor.h"
 
 class Game
 {
@@ -29,7 +30,8 @@ private:
 	enum class State
 	{
 		Menu,
-		Campaign
+		Campaign,
+		LevelEditor
 	};
 public:
 	Game( class MainWindow& wnd );
@@ -48,7 +50,9 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Campaign mainGame;
+	LevelEditor editor;
 	State gameState = State::Menu;
 	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start Campaign" };
+	Button startLevelEditor = Button{ Graphics::GetCenter() - Vei2{ 0,10 },"Level Editor" };
 	/********************************/
 };
