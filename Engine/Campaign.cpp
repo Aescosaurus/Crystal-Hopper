@@ -250,7 +250,7 @@ void Campaign::ReadFile( const std::string& filename )
 		{
 			floors.emplace_back( Floor{
 				Vec2{ stof( list[1] ),stof( list[2] ) },
-				chili::deg2rad( stof( list[3] ) ) } );
+				/*chili::deg2rad*/( stof( list[3] ) ) } );
 		}
 		else if( title == "Crystal" )
 		{

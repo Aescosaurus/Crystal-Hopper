@@ -1,10 +1,10 @@
-Level Name
+Level Title
 1
-55
+25
+50
 75
-84
 90
-Floor|150|350|65
-Floor|650|400|-35
-Crystal|100|450
-Crystal|650|300
+Floor|254|447|0.436332
+Floor|757|297|-0.174533
+Crystal|285|382
+Crystal|721|227

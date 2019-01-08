@@ -1,11 +1,11 @@
-This is Level 2
+Level Title
 1
 25
 50
-70
-85
-Floor|150|350|5
-Floor|450|150|-25
-Floor|600|450|-50
-Crystal|450|50
-Crystal|150|250
+75
+90
+Floor|624|408|-0.698132
+Floor|176|222|0.610865
+Floor|842|225|-1.308997
+Crystal|236|144
+Crystal|562|329

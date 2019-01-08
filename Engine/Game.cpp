@@ -98,8 +98,7 @@ void Game::UpdateModel()
 		if( menu.WillRestart() )
 		{
 			menu.Close();
-			// TODO: Implement this.
-			// editor.Reset();
+			editor.Reset();
 		}
 		editor.Update();
 		break;
