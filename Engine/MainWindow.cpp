@@ -185,7 +185,7 @@ LRESULT MainWindow::HandleMsg( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam )
 		// if( pt.x > 0 && pt.x < Graphics::ScreenWidth && pt.y > 0 && pt.y < Graphics::ScreenHeight )
 		{
 			mouse.OnMouseMove( pt.x,pt.y );
-			KeepMouseOnScreen();
+			if( fullscreen ) KeepMouseOnScreen();
 			if( !mouse.IsInWindow() )
 			{
 				SetCapture( hWnd );

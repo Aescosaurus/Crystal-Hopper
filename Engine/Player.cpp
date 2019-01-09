@@ -100,7 +100,7 @@ void Player::CollideWith( const Line& l,float dt )
 	vel = vel - ( perp * ( 2.0f * Vec2::Dot( vel,perp ) ) );
 
 	ClampSpeed();
-	pos += vel * dt;
+	pos += vel * dt * 60.0f;
 }
 
 void Player::CollideWith( const Circle& c,float dt )
@@ -110,7 +110,7 @@ void Player::CollideWith( const Circle& c,float dt )
 	vel *= -1.0f;
 
 	ClampSpeed(); // Just in case.
-	pos += vel * dt;
+	pos += vel * dt * 60.0f;
 }
 
 void Player::ClampSpeed()

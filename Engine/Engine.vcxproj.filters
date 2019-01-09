@@ -99,9 +99,6 @@
     <ClInclude Include="Crystal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BadCrystal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Campaign.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -133,6 +130,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OverlayMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikyBoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

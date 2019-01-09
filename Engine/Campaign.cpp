@@ -121,10 +121,10 @@ void Campaign::Update()
 			{
 				endLevelTimer.Reset();
 				const auto percent = float( points ) / startPoints;
-#if !NDEBUG
+// #if !NDEBUG
 				Logger::Write( std::to_string( points ) + "pts | " +
 					std::to_string( int( percent * 100.0f ) ) + "%" );
-#endif
+// #endif
 
 				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
@@ -169,14 +169,6 @@ void Campaign::Draw()
 
 void Campaign::RestartLevel()
 {
-	guy.Reset();
-	points = startPoints;
-
-	time.Mark();
-
-	endLevelTimer.Reset();
-	pointSubtracter.Reset();
-
 	--curLevel; // Lets us reload the same level.
 	GotoNextLevel();
 }
@@ -185,6 +177,15 @@ void Campaign::GotoNextLevel()
 {
 	floors.clear();
 	crystals.clear();
+
+	gameState = State::Gameplay;
+	guy.Reset();
+	points = startPoints;
+
+	time.Mark();
+
+	endLevelTimer.Reset();
+	pointSubtracter.Reset();
 
 	guy.Reset();
 	ReadFile( GetNextLevelName( curLevel++ ) );

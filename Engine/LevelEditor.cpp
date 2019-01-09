@@ -92,7 +92,7 @@ void LevelEditor::WriteToFile()
 	std::string out = "";
 
 	out += "Level Title\n"; // Level title.
-	out += "1\n25\n50\n75\n90\n"; // Star weights.
+	out += "1\n2\n3\n4\n5\n"; // Star weights.
 
 	// Entities data.
 	for( const auto& item : entities[int( Entity::Platform )] )

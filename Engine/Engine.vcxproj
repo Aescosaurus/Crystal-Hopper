@@ -137,7 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="BadCrystal.h" />
+    <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Campaign.h" />
     <ClInclude Include="ChiliException.h" />

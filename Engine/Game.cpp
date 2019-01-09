@@ -99,6 +99,7 @@ void Game::UpdateModel()
 		{
 			menu.Close();
 			editor.Reset();
+			return;
 		}
 		editor.Update();
 		break;
