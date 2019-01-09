@@ -199,6 +199,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SpikyBoi.cpp" />
     <ClCompile Include="Surface.cpp" />
   </ItemGroup>
   <ItemGroup>

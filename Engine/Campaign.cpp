@@ -50,6 +50,7 @@ void Campaign::Update()
 		float shortest = 9999.0f;
 		const Line* closestLine = nullptr;
 		const Circle* closestCorner = nullptr;
+
 		// For all platforms in the level.
 		for( const auto& plat : floors )
 		{
@@ -83,6 +84,7 @@ void Campaign::Update()
 				}
 			}
 		}
+
 		// Prefer to collide with a line, collide with a
 		//  corner only if no lines are available.
 		if( closestLine != nullptr )
@@ -107,6 +109,20 @@ void Campaign::Update()
 			}
 		}
 
+		// Find out if you are colliding with a spiky boi.
+		for( auto& spB : spikyBois )
+		{
+			spB.Update( dt );
+
+			float tempDist = -1.0f;
+			if( guy.CheckColl( spB.GetCollider(),tempDist ) )
+			{
+				// TODO: Hurt or knock guy back.
+				// Also maybe destroy spiky boi after?
+				points -= SpikyBoi::pointValue;
+			}
+		}
+
 		// Remove crystals that have been collected.
 		chili::remove_erase_if( crystals,
 			std::mem_fn( &Crystal::WillRemove ) );
@@ -121,10 +137,10 @@ void Campaign::Update()
 			{
 				endLevelTimer.Reset();
 				const auto percent = float( points ) / startPoints;
-// #if !NDEBUG
+#if !NDEBUG
 				Logger::Write( std::to_string( points ) + "pts | " +
 					std::to_string( int( percent * 100.0f ) ) + "%" );
-// #endif
+#endif
 
 				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
@@ -158,6 +174,8 @@ void Campaign::Draw()
 	for( const auto& flr : floors ) flr.Draw( gfx );
 
 	for( const auto& cry : crystals ) cry.Draw( gfx );
+
+	for( const auto& spB : spikyBois ) spB.Draw( gfx );
 
 	guy.Draw( gfx );
 
@@ -256,6 +274,11 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "Crystal" )
 		{
 			crystals.emplace_back( Crystal{
+				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+		}
+		else if( title == "SpikyBoi" )
+		{
+			spikyBois.emplace_back( SpikyBoi{
 				Vec2{ stof( list[1] ),stof( list[2] ) } } );
 		}
 		// else if( title == "" )

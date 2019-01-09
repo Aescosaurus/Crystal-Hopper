@@ -12,6 +12,7 @@
 #include <string>
 #include "EndLevelMenu.h"
 #include "Timer.h"
+#include "SpikyBoi.h"
 
 class Campaign
 {
@@ -43,6 +44,7 @@ private:
 	Player guy;
 	std::vector<Floor> floors;
 	std::vector<Crystal> crystals;
+	std::vector<SpikyBoi> spikyBois;
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;
