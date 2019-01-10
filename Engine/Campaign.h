@@ -54,4 +54,6 @@ private:
 	int points = startPoints;
 	Timer pointSubtracter = 1.0f;
 	static constexpr int timePointVal = 1;
+
+	std::vector<Explosion> particles;
 };

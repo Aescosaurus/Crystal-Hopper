@@ -3,7 +3,7 @@
 Animation::Animation( int x,int y,int width,int height,int count,
 	const Surface& sheet,float holdTime,Color chroma )
 	:
-	sheet( sheet ),
+	sheet( &sheet ),
 	holdTime( holdTime ),
 	chroma( chroma )
 {
@@ -12,25 +12,6 @@ Animation::Animation( int x,int y,int width,int height,int count,
 		frames.emplace_back( x + i * width,
 			x + ( i + 1 ) * width,y,y + height );
 	}
-}
-
-Animation::Animation( const Animation& rhs )
-	:
-	sheet( rhs.sheet ),
-	holdTime( rhs.holdTime ),
-	chroma( rhs.chroma )
-{
-	*this = rhs;
-}
-
-Animation& Animation::operator=( const Animation& rhs )
-{
-	frames = rhs.frames;
-	curFrameTime = rhs.curFrameTime;
-	frameIndex = rhs.frameIndex;
-	finished = rhs.finished;
-
-	return( *this );
 }
 
 void Animation::Update( float dt )

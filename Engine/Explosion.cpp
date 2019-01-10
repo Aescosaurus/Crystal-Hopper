@@ -1,12 +1,18 @@
 #include "Explosion.h"
 #include "SpriteEffect.h"
 
-Explosion::Explosion( const Vec2& pos )
+CSurfPtr Explosion::surfSheets[int( Type::Count )] =
+{
+	SurfCodex::Fetch( "Images/ExplodeAnim.bmp" ),
+	SurfCodex::Fetch( "Images/ConfettiAnim.bmp" )
+};
+
+Explosion::Explosion( const Vec2& pos,Type t )
 	:
 	pos( Vei2( pos ) ),
-	fadeAway( 0,0,size.x,size.y,5,*surfSheet,0.2f )
-{
-}
+	fadeAway( 0,0,size.x,size.y,5,
+		*surfSheets[int( t )],0.2f )
+{}
 
 void Explosion::Update( float dt )
 {

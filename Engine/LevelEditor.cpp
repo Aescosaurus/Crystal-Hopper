@@ -71,8 +71,12 @@ void LevelEditor::Draw() const
 		}
 	}
 
-	DrawSpriteCentered( mouse.GetPos(),surfs[int( brush )],
-		chroma,Matrix::Rotation( curRotation ) );
+	if( !save.IsHovering() )
+	{
+		DrawSpriteCentered( mouse.GetPos(),
+			surfs[int( brush )],chroma,
+			Matrix::Rotation( curRotation ) );
+	}
 
 	save.Draw( gfx );
 }
@@ -105,6 +109,12 @@ void LevelEditor::WriteToFile()
 	for( const auto& item : entities[int( Entity::Crystal )] )
 	{
 		out += "Crystal|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '\n';
+	}
+	for( const auto& item : entities[int( Entity::SpikyBoi )] )
+	{
+		out += "SpikyBoi|";
 		out += std::to_string( item.first.x ) + '|';
 		out += std::to_string( item.first.y ) + '\n';
 	}

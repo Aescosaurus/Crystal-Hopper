@@ -10,8 +10,6 @@ class Animation
 public:
 	Animation( int x,int y,int width,int height,int count,
 		const Surface& sheet,float holdTime,Color chroma = Colors::Magenta );
-	Animation( const Animation& rhs );
-	Animation& operator=( const Animation& rhs );
 
 	void Update( float dt );
 	template<typename Effect>
@@ -26,7 +24,7 @@ public:
 		Effect eff,const Matrix& rotationMatrix,bool flipped ) const
 	{
 		gfx.DrawSprite( pos.x,pos.y,frames[frameIndex],
-			clip,sheet,eff,rotationMatrix,flipped );
+			clip,*sheet,eff,rotationMatrix,flipped );
 	}
 
 	void Reset();
@@ -35,10 +33,10 @@ public:
 	bool IsFinished() const;
 	float GetPercent() const;
 private:
-	const Surface& sheet;
+	const Surface* sheet;
 	std::vector<RectI> frames;
-	const float holdTime;
-	const Color chroma;
+	/*const */float holdTime;
+	/*const */Color chroma;
 	float curFrameTime = 0.0f;
 	int frameIndex = 0;
 	bool finished = false;

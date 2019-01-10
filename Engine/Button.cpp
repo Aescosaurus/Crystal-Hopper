@@ -26,12 +26,12 @@ bool Button::Update( const Vei2& mousePos,bool mouseDown )
 void Button::Draw( Graphics& gfx ) const
 {
 	const auto drawCol = hovering
-		? Colors::LightGray
-		: Colors::Gray;
-	gfx.DrawRect( pos.x,pos.y,size.x,size.y,drawCol );
+		? Colors::White
+		: Colors::LightGray;
+	// gfx.DrawRect( pos.x,pos.y,size.x,size.y,drawCol );
 
 	luckyPixel->DrawText( text,pos + padding / 2,
-		Colors::White,gfx );
+		drawCol,gfx );
 }
 
 void Button::Reset()
@@ -44,6 +44,11 @@ void Button::Reset()
 bool Button::IsPressed() const
 {
 	return( clicking );
+}
+
+bool Button::IsHovering() const
+{
+	return( hovering );
 }
 
 Vei2 Button::GetSize( const std::string& msg ) const

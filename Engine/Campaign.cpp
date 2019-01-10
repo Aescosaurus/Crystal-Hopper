@@ -12,7 +12,7 @@ Campaign::Campaign( Keyboard& kbd,
 	kbd( kbd ),
 	mouse( mouse ),
 	gfx( gfx ),
-	guy( mouse )
+	guy( mouse,particles )
 {
 	GotoNextLevel();
 }
@@ -113,19 +113,32 @@ void Campaign::Update()
 		for( auto& spB : spikyBois )
 		{
 			spB.Update( dt );
+			const auto spikyColl = spB.GetCollider();
 
 			float tempDist = -1.0f;
-			if( guy.CheckColl( spB.GetCollider(),tempDist ) )
+			if( guy.CheckColl( spikyColl,tempDist ) )
 			{
-				// TODO: Hurt or knock guy back.
-				// Also maybe destroy spiky boi after?
+				// TODO: Possibly destroy spiky boi after?
+				guy.CollideWith( spikyColl,dt );
 				points -= SpikyBoi::pointValue;
+				particles.emplace_back( Explosion{ guy.GetPos(),
+					Explosion::Type::Confetti } );
 			}
+		}
+
+		// Update all particles.
+		for( auto& part : particles )
+		{
+			part.Update( dt );
 		}
 
 		// Remove crystals that have been collected.
 		chili::remove_erase_if( crystals,
 			std::mem_fn( &Crystal::WillRemove ) );
+
+		// Remove finished explosions.
+		chili::remove_erase_if( particles,
+			std::mem_fn( &Explosion::Done ) );
 
 		// Bring up end level menu when we've collected
 		//  all the crystals.
@@ -137,10 +150,11 @@ void Campaign::Update()
 			{
 				endLevelTimer.Reset();
 				const auto percent = float( points ) / startPoints;
-#if !NDEBUG
-				Logger::Write( std::to_string( points ) + "pts | " +
+// #if !NDEBUG
+				Logger::Write( "Level" + std::to_string( curLevel - 1 ) +
+					": " + std::to_string( points ) + "pts | " +
 					std::to_string( int( percent * 100.0f ) ) + "%" );
-#endif
+// #endif
 
 				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
@@ -171,6 +185,12 @@ void Campaign::Update()
 
 void Campaign::Draw()
 {
+#if NDEBUG
+	// gfx.DrawRect( 0,0,
+	// 	Graphics::ScreenWidth,Graphics::ScreenHeight,
+	// 	Colors::MakeRGB( 148,253,255 ) );
+#endif
+
 	for( const auto& flr : floors ) flr.Draw( gfx );
 
 	for( const auto& cry : crystals ) cry.Draw( gfx );
@@ -197,7 +217,6 @@ void Campaign::GotoNextLevel()
 	crystals.clear();
 
 	gameState = State::Gameplay;
-	guy.Reset();
 	points = startPoints;
 
 	time.Mark();
@@ -205,7 +224,9 @@ void Campaign::GotoNextLevel()
 	endLevelTimer.Reset();
 	pointSubtracter.Reset();
 
-	guy.Reset();
+	particles.clear();
+
+	guy.Reset( particles );
 	ReadFile( GetNextLevelName( curLevel++ ) );
 }
 

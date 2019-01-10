@@ -14,6 +14,7 @@ private:
 	{
 		Platform = 0,
 		Crystal = 1,
+		SpikyBoi = 2,
 		Count
 	};
 public:
@@ -45,6 +46,7 @@ private:
 	std::vector<std::pair<Vei2,float>> entities[int( Entity::Count )] =
 	{
 		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}
 	};
 
@@ -57,7 +59,8 @@ private:
 	const Surface surfs[int( Entity::Count )] =
 	{
 		Surface{ "Images/Platform.bmp" },
-		Surface{ Surface{ "Images/CrystalAnim.bmp" },RectI{ 0,48,0,48 } }
+		Surface{ Surface{ "Images/CrystalAnim.bmp" },RectI{ 0,48,0,48 } },
+		Surface{ Surface{ "Images/SpikyBoi.bmp" } }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 };

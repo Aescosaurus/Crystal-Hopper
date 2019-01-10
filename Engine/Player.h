@@ -13,7 +13,7 @@
 class Player
 {
 public:
-	Player( const Mouse& ms );
+	Player( const Mouse& ms,std::vector<Explosion>& explosions );
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
@@ -21,7 +21,7 @@ public:
 	void CollideWith( const Line& l,float dt );
 	void CollideWith( const Circle& c,float dt );
 	void ClampSpeed();
-	void Reset();
+	void Reset( std::vector<Explosion>& explosions );
 	void ResetLostPoints();
 
 	// Returns true if there's a collision.
@@ -47,7 +47,7 @@ private:
 	int pointsLost = 0;
 	static constexpr int jumpPenalty = 50;
 	CSurfPtr pGuySpr = SurfCodex::Fetch( "Images/Player.bmp" );
-	std::vector<Explosion> explosionTrail;
+	std::vector<Explosion>* explosions;
 	Timer explSpawnTime = 0.03f;
 	static constexpr int nExplosionsPerJump = 5;
 	int curJumpExplosions = 0;

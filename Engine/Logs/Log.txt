@@ -1,5 +1,5 @@
-1097pts | 91%
-1147pts | 95%
-1147pts | 95%
-1097pts | 91%
-1097pts | 91%
+Level0: 1097pts | 91%
+Level1: 1097pts | 91%
+Level2: 1146pts | 95%
+Level3: 1096pts | 91%
+Level3: 1096pts | 91%

@@ -18,6 +18,7 @@ public:
 	void Reset();
 
 	bool IsPressed() const;
+	bool IsHovering() const;
 private:
 	Vei2 GetSize( const std::string& msg ) const;
 	bool ContainsPoint( const Vei2& point ) const;

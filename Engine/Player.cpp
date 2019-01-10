@@ -2,12 +2,13 @@
 #include "SpriteEffect.h"
 #include "ChiliUtils.h"
 
-Player::Player( const Mouse& ms )
+Player::Player( const Mouse& ms,std::vector<Explosion>& explosions )
 	:
 	pMouse( &ms ),
 	mt( ms ),
 	pos( Vec2( Graphics::GetCenter() ) ),
-	vel( 0.0f,0.0f )
+	vel( 0.0f,0.0f ),
+	explosions( &explosions )
 {}
 
 void Player::Update( float dt )
@@ -31,7 +32,8 @@ void Player::Update( float dt )
 		{
 			explSpawnTime.Reset();
 			++curJumpExplosions;
-			explosionTrail.emplace_back( Explosion{ pos } );
+			explosions->emplace_back( Explosion{ pos,
+				Explosion::Type::Explosion } );
 			if( curJumpExplosions > nExplosionsPerJump )
 			{
 				curJumpExplosions = 0;
@@ -65,21 +67,14 @@ void Player::Update( float dt )
 		vel.y *= -1.0f;
 		vel *= bounceLoss;
 	}
-
-	for( auto& expl : explosionTrail )
-	{
-		expl.Update( dt );
-	}
-
-	chili::remove_erase_if( explosionTrail,
-		std::mem_fn( &Explosion::Done ) );
 }
 
 void Player::Draw( Graphics& gfx ) const
 {
-	for( const auto& expl : explosionTrail )
+	// for( const auto& expl : explosions )
+	for( int i = 0; i < int( explosions->size() ); ++i )
 	{
-		expl.Draw( gfx );
+		explosions->at( i ).Draw( gfx );
 	}
 
 	// gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
@@ -123,11 +118,11 @@ void Player::ClampSpeed()
 	}
 }
 
-void Player::Reset()
+void Player::Reset( std::vector<Explosion>& explosions )
 {
 	// pos = Vec2( Graphics::GetCenter() );
 	// vel = { 0.0f,0.0f };
-	*this = Player{ *pMouse };
+	*this = Player{ *pMouse,explosions };
 }
 
 void Player::ResetLostPoints()
