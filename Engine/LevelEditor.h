@@ -60,7 +60,7 @@ private:
 	{
 		Surface{ "Images/Platform.bmp" },
 		Surface{ Surface{ "Images/CrystalAnim.bmp" },RectI{ 0,48,0,48 } },
-		Surface{ Surface{ "Images/SpikyBoi.bmp" } }
+		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 };

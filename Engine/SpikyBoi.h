@@ -4,6 +4,8 @@
 #include "Graphics.h"
 #include "Circle.h"
 #include "Surface.h"
+#include "Codex.h"
+#include "Animation.h"
 
 // Spike ball or enemy or something to avoid.
 class SpikyBoi
@@ -20,5 +22,6 @@ public:
 private:
 	static constexpr int radius = 32;
 	Vec2 pos;
-	const Surface img = "Images/SpikyBoi.bmp";
+	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/SpikyBoiAnim.bmp" );
+	Animation shake;
 };

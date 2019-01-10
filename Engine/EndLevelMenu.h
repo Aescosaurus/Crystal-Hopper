@@ -37,4 +37,6 @@ private:
 	int points;
 	int stars;
 	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
+	CSurfPtr filledStar = SurfCodex::Fetch( "Images/FilledStar.bmp" );
+	CSurfPtr emptyStar = SurfCodex::Fetch( "Images/EmptyStar.bmp" );
 };

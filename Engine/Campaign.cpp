@@ -215,6 +215,7 @@ void Campaign::GotoNextLevel()
 {
 	floors.clear();
 	crystals.clear();
+	spikyBois.clear();
 
 	gameState = State::Gameplay;
 	points = startPoints;

@@ -1,4 +1,5 @@
 #include "EndLevelMenu.h"
+#include "SpriteEffect.h"
 
 void EndLevelMenu::Update( const Mouse& mouse )
 {
@@ -14,16 +15,24 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 	resume.Draw( gfx );
 
 	// All this work just to draw x/5 stars.
-	const float starRadius = 45.0f;
+	// const float starRadius = 45.0f;
+	const auto starSize = Vei2{ filledStar->GetWidth(),
+		filledStar->GetHeight() };
 	const int center = Graphics::ScreenWidth / 2;
 	const int start = center - ( scoreTiers / 2 ) *
-		int( starRadius ) * 2;
+		int( starSize.x );
 	for( int i = 0; i < scoreTiers; ++i )
 	{
-		const auto starCol = stars >= i + 1
-			? Colors::Yellow : Colors::Black;
-		gfx.DrawStar( start + int( starRadius ) * 2 * i,190,
-			starRadius,starCol );
+		// const auto starCol = stars >= i + 1
+		// 	? Colors::Yellow : Colors::Black;
+		// gfx.DrawStar( start + int( starRadius ) * 2 * i,190,
+		// 	starRadius,starCol );
+
+		const Vei2 drawPos = Vei2{ start +
+			int( starSize.x * 1.25f ) * i,210 } - starSize;
+		gfx.DrawSprite( drawPos.x,drawPos.y,stars >= i + 1
+			? *filledStar : *emptyStar,
+			SpriteEffect::Chroma{ Colors::Magenta } );
 	}
 
 	luckyPixel->DrawText( "Points:" + std::to_string( points ),
