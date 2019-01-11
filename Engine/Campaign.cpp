@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cassert>
 #include "Logger.h"
+#include "SpriteEffect.h"
 
 Campaign::Campaign( Keyboard& kbd,
 	Mouse& mouse,Graphics& gfx )
@@ -140,6 +141,9 @@ void Campaign::Update()
 		chili::remove_erase_if( particles,
 			std::mem_fn( &Explosion::Done ) );
 
+		// titlePercent -= titleFadeSpeed;
+		titlePercent = std::max( 0.0f,titlePercent - titleFadeSpeed * dt );
+
 		// Bring up end level menu when we've collected
 		//  all the crystals.
 		if( crystals.size() == 0 )
@@ -199,6 +203,12 @@ void Campaign::Draw()
 
 	guy.Draw( gfx );
 
+	luckyPixel->DrawTextCentered( levelName,
+		Graphics::GetCenter() - Vei2{ 0,100 },Colors::White,
+		// SpriteEffect::Fade{ Colors::Magenta,titlePercent },
+		SpriteEffect::SubstituteFade{ Colors::White,Colors::White,titlePercent },
+		gfx );
+
 	if( gameState == State::EndLevel )
 	{
 		endLevelScreen.Draw( gfx );
@@ -227,6 +237,8 @@ void Campaign::GotoNextLevel()
 
 	particles.clear();
 
+	titlePercent = 1.0f;
+
 	guy.Reset( particles );
 	ReadFile( GetNextLevelName( curLevel++ ) );
 }
@@ -254,7 +266,7 @@ void Campaign::ReadFile( const std::string& filename )
 	string temp = "";
 	tokens.emplace_back( vector<string>{} );
 
-	const string levelName = read_line( in ); // Title.
+	levelName = read_line( in ); // Title.
 	std::vector<int> weights;
 	for( int i = 0; i < 5; ++i )
 	{

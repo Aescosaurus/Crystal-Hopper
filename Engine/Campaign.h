@@ -13,6 +13,7 @@
 #include "EndLevelMenu.h"
 #include "Timer.h"
 #include "SpikyBoi.h"
+#include "Codex.h"
 
 class Campaign
 {
@@ -56,4 +57,9 @@ private:
 	static constexpr int timePointVal = 1;
 
 	std::vector<Explosion> particles;
+
+	std::string levelName = "";
+	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
+	float titlePercent = 1.0f;
+	static constexpr float titleFadeSpeed = 0.6f;
 };

@@ -33,6 +33,14 @@ public:
 			curPos.x += glyphWidth;
 		}
 	}
+	template<typename Effect>
+	void DrawTextCentered( const std::string& text,
+		const Vei2& pos,Color col,Effect eff,Graphics& gfx ) const
+	{
+		auto centered = pos;
+		centered.x -= int( text.length() ) / 2 * glyphWidth;
+		DrawText( text,centered,col,eff,gfx );
+	}
 
 	Vei2 GetCharSize() const;
 private:
