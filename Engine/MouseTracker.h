@@ -14,6 +14,7 @@ public:
 
 	const Vec2& GetDiff() const;
 	bool Released() const;
+	const Mouse& GetMouse() const;
 private:
 	const Mouse* pMouse;
 	Vei2 lastMousePos;

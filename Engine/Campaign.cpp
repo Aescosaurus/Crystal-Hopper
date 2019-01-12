@@ -34,6 +34,12 @@ void Campaign::Update()
 	{
 		guy.Update( dt );
 
+		if( guy.HasJumped() ) ++curJumps;
+		if( curJumps >= jumpLimit && jumpLimit > -1 )
+		{
+			guy.DisableJumping();
+		}
+
 		// Remove points for jumping and hitting obstacles.
 		points -= guy.GetPointLoss();
 		guy.ResetLostPoints();
@@ -190,25 +196,36 @@ void Campaign::Update()
 void Campaign::Draw()
 {
 #if NDEBUG
+	// Draw background.
 	// gfx.DrawRect( 0,0,
 	// 	Graphics::ScreenWidth,Graphics::ScreenHeight,
 	// 	Colors::MakeRGB( 148,253,255 ) );
 #endif
 
+	// Draw all the entities.
 	for( const auto& flr : floors ) flr.Draw( gfx );
-
 	for( const auto& cry : crystals ) cry.Draw( gfx );
-
 	for( const auto& spB : spikyBois ) spB.Draw( gfx );
-
 	guy.Draw( gfx );
 
-	luckyPixel->DrawTextCentered( levelName,
-		Graphics::GetCenter() - Vei2{ 0,100 },Colors::White,
-		// SpriteEffect::Fade{ Colors::Magenta,titlePercent },
-		SpriteEffect::SubstituteFade{ Colors::White,Colors::White,titlePercent },
-		gfx );
+	// Draw level title.
+	if( titlePercent > 0.0f )
+	{
+		luckyPixel->DrawTextCentered( levelName,
+			Graphics::GetCenter() - Vei2{ 0,100 },Colors::White,
+			// SpriteEffect::Fade{ Colors::Magenta,titlePercent },
+			SpriteEffect::SubstituteFade{ Colors::White,
+			Colors::White,titlePercent },gfx );
+	}
 
+	// Draw number of remaining jumps available.
+	if( jumpLimit != -1 )
+	{
+		luckyPixel->DrawText( std::to_string( jumpLimit - curJumps ),
+			Vei2{ 15,15 },Colors::White,gfx );
+	}
+
+	// Draw end of level screen if level has been completed.
 	if( gameState == State::EndLevel )
 	{
 		endLevelScreen.Draw( gfx );
@@ -226,20 +243,21 @@ void Campaign::GotoNextLevel()
 	floors.clear();
 	crystals.clear();
 	spikyBois.clear();
+	particles.clear();
 
 	gameState = State::Gameplay;
-	points = startPoints;
 
 	time.Mark();
 
 	endLevelTimer.Reset();
 	pointSubtracter.Reset();
 
-	particles.clear();
-
 	titlePercent = 1.0f;
+	curJumps = 0;
+	points = startPoints;
 
 	guy.Reset( particles );
+
 	ReadFile( GetNextLevelName( curLevel++ ) );
 }
 
@@ -267,6 +285,8 @@ void Campaign::ReadFile( const std::string& filename )
 	tokens.emplace_back( vector<string>{} );
 
 	levelName = read_line( in ); // Title.
+	jumpLimit = std::stoi( read_line( in ) ); // Jump limit.
+
 	std::vector<int> weights;
 	for( int i = 0; i < 5; ++i )
 	{

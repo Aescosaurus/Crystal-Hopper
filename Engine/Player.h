@@ -23,6 +23,7 @@ public:
 	void ClampSpeed();
 	void Reset( std::vector<Explosion>& explosions );
 	void ResetLostPoints();
+	void DisableJumping();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -30,6 +31,7 @@ public:
 	bool CheckColl( const Circle& c,float& dist ) const;
 	const Vec2& GetPos() const;
 	int GetPointLoss() const;
+	bool HasJumped() const;
 private:
 	const Mouse* pMouse;
 	MouseTracker mt;
@@ -52,4 +54,7 @@ private:
 	static constexpr int nExplosionsPerJump = 5;
 	int curJumpExplosions = 0;
 	bool makingTrail = false;
+	CSurfPtr pArrowSurf = SurfCodex::Fetch( "Images/PlayerArrow.bmp" );
+	bool hasJumped = false;
+	bool jumpDisabled = false;
 };

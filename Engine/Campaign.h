@@ -59,6 +59,8 @@ private:
 	std::vector<Explosion> particles;
 
 	std::string levelName = "";
+	int jumpLimit = -1;
+	int curJumps = 0;
 	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 	float titlePercent = 1.0f;
 	static constexpr float titleFadeSpeed = 0.6f;

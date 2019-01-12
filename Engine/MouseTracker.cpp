@@ -55,3 +55,8 @@ bool MouseTracker::Released() const
 		pressedLastFrame &&
 		diff.GetLengthSq<float>() > 1.0f );
 }
+
+const Mouse& MouseTracker::GetMouse() const
+{
+	return( *pMouse );
+}

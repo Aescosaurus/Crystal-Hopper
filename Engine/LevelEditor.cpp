@@ -96,6 +96,7 @@ void LevelEditor::WriteToFile()
 	std::string out = "";
 
 	out += "Level Title\n"; // Level title.
+	out += "-1\n"; // Jump limit.
 	out += "1\n2\n3\n4\n5\n"; // Star weights.
 
 	// Entities data.

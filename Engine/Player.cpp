@@ -15,11 +15,14 @@ void Player::Update( float dt )
 {
 	mt.Update();
 
-	if( canJump && mt.Released() )
+	hasJumped = false;
+
+	if( canJump && mt.Released() && !jumpDisabled )
 	{
 		vel += mt.GetDiff() * speed;
 		canJump = false;
 		pointsLost += jumpPenalty;
+		hasJumped = true;
 		
 		// explosionTrail.emplace_back( Explosion{ pos } );
 		makingTrail = true;
@@ -78,11 +81,26 @@ void Player::Draw( Graphics& gfx ) const
 	}
 
 	// gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
+	
+	const auto safeChroma = SpriteEffect
+		::SafeChroma{ Colors::Magenta };
+	const auto rotMatrix = Matrix::Rotation( vel
+		.GetAngle<float>() + chili::pi / 2.0f );
 
+	// Draw rotated player.
 	gfx.DrawSprite( int( pos.x ) - size / 2 + 2,
 		int( pos.y ) - size / 2,*pGuySpr,
-		SpriteEffect::SafeChroma{ Colors::Magenta },
-		Matrix::Rotation( vel.GetAngle<float>() + chili::pi / 2.0f ) );
+		safeChroma,Matrix::Rotation( vel
+			.GetAngle<float>() + chili::pi / 2.0f ) );
+
+	// Draw direction arrow.
+	if( mt.GetMouse().LeftIsPressed() )
+	{
+		gfx.DrawSprite( int( pos.x ) - pArrowSurf->GetWidth() / 2 + 2,
+			int( pos.y ) - pArrowSurf->GetHeight() / 2,
+			*pArrowSurf,safeChroma,Matrix::Rotation( mt
+				.GetDiff().GetAngle<float>() ) );
+	}
 
 	mt.Draw( canJump ? Colors::White : Colors::Red,gfx );
 }
@@ -130,6 +148,11 @@ void Player::ResetLostPoints()
 	pointsLost = 0;
 }
 
+void Player::DisableJumping()
+{
+	jumpDisabled = true;
+}
+
 bool Player::CheckColl( const Line& l,float& dist ) const
 {
 	const float lenSq = l.GetDiff().GetLengthSq<float>();
@@ -163,4 +186,9 @@ const Vec2& Player::GetPos() const
 int Player::GetPointLoss() const
 {
 	return( pointsLost );
+}
+
+bool Player::HasJumped() const
+{
+	return( hasJumped );
 }
