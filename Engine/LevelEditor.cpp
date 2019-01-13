@@ -22,7 +22,7 @@ void LevelEditor::Update()
 		switch( e.GetType() )
 		{
 		case Mouse::Event::Type::LPress:
-			if( canClick )
+			if( canClick && !save.IsHovering() )
 			{
 				entities[int( brush )].emplace_back( std::pair<Vei2,float>{
 					mouse.GetPos(),curRotation } );

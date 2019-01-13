@@ -94,7 +94,8 @@ void Player::Draw( Graphics& gfx ) const
 			.GetAngle<float>() + chili::pi / 2.0f ) );
 
 	// Draw direction arrow.
-	if( mt.GetMouse().LeftIsPressed() )
+	if( mt.GetMouse().LeftIsPressed() &&
+		mt.DiffIsReal() )
 	{
 		gfx.DrawSprite( int( pos.x ) - pArrowSurf->GetWidth() / 2 + 2,
 			int( pos.y ) - pArrowSurf->GetHeight() / 2,

@@ -15,10 +15,11 @@ public:
 	const Vec2& GetDiff() const;
 	bool Released() const;
 	const Mouse& GetMouse() const;
+	bool DiffIsReal() const;
 private:
 	const Mouse* pMouse;
 	Vei2 lastMousePos;
-	Vec2 diff;
+	Vec2 diff = Vec2::Fake();
 	bool pressedLastFrame = false;
 	bool canUnpress = false;
 };

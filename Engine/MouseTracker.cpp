@@ -60,3 +60,8 @@ const Mouse& MouseTracker::GetMouse() const
 {
 	return( *pMouse );
 }
+
+bool MouseTracker::DiffIsReal() const
+{
+	return( diff != Vec2::Fake() );
+}
