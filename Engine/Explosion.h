@@ -12,6 +12,7 @@ public:
 	{
 		Explosion = 0,
 		Confetti,
+		CrystalDissolve,
 		Count
 	};
 public:

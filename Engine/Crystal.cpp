@@ -51,3 +51,8 @@ bool Crystal::WillRemove() const
 {
 	return( collected );
 }
+
+const Vec2& Crystal::GetPos() const
+{
+	return( pos );
+}

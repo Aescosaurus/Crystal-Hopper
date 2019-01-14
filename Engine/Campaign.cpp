@@ -113,6 +113,8 @@ void Campaign::Update()
 			{
 				// TODO: Give points or something.
 				cry.Collect();
+				particles.emplace_back( Explosion{ cry.GetPos(),
+					Explosion::Type::CrystalDissolve } );
 			}
 		}
 

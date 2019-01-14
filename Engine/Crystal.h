@@ -21,6 +21,7 @@ public:
 
 	Circle GetCollider() const;
 	bool WillRemove() const;
+	const Vec2& GetPos() const;
 private:
 	static constexpr int radius = 24;
 	Vec2 pos;
