@@ -1,11 +1,14 @@
 #include "SpikyBoi.h"
 #include "SpriteEffect.h"
+#include "Random.h"
 
 SpikyBoi::SpikyBoi( const Vei2& pos )
 	:
 	pos( pos ),
 	shake( 0,0,64,64,5,*surfSheet,0.2f )
-{}
+{
+	shake.Update( Random{ 0.0f,1.0f } );
+}
 
 void SpikyBoi::Update( float dt )
 {

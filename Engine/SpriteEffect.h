@@ -136,7 +136,7 @@ namespace SpriteEffect
 		{
 			if( cSrc != chroma )
 			{
-				gfx.PutPixelApprox( xDest,yDest,cSrc );
+				// gfx.PutPixelApprox( xDest,yDest,cSrc );
 				gfx.PutPixelAlpha( int( xDest ),int( yDest ),substitution,fadeAmount );
 			}
 		}
