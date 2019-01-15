@@ -13,8 +13,8 @@ private:
 	enum class Entity
 	{
 		Platform = 0,
-		Crystal = 1,
-		SpikyBoi = 2,
+		Crystal,
+		SpikyBoi,
 		MovingPlatform,
 		Count
 	};
@@ -62,7 +62,8 @@ private:
 	{
 		Surface{ "Images/Platform.bmp" },
 		Surface{ Surface{ "Images/CrystalAnim.bmp" },RectI{ 0,48,0,48 } },
-		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } }
+		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } },
+		Surface{ "Images/MovingPlatform.bmp" }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 };

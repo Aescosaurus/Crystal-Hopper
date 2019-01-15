@@ -65,9 +65,10 @@ void LevelEditor::Draw() const
 		for( const auto& item : entities[i] )
 		{
 			DrawSpriteCentered( item.first,surfs[i],
-				chroma,i != 0
-				? Matrix::Rotation( 0.0f )
-				: Matrix::Rotation( item.second ) );
+				chroma,i == int( Entity::Platform ) ||
+				i == int( Entity::MovingPlatform )
+				? Matrix::Rotation( item.second )
+				: Matrix::Rotation( 0.0f ) );
 		}
 	}
 
@@ -118,6 +119,16 @@ void LevelEditor::WriteToFile()
 		out += "SpikyBoi|";
 		out += std::to_string( item.first.x ) + '|';
 		out += std::to_string( item.first.y ) + '\n';
+	}
+	for( const auto& item : entities[int( Entity::MovingPlatform )] )
+	{
+		out += "MovingFloor|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '|';
+		out += std::to_string( item.second ) + '|';
+		out += std::to_string( item.first.x - 50 ) + '|';
+		out += std::to_string( item.first.x + 50 ) + '|';
+		out += "100\n";
 	}
 
 	out.pop_back(); // Remove the last newline.

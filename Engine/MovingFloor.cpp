@@ -2,7 +2,7 @@
 #include "SpriteEffect.h"
 
 MovingFloor::MovingFloor( const Vec2& pos,float angle,
-	float leftStop,float rightStop,float speed )
+	int leftStop,int rightStop,float speed )
 	:
 	Floor( pos,angle,SurfCodex::Fetch( "Images/MovingPlatform.bmp" ) ),
 	leftPos( leftStop ),
@@ -16,12 +16,12 @@ void MovingFloor::Update( float dt )
 
 	center += vel * float( dir ) * dt;
 
-	if( center.x < leftPos )
+	if( center.x < float( leftPos ) )
 	{
 		dir = 1;
 		center += vel * float( dir ) * dt * 2.0f;
 	}
-	if( center.x > rightPos )
+	if( center.x > float( rightPos ) )
 	{
 		dir = -1;
 		center += vel * float( dir ) * dt * 2.0f;

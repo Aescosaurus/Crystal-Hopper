@@ -350,7 +350,7 @@ void Campaign::ReadFile( const std::string& filename )
 			floors.emplace_back( std::make_unique<MovingFloor>(
 				Vec2{ stof( list[1] ),stof( list[2] ) }, // pos
 				stof( list[3] ), // angle
-				stof( list[4] ),stof( list[5] ), // dists
+				stoi( list[4] ),stoi( list[5] ), // dists
 				stof( list[6] ) ) ); // speed
 		}
 		// else if( title == "" )
