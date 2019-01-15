@@ -62,7 +62,7 @@ void Player::Update( float dt )
 		vel.x *= -1.0f;
 		vel *= bounceLoss;
 	}
-	if( pos.y + hSize.y >= float( Graphics::ScreenHeight ) ||
+	if( pos.y + hSize.y >= float( Graphics::ScreenHeight - 40 ) ||
 		pos.y - hSize.y <= 0.0f )
 	{
 		canJump = true;

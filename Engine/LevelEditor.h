@@ -66,4 +66,6 @@ private:
 		Surface{ "Images/MovingPlatform.bmp" }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
+
+	CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
 };

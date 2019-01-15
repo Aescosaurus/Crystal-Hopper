@@ -5,9 +5,9 @@ Level 6
 77
 86
 94
-Floor|860|438|-1.134464
-Floor|291|410|0.261799
-Floor|100|374|0.087266
-Crystal|815|384
-Crystal|69|303
-SpikyBoi|685|442
+Floor|860|398|-1.134464
+Floor|291|370|0.261799
+Floor|100|334|0.087266
+Crystal|815|344
+Crystal|69|263
+SpikyBoi|685|402

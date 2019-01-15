@@ -66,4 +66,6 @@ private:
 	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 	float titlePercent = 1.0f;
 	static constexpr float titleFadeSpeed = 0.6f;
+
+	CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
 };

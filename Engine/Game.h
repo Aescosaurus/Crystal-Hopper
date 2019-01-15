@@ -54,8 +54,13 @@ private:
 	LevelEditor editor;
 	OverlayMenu menu;
 	State gameState = State::MainMenu;
+
 	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start Campaign" };
 	Button startLevelEditor = Button{ Graphics::GetCenter() - Vei2{ 0,10 },"Level Editor" };
 	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Quit" };
+
+	Vei2 oldMousePos;
+	Vei2 oldMouse2;
+	Vei2 oldMouse3;
 	/********************************/
 };

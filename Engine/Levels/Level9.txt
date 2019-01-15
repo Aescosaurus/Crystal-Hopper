@@ -5,8 +5,8 @@ Level 10
 77
 86
 90
-Floor|735|378|-0.872665
-Crystal|141|185
-Crystal|297|409
-Crystal|688|337
-MovingFloor|169|348|0.959931|107|226|100
+Floor|735|338|-0.872665
+Crystal|141|145
+Crystal|297|369
+Crystal|688|297
+MovingFloor|169|308|0.959931|107|226|100

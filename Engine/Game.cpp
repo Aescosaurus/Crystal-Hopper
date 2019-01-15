@@ -125,5 +125,10 @@ void Game::ComposeFrame()
 		break;
 	}
 
-	gfx.DrawCircleSafe( wnd.mouse.GetPos(),5,Colors::White );
+	gfx.DrawCircleSafe( wnd.mouse.GetPos(),6,Colors::Slate );
+	gfx.DrawCircleSafe( oldMouse3,4,Colors::Slate );
+
+	oldMouse3 = oldMouse2;
+	oldMouse2 = oldMousePos;
+	oldMousePos = wnd.mouse.GetPos();
 }

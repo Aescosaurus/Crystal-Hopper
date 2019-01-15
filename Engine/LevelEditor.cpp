@@ -58,6 +58,10 @@ void LevelEditor::Update()
 
 void LevelEditor::Draw() const
 {
+#if NDEBUG
+	gfx.DrawSprite( 0,0,*earthBG,SpriteEffect::Copy{} );
+#endif
+
 	const auto chroma = SpriteEffect::SafeChroma{ Colors::Magenta };
 
 	for( int i = 0; i < int( Entity::Count ); ++i )

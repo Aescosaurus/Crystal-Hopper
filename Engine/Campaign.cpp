@@ -207,9 +207,7 @@ void Campaign::Draw()
 {
 #if NDEBUG
 	// Draw background.
-	// gfx.DrawRect( 0,0,
-	// 	Graphics::ScreenWidth,Graphics::ScreenHeight,
-	// 	Colors::MakeRGB( 148,253,255 ) );
+	gfx.DrawSprite( 0,0,*earthBG,SpriteEffect::Copy{} );
 #endif
 
 	// Draw all the entities.
