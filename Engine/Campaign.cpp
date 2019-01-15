@@ -56,7 +56,8 @@ void Campaign::Update()
 		// Platforms each deal with their own collision.
 		for( auto& plat : floors )
 		{
-			plat.HandleColl( guy,dt );
+			plat->Update( dt );
+			plat->HandleColl( guy,dt );
 		}
 		/*
 		// Find which line or corner to collide with.
@@ -212,7 +213,7 @@ void Campaign::Draw()
 #endif
 
 	// Draw all the entities.
-	for( const auto& flr : floors ) flr.Draw( gfx );
+	for( const auto& flr : floors ) flr->Draw( gfx );
 	for( const auto& cry : crystals ) cry.Draw( gfx );
 	for( const auto& spB : spikyBois ) spB.Draw( gfx );
 	guy.Draw( gfx );
@@ -330,9 +331,9 @@ void Campaign::ReadFile( const std::string& filename )
 
 		if( title == "Floor" )
 		{
-			floors.emplace_back( Floor{
+			floors.emplace_back( std::make_unique<Floor>(
 				Vec2{ stof( list[1] ),stof( list[2] ) },
-				/*chili::deg2rad*/( stof( list[3] ) ) } );
+				/*chili::deg2rad*/( stof( list[3] ) ) ) );
 		}
 		else if( title == "Crystal" )
 		{
@@ -343,6 +344,14 @@ void Campaign::ReadFile( const std::string& filename )
 		{
 			spikyBois.emplace_back( SpikyBoi{
 				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+		}
+		else if( title == "MovingFloor" )
+		{
+			floors.emplace_back( std::make_unique<MovingFloor>(
+				Vec2{ stof( list[1] ),stof( list[2] ) }, // pos
+				stof( list[3] ), // angle
+				stof( list[4] ),stof( list[5] ), // dists
+				stof( list[6] ) ) ); // speed
 		}
 		// else if( title == "" )
 		// {

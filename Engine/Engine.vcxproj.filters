@@ -135,6 +135,9 @@
     <ClInclude Include="SpikyBoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MovingFloor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -207,6 +210,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpikyBoi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingFloor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

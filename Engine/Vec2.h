@@ -94,6 +94,10 @@ public:
 		const auto len = GetLength<T>();
 		return( Vec2_<T>{ *this } / len );
 	}
+	static constexpr Vec2_<T> FromAngle( float angle )
+	{
+		return( Vec2_<T>{ cos( angle ),sin( angle ) } );
+	}
 	template<typename U>
 	U GetAngle() const
 	{

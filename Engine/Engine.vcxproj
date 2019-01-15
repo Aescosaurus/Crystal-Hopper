@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="MovingFloor.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Campaign.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MouseTracker.cpp" />
+    <ClCompile Include="MovingFloor.cpp" />
     <ClCompile Include="OverlayMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />

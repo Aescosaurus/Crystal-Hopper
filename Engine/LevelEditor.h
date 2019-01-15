@@ -15,6 +15,7 @@ private:
 		Platform = 0,
 		Crystal = 1,
 		SpikyBoi = 2,
+		MovingPlatform,
 		Count
 	};
 public:
@@ -45,6 +46,7 @@ private:
 
 	std::vector<std::pair<Vei2,float>> entities[int( Entity::Count )] =
 	{
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}

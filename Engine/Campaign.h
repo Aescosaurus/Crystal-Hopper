@@ -14,6 +14,8 @@
 #include "Timer.h"
 #include "SpikyBoi.h"
 #include "Codex.h"
+#include <memory>
+#include "MovingFloor.h"
 
 class Campaign
 {
@@ -43,7 +45,7 @@ private:
 
 	FrameTimer time;
 	Player guy;
-	std::vector<Floor> floors;
+	std::vector<std::unique_ptr<Floor>> floors;
 	std::vector<Crystal> crystals;
 	std::vector<SpikyBoi> spikyBois;
 	int curLevel = 0;
