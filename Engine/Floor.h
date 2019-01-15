@@ -16,7 +16,9 @@ public:
 
 	void Draw( Graphics& gfx ) const;
 
-	void MoveBy( const Vec2& moveAmount );
+	// No idea why I didn't const this but there was
+	//  probably a good reason so I'll leave it.
+	void HandleColl( class Player& guy,float dt );
 
 	const std::vector<Line>& GetLines() const;
 	const std::vector<Circle>& GetCorners() const;

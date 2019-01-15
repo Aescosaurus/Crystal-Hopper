@@ -53,6 +53,12 @@ void Campaign::Update()
 		}
 		points = std::max( points,1 );
 
+		// Platforms each deal with their own collision.
+		for( auto& plat : floors )
+		{
+			plat.HandleColl( guy,dt );
+		}
+		/*
 		// Find which line or corner to collide with.
 		float shortest = 9999.0f;
 		const Line* closestLine = nullptr;
@@ -102,6 +108,7 @@ void Campaign::Update()
 		{ // else if might be important here.
 			guy.CollideWith( *closestCorner,dt );
 		}
+		*/
 
 		// Find out if you need to collect a crystal.
 		for( auto& cry : crystals )

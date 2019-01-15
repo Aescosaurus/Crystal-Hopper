@@ -1,6 +1,7 @@
 #include "Floor.h"
 #include "Matrix.h"
 #include "SpriteEffect.h"
+#include "Player.h"
 
 Floor::Floor( const Vec2& pos,float angle )
 	:
@@ -49,12 +50,52 @@ void Floor::Draw( Graphics& gfx ) const
 		rotationMatrix );
 }
 
-void Floor::MoveBy( const Vec2& moveAmount )
+void Floor::HandleColl( Player& guy,float dt )
 {
-	for( auto& line : lines )
+	float shortest = 9999.0f;
+	const Line* collLine = nullptr;
+	const Circle* collCirc = nullptr;
+
+	// Check for a line to collide with.
+	for( const auto& line : lines )
 	{
-		line.start += moveAmount;
-		line.end += moveAmount;
+		float tempDist = -1.0f;
+		if( guy.CheckColl( line,tempDist ) )
+		{
+			if( tempDist < shortest )
+			{
+				shortest = tempDist;
+				collLine = &line;
+			}
+		}
+	}
+
+	// Only check corners if we don't have a line to
+	//  collide with.
+	if( collLine == nullptr )
+	{
+		for( const auto& circ : corners )
+		{
+			float tempDist = -1.0f;
+			if( guy.CheckColl( circ,tempDist ) )
+			{
+				if( tempDist < shortest )
+				{
+					shortest = tempDist;
+					collCirc = &circ;
+				}
+			}
+		}
+	}
+
+	// Prefer to collide with a line over a corner.
+	if( collLine != nullptr )
+	{
+		guy.CollideWith( *collLine,dt );
+	}
+	else if( collCirc != nullptr )
+	{
+		guy.CollideWith( *collCirc,dt );
 	}
 }
 
