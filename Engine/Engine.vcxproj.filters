@@ -138,6 +138,9 @@
     <ClInclude Include="MovingFloor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Comet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -213,6 +216,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MovingFloor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Comet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

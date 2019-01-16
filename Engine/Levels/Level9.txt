@@ -1,12 +1,17 @@
 Level 10
 -1
 1
-59
-77
-86
-90
-Floor|735|338|-0.872665
-Crystal|141|145
-Crystal|297|369
-Crystal|688|297
-MovingFloor|169|308|0.959931|107|226|100
+18
+64
+73
+81
+Floor|101|282|1.047197
+Floor|841|374|-0.959931
+Crystal|158|249
+Crystal|794|328
+Crystal|818|233
+Crystal|762|146
+Crystal|69|422
+SpikyBoi|705|245
+SpikyBoi|135|175
+SpikyBoi|187|460

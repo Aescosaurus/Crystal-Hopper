@@ -32,8 +32,28 @@ void Campaign::Update()
 	{
 	case State::Gameplay:
 	{
+		// Easily skip levels while testing.
+// #if !NDEBUG
+		if( kbd.KeyIsPressed( VK_RETURN ) )
+		{
+			if( canSkip ) GotoNextLevel();
+			canSkip = false;
+		}
+		else canSkip = true;
+// #endif
+
+		// Restart level easily.
+		if( kbd.KeyIsPressed( VK_CONTROL ) &&
+			kbd.KeyIsPressed( 'R' ) )
+		{
+			if( canRestart ) RestartLevel();
+			canRestart = false;
+		}
+		else canRestart = true;
+
 		guy.Update( dt );
 
+		// Limit number of jumps on some levels.
 		if( guy.HasJumped() ) ++curJumps;
 		if( curJumps >= jumpLimit && jumpLimit > -1 )
 		{
@@ -143,6 +163,21 @@ void Campaign::Update()
 			}
 		}
 
+		// Find out if you should collide with a comet.
+		for( auto& comet : comets )
+		{
+			comet.Update( dt );
+			const auto cometColl = comet.GetCollider();
+
+			float tempDist = -1.0f;
+			if( guy.CheckColl( cometColl,tempDist ) )
+			{
+				guy.CollideWith( cometColl,dt );
+				points -= Comet::pointValue;
+				// TODO: Particles or something here.
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -214,6 +249,7 @@ void Campaign::Draw()
 	for( const auto& flr : floors ) flr->Draw( gfx );
 	for( const auto& cry : crystals ) cry.Draw( gfx );
 	for( const auto& spB : spikyBois ) spB.Draw( gfx );
+	for( const auto& com : comets ) com.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -251,6 +287,7 @@ void Campaign::GotoNextLevel()
 	floors.clear();
 	crystals.clear();
 	spikyBois.clear();
+	comets.clear();
 	particles.clear();
 
 	gameState = State::Gameplay;
@@ -351,6 +388,12 @@ void Campaign::ReadFile( const std::string& filename )
 				stoi( list[4] ),stoi( list[5] ), // dists
 				stof( list[6] ) ) ); // speed
 		}
+		else if( title == "Comet" )
+		{
+			comets.emplace_back( Comet{ Vec2{
+				stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ) } );
+		}
 		// else if( title == "" )
 		// {
 		// 
@@ -366,5 +409,13 @@ std::string Campaign::GetNextLevelName( int curLevel ) const
 {
 	const auto path = "Levels/Level";
 	const auto suffix = ".txt";
-	return( path + std::to_string( curLevel ) + suffix );
+	// return( path + std::to_string( curLevel ) + suffix );
+
+	// Reload last level if there are no more.
+	int i = -1;
+	// Heck this is gross.
+	while( !std::ifstream{ path + std::to_string(
+		curLevel - ++i ) + suffix }.good() );
+
+	return( path + std::to_string( curLevel - i ) + suffix );
 }

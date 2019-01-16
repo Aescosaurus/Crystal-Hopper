@@ -1,0 +1,16 @@
+Level 14
+-1
+1
+51
+72
+79
+85
+Floor|147|84|2.530727
+Crystal|97|253
+Crystal|315|343
+Crystal|650|387
+Crystal|753|164
+Crystal|193|136
+SpikyBoi|106|440
+MovingFloor|762|303|-1.134464|712|812|100
+MovingFloor|185|360|0.436332|125|255|100

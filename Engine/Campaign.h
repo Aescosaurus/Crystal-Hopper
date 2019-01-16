@@ -16,6 +16,7 @@
 #include "Codex.h"
 #include <memory>
 #include "MovingFloor.h"
+#include "Comet.h"
 
 class Campaign
 {
@@ -48,6 +49,7 @@ private:
 	std::vector<std::unique_ptr<Floor>> floors;
 	std::vector<Crystal> crystals;
 	std::vector<SpikyBoi> spikyBois;
+	std::vector<Comet> comets;
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;
@@ -68,4 +70,10 @@ private:
 	static constexpr float titleFadeSpeed = 0.6f;
 
 	CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
+	// CSurfPtr moonBG = SurfCodex::Fetch( "Images/BackgroundMoon.bmp" );
+
+	bool canSkip = false;
+	bool canRestart = false;
+
+	static constexpr int lunarStart = 15;
 };

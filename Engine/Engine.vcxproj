@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Comet.h" />
     <ClInclude Include="MovingFloor.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Campaign.cpp" />
+    <ClCompile Include="Comet.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="Crystal.cpp" />
     <ClCompile Include="DXErr.cpp" />
