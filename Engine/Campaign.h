@@ -39,6 +39,7 @@ private:
 	void ReadFile( const std::string& filename );
 	// Call this with curLevel++ so I can keep const.
 	std::string GetNextLevelName( int curLevel ) const;
+	int Level2Index() const;
 private:
 	Keyboard& kbd;
 	Mouse& mouse;
@@ -69,11 +70,24 @@ private:
 	float titlePercent = 1.0f;
 	static constexpr float titleFadeSpeed = 0.41f;
 
-	CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
+	// CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
 	// CSurfPtr moonBG = SurfCodex::Fetch( "Images/BackgroundMoon.bmp" );
 
 	bool canSkip = false;
 	bool canRestart = false;
 
 	static constexpr int lunarStart = 15;
+	static constexpr int marsStart = 30;
+
+	static constexpr int nLevels = 2;
+	static constexpr float gravities[nLevels] =
+	{
+		0.14f, // Earth
+		0.07f // Lunar
+	};
+	const CSurfPtr backgrounds[nLevels] =
+	{
+		SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
+		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" )
+	};
 };

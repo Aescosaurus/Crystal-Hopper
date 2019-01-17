@@ -13,7 +13,7 @@ Campaign::Campaign( Keyboard& kbd,
 	kbd( kbd ),
 	mouse( mouse ),
 	gfx( gfx ),
-	guy( mouse,particles )
+	guy( mouse,particles,gravities[Level2Index()] )
 {
 	GotoNextLevel();
 }
@@ -242,7 +242,8 @@ void Campaign::Draw()
 {
 #if NDEBUG
 	// Draw background.
-	gfx.DrawSprite( 0,0,*earthBG,SpriteEffect::Copy{} );
+	gfx.DrawSprite( 0,0,*backgrounds[Level2Index()],
+		SpriteEffect::Copy{} );
 #endif
 
 	// Draw all the entities.
@@ -301,9 +302,9 @@ void Campaign::GotoNextLevel()
 	curJumps = 0;
 	points = startPoints;
 
-	guy.Reset( particles );
-
 	ReadFile( GetNextLevelName( curLevel++ ) );
+
+	guy.Reset( particles,gravities[Level2Index()] );
 }
 
 void Campaign::ReadFile( const std::string& filename )
@@ -418,4 +419,22 @@ std::string Campaign::GetNextLevelName( int curLevel ) const
 		curLevel - ++i ) + suffix }.good() );
 
 	return( path + std::to_string( curLevel - i ) + suffix );
+}
+
+int Campaign::Level2Index() const
+{
+	if( curLevel <= lunarStart )
+	{
+		return( 0 );
+	}
+	else if( curLevel <= marsStart )
+	{
+		return( 1 );
+	}
+	// else if( curLevel < bopStart )
+	// {
+	// 	return( x );
+	// }
+	assert( false );
+	return( -1 );
 }

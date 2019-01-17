@@ -13,7 +13,7 @@
 class Player
 {
 public:
-	Player( const Mouse& ms,std::vector<Explosion>& explosions );
+	Player( const Mouse& ms,std::vector<Explosion>& explosions,float grav );
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
@@ -21,7 +21,7 @@ public:
 	void CollideWith( const Line& l,float dt );
 	void CollideWith( const Circle& c,float dt );
 	void ClampSpeed();
-	void Reset( std::vector<Explosion>& explosions );
+	void Reset( std::vector<Explosion>& explosions,float grav );
 	void ResetLostPoints();
 	void DisableJumping();
 
@@ -41,7 +41,7 @@ private:
 	static constexpr float velDecay = 0.995f;
 	static constexpr float speed = 2.2f;
 	float curGrav = 0.0f;
-	static constexpr float gravAcc = 0.14f;
+	float gravAcc;
 	static constexpr float bounceLoss = 0.71f;
 	// Make sure maxSpeed is less than size for hit tests.
 	static constexpr float maxSpeed = float( size / 2 - 1 );
@@ -57,4 +57,5 @@ private:
 	CSurfPtr pArrowSurf = SurfCodex::Fetch( "Images/PlayerArrow.bmp" );
 	bool hasJumped = false;
 	bool jumpDisabled = false;
+	Matrix rotMatrix = Matrix::Rotation( 0.0f );
 };

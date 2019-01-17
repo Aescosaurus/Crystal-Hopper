@@ -20,9 +20,9 @@ public:
 	static constexpr int pointValue = 100;
 private:
 	static constexpr int radius = 32;
-	static constexpr float speed = 260.5f;
+	static constexpr float speed = 360.5f;
 	Vec2 pos;
 	Vec2 startPos;
 	Vec2 vel;
-	Timer respawn = 1.1f;
+	Timer respawn = 1.6f;
 };

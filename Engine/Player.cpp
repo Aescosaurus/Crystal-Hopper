@@ -2,13 +2,14 @@
 #include "SpriteEffect.h"
 #include "ChiliUtils.h"
 
-Player::Player( const Mouse& ms,std::vector<Explosion>& explosions )
+Player::Player( const Mouse& ms,std::vector<Explosion>& explosions,float grav )
 	:
 	pMouse( &ms ),
 	mt( ms ),
 	pos( Vec2( Graphics::GetCenter() ) ),
 	vel( 0.0f,0.0f ),
-	explosions( &explosions )
+	explosions( &explosions ),
+	gravAcc( grav )
 {}
 
 void Player::Update( float dt )
@@ -70,6 +71,12 @@ void Player::Update( float dt )
 		vel.y *= -1.0f;
 		vel *= bounceLoss;
 	}
+
+	if( vel.GetLengthSq<float>() > 0.2f )
+	{
+		rotMatrix = Matrix::Rotation( vel
+			.GetAngle<float>() + chili::pi / 2.0f );
+	}
 }
 
 void Player::Draw( Graphics& gfx ) const
@@ -84,14 +91,13 @@ void Player::Draw( Graphics& gfx ) const
 	
 	const auto safeChroma = SpriteEffect
 		::SafeChroma{ Colors::Magenta };
-	const auto rotMatrix = Matrix::Rotation( vel
-		.GetAngle<float>() + chili::pi / 2.0f );
+	// const auto rotMatrix = Matrix::Rotation( vel
+	// 	.GetAngle<float>() + chili::pi / 2.0f );
 
 	// Draw rotated player.
 	gfx.DrawSprite( int( pos.x ) - size / 2 + 2,
 		int( pos.y ) - size / 2,*pGuySpr,
-		safeChroma,Matrix::Rotation( vel
-			.GetAngle<float>() + chili::pi / 2.0f ) );
+		safeChroma,rotMatrix );
 
 	// Draw direction arrow.
 	if( mt.GetMouse().LeftIsPressed() &&
@@ -137,11 +143,11 @@ void Player::ClampSpeed()
 	}
 }
 
-void Player::Reset( std::vector<Explosion>& explosions )
+void Player::Reset( std::vector<Explosion>& explosions,float grav )
 {
 	// pos = Vec2( Graphics::GetCenter() );
 	// vel = { 0.0f,0.0f };
-	*this = Player{ *pMouse,explosions };
+	*this = Player{ *pMouse,explosions,grav };
 }
 
 void Player::ResetLostPoints()
