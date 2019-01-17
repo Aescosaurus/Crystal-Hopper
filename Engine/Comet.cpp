@@ -6,13 +6,14 @@
 Comet::Comet( const Vei2& pos,float dir )
 	:
 	pos( Vec2( pos ) ),
-	rotate( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f ),
-	rotMat( Matrix::Rotation( dir ) )
+	rotate( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f )/*,
+	rotMat( Matrix::Rotation( dir ) )*/
 {
 	auto tempVel = -Vec2::FromAngle( dir );
 
+	const int screenEx = Random{ 10,300 };
 	// This probably isn't the best way to do things but...
-	while( OverlapsScreen() )
+	while( OverlapsScreen( screenEx ) )
 	{
 		this->pos -= tempVel;
 	}
@@ -26,14 +27,14 @@ void Comet::Update( float dt )
 {
 	pos += vel * dt;
 
-	if( !OverlapsScreen() )
+	if( !OverlapsScreen( 0 ) )
 	{
 		respawn.Update( dt );
 
 		if( respawn.IsDone() )
 		{
 			pos = startPos + vel * dt;
-			respawn.Reset();
+			respawn.ResetRng( Random{ -1.3f,-0.6f } );
 		}
 	}
 	else respawn.Reset();
@@ -45,10 +46,13 @@ void Comet::Draw( Graphics& gfx ) const
 {
 	// gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Red );
 
+	// rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
+	// 	Graphics::GetScreenRect().GetExpanded( radius * 5 ),
+	// 	SpriteEffect::SafeChroma{ Colors::Magenta },
+	// 	rotMat,false );
+
 	rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
-		Graphics::GetScreenRect().GetExpanded( radius * 5 ),
-		SpriteEffect::SafeChroma{ Colors::Magenta },
-		rotMat,false );
+		SpriteEffect::SafeChroma{ Colors::Magenta } );
 }
 
 void Comet::Destroy()
@@ -66,10 +70,11 @@ const Vec2& Comet::GetVel() const
 	return( vel );
 }
 
-bool Comet::OverlapsScreen() const
+bool Comet::OverlapsScreen( int screenExpand ) const
 {
 	RectI hitbox = RectI{ Vei2( pos ) -
 		Vei2{ radius,radius },radius * 2,radius * 2 };
-	return( hitbox/*.GetExpanded( Random{ 2,7 } )*/
-		.IsOverlappingWith( Graphics::GetScreenRect() ) );
+
+	return( hitbox.IsOverlappingWith( Graphics
+		::GetScreenRect().GetExpanded( screenExpand ) ) );
 }

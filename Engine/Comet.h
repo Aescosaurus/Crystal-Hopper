@@ -21,7 +21,7 @@ public:
 	Circle GetCollider() const;
 	const Vec2& GetVel() const;
 private:
-	bool OverlapsScreen() const;
+	bool OverlapsScreen( int screenExpand ) const;
 public:
 	static constexpr int pointValue = 100;
 private:
@@ -31,7 +31,7 @@ private:
 	Vec2 startPos;
 	Vec2 vel;
 	Timer respawn = 1.6f;
-	Matrix rotMat;
+	// Matrix rotMat;
 	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/CometAnim.bmp" );
 	Animation rotate;
 };
