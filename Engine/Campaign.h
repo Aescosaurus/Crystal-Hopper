@@ -17,6 +17,7 @@
 #include <memory>
 #include "MovingFloor.h"
 #include "Comet.h"
+#include "LunarFloor.h"
 
 class Campaign
 {

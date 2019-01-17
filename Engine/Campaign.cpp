@@ -371,6 +371,12 @@ void Campaign::ReadFile( const std::string& filename )
 				Vec2{ stof( list[1] ),stof( list[2] ) },
 				/*chili::deg2rad*/( stof( list[3] ) ) ) );
 		}
+		else if( title == "MoonFloor" )
+		{
+			floors.emplace_back( std::make_unique<LunarFloor>(
+				Vec2{ stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ) ) );
+		}
 		else if( title == "Crystal" )
 		{
 			crystals.emplace_back( Crystal{
