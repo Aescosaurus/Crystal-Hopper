@@ -172,8 +172,9 @@ void Campaign::Update()
 			float tempDist = -1.0f;
 			if( guy.CheckColl( cometColl,tempDist ) )
 			{
-				guy.CollideWith( cometColl,dt );
+				// guy.CollideWith( cometColl,dt );
 				points -= Comet::pointValue;
+				guy.AddVelocity( comet.GetVel(),dt );
 				// TODO: Particles or something here.
 			}
 		}

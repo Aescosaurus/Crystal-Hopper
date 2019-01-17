@@ -24,6 +24,9 @@ public:
 	void Reset( std::vector<Explosion>& explosions,float grav );
 	void ResetLostPoints();
 	void DisableJumping();
+	void AddVelocity( const Vec2& otherVel,float dt );
+	// Keep the player inside the play area.
+	void DontHitWalls( float dt );
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;

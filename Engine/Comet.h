@@ -13,7 +13,8 @@ public:
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
 
-	Circle GetCollider();
+	Circle GetCollider() const;
+	const Vec2& GetVel() const;
 private:
 	bool OverlapsScreen() const;
 public:

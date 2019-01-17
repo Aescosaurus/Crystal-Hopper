@@ -53,24 +53,7 @@ void Player::Update( float dt )
 	pos += vel * dt * 60.0f;
 	vel -= ( ( vel * ( 1.0f - velDecay ) ) * dt * 60.0f );
 
-	// Hit test stuff.
-	const auto hSize = Vec2( Vei2{ size,size } ) / 2.0f;
-	if( pos.x + hSize.x >= float( Graphics::ScreenWidth ) ||
-		pos.x - hSize.x <= 0.0f )
-	{
-		canJump = true;
-		pos.x -= vel.x * dt * 60.0f * 1.1f;
-		vel.x *= -1.0f;
-		vel *= bounceLoss;
-	}
-	if( pos.y + hSize.y >= float( Graphics::ScreenHeight - 40 ) ||
-		pos.y - hSize.y <= 0.0f )
-	{
-		canJump = true;
-		pos.y -= vel.y * dt * 60.0f * 1.1f;
-		vel.y *= -1.0f;
-		vel *= bounceLoss;
-	}
+	DontHitWalls( dt );
 
 	if( vel.GetLengthSq<float>() > 0.2f )
 	{
@@ -158,6 +141,36 @@ void Player::ResetLostPoints()
 void Player::DisableJumping()
 {
 	jumpDisabled = true;
+}
+
+void Player::AddVelocity( const Vec2& otherVel,float dt )
+{
+	vel += otherVel;
+	ClampSpeed();
+	pos += vel * dt;
+	DontHitWalls( dt );
+}
+
+void Player::DontHitWalls( float dt )
+{
+	// Hit test on walls.
+	const auto hSize = Vec2( Vei2{ size,size } ) / 2.0f;
+	if( pos.x + hSize.x >= float( Graphics::ScreenWidth ) ||
+		pos.x - hSize.x <= 0.0f )
+	{
+		canJump = true;
+		pos.x -= vel.x * dt * 60.0f * 1.1f;
+		vel.x *= -1.0f;
+		vel *= bounceLoss;
+	}
+	if( pos.y + hSize.y >= float( Graphics::ScreenHeight - 40 ) ||
+		pos.y - hSize.y <= 0.0f )
+	{
+		canJump = true;
+		pos.y -= vel.y * dt * 60.0f * 1.1f;
+		vel.y *= -1.0f;
+		vel *= bounceLoss;
+	}
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const

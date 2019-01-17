@@ -39,9 +39,14 @@ void Comet::Draw( Graphics& gfx ) const
 	gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Red );
 }
 
-Circle Comet::GetCollider()
+Circle Comet::GetCollider() const
 {
 	return( Circle{ pos,float( radius ) } );
+}
+
+const Vec2& Comet::GetVel() const
+{
+	return( vel );
 }
 
 bool Comet::OverlapsScreen() const
