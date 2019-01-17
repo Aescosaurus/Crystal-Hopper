@@ -4,7 +4,7 @@
 
 class LunarFloor
 	:
-	Floor
+	public Floor
 {
 public:
 	LunarFloor( const Vec2& pos,float angle );
