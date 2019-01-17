@@ -35,7 +35,7 @@ void LevelEditor::Update()
 		case Mouse::Event::Type::WheelUp:
 			if( kbd.KeyIsPressed( VK_CONTROL ) )
 			{
-				IncrementBrush();
+				DecrementBrush();
 			}
 			else
 			{
@@ -45,7 +45,7 @@ void LevelEditor::Update()
 		case Mouse::Event::Type::WheelDown:
 			if( kbd.KeyIsPressed( VK_CONTROL ) )
 			{
-				DecrementBrush();
+				IncrementBrush();
 			}
 			else
 			{
@@ -59,7 +59,7 @@ void LevelEditor::Update()
 void LevelEditor::Draw() const
 {
 #if NDEBUG
-	gfx.DrawSprite( 0,0,*earthBG,SpriteEffect::Copy{} );
+	gfx.DrawSprite( 0,0,*moonBG,SpriteEffect::Copy{} );
 #endif
 
 	const auto chroma = SpriteEffect::SafeChroma{ Colors::Magenta };
@@ -69,10 +69,7 @@ void LevelEditor::Draw() const
 		for( const auto& item : entities[i] )
 		{
 			DrawSpriteCentered( item.first,surfs[i],
-				chroma,i == int( Entity::Platform ) ||
-				i == int( Entity::MovingPlatform )
-				? Matrix::Rotation( item.second )
-				: Matrix::Rotation( 0.0f ) );
+				chroma,Matrix::Rotation( item.second ) );
 		}
 	}
 
@@ -112,6 +109,13 @@ void LevelEditor::WriteToFile()
 		out += std::to_string( item.first.y ) + '|';
 		out += std::to_string( item.second ) + '\n';
 	}
+	for( const auto& item : entities[int( Entity::MoonPlatform )] )
+	{
+		out += "MoonFloor|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '|';
+		out += std::to_string( item.second ) + '\n';
+	}
 	for( const auto& item : entities[int( Entity::Crystal )] )
 	{
 		out += "Crystal|";
@@ -133,6 +137,13 @@ void LevelEditor::WriteToFile()
 		out += std::to_string( item.first.x - 50 ) + '|';
 		out += std::to_string( item.first.x + 50 ) + '|';
 		out += "100\n";
+	}
+	for( const auto& item : entities[int( Entity::Comet )] )
+	{
+		out += "Comet|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '|';
+		out += std::to_string( item.second ) + '\n';
 	}
 
 	out.pop_back(); // Remove the last newline.

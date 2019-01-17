@@ -4,6 +4,9 @@
 #include "Graphics.h"
 #include "Circle.h"
 #include "Timer.h"
+#include "Codex.h"
+#include "Animation.h"
+#include "Matrix.h"
 
 class Comet
 {
@@ -26,4 +29,7 @@ private:
 	Vec2 startPos;
 	Vec2 vel;
 	Timer respawn = 1.6f;
+	Matrix rotMat;
+	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/CometAnim.bmp" );
+	Animation rotate;
 };

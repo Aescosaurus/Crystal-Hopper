@@ -1,0 +1,14 @@
+Lunar Exploration
+-1
+1
+52
+68
+85
+94
+MoonFloor|116|410|0.436332
+MoonFloor|95|83|2.530727
+MoonFloor|850|378|-0.872665
+Crystal|148|354
+Crystal|199|111
+Crystal|320|176
+Crystal|801|337

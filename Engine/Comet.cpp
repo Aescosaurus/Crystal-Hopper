@@ -1,9 +1,12 @@
 #include "Comet.h"
 #include "Rect.h"
+#include "SpriteEffect.h"
 
 Comet::Comet( const Vei2& pos,float dir )
 	:
-	pos( Vec2( pos ) )
+	pos( Vec2( pos ) ),
+	rotate( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f ),
+	rotMat( Matrix::Rotation( dir ) )
 {
 	auto tempVel = -Vec2::FromAngle( dir );
 
@@ -32,11 +35,18 @@ void Comet::Update( float dt )
 		}
 	}
 	else respawn.Reset();
+
+	rotate.Update( dt );
 }
 
 void Comet::Draw( Graphics& gfx ) const
 {
-	gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Red );
+	// gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Red );
+
+	rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
+		Graphics::GetScreenRect(),
+		SpriteEffect::Chroma{ Colors::Magenta },
+		rotMat,false );
 }
 
 Circle Comet::GetCollider() const

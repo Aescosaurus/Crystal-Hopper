@@ -1,10 +1,10 @@
 Low Gravity
 -1
 1
-2
-3
-4
-5
-MoonFloor|669|451|-0.261799
-Crystal|830|111
-Comet|569|251|-0.261799
+56
+73
+82
+90
+Crystal|254|50
+Crystal|584|50
+Crystal|805|47

@@ -13,9 +13,11 @@ private:
 	enum class Entity
 	{
 		Platform = 0,
+		MoonPlatform,
 		Crystal,
 		SpikyBoi,
 		MovingPlatform,
+		Comet,
 		Count
 	};
 public:
@@ -49,6 +51,8 @@ private:
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}
 	};
 
@@ -61,11 +65,14 @@ private:
 	const Surface surfs[int( Entity::Count )] =
 	{
 		Surface{ "Images/Platform.bmp" },
+		Surface{ "Images/MoonPlatform.bmp" },
 		Surface{ Surface{ "Images/CrystalAnim.bmp" },RectI{ 0,48,0,48 } },
 		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } },
-		Surface{ "Images/MovingPlatform.bmp" }
+		Surface{ "Images/MovingPlatform.bmp" },
+		Surface{ "Images/CometAnim.bmp" }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 
 	CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
+	CSurfPtr moonBG = SurfCodex::Fetch( "Images/BackgroundMoon.bmp" );
 };
