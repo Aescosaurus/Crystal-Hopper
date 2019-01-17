@@ -16,6 +16,8 @@ public:
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
 
+	void Destroy();
+
 	Circle GetCollider() const;
 	const Vec2& GetVel() const;
 private:

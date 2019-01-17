@@ -42,6 +42,8 @@ private:
 	void IncrementBrush();
 	void DecrementBrush();
 private:
+	float ClampRotation( float rotation ) const;
+private:
 	Keyboard& kbd;
 	Mouse& mouse;
 	Graphics& gfx;

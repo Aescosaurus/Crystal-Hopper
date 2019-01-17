@@ -175,6 +175,7 @@ void Campaign::Update()
 				// guy.CollideWith( cometColl,dt );
 				points -= Comet::pointValue;
 				guy.AddVelocity( comet.GetVel(),dt );
+				comet.Destroy();
 				// TODO: Particles or something here.
 			}
 		}

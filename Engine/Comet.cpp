@@ -1,6 +1,7 @@
 #include "Comet.h"
 #include "Rect.h"
 #include "SpriteEffect.h"
+#include "Random.h"
 
 Comet::Comet( const Vei2& pos,float dir )
 	:
@@ -16,6 +17,7 @@ Comet::Comet( const Vei2& pos,float dir )
 		this->pos -= tempVel;
 	}
 	startPos = this->pos;
+	this->pos -= tempVel;
 
 	vel = tempVel * speed;
 }
@@ -44,9 +46,14 @@ void Comet::Draw( Graphics& gfx ) const
 	// gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Red );
 
 	rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
-		Graphics::GetScreenRect(),
+		Graphics::GetScreenRect().GetExpanded( radius * 5 ),
 		SpriteEffect::SafeChroma{ Colors::Magenta },
 		rotMat,false );
+}
+
+void Comet::Destroy()
+{
+	pos = startPos;
 }
 
 Circle Comet::GetCollider() const
@@ -63,6 +70,6 @@ bool Comet::OverlapsScreen() const
 {
 	RectI hitbox = RectI{ Vei2( pos ) -
 		Vei2{ radius,radius },radius * 2,radius * 2 };
-	return( hitbox.GetExpanded( 5 )
+	return( hitbox/*.GetExpanded( Random{ 2,7 } )*/
 		.IsOverlappingWith( Graphics::GetScreenRect() ) );
 }

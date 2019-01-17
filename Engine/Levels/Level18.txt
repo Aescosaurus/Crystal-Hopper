@@ -1,11 +1,15 @@
-Level Title
+Watch out for Asteroids!
 -1
 1
 2
 3
 4
 5
-MoonFloor|564|328|-0.436332
-MoonFloor|498|206|-0.436332
-MoonCrystal|150|150
-Comet|526|267|-0.436332
+MoonFloor|279|438|0.436332
+MoonFloor|83|272|1.221730
+MoonFloor|838|198|5.672320
+MoonCrystal|805|144
+MoonCrystal|135|239
+MoonCrystal|305|381
+Comet|166|174|5.235988
+Comet|731|393|0.785398

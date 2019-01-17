@@ -40,6 +40,7 @@ void LevelEditor::Update()
 			else
 			{
 				curRotation -= rotationSpeed;
+				curRotation = ClampRotation( curRotation );
 			}
 			break;
 		case Mouse::Event::Type::WheelDown:
@@ -50,6 +51,7 @@ void LevelEditor::Update()
 			else
 			{
 				curRotation += rotationSpeed;
+				curRotation = ClampRotation( curRotation );
 			}
 			break;
 		}
@@ -174,4 +176,11 @@ void LevelEditor::DecrementBrush()
 	{
 		brush = Entity( int( Entity::Count ) - 1 );
 	}
+}
+
+float LevelEditor::ClampRotation( float rotation ) const
+{
+	if( rotation < 0.0f ) return( chili::pi * 2.0f );
+	else if( rotation > chili::pi * 2.0f ) return( 0.0f );
+	else return( rotation );
 }
