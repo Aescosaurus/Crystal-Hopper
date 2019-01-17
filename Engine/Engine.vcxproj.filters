@@ -144,6 +144,9 @@
     <ClInclude Include="LunarFloor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LunarCrystal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">

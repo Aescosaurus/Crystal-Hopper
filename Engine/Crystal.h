@@ -7,6 +7,7 @@
 #include "Codex.h"
 #include "Animation.h"
 #include "Timer.h"
+#include "Explosion.h"
 
 // Collect these to complete the level.
 class Crystal
@@ -22,11 +23,14 @@ public:
 	Circle GetCollider() const;
 	bool WillRemove() const;
 	const Vec2& GetPos() const;
+protected:
+	Crystal( const Vec2& pos,CSurfPtr surfSheet,Explosion::Type explType );
+public:
+	Explosion::Type explType;
 private:
 	static constexpr int radius = 24;
 	Vec2 pos;
 	bool collected = false;
-	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/CrystalAnim.bmp" );
 	Animation sparkle;
 	Timer sparkleHold = 1.0f;
 };

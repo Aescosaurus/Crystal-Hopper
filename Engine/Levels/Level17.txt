@@ -1,0 +1,14 @@
+One Jump Wonder
+-1
+1
+52
+68
+85
+94
+MoonFloor|116|410|0.436332
+MoonFloor|95|83|2.530727
+MoonFloor|850|378|-0.872665
+MoonCrystal|148|354
+MoonCrystal|199|111
+MoonCrystal|320|176
+MoonCrystal|801|337

@@ -13,6 +13,7 @@ public:
 		Explosion = 0,
 		Confetti,
 		CrystalDissolve,
+		MoonCrystalDissolve,
 		Count
 	};
 public:

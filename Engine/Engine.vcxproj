@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Comet.h" />
+    <ClInclude Include="LunarCrystal.h" />
     <ClInclude Include="LunarFloor.h" />
     <ClInclude Include="MovingFloor.h" />
     <ClInclude Include="SpikyBoi.h" />

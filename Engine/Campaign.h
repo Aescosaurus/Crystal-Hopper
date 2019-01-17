@@ -18,6 +18,7 @@
 #include "MovingFloor.h"
 #include "Comet.h"
 #include "LunarFloor.h"
+#include "LunarCrystal.h"
 
 class Campaign
 {
@@ -49,7 +50,7 @@ private:
 	FrameTimer time;
 	Player guy;
 	std::vector<std::unique_ptr<Floor>> floors;
-	std::vector<Crystal> crystals;
+	std::vector<std::unique_ptr<Crystal>> crystals;
 	std::vector<SpikyBoi> spikyBois;
 	std::vector<Comet> comets;
 	int curLevel = 0;

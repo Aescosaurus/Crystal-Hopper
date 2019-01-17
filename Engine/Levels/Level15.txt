@@ -5,6 +5,6 @@ Low Gravity
 73
 82
 90
-Crystal|254|50
-Crystal|584|50
-Crystal|805|47
+MoonCrystal|254|50
+MoonCrystal|584|50
+MoonCrystal|805|47

@@ -122,6 +122,12 @@ void LevelEditor::WriteToFile()
 		out += std::to_string( item.first.x ) + '|';
 		out += std::to_string( item.first.y ) + '\n';
 	}
+	for( const auto& item : entities[int( Entity::MoonCrystal )] )
+	{
+		out += "MoonCrystal|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '\n';
+	}
 	for( const auto& item : entities[int( Entity::SpikyBoi )] )
 	{
 		out += "SpikyBoi|";

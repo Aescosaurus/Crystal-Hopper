@@ -4,11 +4,9 @@
 
 Crystal::Crystal( const Vec2& pos )
 	:
-	pos( pos ),
-	sparkle( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f )
-{
-	sparkleHold.ResetRng( Random{ -3.5f,-0.2f } );
-}
+	Crystal( pos,SurfCodex::Fetch( "Images/CrystalAnim.bmp" ),
+		Explosion::Type::CrystalDissolve )
+{}
 
 void Crystal::Update( float dt )
 {
@@ -21,7 +19,7 @@ void Crystal::Update( float dt )
 		sparkleHold.Update( dt );
 		if( sparkleHold.IsDone() )
 		{
-			sparkleHold.ResetRng( Random{ -3.5f,-0.2f } );
+			sparkleHold.ResetRng( Random{ -2.5f,0.0f } );
 			sparkle.Reset();
 		}
 	}
@@ -55,4 +53,13 @@ bool Crystal::WillRemove() const
 const Vec2& Crystal::GetPos() const
 {
 	return( pos );
+}
+
+Crystal::Crystal( const Vec2& pos,CSurfPtr surfSheet,Explosion::Type explType )
+	:
+	explType( explType ),
+	pos( pos ),
+	sparkle( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f )
+{
+	sparkleHold.ResetRng( Random{ -3.5f,-0.2f } );
 }

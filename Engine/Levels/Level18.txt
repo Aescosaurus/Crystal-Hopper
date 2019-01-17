@@ -1,0 +1,11 @@
+Level Title
+-1
+1
+2
+3
+4
+5
+MoonFloor|564|328|-0.436332
+MoonFloor|498|206|-0.436332
+MoonCrystal|150|150
+Comet|526|267|-0.436332

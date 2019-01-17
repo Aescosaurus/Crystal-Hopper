@@ -45,7 +45,7 @@ void Comet::Draw( Graphics& gfx ) const
 
 	rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
 		Graphics::GetScreenRect(),
-		SpriteEffect::Chroma{ Colors::Magenta },
+		SpriteEffect::SafeChroma{ Colors::Magenta },
 		rotMat,false );
 }
 
@@ -63,6 +63,6 @@ bool Comet::OverlapsScreen() const
 {
 	RectI hitbox = RectI{ Vei2( pos ) -
 		Vei2{ radius,radius },radius * 2,radius * 2 };
-	return( hitbox.IsOverlappingWith( Graphics
-		::GetScreenRect() ) );
+	return( hitbox.GetExpanded( 5 )
+		.IsOverlappingWith( Graphics::GetScreenRect() ) );
 }

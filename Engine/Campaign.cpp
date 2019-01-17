@@ -134,15 +134,15 @@ void Campaign::Update()
 		// Find out if you need to collect a crystal.
 		for( auto& cry : crystals )
 		{
-			cry.Update( dt );
+			cry->Update( dt );
 
 			float tempDist = -1.0f;
-			if( guy.CheckColl( cry.GetCollider(),tempDist ) )
+			if( guy.CheckColl( cry->GetCollider(),tempDist ) )
 			{
 				// TODO: Give points or something.
-				cry.Collect();
-				particles.emplace_back( Explosion{ cry.GetPos(),
-					Explosion::Type::CrystalDissolve } );
+				cry->Collect();
+				particles.emplace_back( Explosion{ cry->GetPos(),
+					cry->explType } );
 			}
 		}
 
@@ -249,7 +249,7 @@ void Campaign::Draw()
 
 	// Draw all the entities.
 	for( const auto& flr : floors ) flr->Draw( gfx );
-	for( const auto& cry : crystals ) cry.Draw( gfx );
+	for( const auto& cry : crystals ) cry->Draw( gfx );
 	for( const auto& spB : spikyBois ) spB.Draw( gfx );
 	for( const auto& com : comets ) com.Draw( gfx );
 	guy.Draw( gfx );
@@ -380,8 +380,15 @@ void Campaign::ReadFile( const std::string& filename )
 		}
 		else if( title == "Crystal" )
 		{
-			crystals.emplace_back( Crystal{
-				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+			// crystals.emplace_back( Crystal{
+			// 	Vec2{ stof( list[1] ),stof( list[2] ) } } );
+			crystals.emplace_back( std::make_unique<Crystal>(
+				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
+		}
+		else if( title == "MoonCrystal" )
+		{
+			crystals.emplace_back( std::make_unique<LunarCrystal>(
+				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
 		}
 		else if( title == "SpikyBoi" )
 		{
