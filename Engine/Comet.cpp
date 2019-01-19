@@ -1,7 +1,6 @@
 #include "Comet.h"
 #include "Rect.h"
 #include "SpriteEffect.h"
-#include "Random.h"
 
 Comet::Comet( const Vei2& pos,float dir )
 	:
@@ -25,7 +24,8 @@ Comet::Comet( const Vei2& pos,float dir )
 
 void Comet::Update( float dt )
 {
-	pos += vel * dt;
+	if( startMoving.IsDone() ) pos += vel * dt;
+	else startMoving.Update( dt );
 
 	if( !OverlapsScreen( 0 ) )
 	{
@@ -76,5 +76,5 @@ bool Comet::OverlapsScreen( int screenExpand ) const
 		Vei2{ radius,radius },radius * 2,radius * 2 };
 
 	return( hitbox.IsOverlappingWith( Graphics
-		::GetScreenRect().GetExpanded( screenExpand ) ) );
+		::GetScreenRect().GetExpanded( screenExpand + 100 ) ) );
 }

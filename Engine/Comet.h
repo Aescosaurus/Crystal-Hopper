@@ -7,6 +7,7 @@
 #include "Codex.h"
 #include "Animation.h"
 #include "Matrix.h"
+#include "Random.h"
 
 class Comet
 {
@@ -31,6 +32,7 @@ private:
 	Vec2 startPos;
 	Vec2 vel;
 	Timer respawn = 1.6f;
+	Timer startMoving = Random{ 0.0f,1.1f };
 	// Matrix rotMat;
 	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/CometAnim.bmp" );
 	Animation rotate;
