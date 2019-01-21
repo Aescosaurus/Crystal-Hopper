@@ -175,8 +175,9 @@ void Campaign::Update()
 				// guy.CollideWith( cometColl,dt );
 				points -= Comet::pointValue;
 				guy.AddVelocity( comet.GetVel(),dt );
+				comet.CreateDust();
+				comet.CreateDustAt( guy.GetPos() );
 				comet.Destroy();
-				// TODO: Particles or something here.
 			}
 		}
 
@@ -408,7 +409,7 @@ void Campaign::ReadFile( const std::string& filename )
 		{
 			comets.emplace_back( Comet{ Vec2{
 				stof( list[1] ),stof( list[2] ) },
-				stof( list[3] ) } );
+				stof( list[3] ),particles } );
 		}
 		// else if( title == "" )
 		// {

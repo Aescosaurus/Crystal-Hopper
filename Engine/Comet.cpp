@@ -2,8 +2,10 @@
 #include "Rect.h"
 #include "SpriteEffect.h"
 
-Comet::Comet( const Vei2& pos,float dir )
+Comet::Comet( const Vei2& pos,float dir,
+	std::vector<Explosion>& particles )
 	:
+	particles( &particles ),
 	pos( Vec2( pos ) ),
 	rotate( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f )/*,
 	rotMat( Matrix::Rotation( dir ) )*/
@@ -40,6 +42,12 @@ void Comet::Update( float dt )
 	else respawn.Reset();
 
 	rotate.Update( dt );
+
+	if( spawnDust.Update( dt ) )
+	{
+		spawnDust.ResetRng( Random{ -0.1f,-0.4f } );
+		CreateDust();
+	}
 }
 
 void Comet::Draw( Graphics& gfx ) const
@@ -58,6 +66,17 @@ void Comet::Draw( Graphics& gfx ) const
 void Comet::Destroy()
 {
 	pos = startPos;
+}
+
+void Comet::CreateDust()
+{
+	CreateDustAt( pos );
+}
+
+void Comet::CreateDustAt( const Vec2& loc )
+{
+	particles->emplace_back( Explosion{ loc,
+		Explosion::Type::CometDust } );
 }
 
 Circle Comet::GetCollider() const

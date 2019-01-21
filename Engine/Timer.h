@@ -8,9 +8,11 @@ public:
 		curTime( 0.0f ),
 		maxTime( maxTime )
 	{}
-	void Update( float dt )
+	bool Update( float dt )
 	{
 		curTime += dt;
+
+		return( IsDone() );
 	}
 	void Reset()
 	{
