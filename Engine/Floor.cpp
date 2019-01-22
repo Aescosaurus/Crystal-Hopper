@@ -102,10 +102,13 @@ Floor::Floor( const Vec2& pos,float angle,CSurfPtr img )
 
 	const auto hSize = size / 2.0f;
 
-	Vec2 ul = RotatePoint( pos - hSize,pos,rotMat );
-	Vec2 ur = RotatePoint( pos + hSize.X() - hSize.Y(),pos,rotMat );
-	Vec2 dl = RotatePoint( pos - hSize.X() + hSize.Y(),pos,rotMat );
-	Vec2 dr = RotatePoint( pos + hSize,pos,rotMat );
+	typedef const Vec2 CVec2;
+	CVec2 ul = RotatePoint( pos - hSize,pos,rotMat );
+	CVec2 ur = RotatePoint( pos + hSize.X() - hSize.Y(),
+		pos,rotMat );
+	CVec2 dl = RotatePoint( pos - hSize.X() + hSize.Y(),
+		pos,rotMat );
+	CVec2 dr = RotatePoint( pos + hSize,pos,rotMat );
 
 	// Don't shift the order of these.
 	lines.emplace_back( Line{ ul,ur } );
@@ -113,6 +116,7 @@ Floor::Floor( const Vec2& pos,float angle,CSurfPtr img )
 	lines.emplace_back( Line{ dr,dl } );
 	lines.emplace_back( Line{ dl,ul } );
 
+	// Shrink by 2 pixels so the corners can be detected.
 	for( auto& l : lines ) l.ShrinkBy( 2.0f );
 
 	corners.emplace_back( Circle{ ul,cornerSize } );

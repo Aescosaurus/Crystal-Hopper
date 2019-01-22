@@ -1,0 +1,20 @@
+Stalagmites Are Pointy and Dangerous
+-1
+1
+2
+3
+4
+5
+MoonFloor|354|411|0.174533
+MoonFloor|157|312|6.021386
+MoonFloor|825|384|5.497787
+MoonFloor|124|113|2.181662
+MoonCrystal|785|341
+MoonCrystal|379|354
+MoonCrystal|180|241
+MoonCrystal|185|140
+Comet|516|366|5.235988
+FallingFloor|716|287|5.497787
+FallingFloor|294|229|0.698132
+Spike|283|60|3.577926
+Spike|887|266|4.886922

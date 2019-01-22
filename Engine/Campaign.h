@@ -20,6 +20,7 @@
 #include "LunarFloor.h"
 #include "LunarCrystal.h"
 #include "FallingFloor.h"
+#include "Stalagmite.h"
 
 class Campaign
 {
@@ -54,6 +55,7 @@ private:
 	std::vector<std::unique_ptr<Crystal>> crystals;
 	std::vector<SpikyBoi> spikyBois;
 	std::vector<Comet> comets;
+	std::vector<Stalagmite> spikes;
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;

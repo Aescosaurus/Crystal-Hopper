@@ -1,10 +1,10 @@
 Moon Madness!
 -1
 1
-2
-3
-4
-5
+22
+69
+81
+94
 MoonCrystal|622|341
 MoonCrystal|779|261
 MoonCrystal|761|144

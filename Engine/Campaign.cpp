@@ -36,14 +36,17 @@ void Campaign::Update()
 // #if !NDEBUG
 		if( kbd.KeyIsPressed( VK_RETURN ) )
 		{
-			if( canSkip ) GotoNextLevel();
+			if( kbd.KeyIsPressed( VK_CONTROL ) || canSkip )
+			{
+				GotoNextLevel();
+			}
 			canSkip = false;
 		}
 		else canSkip = true;
 // #endif
 
 		// Restart level easily.
-		if( kbd.KeyIsPressed( VK_CONTROL ) &&
+		if( /*kbd.KeyIsPressed( VK_CONTROL ) &&*/
 			kbd.KeyIsPressed( 'R' ) )
 		{
 			if( canRestart ) RestartLevel();
@@ -181,6 +184,16 @@ void Campaign::Update()
 			}
 		}
 
+		for( auto& spike : spikes )
+		{
+			if( spike.HandleColl( guy,dt ) )
+			{
+				points -= Stalagmite::pointValue;
+				particles.emplace_back( Explosion{ guy.GetPos(),
+					Explosion::Type::Confetti } );
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -226,12 +239,14 @@ void Campaign::Update()
 	{
 		endLevelScreen.Update( mouse );
 
-		if( endLevelScreen.PressedContinue() )
+		if( endLevelScreen.PressedContinue() ||
+			kbd.KeyIsPressed( VK_RETURN ) )
 		{
 			gameState = State::Gameplay;
 			GotoNextLevel();
 		}
-		else if( endLevelScreen.PressedRetry() )
+		else if( endLevelScreen.PressedRetry() ||
+			kbd.KeyIsPressed( 'R' ) )
 		{
 			gameState = State::Gameplay;
 			RestartLevel();
@@ -254,6 +269,7 @@ void Campaign::Draw()
 	for( const auto& cry : crystals ) cry->Draw( gfx );
 	for( const auto& spB : spikyBois ) spB.Draw( gfx );
 	for( const auto& com : comets ) com.Draw( gfx );
+	for( const auto& spike : spikes ) spike.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -292,6 +308,8 @@ void Campaign::GotoNextLevel()
 	crystals.clear();
 	spikyBois.clear();
 	comets.clear();
+	spikes.clear();
+
 	particles.clear();
 
 	gameState = State::Gameplay;
@@ -416,6 +434,12 @@ void Campaign::ReadFile( const std::string& filename )
 			floors.emplace_back( std::make_unique<FallingFloor>(
 				Vec2{ stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ),gravities[Level2Index()] ) );
+		}
+		else if( title == "Spike" )
+		{
+			spikes.emplace_back( Stalagmite{ Vec2{
+				stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ) } );
 		}
 		// else if( title == "" )
 		// {

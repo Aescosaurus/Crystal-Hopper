@@ -20,6 +20,7 @@ private:
 		MovingPlatform,
 		Comet,
 		FallingPlatform,
+		Stalagmite,
 		Count
 	};
 public:
@@ -37,7 +38,10 @@ private:
 		Effect eff,Matrix rotMat = Matrix::Rotation( 0.0f ) ) const
 	{
 		gfx.DrawSprite( pos.x - s.GetWidth() / 2,
-			pos.y - s.GetHeight() / 2,s,eff,rotMat );
+			pos.y - s.GetHeight() / 2,s.GetRect(),
+			Graphics::GetScreenRect()
+			.GetExpanded( Graphics::ScreenWidth ),
+			s,eff,rotMat );
 	}
 
 	void IncrementBrush();
@@ -52,6 +56,7 @@ private:
 
 	std::vector<std::pair<Vei2,float>> entities[int( Entity::Count )] =
 	{
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
@@ -77,7 +82,8 @@ private:
 		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } },
 		Surface{ "Images/MovingPlatform.bmp" },
 		Surface{ "Images/CometAnim.bmp" },
-		Surface{ "Images/FallingPlatform.bmp" }
+		Surface{ "Images/FallingPlatform.bmp" },
+		Surface{ "Images/Stalagmite.bmp" }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 
