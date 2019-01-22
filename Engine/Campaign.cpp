@@ -411,6 +411,12 @@ void Campaign::ReadFile( const std::string& filename )
 				stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ),particles } );
 		}
+		else if( title == "FallingFloor" )
+		{
+			floors.emplace_back( std::make_unique<FallingFloor>(
+				Vec2{ stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ),gravities[Level2Index()] ) );
+		}
 		// else if( title == "" )
 		// {
 		// 

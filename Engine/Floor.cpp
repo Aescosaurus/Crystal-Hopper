@@ -28,7 +28,7 @@ void Floor::Draw( Graphics& gfx ) const
 		rotationMatrix );
 }
 
-void Floor::HandleColl( Player& guy,float dt )
+bool Floor::HandleColl( Player& guy,float dt )
 {
 	float shortest = 9999.0f;
 	const Line* collLine = nullptr;
@@ -66,15 +66,20 @@ void Floor::HandleColl( Player& guy,float dt )
 		}
 	}
 
+	bool collision = false;
 	// Prefer to collide with a line over a corner.
 	if( collLine != nullptr )
 	{
 		guy.CollideWith( *collLine,dt );
+		collision = true;
 	}
 	else if( collCirc != nullptr )
 	{
 		guy.CollideWith( *collCirc,dt );
+		collision = true;
 	}
+
+	return( collision );
 }
 
 const std::vector<Line>& Floor::GetLines() const
@@ -114,6 +119,19 @@ Floor::Floor( const Vec2& pos,float angle,CSurfPtr img )
 	corners.emplace_back( Circle{ ur,cornerSize } );
 	corners.emplace_back( Circle{ dl,cornerSize } );
 	corners.emplace_back( Circle{ dr,cornerSize } );
+}
+
+void Floor::MoveBy( const Vec2& amount )
+{
+	for( auto& line : lines )
+	{
+		line.start += amount;
+		line.end += amount;
+	}
+	for( auto& corner : corners )
+	{
+		corner.pos += amount;
+	}
 }
 
 Vei2 Floor::GetDrawPos() const

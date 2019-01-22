@@ -19,6 +19,7 @@ private:
 		SpikyBoi,
 		MovingPlatform,
 		Comet,
+		FallingPlatform,
 		Count
 	};
 public:
@@ -57,6 +58,7 @@ private:
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}
 	};
 
@@ -74,7 +76,8 @@ private:
 		Surface{ Surface{ "Images/MoonCrystalAnim.bmp" },RectI{ 0,48,0,48 } },
 		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } },
 		Surface{ "Images/MovingPlatform.bmp" },
-		Surface{ "Images/CometAnim.bmp" }
+		Surface{ "Images/CometAnim.bmp" },
+		Surface{ "Images/FallingPlatform.bmp" }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 

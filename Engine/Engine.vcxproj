@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="FallingFloor.h" />
     <ClInclude Include="Comet.h" />
     <ClInclude Include="LunarCrystal.h" />
     <ClInclude Include="LunarFloor.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="EndLevelMenu.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="FallingFloor.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />

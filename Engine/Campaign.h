@@ -19,6 +19,7 @@
 #include "Comet.h"
 #include "LunarFloor.h"
 #include "LunarCrystal.h"
+#include "FallingFloor.h"
 
 class Campaign
 {

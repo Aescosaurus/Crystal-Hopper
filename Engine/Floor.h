@@ -19,13 +19,16 @@ public:
 	virtual void Draw( Graphics& gfx ) const;
 
 	// No idea why I didn't const this but there was
-	//  probably a good reason so I'll leave it.
-	virtual void HandleColl( class Player& guy,float dt );
+	//  probably a good reason so I'll leave it.  Returns
+	//  true on collision with player.
+	virtual bool HandleColl( class Player& guy,float dt );
 
 	const std::vector<Line>& GetLines() const;
 	const std::vector<Circle>& GetCorners() const;
 protected:
 	Floor( const Vec2& pos,float angle,CSurfPtr img );
+
+	void MoveBy( const Vec2& amount );
 
 	Vei2 GetDrawPos() const;
 private:

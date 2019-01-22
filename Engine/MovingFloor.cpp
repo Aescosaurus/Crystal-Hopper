@@ -29,25 +29,3 @@ void MovingFloor::Update( float dt )
 
 	MoveBy( center - oldPos );
 }
-
-void MovingFloor::Draw( Graphics& gfx ) const
-{
-	const auto drawPos = GetDrawPos();
-
-	gfx.DrawSprite( drawPos.x,drawPos.y,*img,
-		SpriteEffect::Chroma{ Colors::Magenta },
-		rotationMatrix );
-}
-
-void MovingFloor::MoveBy( const Vec2& amount )
-{
-	for( auto& line : lines )
-	{
-		line.start += amount;
-		line.end += amount;
-	}
-	for( auto& corner : corners )
-	{
-		corner.pos += amount;
-	}
-}

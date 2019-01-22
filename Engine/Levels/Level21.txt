@@ -1,0 +1,17 @@
+Moonrock Is Weak and Unstable
+-1
+1
+43
+56
+77
+86
+MoonFloor|800|370|5.585054
+MoonFloor|172|383|0.349066
+MoonFloor|853|117|4.625123
+MoonCrystal|762|324
+MoonCrystal|383|192
+MoonCrystal|198|322
+MoonCrystal|788|133
+Comet|824|243|0.349066
+Comet|254|283|4.276057
+FallingFloor|336|233|0.785398

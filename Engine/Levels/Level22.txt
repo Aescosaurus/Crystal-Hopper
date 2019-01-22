@@ -1,0 +1,20 @@
+Moon Rocks!
+-1
+1
+2
+3
+4
+5
+MoonFloor|824|386|5.672320
+MoonFloor|145|256|1.134464
+MoonCrystal|791|336
+MoonCrystal|199|227
+MoonCrystal|319|214
+MoonCrystal|690|254
+MoonCrystal|116|450
+Comet|662|439|1.308997
+Comet|401|365|5.061455
+Comet|805|145|0.174533
+FallingFloor|735|289|5.235988
+FallingFloor|262|229|1.396263
+FallingFloor|253|415|0.610865
