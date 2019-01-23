@@ -473,14 +473,10 @@ int Campaign::Level2Index() const
 	{
 		return( 0 );
 	}
-	else if( curLevel <= marsStart )
+	else// if( curLevel <= marsStart )
 	{
 		return( 1 );
 	}
-	// else if( curLevel < bopStart )
-	// {
-	// 	return( x );
-	// }
 	assert( false );
 	return( -1 );
 }

@@ -1,10 +1,10 @@
 Stalagmites Are Pointy and Dangerous
 -1
 1
-2
-3
-4
-5
+39
+47
+76
+81
 MoonFloor|354|411|0.174533
 MoonFloor|157|312|6.021386
 MoonFloor|825|384|5.497787
