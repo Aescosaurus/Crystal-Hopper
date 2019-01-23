@@ -160,9 +160,14 @@ void Campaign::Update()
 			{
 				// TODO: Possibly destroy spiky boi after?
 				guy.CollideWith( spikyColl,dt );
-				points -= SpikyBoi::pointValue;
-				particles.emplace_back( Explosion{ guy.GetPos(),
-					Explosion::Type::Confetti } );
+				if( !guy.IsInvincible() )
+				{
+					guy.ApplyInvul();
+					points -= SpikyBoi::pointValue;
+					particles.emplace_back( Explosion{
+						guy.GetPos(),
+						Explosion::Type::Confetti } );
+				}
 			}
 		}
 
@@ -176,11 +181,15 @@ void Campaign::Update()
 			if( guy.CheckColl( cometColl,tempDist ) )
 			{
 				// guy.CollideWith( cometColl,dt );
-				points -= Comet::pointValue;
 				guy.AddVelocity( comet.GetVel(),dt );
-				comet.CreateDust();
-				comet.CreateDustAt( guy.GetPos() );
-				comet.Destroy();
+				if( !guy.IsInvincible() )
+				{
+					guy.ApplyInvul();
+					points -= Comet::pointValue;
+					comet.CreateDust();
+					comet.CreateDustAt( guy.GetPos() );
+					comet.Destroy();
+				}
 			}
 		}
 
@@ -188,9 +197,14 @@ void Campaign::Update()
 		{
 			if( spike.HandleColl( guy,dt ) )
 			{
-				points -= Stalagmite::pointValue;
-				particles.emplace_back( Explosion{ guy.GetPos(),
-					Explosion::Type::Confetti } );
+				if( !guy.IsInvincible() )
+				{
+					guy.ApplyInvul();
+					points -= Stalagmite::pointValue;
+					particles.emplace_back( Explosion{
+						guy.GetPos(),
+						Explosion::Type::Confetti } );
+				}
 			}
 		}
 

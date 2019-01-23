@@ -27,6 +27,8 @@ public:
 	void AddVelocity( const Vec2& otherVel,float dt );
 	// Keep the player inside the play area.
 	void DontHitWalls( float dt );
+	// Apply invincibility frames.
+	void ApplyInvul();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -35,6 +37,7 @@ public:
 	const Vec2& GetPos() const;
 	int GetPointLoss() const;
 	bool HasJumped() const;
+	bool IsInvincible() const;
 private:
 	const Mouse* pMouse;
 	MouseTracker mt;
@@ -61,4 +64,6 @@ private:
 	bool hasJumped = false;
 	bool jumpDisabled = false;
 	Matrix rotMatrix = Matrix::Rotation( 0.0f );
+	bool invincible = false;
+	Timer invincibilityFrames = 2.5f;
 };

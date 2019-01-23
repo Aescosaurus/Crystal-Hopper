@@ -47,22 +47,23 @@ void Stalagmite::Draw( Graphics& gfx ) const
 
 bool Stalagmite::HandleColl( Player& guy,float dt ) const
 {
-	for( const auto& line : lines )
-	{
-		float tempDist = 0.0f;
-		if( guy.CheckColl( line,tempDist ) )
-		{
-			guy.CollideWith( line,dt );
-			return( true );
-		}
-	}
-
 	for( const auto& corner : corners )
 	{
 		float tempDist = 0.0f;
 		if( guy.CheckColl( corner,tempDist ) )
 		{
 			guy.CollideWith( corner,dt );
+			return( true );
+		}
+	}
+
+	// Collide with line only if no corner has been hit.
+	for( const auto& line : lines )
+	{
+		float tempDist = 0.0f;
+		if( guy.CheckColl( line,tempDist ) )
+		{
+			guy.CollideWith( line,dt );
 			return( true );
 		}
 	}

@@ -30,6 +30,10 @@ public:
 	{
 		return( curTime >= maxTime );
 	}
+	int GetPercent() const
+	{
+		return( int( ( curTime / maxTime ) * 100.0f ) );
+	}
 private:
 	float curTime;
 	float maxTime;

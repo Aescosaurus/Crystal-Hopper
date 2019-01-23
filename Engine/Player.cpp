@@ -60,11 +60,21 @@ void Player::Update( float dt )
 		rotMatrix = Matrix::Rotation( vel
 			.GetAngle<float>() + chili::pi / 2.0f );
 	}
+
+	if( invincible )
+	{
+		if( invincibilityFrames.Update( dt ) )
+		{
+			invincibilityFrames.Reset();
+			invincible = false;
+		}
+	}
 }
 
 void Player::Draw( Graphics& gfx ) const
 {
-	// for( const auto& expl : explosions )
+	// All the particles from all objects are drawn here
+	//  don't worry about it.
 	for( int i = 0; i < int( explosions->size() ); ++i )
 	{
 		explosions->at( i ).Draw( gfx );
@@ -74,13 +84,15 @@ void Player::Draw( Graphics& gfx ) const
 	
 	const auto safeChroma = SpriteEffect
 		::SafeChroma{ Colors::Magenta };
-	// const auto rotMatrix = Matrix::Rotation( vel
-	// 	.GetAngle<float>() + chili::pi / 2.0f );
 
+	const int invulPerc = invincibilityFrames.GetPercent();
 	// Draw rotated player.
-	gfx.DrawSprite( int( pos.x ) - size / 2 + 2,
-		int( pos.y ) - size / 2,*pGuySpr,
-		safeChroma,rotMatrix );
+	if( !invincible || invulPerc % 4 == 0 )
+	{
+		gfx.DrawSprite( int( pos.x ) - size / 2 + 2,
+			int( pos.y ) - size / 2,*pGuySpr,
+			safeChroma,rotMatrix );
+	}
 
 	// Draw direction arrow.
 	if( mt.GetMouse().LeftIsPressed() &&
@@ -92,6 +104,7 @@ void Player::Draw( Graphics& gfx ) const
 				.GetDiff().GetAngle<float>() ) );
 	}
 
+	// Draw mouse tracker.
 	mt.Draw( canJump ? Colors::White : Colors::Red,gfx );
 }
 
@@ -173,6 +186,15 @@ void Player::DontHitWalls( float dt )
 	}
 }
 
+void Player::ApplyInvul()
+{
+	if( !invincible )
+	{
+		invincible = true;
+		invincibilityFrames.Reset();
+	}
+}
+
 bool Player::CheckColl( const Line& l,float& dist ) const
 {
 	const float lenSq = l.GetDiff().GetLengthSq<float>();
@@ -211,4 +233,9 @@ int Player::GetPointLoss() const
 bool Player::HasJumped() const
 {
 	return( hasJumped );
+}
+
+bool Player::IsInvincible() const
+{
+	return( invincible );
 }

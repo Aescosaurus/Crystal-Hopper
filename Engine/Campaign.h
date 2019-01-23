@@ -84,13 +84,14 @@ private:
 	static constexpr int lunarStart = 15;
 	static constexpr int marsStart = 30;
 
-	static constexpr int nLevels = 2;
-	static constexpr float gravities[nLevels] =
+	static constexpr int nPlanets = 2;
+	static constexpr float gravities[nPlanets] =
 	{
 		0.14f, // Earth
 		0.07f // Lunar
+		// Mars gravity: 0.09
 	};
-	const CSurfPtr backgrounds[nLevels] =
+	const CSurfPtr backgrounds[nPlanets] =
 	{
 		SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" )
