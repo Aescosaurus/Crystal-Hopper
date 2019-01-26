@@ -67,6 +67,7 @@ public:
 	void PutPixelApprox( float x,float y,Color c );
 	void PutPixelSafeApprox( float x,float y,Color c );
 	void DrawLine( Vec2 p0,Vec2 p1,Color c );
+	void DrawLineSafe( Vec2 p0,Vec2 p1,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
 	void DrawCircleSafe( const Vei2& pos,int radius,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );

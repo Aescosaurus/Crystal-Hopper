@@ -1,0 +1,15 @@
+Welcome to Mars!
+-1
+1
+39
+60
+81
+90
+MarsFloor|80|318|1.221730
+MarsFloor|884|225|5.061455
+MarsFloor|733|409|6.021386
+MarsFloor|124|102|2.443461
+MarsCrystal|175|145
+MarsCrystal|136|297
+MarsCrystal|721|354
+MarsCrystal|832|195

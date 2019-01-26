@@ -14,6 +14,7 @@ public:
 		Confetti,
 		CrystalDissolve,
 		MoonCrystalDissolve,
+		MarsCrystalDissolve,
 		CometDust,
 		Count
 	};

@@ -21,6 +21,8 @@
 #include "LunarCrystal.h"
 #include "FallingFloor.h"
 #include "Stalagmite.h"
+#include "MartianFloor.h"
+#include "MartianCrystal.h"
 
 class Campaign
 {
@@ -84,16 +86,17 @@ private:
 	static constexpr int lunarStart = 15;
 	static constexpr int marsStart = 30;
 
-	static constexpr int nPlanets = 2;
+	static constexpr int nPlanets = 3;
 	static constexpr float gravities[nPlanets] =
 	{
 		0.14f, // Earth
-		0.07f // Lunar
-		// Mars gravity: 0.09
+		0.07f, // Lunar
+		0.09f // Mars
 	};
 	const CSurfPtr backgrounds[nPlanets] =
 	{
 		SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
-		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" )
+		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" ),
+		SurfCodex::Fetch( "Images/BackgroundMars.bmp" )
 	};
 };

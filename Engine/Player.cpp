@@ -85,8 +85,8 @@ void Player::Draw( Graphics& gfx ) const
 	const auto safeChroma = SpriteEffect
 		::SafeChroma{ Colors::Magenta };
 
+	// Draw rotated player.  Flash when invincible.
 	const int invulPerc = invincibilityFrames.GetPercent();
-	// Draw rotated player.
 	if( !invincible || invulPerc % 4 == 0 )
 	{
 		gfx.DrawSprite( int( pos.x ) - size / 2 + 2,

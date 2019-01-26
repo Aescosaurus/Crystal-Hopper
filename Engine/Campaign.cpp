@@ -412,6 +412,12 @@ void Campaign::ReadFile( const std::string& filename )
 				Vec2{ stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ) ) );
 		}
+		else if( title == "MarsFloor" )
+		{
+			floors.emplace_back( std::make_unique<MartianFloor>(
+				Vec2{ stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ) ) );
+		}
 		else if( title == "Crystal" )
 		{
 			// crystals.emplace_back( Crystal{
@@ -422,6 +428,11 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "MoonCrystal" )
 		{
 			crystals.emplace_back( std::make_unique<LunarCrystal>(
+				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
+		}
+		else if( title == "MarsCrystal" )
+		{
+			crystals.emplace_back( std::make_unique<MartianCrystal>(
 				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
 		}
 		else if( title == "SpikyBoi" )
@@ -487,9 +498,13 @@ int Campaign::Level2Index() const
 	{
 		return( 0 );
 	}
-	else// if( curLevel <= marsStart )
+	else if( curLevel <= marsStart )
 	{
 		return( 1 );
+	}
+	else// if( curLevel <= JupiterStart )
+	{
+		return( 2 );
 	}
 	assert( false );
 	return( -1 );

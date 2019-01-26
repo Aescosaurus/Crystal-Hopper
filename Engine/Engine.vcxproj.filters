@@ -153,6 +153,12 @@
     <ClInclude Include="Stalagmite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MartianFloor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MartianCrystal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -231,9 +237,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Comet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LunarFloor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FallingFloor.cpp">

@@ -14,8 +14,10 @@ private:
 	{
 		Platform = 0,
 		MoonPlatform,
+		MarsPlatform,
 		Crystal,
 		MoonCrystal,
+		MarsCrystal,
 		SpikyBoi,
 		MovingPlatform,
 		Comet,
@@ -64,6 +66,8 @@ private:
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}
 	};
 
@@ -77,8 +81,10 @@ private:
 	{
 		Surface{ "Images/Platform.bmp" },
 		Surface{ "Images/MoonPlatform.bmp" },
+		Surface{ "Images/MartianPlatform.bmp" },
 		Surface{ Surface{ "Images/CrystalAnim.bmp" },RectI{ 0,48,0,48 } },
 		Surface{ Surface{ "Images/MoonCrystalAnim.bmp" },RectI{ 0,48,0,48 } },
+		Surface{ Surface{ "Images/MarsCrystalAnim.bmp" },RectI{ 0,48,0,48 } },
 		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" },RectI{ 0,64,0,64 } },
 		Surface{ "Images/MovingPlatform.bmp" },
 		Surface{ "Images/CometAnim.bmp" },
@@ -89,4 +95,5 @@ private:
 
 	CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
 	CSurfPtr moonBG = SurfCodex::Fetch( "Images/BackgroundMoon.bmp" );
+	CSurfPtr marsBG = SurfCodex::Fetch( "Images/BackgroundMars.bmp" );
 };

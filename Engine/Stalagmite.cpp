@@ -26,23 +26,25 @@ Stalagmite::Stalagmite( const Vec2& pos,float angle )
 
 void Stalagmite::Draw( Graphics& gfx ) const
 {
+#if !NDEBUG
+	for( const auto& line : lines )
+	{
+		gfx.DrawLineSafe( line.start,line.end,Colors::Red );
+	}
+	
+	for( const auto& corner : corners )
+	{
+		gfx.DrawCircleSafe( Vei2( corner.pos ),
+			int( corner.radius ),Colors::Red );
+	}
+#else
 	gfx.DrawSprite( int( center.x - size.x / 2.0f ),
 		int( center.y - size.y / 2.0f ),img->GetRect(),
 		Graphics::GetScreenRect()
 		.GetExpanded( Graphics::ScreenWidth ),*img,
 		SpriteEffect::SafeChroma{ Colors::Magenta },
 		rotationMatrix );
-
-	// for( const auto& line : lines )
-	// {
-	// 	gfx.DrawLine( line.start,line.end,Colors::Red );
-	// }
-	// 
-	// for( const auto& corner : corners )
-	// {
-	// 	gfx.DrawCircle( Vei2( corner.pos ),
-	// 		int( corner.radius ),Colors::Red );
-	// }
+#endif
 }
 
 bool Stalagmite::HandleColl( Player& guy,float dt ) const

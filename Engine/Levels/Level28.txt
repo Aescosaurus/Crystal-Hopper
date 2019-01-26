@@ -1,0 +1,24 @@
+Don't Touch the Stalactites!
+-1
+1
+31
+52
+81
+90
+MoonFloor|149|150|2.007128
+MoonFloor|738|437|0.261799
+MoonCrystal|760|178
+MoonCrystal|208|174
+MoonCrystal|294|321
+MoonCrystal|755|375
+Comet|257|261|6.283185
+Comet|459|196|5.061455
+FallingFloor|804|129|4.014258
+FallingFloor|263|375|0.436332
+Spike|607|67|3.490659
+Spike|712|49|2.967061
+Spike|668|16|3.228860
+Spike|223|59|2.705260
+Spike|290|16|3.403392
+Spike|335|41|3.228859
+Spike|384|8|2.530727

@@ -61,7 +61,7 @@ void LevelEditor::Update()
 void LevelEditor::Draw() const
 {
 #if NDEBUG
-	gfx.DrawSprite( 0,0,*moonBG,SpriteEffect::Copy{} );
+	gfx.DrawSprite( 0,0,*marsBG,SpriteEffect::Copy{} );
 #endif
 
 	const auto chroma = SpriteEffect::SafeChroma{ Colors::Magenta };
@@ -118,6 +118,13 @@ void LevelEditor::WriteToFile()
 		out += std::to_string( item.first.y ) + '|';
 		out += std::to_string( item.second ) + '\n';
 	}
+	for( const auto& item : entities[int( Entity::MarsPlatform )] )
+	{
+		out += "MarsFloor|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '|';
+		out += std::to_string( item.second ) + '\n';
+	}
 	for( const auto& item : entities[int( Entity::Crystal )] )
 	{
 		out += "Crystal|";
@@ -127,6 +134,12 @@ void LevelEditor::WriteToFile()
 	for( const auto& item : entities[int( Entity::MoonCrystal )] )
 	{
 		out += "MoonCrystal|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '\n';
+	}
+	for( const auto& item : entities[int( Entity::MarsCrystal )] )
+	{
+		out += "MarsCrystal|";
 		out += std::to_string( item.first.x ) + '|';
 		out += std::to_string( item.first.y ) + '\n';
 	}

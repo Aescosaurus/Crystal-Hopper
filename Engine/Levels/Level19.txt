@@ -1,19 +1,17 @@
-Avid Asteroids
+Comet Comet Comet
 -1
 1
-48
-61
-73
-90
-MoonFloor|672|424|5.934120
-MoonFloor|860|257|4.886922
-MoonFloor|726|69|3.316126
-MoonFloor|147|349|0.610865
-MoonCrystal|180|297
-MoonCrystal|655|366
-MoonCrystal|88|210
-MoonCrystal|801|238
-MoonCrystal|612|142
-Comet|786|361|0.872665
-Comet|810|144|6.195919
-Comet|235|163|4.537857
+56
+68
+89
+94
+MoonFloor|274|411|0.261799
+MoonFloor|144|126|2.268928
+MoonFloor|784|310|5.934120
+MoonCrystal|757|257
+MoonCrystal|295|353
+MoonCrystal|204|158
+Comet|668|388|0.785398
+Comet|190|291|2.181661
+Comet|613|275|5.410521
+Comet|589|196|6.108653

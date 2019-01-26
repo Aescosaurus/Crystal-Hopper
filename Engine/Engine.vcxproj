@@ -141,6 +141,8 @@
     <ClInclude Include="Comet.h" />
     <ClInclude Include="LunarCrystal.h" />
     <ClInclude Include="LunarFloor.h" />
+    <ClInclude Include="MartianCrystal.h" />
+    <ClInclude Include="MartianFloor.h" />
     <ClInclude Include="MovingFloor.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
@@ -199,7 +201,6 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
-    <ClCompile Include="LunarFloor.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />

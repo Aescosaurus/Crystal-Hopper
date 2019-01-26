@@ -10,22 +10,24 @@ Floor::Floor( const Vec2& pos,float angle )
 
 void Floor::Draw( Graphics& gfx ) const
 {
-	// for( const auto& l : lines )
-	// {
-	// 	gfx.DrawLine( l.start,l.end,Colors::Gray );
-	// }
-	// 
-	// for( const auto& c : corners )
-	// {
-	// 	gfx.DrawCircle( Vei2( c.pos ),int( c.radius ),
-	// 		Colors::Gray );
-	// }
-
+#if !NDEBUG
+	for( const auto& l : lines )
+	{
+		gfx.DrawLine( l.start,l.end,Colors::Gray );
+	}
+	
+	for( const auto& c : corners )
+	{
+		gfx.DrawCircle( Vei2( c.pos ),int( c.radius ),
+			Colors::Gray );
+	}
+#else
 	const auto drawPos = GetDrawPos();
 
 	gfx.DrawSprite( drawPos.x,drawPos.y,*img,
 		SpriteEffect::Chroma{ Colors::Magenta },
 		rotationMatrix );
+#endif
 }
 
 bool Floor::HandleColl( Player& guy,float dt )

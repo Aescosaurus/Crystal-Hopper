@@ -7,6 +7,7 @@ CSurfPtr Explosion::surfSheets[int( Type::Count )] =
 	SurfCodex::Fetch( "Images/ConfettiAnim.bmp" ),
 	SurfCodex::Fetch( "Images/CrystalDissolveAnim.bmp" ),
 	SurfCodex::Fetch( "Images/MoonCrystalDissolveAnim.bmp" ),
+	SurfCodex::Fetch( "Images/MarsCrystalDissolveAnim.bmp" ),
 	SurfCodex::Fetch( "Images/CometDustAnim.bmp" )
 };
 
