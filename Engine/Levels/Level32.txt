@@ -1,0 +1,21 @@
+Here's an Interesting Level
+-1
+1
+2
+3
+4
+5
+MarsFloor|746|442|5.846853
+MarsFloor|891|274|5.061455
+MarsFloor|590|154|0.087266
+MarsFloor|179|133|2.181661
+MarsFloor|148|316|1.134464
+MarsFloor|305|439|0.261799
+MarsCrystal|719|389
+MarsCrystal|828|281
+MarsCrystal|843|223
+MarsCrystal|597|94
+MarsCrystal|235|162
+MarsCrystal|204|293
+MarsCrystal|290|376
+MarsCrystal|352|391
