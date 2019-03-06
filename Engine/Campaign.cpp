@@ -82,57 +82,6 @@ void Campaign::Update()
 			plat->Update( dt );
 			plat->HandleColl( guy,dt );
 		}
-		/*
-		// Find which line or corner to collide with.
-		float shortest = 9999.0f;
-		const Line* closestLine = nullptr;
-		const Circle* closestCorner = nullptr;
-
-		// For all platforms in the level.
-		for( const auto& plat : floors )
-		{
-			// Check line collisions.
-			for( const auto& curLine : plat.GetLines() )
-			{
-				auto curDist = -1.0f;
-				if( guy.CheckColl( curLine,curDist ) )
-				{
-					if( curDist < shortest )
-					{
-						shortest = curDist;
-						closestLine = &curLine;
-					}
-				}
-			}
-			// Only check corners if no collision with line.
-			if( closestLine == nullptr )
-			{
-				for( const auto& curCorner : plat.GetCorners() )
-				{
-					auto curDist = -1.0f;
-					if( guy.CheckColl( curCorner,curDist ) )
-					{
-						if( curDist < shortest )
-						{
-							shortest = curDist;
-							closestCorner = &curCorner;
-						}
-					}
-				}
-			}
-		}
-
-		// Prefer to collide with a line, collide with a
-		//  corner only if no lines are available.
-		if( closestLine != nullptr )
-		{
-			guy.CollideWith( *closestLine,dt );
-		}
-		else if( closestCorner != nullptr )
-		{ // else if might be important here.
-			guy.CollideWith( *closestCorner,dt );
-		}
-		*/
 
 		// Find out if you need to collect a crystal.
 		for( auto& cry : crystals )
@@ -180,7 +129,6 @@ void Campaign::Update()
 			float tempDist = -1.0f;
 			if( guy.CheckColl( cometColl,tempDist ) )
 			{
-				// guy.CollideWith( cometColl,dt );
 				guy.AddVelocity( comet.GetVel(),dt );
 				if( !guy.IsInvincible() )
 				{
@@ -208,6 +156,24 @@ void Campaign::Update()
 			}
 		}
 
+		for( auto& marv : martians )
+		{
+			marv.Update( dt );
+			float temp = 0.0f;
+			if( guy.CheckColl( marv.GetCollider(),temp ) )
+			{
+				if( !guy.IsInvincible() )
+				{
+					guy.AddVelocity( marv.GetVel(),dt );
+					if( !guy.IsInvincible() )
+					{
+						guy.ApplyInvul();
+						points -= Marvin::pointValue;
+					}
+				}
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -222,7 +188,6 @@ void Campaign::Update()
 		chili::remove_erase_if( particles,
 			std::mem_fn( &Explosion::Done ) );
 
-		// titlePercent -= titleFadeSpeed;
 		titlePercent = std::max( 0.0f,titlePercent - titleFadeSpeed * dt );
 
 		// Bring up end level menu when we've collected
@@ -240,7 +205,6 @@ void Campaign::Update()
 					": " + std::to_string( points ) + "pts | " +
 					std::to_string( int( percent * 100.0f ) ) + "%" );
 // #endif
-
 				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
 
@@ -284,6 +248,7 @@ void Campaign::Draw()
 	for( const auto& spB : spikyBois ) spB.Draw( gfx );
 	for( const auto& com : comets ) com.Draw( gfx );
 	for( const auto& spike : spikes ) spike.Draw( gfx );
+	for( const auto& marv : martians ) marv.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -291,7 +256,6 @@ void Campaign::Draw()
 	{
 		luckyPixel->DrawTextCentered( levelName,
 			Graphics::GetCenter() - Vei2{ 0,100 },Colors::White,
-			// SpriteEffect::Fade{ Colors::Magenta,titlePercent },
 			SpriteEffect::SubstituteFade{ Colors::White,
 			Colors::White,titlePercent },gfx );
 	}
@@ -323,6 +287,7 @@ void Campaign::GotoNextLevel()
 	spikyBois.clear();
 	comets.clear();
 	spikes.clear();
+	martians.clear();
 
 	particles.clear();
 
@@ -420,8 +385,6 @@ void Campaign::ReadFile( const std::string& filename )
 		}
 		else if( title == "Crystal" )
 		{
-			// crystals.emplace_back( Crystal{
-			// 	Vec2{ stof( list[1] ),stof( list[2] ) } } );
 			crystals.emplace_back( std::make_unique<Crystal>(
 				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
 		}
@@ -466,6 +429,12 @@ void Campaign::ReadFile( const std::string& filename )
 				stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ) } );
 		}
+		else if( title == "Marvin" )
+		{
+			martians.emplace_back( Marvin{ Vec2{
+				stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ) } );
+		}
 		// else if( title == "" )
 		// {
 		// 
@@ -481,7 +450,6 @@ std::string Campaign::GetNextLevelName( int curLevel ) const
 {
 	const auto path = "Levels/Level";
 	const auto suffix = ".txt";
-	// return( path + std::to_string( curLevel ) + suffix );
 
 	// Reload last level if there are no more.
 	int i = -1;
@@ -502,7 +470,7 @@ int Campaign::Level2Index() const
 	{
 		return( 1 );
 	}
-	else// if( curLevel <= JupiterStart )
+	else// if( curLevel <= jupiterStart )
 	{
 		return( 2 );
 	}

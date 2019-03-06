@@ -1,0 +1,15 @@
+It's a Martian!
+-1
+1
+43
+64
+72
+85
+MarsFloor|255|426|0.349066
+MarsFloor|311|115|2.792526
+MarsFloor|792|109|5.934120
+MarsCrystal|285|375
+MarsCrystal|343|171
+MarsCrystal|747|63
+MarsCrystal|876|292
+Marvin|279|279|5.759587

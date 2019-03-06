@@ -23,6 +23,7 @@
 #include "Stalagmite.h"
 #include "MartianFloor.h"
 #include "MartianCrystal.h"
+#include "Marvin.h"
 
 class Campaign
 {
@@ -58,6 +59,7 @@ private:
 	std::vector<SpikyBoi> spikyBois;
 	std::vector<Comet> comets;
 	std::vector<Stalagmite> spikes;
+	std::vector<Marvin> martians;
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;

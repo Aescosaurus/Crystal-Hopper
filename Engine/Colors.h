@@ -120,4 +120,5 @@ namespace Colors
 	static constexpr Color Orange = MakeRGB( 255u,127u,0u );
 	static constexpr Color Slate = MakeRGB( 146u,161u,185u );
 	static constexpr Color DeepOrange = MakeRGB( 255u,80u,0u );
+	static constexpr Color Red2 = MakeRGB( 255u,0u,64u );
 }

@@ -143,6 +143,7 @@
     <ClInclude Include="LunarFloor.h" />
     <ClInclude Include="MartianCrystal.h" />
     <ClInclude Include="MartianFloor.h" />
+    <ClInclude Include="Marvin.h" />
     <ClInclude Include="MovingFloor.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="Marvin.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MouseTracker.cpp" />
     <ClCompile Include="MovingFloor.cpp" />
