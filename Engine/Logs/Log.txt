@@ -48,3 +48,9 @@ Level1: 1047pts | 87%
 Level2: 994pts | 82%
 Level3: 993pts | 82%
 Level4: 1095pts | 91%
+Level0: 1096pts | 91%
+Level1: 1095pts | 91%
+Level2: 1042pts | 86%
+Level3: 994pts | 82%
+Level4: 1095pts | 91%
+Level5: 794pts | 66%

@@ -24,7 +24,7 @@ void Player::Update( float dt )
 		canJump = false;
 		pointsLost += jumpPenalty;
 		hasJumped = true;
-		
+
 		// explosionTrail.emplace_back( Explosion{ pos } );
 		makingTrail = true;
 	}
@@ -81,7 +81,7 @@ void Player::Draw( Graphics& gfx ) const
 	}
 
 	// gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
-	
+
 	const auto safeChroma = SpriteEffect
 		::SafeChroma{ Colors::Magenta };
 
@@ -117,6 +117,9 @@ void Player::CollideWith( const Line& l,float dt )
 
 	ClampSpeed();
 	pos += vel * dt * 60.0f;
+
+	explosions->emplace_back( Explosion{ pos,
+		Explosion::Type::GroundBounce } );
 }
 
 void Player::CollideWith( const Circle& c,float dt )
@@ -127,6 +130,9 @@ void Player::CollideWith( const Circle& c,float dt )
 
 	ClampSpeed(); // Just in case.
 	pos += vel * dt * 60.0f;
+
+	explosions->emplace_back( Explosion{ pos,
+		Explosion::Type::GroundBounce } );
 }
 
 void Player::ClampSpeed()

@@ -16,6 +16,7 @@ public:
 		MoonCrystalDissolve,
 		MarsCrystalDissolve,
 		CometDust,
+		GroundBounce,
 		Count
 	};
 public:
