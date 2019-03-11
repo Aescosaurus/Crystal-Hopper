@@ -3,6 +3,8 @@
 #include "Vec2.h"
 #include "Graphics.h"
 #include "Circle.h"
+#include "Codex.h"
+#include "Animation.h"
 
 class Marvin
 {
@@ -24,6 +26,6 @@ private:
 	Vec2 vel;
 	Vec2 start;
 	Vec2 end;
-	// CSurfPtr surfSheet
-	// Animation float
+	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/MarvinAnim.bmp" );
+	Animation wobble;
 };
