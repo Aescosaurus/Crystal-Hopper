@@ -54,3 +54,4 @@ Level2: 1042pts | 86%
 Level3: 994pts | 82%
 Level4: 1095pts | 91%
 Level5: 794pts | 66%
+Level6: 231pts | 19%

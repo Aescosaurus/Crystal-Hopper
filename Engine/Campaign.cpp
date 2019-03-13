@@ -136,6 +136,9 @@ void Campaign::Update()
 					points -= Comet::pointValue;
 					comet.CreateDust();
 					comet.CreateDustAt( guy.GetPos() );
+					particles.emplace_back( Explosion{
+						guy.GetPos(),
+						Explosion::Type::Confetti } );
 					comet.Destroy();
 				}
 			}
@@ -169,6 +172,9 @@ void Campaign::Update()
 					{
 						guy.ApplyInvul();
 						points -= Marvin::pointValue;
+						particles.emplace_back( Explosion{
+							guy.GetPos(),
+							Explosion::Type::Confetti } );
 					}
 				}
 			}
