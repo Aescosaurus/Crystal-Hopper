@@ -20,6 +20,14 @@ public:
 			Matrix::Rotation( 0.0f ),flipped );
 	}
 	template<typename Effect>
+	void Draw( const Vei2& pos,Graphics& gfx,
+		Effect eff,const Matrix& rotationMatrix,
+		bool flipped = false ) const
+	{
+		Draw( pos,gfx,Graphics::GetScreenRect(),
+			eff,rotationMatrix,flipped );
+	}
+	template<typename Effect>
 	void Draw( const Vei2& pos,Graphics& gfx,const RectI& clip,
 		Effect eff,const Matrix& rotationMatrix,bool flipped ) const
 	{

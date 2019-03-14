@@ -1,0 +1,19 @@
+Good Luck Getting 5 Stars
+-1
+1
+47
+64
+77
+86
+MarsFloor|328|430|0.436332
+MarsFloor|142|339|0.436332
+MarsFloor|86|127|1.658063
+MarsFloor|804|397|0.610865
+MarsCrystal|350|376
+MarsCrystal|169|288
+MarsCrystal|148|132
+MarsCrystal|719|323
+MarsCrystal|800|315
+MarsCrystal|863|351
+Marvin|266|269|0.436332
+Marvin|774|253|6.195919

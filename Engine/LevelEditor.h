@@ -92,7 +92,7 @@ private:
 		Surface{ "Images/CometAnim.bmp" },
 		Surface{ "Images/FallingPlatform.bmp" },
 		Surface{ "Images/Stalagmite.bmp" },
-		Surface{ Surface{ "Images/SpikyBoiAnim.bmp" } } // Marvin.
+		Surface{ Surface{ "Images/MarvinAnim.bmp" } }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 

@@ -144,6 +144,7 @@ void Campaign::Update()
 			}
 		}
 
+		// Test collision with stalagmites (stalactites?).
 		for( auto& spike : spikes )
 		{
 			if( spike.HandleColl( guy,dt ) )
@@ -159,6 +160,7 @@ void Campaign::Update()
 			}
 		}
 
+		// Update martians and test collision with player.
 		for( auto& marv : martians )
 		{
 			marv.Update( dt );
@@ -194,6 +196,7 @@ void Campaign::Update()
 		chili::remove_erase_if( particles,
 			std::mem_fn( &Explosion::Done ) );
 
+		// Fade out title.
 		titlePercent = std::max( 0.0f,titlePercent - titleFadeSpeed * dt );
 
 		// Bring up end level menu when we've collected
@@ -219,10 +222,11 @@ void Campaign::Update()
 		}
 		break;
 	}
-	case State::EndLevel:
+	case State::EndLevel: // End level menu.
 	{
 		endLevelScreen.Update( mouse );
 
+		// Handle button/key presses.
 		if( endLevelScreen.PressedContinue() ||
 			kbd.KeyIsPressed( VK_RETURN ) )
 		{
@@ -288,6 +292,7 @@ void Campaign::RestartLevel()
 
 void Campaign::GotoNextLevel()
 {
+	// Destroy existing entities leftover from last level.
 	floors.clear();
 	crystals.clear();
 	spikyBois.clear();
@@ -299,18 +304,21 @@ void Campaign::GotoNextLevel()
 
 	gameState = State::Gameplay;
 
-	time.Mark();
-
 	endLevelTimer.Reset();
 	pointSubtracter.Reset();
 
+	// Reset title fade, jumps and points.
 	titlePercent = 1.0f;
 	curJumps = 0;
 	points = startPoints;
 
 	ReadFile( GetNextLevelName( curLevel++ ) );
 
+	// Reset player to center of screen.
 	guy.Reset( particles,gravities[Level2Index()] );
+
+	// Reset delta time.
+	time.Mark();
 }
 
 void Campaign::ReadFile( const std::string& filename )

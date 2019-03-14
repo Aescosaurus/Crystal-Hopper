@@ -1,0 +1,17 @@
+Wow These Things Are Annoying
+-1
+1
+56
+64
+77
+90
+MarsFloor|459|415|0.436332
+MarsFloor|711|432|6.195919
+MarsFloor|870|318|5.323255
+MarsFloor|102|75|2.530727
+MarsFloor|183|426|0.349066
+MarsCrystal|145|127
+MarsCrystal|204|369
+MarsCrystal|828|280
+Marvin|161|231|5.410521
+Marvin|737|237|5.672320

@@ -12,7 +12,6 @@ public:
 	Marvin( const Vei2& pos,float angle );
 
 	void Update( float dt );
-	// Always draw upright.
 	void Draw( Graphics& gfx ) const;
 
 	Circle GetCollider() const;

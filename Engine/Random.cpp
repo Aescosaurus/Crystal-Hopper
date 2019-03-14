@@ -10,6 +10,7 @@ Random::Random( int min,int max )
 
 Random::Random( float min,float max )
 {
+	if( min > max ) std::swap( min,max );
 	std::uniform_real_distribution<float> dist( min,max );
 	val = dist( rng );
 }
