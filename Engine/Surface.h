@@ -27,6 +27,7 @@ public:
 	Surface& operator=( Surface&& rhs );
 
 	void PutPixel( int x,int y,Color c );
+	void PutPixelApprox( float x,float y,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
 
 	Color GetPixel( int x,int y ) const;
@@ -43,6 +44,8 @@ public:
 	Surface GetYReversed() const;
 	// Get a clipped area from a surface.
 	Surface GetClipped( const RectI& clip ) const;
+	// Get a surface rotated by angle in radians.
+	Surface GetRotated( float angle ) const;
 private:
 	std::vector<Color> pixels;
 	int width;

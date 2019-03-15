@@ -3,6 +3,7 @@
 #include <cassert>
 #include <fstream>
 #include "Graphics.h"
+#include "ChiliUtils.h"
 
 Surface::Surface( int width,int height ) :
 	width( width ),
@@ -123,6 +124,22 @@ void Surface::PutPixel( int x,int y,Color c )
 	pixels.data()[y * width + x] = c;
 }
 
+void Surface::PutPixelApprox( float x,float y,Color c )
+{
+	const auto xData = x - floor( x );
+	const auto yData = y - floor( y );
+
+	const auto x1 = int( floor( x ) );
+	const auto x2 = int( ceil( x ) );
+	const auto y1 = int( floor( y ) );
+	const auto y2 = int( ceil( y ) );
+
+	PutPixel( x1,y1,c );
+	PutPixel( x2,y1,c );
+	PutPixel( x1,y2,c );
+	PutPixel( x2,y2,c );
+}
+
 void Surface::DrawRect( int x,int y,int width,int height,Color c )
 {
 	for( int i = y; i < y + height; ++i )
@@ -234,4 +251,74 @@ Surface Surface::GetClipped( const RectI& clip ) const
 	}
 
 	return( clipped );
+}
+
+Surface Surface::GetRotated( float angle ) const
+{
+	Matrix rotMat = Matrix::Rotation( angle );
+	int rotWidth;
+	int rotHeight;
+
+	if( angle < chili::pi / 2.0f )
+	{
+		rotWidth = int( ( float( width ) * cos( angle ) ) +
+			( float( height ) * sin( angle ) ) );
+		rotHeight = int( ( float( width ) * sin( angle ) ) +
+			( float( height ) * cos( angle ) ) );
+	}
+	else // if( angle >= chili::pi / 2.0f )
+	{
+		const auto wPrime = float( height );
+		const auto hPrime = float( width );
+		// rotated angle theta = p - 90
+	
+		rotWidth = int( ( wPrime * cos( angle ) ) +
+			( hPrime * sin( angle ) ) );
+		rotHeight = int( ( wPrime * sin( angle ) ) +
+			( hPrime * cos( angle ) ) );
+	}
+
+	Surface rotated{ rotWidth,rotHeight };
+
+	rotated.DrawRect( 0,0,rotated.width,rotated.height,
+		Colors::Magenta );
+
+	const auto center = Vec2( GetSize() ) / 2.0f;
+	const auto rotatedCenter = Vec2( rotated.GetSize() ) / 2.0f;
+	const auto centerAdd = rotatedCenter - center;
+
+	for( int y = 0; y < height; ++y )
+	{
+		for( int x = 0; x < width; ++x )
+		{
+			// const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
+			// auto drawPos = Vec2( Vei2{ x + sx - srcRect.left,
+			// 	y + sy - srcRect.top } );
+			// drawPos -= Vec2( center );
+			// drawPos = rotationMatrixrix * Vec2( drawPos );
+			// drawPos += Vec2( center );
+			// effect(
+			// 	// Mirror in x.
+			// 	s.GetPixel( xOffset - sx,sy ),
+			// 	drawPos.x,
+			// 	drawPos.y,
+			// 	*this
+			// );
+
+			Vec2 drawPos = { float( x ),float( y ) };
+			drawPos -= center;
+			drawPos = rotMat * drawPos;
+			drawPos += center;
+
+			// rotated.DrawRect( int( drawPos.x ),
+			// 	int( drawPos.y ),2,2,GetPixel( x,y ) );
+			rotated.PutPixelApprox( drawPos.x + centerAdd.x,
+				drawPos.y + centerAdd.y,
+				GetPixel( x,y ) );
+
+			int bop = 2;
+		}
+	}
+
+	return( rotated );
 }
