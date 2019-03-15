@@ -46,14 +46,16 @@ public:
 	Circle GetColl() const;
 	bool IsDestroyed() const;
 private:
+	Vec2 GetCenter() const;
+private:
 	static constexpr int radius = 32;
 	Vec2 pos;
-	float angle;
 	Matrix rotMat;
-	CSurfPtr pSurfSheet = SurfCodex::Fetch( "Images/MarsTurretAnim.bmp" );
-	Animation baseAnim;
-	Animation topAnim;
+	CSurfPtr pBaseSurf = SurfCodex::Fetch( "Images/MarsTurretBase.bmp" );
+	CSurfPtr pTopSurf = SurfCodex::Fetch( "Images/MarsTurretTop.bmp" );
 	std::vector<Bullet>* pBulletVec;
 	bool destroyed = false;
+	float turretAngle;
+	Vec2 playerPos = Vec2{ 1.0f,1.0f };
 	// Timer shotRefire
 };

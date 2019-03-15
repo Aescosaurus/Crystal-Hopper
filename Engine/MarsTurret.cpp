@@ -1,36 +1,40 @@
 #include "MarsTurret.h"
 #include "SpriteEffect.h"
+#include "ChiliUtils.h"
 
 MarsTurret::MarsTurret( const Vec2& pos,float angle,
 	std::vector<Bullet>& bullets )
 	:
 	pos( pos ),
 	rotMat( Matrix::Rotation( angle ) ),
-	baseAnim( 0,0,64,64,5,*pSurfSheet,0.2f ),
-	topAnim( 0,64,64,64,5,*pSurfSheet,0.2f ),
 	pBulletVec( &bullets ),
-	angle( angle )
+	turretAngle( angle )
 {}
 
 void MarsTurret::Update( const Vec2& playerPos,float dt )
 {
 	// update timers and shoot bullets at player
 
-	angle += ( 3.1415f / 24.0f ) * dt;
-	rotMat = Matrix::Rotation( angle );
+	turretAngle = ( playerPos - pos ).GetAngle<float>() +
+		chili::pi / 2.0f;
+
+	this->playerPos = playerPos;
 }
 
 void MarsTurret::Draw( Graphics& gfx ) const
 {
+	const auto drawPos = GetCenter();
 	gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
 
-	baseAnim.Draw( Vei2( pos ),gfx,
-		SpriteEffect::Chroma{ Colors::Magenta },
+	gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
+		*pBaseSurf,SpriteEffect::Chroma{ Colors::Magenta },
 		rotMat );
 
-	topAnim.Draw( Vei2( pos ),gfx,
-		SpriteEffect::Chroma{ Colors::Magenta },
-		rotMat );
+	gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
+		*pTopSurf,SpriteEffect::Chroma{ Colors::Magenta },
+		Matrix::Rotation( turretAngle ) );
+
+	gfx.DrawLine( pos,playerPos,Colors::Red );
 }
 
 void MarsTurret::Destroy()
@@ -46,6 +50,11 @@ Circle MarsTurret::GetColl() const
 bool MarsTurret::IsDestroyed() const
 {
 	return( destroyed );
+}
+
+Vec2 MarsTurret::GetCenter() const
+{
+	return( pos - Vec2{ float( radius ),float( radius ) } );
 }
 
 MarsTurret::Bullet::Bullet( const Vec2& start,
