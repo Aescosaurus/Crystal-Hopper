@@ -182,6 +182,40 @@ void Campaign::Update()
 			}
 		}
 
+		// Update mars turrets.
+		for( auto& marsTur : marsTurrets )
+		{
+			const auto marsTurColl = marsTur.GetColl();
+			marsTur.Update( guy.GetPos(),dt );
+
+			float temp = 0.0f;
+			if( guy.CheckColl( marsTurColl,temp ) )
+			{
+				guy.CollideWith( marsTurColl,dt );
+				marsTur.Destroy();
+				// TODO: Make particles for this!
+			}
+		}
+
+		// Update mars turret bullets.
+		for( auto& marsTurBull : marsTurretBullets )
+		{
+			const auto mTurBullColl = marsTurBull.GetCollider();
+			marsTurBull.Update( dt );
+
+			float temp = 0.0f;
+			if( guy.CheckColl( mTurBullColl,temp ) )
+			{
+				guy.CollideWith( mTurBullColl,dt );
+				if( !guy.IsInvincible() )
+				{
+					guy.ApplyInvul();
+					points -= MarsTurret::Bullet::pointValue;
+					// TODO: particles.emplace_back
+				}
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -195,6 +229,14 @@ void Campaign::Update()
 		// Remove finished explosions.
 		chili::remove_erase_if( particles,
 			std::mem_fn( &Explosion::Done ) );
+
+		// Remove mars turrets that were stomped.
+		chili::remove_erase_if( marsTurrets,
+			std::mem_fn( &MarsTurret::IsDestroyed ) );
+
+		// Remove destroyed mars turret bullets.
+		chili::remove_erase_if( marsTurretBullets,
+			std::mem_fn( &MarsTurret::Bullet::IsDestroyed ) );
 
 		// Fade out title.
 		titlePercent = std::max( 0.0f,titlePercent - titleFadeSpeed * dt );
@@ -259,6 +301,8 @@ void Campaign::Draw()
 	for( const auto& com : comets ) com.Draw( gfx );
 	for( const auto& spike : spikes ) spike.Draw( gfx );
 	for( const auto& marv : martians ) marv.Draw( gfx );
+	for( const auto& mt : marsTurrets ) mt.Draw( gfx );
+	for( const auto& mtb : marsTurretBullets ) mtb.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -299,6 +343,8 @@ void Campaign::GotoNextLevel()
 	comets.clear();
 	spikes.clear();
 	martians.clear();
+	marsTurrets.clear();
+	marsTurretBullets.clear();
 
 	particles.clear();
 
@@ -451,7 +497,9 @@ void Campaign::ReadFile( const std::string& filename )
 		}
 		else if( title == "MarsTurret" )
 		{
-			assert( false );
+			marsTurrets.emplace_back( MarsTurret{ Vec2{
+				stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ),marsTurretBullets } );
 		}
 		// else if( title == "" )
 		// {

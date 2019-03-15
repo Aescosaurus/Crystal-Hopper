@@ -24,6 +24,7 @@
 #include "MartianFloor.h"
 #include "MartianCrystal.h"
 #include "Marvin.h"
+#include "MarsTurret.h"
 
 class Campaign
 {
@@ -60,6 +61,8 @@ private:
 	std::vector<Comet> comets;
 	std::vector<Stalagmite> spikes;
 	std::vector<Marvin> martians;
+	std::vector<MarsTurret> marsTurrets;
+	std::vector<MarsTurret::Bullet> marsTurretBullets;
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;
