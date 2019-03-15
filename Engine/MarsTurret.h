@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "Codex.h"
 #include <vector>
+#include "Timer.h"
 
 // Turret that sticks to platforms or walls and shoots
 //  bullets at the player periodically (which make
@@ -25,14 +26,18 @@ public:
 
 		Circle GetCollider() const;
 		bool IsDestroyed() const;
+		const Vec2& GetPos() const;
 	public:
 		static constexpr int pointValue = 100;
 	private:
 		static constexpr int radius = 8;
 		static constexpr float speed = 75.0f;
+		static constexpr float rotSpeed = 12.6f;
 		Vec2 pos;
 		Vec2 vel;
 		bool destroyed = false;
+		float rotAngle;
+		CSurfPtr pSurf = SurfCodex::Fetch( "Images/MarsTurretBullet.bmp" );
 	};
 public:
 	MarsTurret( const Vec2& pos,float angle,
@@ -56,6 +61,5 @@ private:
 	std::vector<Bullet>* pBulletVec;
 	bool destroyed = false;
 	float turretAngle;
-	Vec2 playerPos = Vec2{ 1.0f,1.0f };
-	// Timer shotRefire
+	Timer shotRefire = 3.17f;
 };

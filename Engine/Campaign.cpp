@@ -210,9 +210,19 @@ void Campaign::Update()
 				if( !guy.IsInvincible() )
 				{
 					guy.ApplyInvul();
+					marsTurBull.Destroy();
 					points -= MarsTurret::Bullet::pointValue;
-					// TODO: particles.emplace_back
+					particles.emplace_back( Explosion{
+						guy.GetPos(),
+						Explosion::Type::Confetti } );
 				}
+			}
+
+			if( !Graphics::GetScreenRect()
+				.GetExpanded( -32 ).ContainsPoint(
+				Vei2( marsTurBull.GetPos() ) ) )
+			{
+				marsTurBull.Destroy();
 			}
 		}
 
