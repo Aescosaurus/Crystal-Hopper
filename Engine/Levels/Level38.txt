@@ -1,0 +1,18 @@
+Level Title
+-1
+1
+2
+3
+4
+5
+MarsFloor|214|311|0.523599
+MarsFloor|818|379|5.061455
+MarsFloor|767|93|3.490659
+MarsFloor|632|435|0.087266
+MarsCrystal|210|244
+MarsCrystal|737|149
+MarsCrystal|765|346
+MarsCrystal|672|379
+Marvin|786|227|5.934120
+MarsTurret|270|271|0.523599
+MarsTurret|609|370|0.087266

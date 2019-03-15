@@ -24,6 +24,7 @@ private:
 		FallingPlatform,
 		Stalagmite,
 		Marvin,
+		MarsTurret,
 		Count
 	};
 public:
@@ -70,6 +71,7 @@ private:
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}
 	};
 
@@ -92,7 +94,8 @@ private:
 		Surface{ "Images/CometAnim.bmp" },
 		Surface{ "Images/FallingPlatform.bmp" },
 		Surface{ "Images/Stalagmite.bmp" },
-		Surface{ Surface{ "Images/MarvinAnim.bmp" } }
+		Surface{ Surface{ "Images/MarvinAnim.bmp" } },
+		Surface{ "Images/MarsTurretBase.bmp" }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 
