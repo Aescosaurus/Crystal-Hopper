@@ -449,6 +449,10 @@ void Campaign::ReadFile( const std::string& filename )
 				stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ) } );
 		}
+		else if( title == "MarsTurret" )
+		{
+			assert( false );
+		}
 		// else if( title == "" )
 		// {
 		// 
