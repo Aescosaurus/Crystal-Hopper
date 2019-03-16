@@ -17,6 +17,7 @@ public:
 		MarsCrystalDissolve,
 		CometDust,
 		GroundBounce,
+		MarsTurretBoop,
 		Count
 	};
 public:

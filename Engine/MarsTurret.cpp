@@ -57,6 +57,11 @@ bool MarsTurret::IsDestroyed() const
 	return( destroyed );
 }
 
+const Vec2& MarsTurret::GetPos() const
+{
+	return( pos );
+}
+
 Vec2 MarsTurret::GetCenter() const
 {
 	return( pos - Vec2{ float( radius ),float( radius ) } );

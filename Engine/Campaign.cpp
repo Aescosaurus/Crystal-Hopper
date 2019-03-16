@@ -193,7 +193,9 @@ void Campaign::Update()
 			{
 				guy.CollideWith( marsTurColl,dt );
 				marsTur.Destroy();
-				// TODO: Make particles for this!
+				particles.emplace_back( Explosion{
+					marsTur.GetPos(),
+					Explosion::Type::MarsTurretBoop } );
 			}
 		}
 

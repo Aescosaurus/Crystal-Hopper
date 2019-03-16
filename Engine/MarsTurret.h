@@ -50,6 +50,7 @@ public:
 
 	Circle GetColl() const;
 	bool IsDestroyed() const;
+	const Vec2& GetPos() const;
 private:
 	Vec2 GetCenter() const;
 private:
