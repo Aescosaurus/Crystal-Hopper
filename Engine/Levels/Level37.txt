@@ -1,0 +1,13 @@
+Ok Fine Here's a New Mechanic
+-1
+1
+60
+77
+89
+94
+MarsFloor|101|252|1.221730
+MarsFloor|822|423|6.108653
+MarsCrystal|168|258
+MarsCrystal|778|371
+MarsCrystal|844|359
+MarsTurret|150|201|1.221730

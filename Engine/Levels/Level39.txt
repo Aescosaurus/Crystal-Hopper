@@ -1,0 +1,23 @@
+This One Will Be Challenging
+-1
+1
+26
+51
+60
+68
+MarsFloor|254|398|0.523599
+MarsFloor|126|93|2.356194
+MarsFloor|333|50|3.403392
+MarsFloor|624|71|2.879793
+MarsFloor|861|85|3.752457
+MarsCrystal|194|120
+MarsCrystal|317|111
+MarsCrystal|242|323
+MarsCrystal|329|374
+MarsCrystal|610|138
+MarsCrystal|818|130
+Marvin|725|219|0.000000
+Marvin|158|261|5.497787
+MarsTurret|668|124|2.879793
+MarsTurret|150|158|2.356194
+MarsTurret|287|347|0.523599

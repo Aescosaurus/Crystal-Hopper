@@ -30,7 +30,8 @@ void MarsTurret::Update( const Vec2& playerPos,float dt )
 void MarsTurret::Draw( Graphics& gfx ) const
 {
 	const auto drawPos = GetCenter();
-	gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
+
+	// gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
 
 	gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
 		*pBaseSurf,SpriteEffect::Chroma{ Colors::Magenta },
