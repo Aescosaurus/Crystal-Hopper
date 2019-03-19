@@ -43,3 +43,5 @@ Level37: 1097pts | 91%
 Level38: 486pts | 40%
 Level39: 233pts | 19%
 Level40: 791pts | 65%
+Level0: 532pts | 44%
+Level0: 170pts | 14%
