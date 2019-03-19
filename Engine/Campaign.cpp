@@ -228,6 +228,14 @@ void Campaign::Update()
 			}
 		}
 
+		// Update mars divers.
+		for( auto& d : divers )
+		{
+			d.Update( guy.GetPos(),dt );
+
+			// TODO: Diver hit test.
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -315,6 +323,7 @@ void Campaign::Draw()
 	for( const auto& marv : martians ) marv.Draw( gfx );
 	for( const auto& mt : marsTurrets ) mt.Draw( gfx );
 	for( const auto& mtb : marsTurretBullets ) mtb.Draw( gfx );
+	for( const auto& d : divers ) d.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -357,6 +366,7 @@ void Campaign::GotoNextLevel()
 	martians.clear();
 	marsTurrets.clear();
 	marsTurretBullets.clear();
+	divers.clear();
 
 	particles.clear();
 
@@ -512,6 +522,11 @@ void Campaign::ReadFile( const std::string& filename )
 			marsTurrets.emplace_back( MarsTurret{ Vec2{
 				stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ),marsTurretBullets } );
+		}
+		else if( title == "MarsDiver" )
+		{
+			divers.emplace_back( MarsDiver{ Vec2{
+				stof( list[1] ),stof( list[2] ) } } );
 		}
 		// else if( title == "" )
 		// {

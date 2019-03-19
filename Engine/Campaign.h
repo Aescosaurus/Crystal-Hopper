@@ -25,6 +25,7 @@
 #include "MartianCrystal.h"
 #include "Marvin.h"
 #include "MarsTurret.h"
+#include "MarsDiver.h"
 
 class Campaign
 {
@@ -63,6 +64,7 @@ private:
 	std::vector<Marvin> martians;
 	std::vector<MarsTurret> marsTurrets;
 	std::vector<MarsTurret::Bullet> marsTurretBullets;
+	std::vector<MarsDiver> divers;
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;

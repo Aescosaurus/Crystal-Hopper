@@ -141,6 +141,7 @@
     <ClInclude Include="Comet.h" />
     <ClInclude Include="LunarCrystal.h" />
     <ClInclude Include="LunarFloor.h" />
+    <ClInclude Include="MarsDiver.h" />
     <ClInclude Include="MarsTurret.h" />
     <ClInclude Include="MartianCrystal.h" />
     <ClInclude Include="MartianFloor.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="MarsDiver.cpp" />
     <ClCompile Include="MarsTurret.cpp" />
     <ClCompile Include="Marvin.cpp" />
     <ClCompile Include="Mouse.cpp" />
