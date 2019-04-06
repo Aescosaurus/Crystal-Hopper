@@ -45,3 +45,5 @@ Level39: 233pts | 19%
 Level40: 791pts | 65%
 Level0: 532pts | 44%
 Level0: 170pts | 14%
+Level0: 941pts | 78%
+Level0: 1044pts | 87%

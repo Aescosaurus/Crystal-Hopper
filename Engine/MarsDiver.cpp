@@ -1,4 +1,6 @@
 #include "MarsDiver.h"
+#include "SpriteEffect.h"
+#include "ChiliUtils.h"
 
 MarsDiver::MarsDiver( const Vec2& pos )
 	:
@@ -7,12 +9,13 @@ MarsDiver::MarsDiver( const Vec2& pos )
 
 void MarsDiver::Update( const Vec2& playerPos,float dt )
 {
-	const Vec2 diffVec = playerPos - pos;
+	const Vec2 diffVec = playerPos -
+		( pos - Vei2{ radius,radius } );
 	const float distSq = diffVec.GetLengthSq<float>();
 
 	retarget.Update( dt );
 
-	if( distSq <= activationRange * activationRange &&
+	if( /* distSq <= activationRange * activationRange && */
 		retarget.IsDone() )
 	{
 		angle = diffVec.GetAngle<float>();
@@ -49,12 +52,23 @@ void MarsDiver::Update( const Vec2& playerPos,float dt )
 
 void MarsDiver::Draw( Graphics& gfx ) const
 {
-	gfx.DrawCircle( Vei2( pos ),radius,
-		retarget.IsDone() ?
-		Colors::Green : Colors::Red );
+	// gfx.DrawCircle( Vei2( pos ),radius,
+	// 	retarget.IsDone() ?
+	// 	Colors::Green : Colors::Red );
+
+	gfx.DrawSprite( int( pos.x ) - radius,
+		int( pos.y ) - radius,*pSurf,
+		SpriteEffect::Chroma{ Colors::Magenta },
+		Matrix::Rotation( angle + chili::pi / 2.0f ) );
 }
 
 Circle MarsDiver::GetCollider() const
 {
 	return( Circle{ pos,float( radius ) } );
 }
+
+const Vec2& MarsDiver::GetVel() const
+{
+	return( vel );
+}
+

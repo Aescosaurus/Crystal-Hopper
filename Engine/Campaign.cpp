@@ -229,11 +229,24 @@ void Campaign::Update()
 		}
 
 		// Update mars divers.
-		for( auto& d : divers )
+		for( auto& div : divers )
 		{
-			d.Update( guy.GetPos(),dt );
+			div.Update( guy.GetPos(),dt );
 
-			// TODO: Diver hit test.
+			float temp = 0.0f;
+			if( guy.CheckColl( div.GetCollider(),temp ) )
+			{
+				// guy.CollideWith( div.GetCollider(),dt );
+				if( !guy.IsInvincible() )
+				{
+					guy.ApplyInvul();
+					guy.AddVelocity( div.GetVel(),dt );
+					points -= MarsDiver::pointValue;
+					particles.emplace_back( Explosion{
+						guy.GetPos(),
+						Explosion::Type::Confetti } );
+				}
+			}
 		}
 
 		// Update all particles.
