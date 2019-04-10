@@ -194,6 +194,12 @@ void LevelEditor::WriteToFile()
 		out += std::to_string( item.first.y ) + '|';
 		out += std::to_string( item.second ) + '\n';
 	}
+	for( const auto& item : entities[int( Entity::MarsDiver )] )
+	{
+		out += "MarsDiver|";
+		out += std::to_string( item.first.x ) + '|';
+		out += std::to_string( item.first.y ) + '\n';
+	}
 
 	out.pop_back(); // Remove the last newline.
 

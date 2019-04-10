@@ -9,4 +9,3 @@ Floor|254|407|0.436332
 Floor|757|257|-0.174533
 Crystal|285|342
 Crystal|721|187
-MarsDiver|150|150
