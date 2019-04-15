@@ -1,0 +1,17 @@
+What Is That???
+-1
+1
+2
+3
+4
+5
+MarsFloor|171|310|0.698132
+MarsFloor|343|351|1.308997
+MarsFloor|761|398|2.268928
+MarsFloor|783|146|0.436332
+MarsCrystal|716|184
+MarsCrystal|784|217
+MarsCrystal|207|266
+MarsCrystal|341|233
+MarsDiver|861|292
+MarsDiver|228|198
