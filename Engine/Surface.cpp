@@ -280,6 +280,7 @@ Surface Surface::GetRotated( float angle ) const
 
 	Surface rotated{ rotWidth,rotHeight };
 
+	// Fill background with chroma'd pixels.
 	rotated.DrawRect( 0,0,rotated.width,rotated.height,
 		Colors::Magenta );
 
@@ -291,6 +292,8 @@ Surface Surface::GetRotated( float angle ) const
 	{
 		for( int x = 0; x < width; ++x )
 		{
+			// From Graphics::DrawSprite:
+			// --------------------------
 			// const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
 			// auto drawPos = Vec2( Vei2{ x + sx - srcRect.left,
 			// 	y + sy - srcRect.top } );
@@ -304,19 +307,18 @@ Surface Surface::GetRotated( float angle ) const
 			// 	drawPos.y,
 			// 	*this
 			// );
+			// --------------------------
 
 			Vec2 drawPos = { float( x ),float( y ) };
 			drawPos -= center;
 			drawPos = rotMat * drawPos;
 			drawPos += center;
 
-			// rotated.DrawRect( int( drawPos.x ),
-			// 	int( drawPos.y ),2,2,GetPixel( x,y ) );
 			rotated.PutPixelApprox( drawPos.x + centerAdd.x,
 				drawPos.y + centerAdd.y,
 				GetPixel( x,y ) );
 
-			int bop = 2;
+			auto bop = 1.1f;
 		}
 	}
 

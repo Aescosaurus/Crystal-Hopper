@@ -360,6 +360,12 @@ void Campaign::Draw()
 	{
 		endLevelScreen.Draw( gfx );
 	}
+
+	Surface temp = "Images/Platform.bmp";
+	temp = temp.GetRotated( tempRotation );
+	gfx.DrawSprite( 250,250,temp,SpriteEffect::Copy{} );
+
+	tempRotation += 0.02f;
 }
 
 void Campaign::RestartLevel()

@@ -106,4 +106,6 @@ private:
 		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundMars.bmp" )
 	};
+
+	float tempRotation = 0.0f;
 };
