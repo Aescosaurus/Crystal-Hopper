@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Graphics.h"
 #include "ChiliUtils.h"
+#include <algorithm>
 
 Surface::Surface( int width,int height ) :
 	width( width ),
@@ -126,6 +127,11 @@ void Surface::PutPixel( int x,int y,Color c )
 
 void Surface::PutPixelApprox( float x,float y,Color c )
 {
+	assert( x >= 0.0f );
+	assert( y >= 0.0f );
+	assert( x < float( width ) );
+	assert( y < float( height ) );
+
 	const auto xData = x - floor( x );
 	const auto yData = y - floor( y );
 
@@ -133,6 +139,27 @@ void Surface::PutPixelApprox( float x,float y,Color c )
 	const auto x2 = int( ceil( x ) );
 	const auto y1 = int( floor( y ) );
 	const auto y2 = int( ceil( y ) );
+
+	PutPixel( x1,y1,c );
+	PutPixel( x2,y1,c );
+	PutPixel( x1,y2,c );
+	PutPixel( x2,y2,c );
+}
+
+void Surface::PutPixelApproxSafe( float x,float y,Color c )
+{
+	const auto xData = x - floor( x );
+	const auto yData = y - floor( y );
+
+	auto x1 = int( floor( x ) );
+	auto x2 = int( ceil( x ) );
+	auto y1 = int( floor( y ) );
+	auto y2 = int( ceil( y ) );
+
+	x1 = std::max( 0,std::min( width - 1,x1 ) );
+	x2 = std::max( 0,std::min( width - 1,x2 ) );
+	y1 = std::max( 0,std::min( height - 1,y1 ) );
+	y2 = std::max( 0,std::min( height - 1,y2 ) );
 
 	PutPixel( x1,y1,c );
 	PutPixel( x2,y1,c );
@@ -256,6 +283,9 @@ Surface Surface::GetClipped( const RectI& clip ) const
 Surface Surface::GetRotated( float angle ) const
 {
 	Matrix rotMat = Matrix::Rotation( angle );
+	// const auto longest = float( std::max( width,height ) );
+	// const int rotWidth = longest * cos( angle ) + longest * sin( angle );
+	// const int rotHeight = rotWidth;
 	int rotWidth;
 	int rotHeight;
 
@@ -266,19 +296,21 @@ Surface Surface::GetRotated( float angle ) const
 		rotHeight = int( ( float( width ) * sin( angle ) ) +
 			( float( height ) * cos( angle ) ) );
 	}
-	else // if( angle >= chili::pi / 2.0f )
+	else if( angle < chili::pi )
 	{
-		const auto wPrime = float( height );
-		const auto hPrime = float( width );
 		// rotated angle theta = p - 90
 	
-		rotWidth = int( ( wPrime * cos( angle ) ) +
-			( hPrime * sin( angle ) ) );
-		rotHeight = int( ( wPrime * sin( angle ) ) +
-			( hPrime * cos( angle ) ) );
+		rotWidth = int( ( float( height ) * cos( angle ) ) +
+			( float( width ) * sin( angle ) ) );
+		rotHeight = int( ( float( height ) * sin( angle ) ) +
+			( float( width ) * cos( angle ) ) );
+	}
+	else
+	{
+		assert( false );
 	}
 
-	Surface rotated{ rotWidth,rotHeight };
+	Surface rotated{ rotWidth + 2,rotHeight + 2 };
 
 	// Fill background with chroma'd pixels.
 	rotated.DrawRect( 0,0,rotated.width,rotated.height,

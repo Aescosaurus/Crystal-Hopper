@@ -323,7 +323,7 @@ void Campaign::Draw()
 {
 #if NDEBUG
 	// Draw background.
-	gfx.DrawSprite( 0,0,*backgrounds[Level2Index()],
+	gfx.DrawSpriteNormal( 0,0,*backgrounds[Level2Index()],
 		SpriteEffect::Copy{} );
 #endif
 
@@ -361,11 +361,11 @@ void Campaign::Draw()
 		endLevelScreen.Draw( gfx );
 	}
 
-	Surface temp = "Images/Platform.bmp";
-	temp = temp.GetRotated( tempRotation );
-	gfx.DrawSprite( 250,250,temp,SpriteEffect::Copy{} );
-
-	tempRotation += 0.02f;
+	// Surface temp = "Images/Platform.bmp";
+	// temp = temp.GetRotated( tempRotation );
+	// gfx.DrawSprite( 250,250,temp,SpriteEffect::Chroma{ Colors::Magenta } );
+	// 
+	// tempRotation += 0.02f;
 }
 
 void Campaign::RestartLevel()

@@ -16,23 +16,8 @@ public:
 	void Draw( const Vei2& pos,Graphics& gfx,
 		Effect eff,bool flipped = false ) const
 	{
-		Draw( pos,gfx,Graphics::GetScreenRect(),eff,
-			Matrix::Rotation( 0.0f ),flipped );
-	}
-	template<typename Effect>
-	void Draw( const Vei2& pos,Graphics& gfx,
-		Effect eff,const Matrix& rotationMatrix,
-		bool flipped = false ) const
-	{
-		Draw( pos,gfx,Graphics::GetScreenRect(),
-			eff,rotationMatrix,flipped );
-	}
-	template<typename Effect>
-	void Draw( const Vei2& pos,Graphics& gfx,const RectI& clip,
-		Effect eff,const Matrix& rotationMatrix,bool flipped ) const
-	{
-		gfx.DrawSprite( pos.x,pos.y,frames[frameIndex],
-			clip,*sheet,eff,rotationMatrix,flipped );
+		gfx.DrawSpriteNormal( pos.x,pos.y,
+			frames[frameIndex],*sheet,eff,flipped );
 	}
 
 	void Reset();

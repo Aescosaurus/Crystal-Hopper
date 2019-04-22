@@ -28,6 +28,7 @@ public:
 
 	void PutPixel( int x,int y,Color c );
 	void PutPixelApprox( float x,float y,Color c );
+	void PutPixelApproxSafe( float x,float y,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
 
 	Color GetPixel( int x,int y ) const;
