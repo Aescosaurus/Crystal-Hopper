@@ -207,6 +207,69 @@ RectI Surface::GetRect() const
 	return{ 0,width,0,height };
 }
 
+RectI Surface::GetNonMagentaRect() const
+{
+	RectI temp = { -1,-1,-1,-1 };
+
+	// Set rect top.
+	for( int y = 0; y < height; ++y )
+	{
+		for( int x = 0; x < width; ++x )
+		{
+			if( GetPixel( x,y ) != Colors::Magenta )
+			{
+				temp.top = y;
+				break;
+			}
+		}
+		if( temp.top != -1 ) break;
+	}
+
+	// Set rect bot.
+	for( int y = height - 1; y >= 0; --y )
+	{
+		for( int x = 0; x < width; ++x )
+		{
+			if( GetPixel( x,y ) != Colors::Magenta )
+			{
+				temp.bottom = y;
+				break;
+			}
+		}
+		if( temp.bottom != -1 ) break;
+	}
+
+	// Set rect left.
+	for( int x = 0; x < width; ++x )
+	{
+		for( int y = 0; y < height; ++y )
+		{
+			if( GetPixel( x,y ) != Colors::Magenta )
+			{
+				temp.left = x;
+				break;
+			}
+		}
+		if( temp.left != -1 ) break;
+	}
+
+	// Set rect right.
+	for( int x = width - 1; x >= 0; --x )
+	{
+		for( int y = 0; y < height; ++y )
+		{
+			if( GetPixel( x,y ) != Colors::Magenta )
+			{
+				temp.right = x;
+				break;
+			}
+		}
+		if( temp.right != -1 ) break;
+	}
+
+	return( temp );
+}
+
 Surface Surface::GetExpandedBy( const Vei2& amount ) const
 {
 	Surface bigger = { amount.x * GetWidth(),amount.y * GetHeight() };
@@ -280,79 +343,39 @@ Surface Surface::GetClipped( const RectI& clip ) const
 	return( clipped );
 }
 
-Surface Surface::GetRotated( float angle ) const
+std::pair<Surface,Vei2> Surface::GetRotated( const Vei2& center,float angle ) const
 {
-	Matrix rotMat = Matrix::Rotation( angle );
-	// const auto longest = float( std::max( width,height ) );
-	// const int rotWidth = longest * cos( angle ) + longest * sin( angle );
-	// const int rotHeight = rotWidth;
-	int rotWidth;
-	int rotHeight;
+	Surface temp{ Graphics::ScreenWidth,Graphics::ScreenHeight };
+	const auto rotationMatrix = Matrix::Rotation( angle );
 
-	if( angle < chili::pi / 2.0f )
-	{
-		rotWidth = int( ( float( width ) * cos( angle ) ) +
-			( float( height ) * sin( angle ) ) );
-		rotHeight = int( ( float( width ) * sin( angle ) ) +
-			( float( height ) * cos( angle ) ) );
-	}
-	else if( angle < chili::pi )
-	{
-		// rotated angle theta = p - 90
-	
-		rotWidth = int( ( float( height ) * cos( angle ) ) +
-			( float( width ) * sin( angle ) ) );
-		rotHeight = int( ( float( height ) * sin( angle ) ) +
-			( float( width ) * cos( angle ) ) );
-	}
-	else
-	{
-		assert( false );
-	}
+	temp.DrawRect( 0,0,temp.GetWidth(),temp.GetHeight(),Colors::Magenta );
 
-	Surface rotated{ rotWidth + 2,rotHeight + 2 };
-
-	// Fill background with chroma'd pixels.
-	rotated.DrawRect( 0,0,rotated.width,rotated.height,
-		Colors::Magenta );
-
-	const auto center = Vec2( GetSize() ) / 2.0f;
-	const auto rotatedCenter = Vec2( rotated.GetSize() ) / 2.0f;
-	const auto centerAdd = rotatedCenter - center;
+	// const auto center = Vei2{ pos.x + width / 2,pos.y + height / 2 };
+	const auto pos = Vei2{ center.x - width / 2,center.y - height / 2 };
 
 	for( int y = 0; y < height; ++y )
 	{
 		for( int x = 0; x < width; ++x )
 		{
-			// From Graphics::DrawSprite:
-			// --------------------------
-			// const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
-			// auto drawPos = Vec2( Vei2{ x + sx - srcRect.left,
-			// 	y + sy - srcRect.top } );
-			// drawPos -= Vec2( center );
-			// drawPos = rotationMatrixrix * Vec2( drawPos );
-			// drawPos += Vec2( center );
+			auto drawPos = Vec2( Vei2{ pos.x + x,
+				pos.y + y } );
+			drawPos -= Vec2( center );
+			drawPos = rotationMatrix * drawPos;
+			drawPos += Vec2( center );
+			temp.PutPixelApprox( drawPos.x,drawPos.y,GetPixel( x,y ) );
 			// effect(
-			// 	// Mirror in x.
-			// 	s.GetPixel( xOffset - sx,sy ),
+			// 	// No mirroring!
+			// 	s.GetPixel( sx,sy ),
 			// 	drawPos.x,
 			// 	drawPos.y,
 			// 	*this
 			// );
-			// --------------------------
-
-			Vec2 drawPos = { float( x ),float( y ) };
-			drawPos -= center;
-			drawPos = rotMat * drawPos;
-			drawPos += center;
-
-			rotated.PutPixelApprox( drawPos.x + centerAdd.x,
-				drawPos.y + centerAdd.y,
-				GetPixel( x,y ) );
-
-			auto bop = 1.1f;
 		}
 	}
 
-	return( rotated );
+	const auto clipRect = temp.GetNonMagentaRect();
+
+	temp = temp.GetClipped( clipRect );
+
+	return( std::make_pair( temp,Vei2{ clipRect.left,clipRect.top } ) );
 }

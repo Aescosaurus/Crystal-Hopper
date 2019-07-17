@@ -22,11 +22,16 @@ void Floor::Draw( Graphics& gfx ) const
 			Colors::Gray );
 	}
 #else
-	const auto drawPos = GetDrawPos();
+	{
+		const auto drawPos = GetDrawPos();
 
-	gfx.DrawSprite( drawPos.x,drawPos.y,*img,
-		SpriteEffect::Chroma{ Colors::Magenta },
-		rotationMatrix );
+		gfx.DrawSprite( drawPos.x,drawPos.y,*img,
+			SpriteEffect::Chroma{ Colors::Magenta },
+			rotationMatrix );
+	}
+	gfx.DrawSpriteNormal( int( drawPos.x ),int( drawPos.y ),
+		rotatedImage,
+		SpriteEffect::Chroma{ Colors::Magenta } );
 #endif
 }
 
@@ -98,7 +103,8 @@ Floor::Floor( const Vec2& pos,float angle,CSurfPtr img )
 	:
 	img( img ),
 	center( pos ),
-	rotationMatrix( Matrix::Rotation( angle ) )
+	rotationMatrix( Matrix::Rotation( angle ) ),
+	rotatedImage( 0,0 )
 {
 	const auto& rotMat = rotationMatrix;
 
@@ -125,6 +131,11 @@ Floor::Floor( const Vec2& pos,float angle,CSurfPtr img )
 	corners.emplace_back( Circle{ ur,cornerSize } );
 	corners.emplace_back( Circle{ dl,cornerSize } );
 	corners.emplace_back( Circle{ dr,cornerSize } );
+
+	const std::pair<Surface,Vei2> result = img->GetRotated( pos,angle );
+
+	rotatedImage = result.first;
+	drawPos = Vec2( result.second );
 }
 
 void Floor::MoveBy( const Vec2& amount )
@@ -138,6 +149,8 @@ void Floor::MoveBy( const Vec2& amount )
 	{
 		corner.pos += amount;
 	}
+
+	drawPos += amount;
 }
 
 Vei2 Floor::GetDrawPos() const

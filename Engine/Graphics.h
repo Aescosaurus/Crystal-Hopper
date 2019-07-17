@@ -116,11 +116,13 @@ public:
 			{
 				srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
 			}
+
+			const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
+
 			for( int sy = srcRect.top; sy < srcRect.bottom; sy++ )
 			{
 				for( int sx = srcRect.left; sx < srcRect.right; sx++ )
 				{
-					const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
 					auto drawPos = Vec2( Vei2{ x + sx - srcRect.left,
 						y + sy - srcRect.top } );
 					drawPos -= Vec2( center );

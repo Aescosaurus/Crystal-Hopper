@@ -36,6 +36,8 @@ private:
 		const Vec2& about,const Matrix& rotMat ) const;
 protected:
 	CSurfPtr img;
+	Surface rotatedImage;
+	Vec2 drawPos;
 	static constexpr Vec2 size = { 160.0f,60.0f };
 	static constexpr float cornerSize = 1.1f;
 	Vec2 center;

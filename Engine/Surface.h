@@ -36,6 +36,7 @@ public:
 	int GetHeight() const;
 	Vei2 GetSize() const;
 	RectI GetRect() const;
+	RectI GetNonMagentaRect() const;
 
 	// Expand a surface by amount.
 	Surface GetExpandedBy( const Vei2& amount ) const;
@@ -45,8 +46,8 @@ public:
 	Surface GetYReversed() const;
 	// Get a clipped area from a surface.
 	Surface GetClipped( const RectI& clip ) const;
-	// Get a surface rotated by angle in radians.
-	Surface GetRotated( float angle ) const;
+	// Rotates a surface and returns it and position to draw it.
+	std::pair<Surface,Vei2> GetRotated( const Vei2& pos,float angle ) const;
 private:
 	std::vector<Color> pixels;
 	int width;
