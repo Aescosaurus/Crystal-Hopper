@@ -4,7 +4,8 @@
 Stalagmite::Stalagmite( const Vec2& pos,float angle )
 	:
 	center( pos ),
-	rotationMatrix( Matrix::Rotation( angle ) )
+	rotationMatrix( Matrix::Rotation( angle ) ),
+	rotatedImage( 0,0 )
 {
 	const auto hSize = size / 2.0f;
 
@@ -22,6 +23,11 @@ Stalagmite::Stalagmite( const Vec2& pos,float angle )
 	corners.emplace_back( Circle{ top,cornerSize } );
 	corners.emplace_back( Circle{ bl,cornerSize } );
 	corners.emplace_back( Circle{ br,cornerSize } );
+
+	const auto result = img->GetRotated( pos,angle );
+
+	rotatedImage = result.first;
+	drawPos = result.second;
 }
 
 void Stalagmite::Draw( Graphics& gfx ) const
@@ -38,12 +44,16 @@ void Stalagmite::Draw( Graphics& gfx ) const
 			int( corner.radius ),Colors::Red );
 	}
 #else
-	gfx.DrawSprite( int( center.x - size.x / 2.0f ),
-		int( center.y - size.y / 2.0f ),img->GetRect(),
-		Graphics::GetScreenRect()
-		.GetExpanded( Graphics::ScreenWidth ),*img,
-		SpriteEffect::SafeChroma{ Colors::Magenta },
-		rotationMatrix );
+	// gfx.DrawSprite( int( center.x - size.x / 2.0f ),
+	// 	int( center.y - size.y / 2.0f ),img->GetRect(),
+	// 	Graphics::GetScreenRect()
+	// 	.GetExpanded( Graphics::ScreenWidth ),*img,
+	// 	SpriteEffect::SafeChroma{ Colors::Magenta },
+	// 	rotationMatrix );
+
+	gfx.DrawSpriteNormal( drawPos.x,drawPos.y,
+		rotatedImage.GetRect(),Graphics::GetScreenRect(),
+		rotatedImage,SpriteEffect::SafeChroma{ Colors::Magenta } );
 #endif
 }
 

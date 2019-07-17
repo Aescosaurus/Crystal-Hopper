@@ -8,8 +8,14 @@ MarsTurret::MarsTurret( const Vec2& pos,float angle,
 	pos( pos ),
 	rotMat( Matrix::Rotation( angle ) ),
 	pBulletVec( &bullets ),
-	turretAngle( angle )
-{}
+	turretAngle( angle ),
+	rotatedImage( 0,0 )
+{
+	const auto result = pBaseSurf->GetRotated( pos,angle );
+
+	rotatedImage = result.first;
+	myDrawPos = result.second;
+}
 
 void MarsTurret::Update( const Vec2& playerPos,float dt )
 {
@@ -33,9 +39,12 @@ void MarsTurret::Draw( Graphics& gfx ) const
 
 	// gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
 
-	gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
-		*pBaseSurf,SpriteEffect::Chroma{ Colors::Magenta },
-		rotMat );
+	// gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
+	// 	*pBaseSurf,SpriteEffect::Chroma{ Colors::Magenta },
+	// 	rotMat );
+
+	gfx.DrawSpriteNormal( myDrawPos.x,myDrawPos.y,
+		rotatedImage,SpriteEffect::Chroma{ Colors::Magenta } );
 
 	gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
 		*pTopSurf,SpriteEffect::Chroma{ Colors::Magenta },

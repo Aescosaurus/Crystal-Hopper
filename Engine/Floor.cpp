@@ -22,13 +22,13 @@ void Floor::Draw( Graphics& gfx ) const
 			Colors::Gray );
 	}
 #else
-	{
-		const auto drawPos = GetDrawPos();
-
-		gfx.DrawSprite( drawPos.x,drawPos.y,*img,
-			SpriteEffect::Chroma{ Colors::Magenta },
-			rotationMatrix );
-	}
+	// {
+	// 	const auto drawPos = GetDrawPos();
+	// 
+	// 	gfx.DrawSprite( drawPos.x,drawPos.y,*img,
+	// 		SpriteEffect::Chroma{ Colors::Magenta },
+	// 		rotationMatrix );
+	// }
 	gfx.DrawSpriteNormal( int( drawPos.x ),int( drawPos.y ),
 		rotatedImage,
 		SpriteEffect::Chroma{ Colors::Magenta } );

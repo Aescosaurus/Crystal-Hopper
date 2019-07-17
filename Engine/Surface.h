@@ -47,7 +47,7 @@ public:
 	// Get a clipped area from a surface.
 	Surface GetClipped( const RectI& clip ) const;
 	// Rotates a surface and returns it and position to draw it.
-	std::pair<Surface,Vei2> GetRotated( const Vei2& pos,float angle ) const;
+	std::pair<Surface,Vei2> GetRotated( const Vei2& center,float angle ) const;
 private:
 	std::vector<Color> pixels;
 	int width;

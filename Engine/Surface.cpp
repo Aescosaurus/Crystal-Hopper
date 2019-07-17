@@ -362,7 +362,7 @@ std::pair<Surface,Vei2> Surface::GetRotated( const Vei2& center,float angle ) co
 			drawPos -= Vec2( center );
 			drawPos = rotationMatrix * drawPos;
 			drawPos += Vec2( center );
-			temp.PutPixelApprox( drawPos.x,drawPos.y,GetPixel( x,y ) );
+			temp.PutPixelApproxSafe( drawPos.x,drawPos.y,GetPixel( x,y ) );
 			// effect(
 			// 	// No mirroring!
 			// 	s.GetPixel( sx,sy ),

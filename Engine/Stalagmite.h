@@ -28,9 +28,11 @@ public:
 private:
 	static constexpr Vec2 size = { 60.0f,160.0f };
 	static constexpr float cornerSize = 1.1f;
+	CSurfPtr img = SurfCodex::Fetch( "Images/Stalagmite.bmp" );
+	Surface rotatedImage;
+	Vei2 drawPos;
 	Vec2 center;
 	std::vector<Line> lines;
 	std::vector<Circle> corners;
 	Matrix rotationMatrix;
-	CSurfPtr img = SurfCodex::Fetch( "Images/Stalagmite.bmp" );
 };

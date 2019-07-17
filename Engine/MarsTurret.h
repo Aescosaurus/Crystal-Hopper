@@ -55,6 +55,8 @@ private:
 	Vec2 GetCenter() const;
 private:
 	static constexpr int radius = 32;
+	Surface rotatedImage;
+	Vei2 myDrawPos;
 	Vec2 pos;
 	Matrix rotMat;
 	CSurfPtr pBaseSurf = SurfCodex::Fetch( "Images/MarsTurretBase.bmp" );
