@@ -1,0 +1,18 @@
+High Gravity
+-1
+1
+51
+64
+77
+81
+JupiterFloor|118|427|6.283185
+JupiterFloor|301|349|5.585054
+JupiterFloor|834|337|0.000000
+JupiterFloor|664|429|6.021386
+JupiterFloor|800|119|4.101524
+JupiterCrystal|743|155
+JupiterCrystal|828|269
+JupiterCrystal|652|364
+JupiterCrystal|117|360
+JupiterCrystal|270|297
+JupiterCrystal|118|250

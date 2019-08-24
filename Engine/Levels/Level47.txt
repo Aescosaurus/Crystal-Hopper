@@ -1,0 +1,22 @@
+Crystal Crush!
+-1
+1
+18
+30
+43
+64
+JupiterFloor|189|418|6.283185
+JupiterFloor|313|249|5.235988
+JupiterFloor|107|132|0.959931
+JupiterFloor|706|110|5.585054
+JupiterFloor|845|255|5.585054
+JupiterFloor|709|412|6.283185
+JupiterCrystal|658|64
+JupiterCrystal|805|207
+JupiterCrystal|704|345
+JupiterCrystal|159|351
+JupiterCrystal|225|360
+JupiterCrystal|250|231
+JupiterCrystal|283|177
+JupiterCrystal|187|135
+JupiterCrystal|141|69
