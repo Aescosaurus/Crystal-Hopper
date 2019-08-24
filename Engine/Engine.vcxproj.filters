@@ -168,6 +168,12 @@
     <ClInclude Include="MarsDiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="JupiterFloor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JupiterCrystal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">

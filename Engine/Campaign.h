@@ -26,6 +26,8 @@
 #include "Marvin.h"
 #include "MarsTurret.h"
 #include "MarsDiver.h"
+#include "JupiterFloor.h"
+#include "JupiterCrystal.h"
 
 class Campaign
 {
@@ -92,20 +94,21 @@ private:
 
 	static constexpr int lunarStart = 15;
 	static constexpr int marsStart = 30;
+	static constexpr int jupiterStart = 45;
 
-	static constexpr int nPlanets = 3;
+	static constexpr int nPlanets = 4;
 	static constexpr float gravities[nPlanets] =
 	{
 		0.14f, // Earth
 		0.07f, // Lunar
-		0.09f // Mars
+		0.09f, // Mars
+		0.31f  // Jupiter
 	};
 	const CSurfPtr backgrounds[nPlanets] =
 	{
 		SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" ),
-		SurfCodex::Fetch( "Images/BackgroundMars.bmp" )
+		SurfCodex::Fetch( "Images/BackgroundMars.bmp" ),
+		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" )
 	};
-
-	float tempRotation = 0.0f;
 };

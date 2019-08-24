@@ -360,12 +360,6 @@ void Campaign::Draw()
 	{
 		endLevelScreen.Draw( gfx );
 	}
-
-	// Surface temp = "Images/Platform.bmp";
-	// temp = temp.GetRotated( tempRotation );
-	// gfx.DrawSprite( 250,250,temp,SpriteEffect::Chroma{ Colors::Magenta } );
-	// 
-	// tempRotation += 0.02f;
 }
 
 void Campaign::RestartLevel()
@@ -484,6 +478,12 @@ void Campaign::ReadFile( const std::string& filename )
 				Vec2{ stof( list[1] ),stof( list[2] ) },
 				stof( list[3] ) ) );
 		}
+		else if( title == "JupiterFloor" )
+		{
+			floors.emplace_back( std::make_unique<JupiterFloor>(
+				Vec2{ stof( list[1] ),stof( list[2] ) },
+				stof( list[3] ) ) );
+		}
 		else if( title == "Crystal" )
 		{
 			crystals.emplace_back( std::make_unique<Crystal>(
@@ -497,6 +497,11 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "MarsCrystal" )
 		{
 			crystals.emplace_back( std::make_unique<MartianCrystal>(
+				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
+		}
+		else if( title == "JupiterCrystal" )
+		{
+			crystals.emplace_back( std::make_unique<JupiterCrystal>(
 				Vec2{ stof( list[1] ),stof( list[2] ) } ) );
 		}
 		else if( title == "SpikyBoi" )
@@ -582,9 +587,13 @@ int Campaign::Level2Index() const
 	{
 		return( 1 );
 	}
-	else// if( curLevel <= jupiterStart )
+	else if( curLevel <= jupiterStart )
 	{
 		return( 2 );
+	}
+	else // if curLevel <= saturnStart )
+	{
+		return( 3 );
 	}
 	assert( false );
 	return( -1 );

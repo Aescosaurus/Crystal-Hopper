@@ -139,6 +139,8 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="FallingFloor.h" />
     <ClInclude Include="Comet.h" />
+    <ClInclude Include="JupiterCrystal.h" />
+    <ClInclude Include="JupiterFloor.h" />
     <ClInclude Include="LunarCrystal.h" />
     <ClInclude Include="LunarFloor.h" />
     <ClInclude Include="MarsDiver.h" />

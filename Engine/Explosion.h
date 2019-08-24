@@ -15,6 +15,7 @@ public:
 		CrystalDissolve,
 		MoonCrystalDissolve,
 		MarsCrystalDissolve,
+		JupiterCrystalDissolve,
 		CometDust,
 		GroundBounce,
 		MarsTurretBoop,
