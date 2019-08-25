@@ -139,6 +139,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="FallingFloor.h" />
     <ClInclude Include="Comet.h" />
+    <ClInclude Include="GravityFlipper.h" />
     <ClInclude Include="JupiterCrystal.h" />
     <ClInclude Include="JupiterFloor.h" />
     <ClInclude Include="LunarCrystal.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="GravityFlipper.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="Main.cpp" />

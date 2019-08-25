@@ -249,6 +249,18 @@ void Campaign::Update()
 			}
 		}
 
+		// Update gravity flippers.
+		for( auto& gravFlipper : gravFlippers )
+		{
+			const auto& gflColl = gravFlipper.GetColl();
+			float temp = 0.0f;
+			if( guy.CheckColl( gflColl,temp ) )
+			{
+				guy.CollideWith( gflColl,dt );
+				guy.FlipGravity();
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -337,6 +349,7 @@ void Campaign::Draw()
 	for( const auto& mt : marsTurrets ) mt.Draw( gfx );
 	for( const auto& mtb : marsTurretBullets ) mtb.Draw( gfx );
 	for( const auto& d : divers ) d.Draw( gfx );
+	for( const auto& gfl : gravFlippers ) gfl.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -380,6 +393,7 @@ void Campaign::GotoNextLevel()
 	marsTurrets.clear();
 	marsTurretBullets.clear();
 	divers.clear();
+	gravFlippers.clear();
 
 	particles.clear();
 
@@ -551,6 +565,11 @@ void Campaign::ReadFile( const std::string& filename )
 		{
 			divers.emplace_back( MarsDiver{ Vec2{
 				stof( list[1] ),stof( list[2] ) } } );
+		}
+		else if( title == "GravityFlipper" )
+		{
+			gravFlippers.emplace_back( GravityFlipper{
+				Vec2{ stof( list[1] ),stof( list[2] ) } } );
 		}
 		// else if( title == "" )
 		// {

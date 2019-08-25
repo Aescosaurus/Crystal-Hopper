@@ -1,0 +1,16 @@
+Switch!
+-1
+1
+43
+64
+86
+90
+JupiterFloor|115|93|2.530727
+JupiterFloor|325|61|3.141592
+JupiterFloor|637|55|3.141592
+JupiterFloor|839|133|4.188790
+JupiterCrystal|160|144
+JupiterCrystal|332|126
+JupiterCrystal|634|118
+JupiterCrystal|801|187
+GravityFlipper|710|461

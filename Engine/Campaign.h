@@ -16,18 +16,22 @@
 #include "Codex.h"
 #include <memory>
 #include "MovingFloor.h"
+
 #include "Comet.h"
 #include "LunarFloor.h"
 #include "LunarCrystal.h"
 #include "FallingFloor.h"
 #include "Stalagmite.h"
+
 #include "MartianFloor.h"
 #include "MartianCrystal.h"
 #include "Marvin.h"
 #include "MarsTurret.h"
 #include "MarsDiver.h"
+
 #include "JupiterFloor.h"
 #include "JupiterCrystal.h"
+#include "GravityFlipper.h"
 
 class Campaign
 {
@@ -58,6 +62,7 @@ private:
 
 	FrameTimer time;
 	Player guy;
+
 	std::vector<std::unique_ptr<Floor>> floors;
 	std::vector<std::unique_ptr<Crystal>> crystals;
 	std::vector<SpikyBoi> spikyBois;
@@ -67,6 +72,8 @@ private:
 	std::vector<MarsTurret> marsTurrets;
 	std::vector<MarsTurret::Bullet> marsTurretBullets;
 	std::vector<MarsDiver> divers;
+	std::vector<GravityFlipper> gravFlippers;
+
 	int curLevel = 0;
 
 	State gameState = State::Gameplay;

@@ -29,6 +29,7 @@ public:
 	void DontHitWalls( float dt );
 	// Apply invincibility frames.
 	void ApplyInvul();
+	void FlipGravity();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -66,4 +67,5 @@ private:
 	Matrix rotMatrix = Matrix::Rotation( 0.0f );
 	bool invincible = false;
 	Timer invincibilityFrames = 2.5f;
+	float gravScale = 1.0f;
 };

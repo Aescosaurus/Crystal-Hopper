@@ -46,7 +46,7 @@ void Player::Update( float dt )
 		}
 	}
 
-	vel.y += gravAcc * dt * 60.0f;
+	vel.y += gravAcc * gravScale * dt * 60.0f;
 
 	ClampSpeed();
 
@@ -199,6 +199,11 @@ void Player::ApplyInvul()
 		invincible = true;
 		invincibilityFrames.Reset();
 	}
+}
+
+void Player::FlipGravity()
+{
+	gravScale *= -1.0f;
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const
