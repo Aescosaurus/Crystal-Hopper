@@ -62,4 +62,5 @@ Crystal::Crystal( const Vec2& pos,CSurfPtr surfSheet,Explosion::Type explType )
 	sparkle( 0,0,radius * 2,radius * 2,5,*surfSheet,0.2f )
 {
 	sparkleHold.ResetRng( Random{ -3.5f,-0.2f } );
+	sparkle.Update( 99.0f );
 }

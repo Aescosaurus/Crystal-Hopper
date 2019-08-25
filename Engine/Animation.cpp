@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "Random.h"
 
 Animation::Animation( int x,int y,int width,int height,int count,
 	const Surface& sheet,float holdTime,Color chroma )
