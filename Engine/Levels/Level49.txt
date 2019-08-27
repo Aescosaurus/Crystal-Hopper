@@ -1,0 +1,24 @@
+Flip Flap Flop
+-1
+1
+35
+43
+73
+81
+JupiterFloor|281|468|0.174533
+JupiterFloor|101|382|0.785398
+JupiterFloor|265|59|2.879793
+JupiterFloor|720|461|6.021386
+JupiterFloor|824|80|3.752459
+JupiterFloor|629|42|3.228860
+JupiterCrystal|288|400
+JupiterCrystal|155|332
+JupiterCrystal|260|128
+JupiterCrystal|308|113
+JupiterCrystal|620|103
+JupiterCrystal|764|118
+JupiterCrystal|819|159
+JupiterCrystal|706|395
+GravityFlipper|598|479
+GravityFlipper|106|209
+GravityFlipper|862|282
