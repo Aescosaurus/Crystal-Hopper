@@ -16,6 +16,18 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Moon">
+      <UniqueIdentifier>{91adfef8-f3ec-4c8c-ab36-862c8f0e861a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mars">
+      <UniqueIdentifier>{ae8c843f-4664-4b95-820f-0f5ce724ecb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Jupiter">
+      <UniqueIdentifier>{f7229a9e-2794-4dc2-8db6-dc2c58cc420c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Earth">
+      <UniqueIdentifier>{72da3f35-2b36-47ab-9f5c-f5bb9833c88e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -72,9 +84,6 @@
     <ClInclude Include="Line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Floor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -94,9 +103,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Circle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Crystal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Campaign.h">
@@ -132,50 +138,56 @@
     <ClInclude Include="OverlayMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpikyBoi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingFloor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Comet.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="LunarCrystal.h">
+      <Filter>Header Files\Moon</Filter>
     </ClInclude>
     <ClInclude Include="LunarFloor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LunarCrystal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FallingFloor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Moon</Filter>
     </ClInclude>
     <ClInclude Include="Stalagmite.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Moon</Filter>
     </ClInclude>
-    <ClInclude Include="MartianFloor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Comet.h">
+      <Filter>Header Files\Moon</Filter>
     </ClInclude>
-    <ClInclude Include="MartianCrystal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Marvin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MarsTurret.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FallingFloor.h">
+      <Filter>Header Files\Moon</Filter>
     </ClInclude>
     <ClInclude Include="MarsDiver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Mars</Filter>
     </ClInclude>
-    <ClInclude Include="JupiterFloor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MarsTurret.h">
+      <Filter>Header Files\Mars</Filter>
+    </ClInclude>
+    <ClInclude Include="MartianCrystal.h">
+      <Filter>Header Files\Mars</Filter>
+    </ClInclude>
+    <ClInclude Include="MartianFloor.h">
+      <Filter>Header Files\Mars</Filter>
+    </ClInclude>
+    <ClInclude Include="Marvin.h">
+      <Filter>Header Files\Mars</Filter>
     </ClInclude>
     <ClInclude Include="JupiterCrystal.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Jupiter</Filter>
+    </ClInclude>
+    <ClInclude Include="JupiterFloor.h">
+      <Filter>Header Files\Jupiter</Filter>
     </ClInclude>
     <ClInclude Include="GravityFlipper.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Jupiter</Filter>
+    </ClInclude>
+    <ClInclude Include="Crystal.h">
+      <Filter>Header Files\Earth</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>Header Files\Earth</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikyBoi.h">
+      <Filter>Header Files\Earth</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingFloor.h">
+      <Filter>Header Files\Earth</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
