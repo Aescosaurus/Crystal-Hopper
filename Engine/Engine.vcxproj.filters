@@ -189,6 +189,9 @@
     <ClInclude Include="MovingFloor.h">
       <Filter>Header Files\Earth</Filter>
     </ClInclude>
+    <ClInclude Include="GravSlowField.h">
+      <Filter>Header Files\Jupiter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -285,6 +288,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GravityFlipper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GravSlowField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

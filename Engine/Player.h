@@ -30,6 +30,7 @@ public:
 	// Apply invincibility frames.
 	void ApplyInvul();
 	void FlipGravity();
+	void FlipSlowPercent();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -68,4 +69,5 @@ private:
 	bool invincible = false;
 	Timer invincibilityFrames = 2.5f;
 	float gravScale = 1.0f;
+	float slowPercent = 1.0f;
 };

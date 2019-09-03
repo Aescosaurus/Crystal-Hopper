@@ -32,6 +32,7 @@
 #include "JupiterFloor.h"
 #include "JupiterCrystal.h"
 #include "GravityFlipper.h"
+#include "GravSlowField.h"
 
 class Campaign
 {
@@ -73,8 +74,9 @@ private:
 	std::vector<MarsTurret::Bullet> marsTurretBullets;
 	std::vector<MarsDiver> divers;
 	std::vector<GravityFlipper> gravFlippers;
+	std::vector<GravSlowField> gravSlows;
 
-	int curLevel = 0;
+	int curLevel = 51;
 
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;

@@ -261,6 +261,18 @@ void Campaign::Update()
 			}
 		}
 
+		// Update gravity slow fields.
+		bool slowed = false;
+		for( auto& gravSlow : gravSlows )
+		{
+			float temp = 0.0f;
+			if( guy.CheckColl( gravSlow.GetColl(),temp ) )
+			{
+				guy.FlipSlowPercent();
+				guy.CollideWith( gravSlow.GetColl(),dt );
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -350,6 +362,7 @@ void Campaign::Draw()
 	for( const auto& mtb : marsTurretBullets ) mtb.Draw( gfx );
 	for( const auto& d : divers ) d.Draw( gfx );
 	for( const auto& gfl : gravFlippers ) gfl.Draw( gfx );
+	for( const auto& gs : gravSlows ) gs.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -569,6 +582,11 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "GravityFlipper" )
 		{
 			gravFlippers.emplace_back( GravityFlipper{
+				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+		}
+		else if( title == "GravitySlower" )
+		{
+			gravSlows.emplace_back( GravSlowField{
 				Vec2{ stof( list[1] ),stof( list[2] ) } } );
 		}
 		// else if( title == "" )
