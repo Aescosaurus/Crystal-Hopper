@@ -1,10 +1,10 @@
 Take Your Pick
 -1
 1
-2
-3
-4
-5
+64
+69
+77
+86
 JupiterFloor|173|404|5.585054
 JupiterFloor|795|411|5.585054
 JupiterFloor|166|116|0.610865
