@@ -1,0 +1,20 @@
+Slow Down Gravity
+-1
+1
+30
+47
+68
+76
+JupiterFloor|150|393|5.934120
+JupiterFloor|164|132|5.061455
+JupiterFloor|798|410|1.134464
+JupiterFloor|769|185|6.021386
+JupiterCrystal|822|234
+JupiterCrystal|765|302
+JupiterCrystal|774|114
+JupiterCrystal|709|132
+JupiterCrystal|135|325
+JupiterCrystal|78|350
+JupiterCrystal|112|85
+GravityFlipper|653|451
+GravitySlower|907|156

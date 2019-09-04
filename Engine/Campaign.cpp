@@ -262,7 +262,6 @@ void Campaign::Update()
 		}
 
 		// Update gravity slow fields.
-		bool slowed = false;
 		for( auto& gravSlow : gravSlows )
 		{
 			float temp = 0.0f;
