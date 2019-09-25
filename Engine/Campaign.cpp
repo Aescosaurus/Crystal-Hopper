@@ -272,6 +272,18 @@ void Campaign::Update()
 			}
 		}
 
+		// Update gravity rotators.
+		for( auto& gravRotator : gravRotators )
+		{
+			float temp = 0.0f;
+			const auto& rotatorColl = gravRotator.GetColl();
+			if( guy.CheckColl( rotatorColl,temp ) )
+			{
+				guy.RotateGravity();
+				guy.CollideWith( rotatorColl,dt );
+			}
+		}
+
 		// Update all particles.
 		for( auto& part : particles )
 		{
@@ -362,6 +374,7 @@ void Campaign::Draw()
 	for( const auto& d : divers ) d.Draw( gfx );
 	for( const auto& gfl : gravFlippers ) gfl.Draw( gfx );
 	for( const auto& gs : gravSlows ) gs.Draw( gfx );
+	for( const auto& gr : gravRotators ) gr.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -406,6 +419,8 @@ void Campaign::GotoNextLevel()
 	marsTurretBullets.clear();
 	divers.clear();
 	gravFlippers.clear();
+	gravSlows.clear();
+	gravRotators.clear();
 
 	particles.clear();
 
@@ -586,6 +601,11 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "GravitySlower" )
 		{
 			gravSlows.emplace_back( GravSlowField{
+				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+		}
+		else if( title == "GravityRotator" )
+		{
+			gravRotators.emplace_back( GravRotator{
 				Vec2{ stof( list[1] ),stof( list[2] ) } } );
 		}
 		// else if( title == "" )

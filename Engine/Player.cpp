@@ -46,7 +46,7 @@ void Player::Update( float dt )
 		}
 	}
 
-	vel.y += gravAcc * gravScale * slowPercent * dt * 60.0f;
+	vel += gravScale * gravAcc * slowPercent * dt * 60.0f;
 
 	ClampSpeed();
 
@@ -203,13 +203,19 @@ void Player::ApplyInvul()
 
 void Player::FlipGravity()
 {
-	gravScale *= -1.0f;
+	gravScale.x *= -1.0f;
 }
 
 void Player::FlipSlowPercent()
 {
 	if( slowPercent == 0.2f ) slowPercent = 1.0f;
 	else slowPercent = 0.2f;
+}
+
+void Player::RotateGravity()
+{
+	std::swap( gravScale.x,gravScale.y );
+	gravScale.x *= -1.0f;
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const

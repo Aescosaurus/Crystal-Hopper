@@ -31,6 +31,7 @@ public:
 	void ApplyInvul();
 	void FlipGravity();
 	void FlipSlowPercent();
+	void RotateGravity();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -68,6 +69,6 @@ private:
 	Matrix rotMatrix = Matrix::Rotation( 0.0f );
 	bool invincible = false;
 	Timer invincibilityFrames = 2.5f;
-	float gravScale = 1.0f;
+	Vec2 gravScale = Vec2{ 0.0f,1.0f };
 	float slowPercent = 1.0f;
 };

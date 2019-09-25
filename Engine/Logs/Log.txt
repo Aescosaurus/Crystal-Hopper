@@ -54,3 +54,5 @@ Level50: 269pts | 22%
 Level51: 782pts | 65%
 Level52: 1pts | 0%
 Level53: 1pts | 0%
+Level54: 942pts | 78%
+Level54: 790pts | 65%

@@ -192,6 +192,9 @@
     <ClInclude Include="GravSlowField.h">
       <Filter>Header Files\Jupiter</Filter>
     </ClInclude>
+    <ClInclude Include="GravRotator.h">
+      <Filter>Header Files\Jupiter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -291,6 +294,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GravSlowField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GravRotator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

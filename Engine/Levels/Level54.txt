@@ -1,0 +1,15 @@
+Rotations Rotations!
+-1
+1
+2
+3
+4
+5
+JupiterFloor|88|372|1.308997
+JupiterFloor|108|112|2.181661
+JupiterFloor|305|101|2.181661
+JupiterCrystal|151|358
+JupiterCrystal|262|61
+JupiterCrystal|212|122
+JupiterCrystal|148|180
+GravityRotator|553|468
