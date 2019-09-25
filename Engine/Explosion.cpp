@@ -33,12 +33,20 @@ void Explosion::Update( float dt )
 
 void Explosion::Draw( Graphics& gfx ) const
 {
+#if NDEBUG
 	if( !willDestroy )
 	{
 		fadeAway.Draw( pos - size / 2,gfx,
 			SpriteEffect::Fade{ Colors::Magenta,
 			1.0f - fadeAway.GetPercent() } );
 	}
+#else
+	if( Graphics::GetScreenRect().GetExpanded( -size.x / 3 )
+		.ContainsPoint( pos ) )
+	{
+		gfx.DrawCircle( pos,size.x / 3,Colors::Red );
+	}
+#endif
 }
 
 bool Explosion::Done() const

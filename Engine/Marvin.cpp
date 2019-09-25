@@ -29,10 +29,12 @@ void Marvin::Update( float dt )
 
 void Marvin::Draw( Graphics& gfx ) const
 {
-	// gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
-
+#if NDEBUG
 	wobble.Draw( Vei2( pos ) - Vei2{ radius,radius },
 		gfx,SpriteEffect::Chroma{ Colors::Magenta } );
+#else
+	gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
+#endif
 }
 
 Circle Marvin::GetCollider() const

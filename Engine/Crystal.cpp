@@ -27,12 +27,15 @@ void Crystal::Update( float dt )
 
 void Crystal::Draw( Graphics& gfx ) const
 {
+#if NDEBUG
 	if( !collected )
 	{
-		// gfx.DrawCircle( Vei2( pos ),radius,Colors::Cyan );
 		sparkle.Draw( Vei2( pos ) - Vei2{ radius,radius },
 			gfx,SpriteEffect::Chroma{ Colors::Magenta } );
 	}
+#else
+	gfx.DrawCircle( Vei2( pos ),radius,Colors::Cyan );
+#endif
 }
 
 void Crystal::Collect()

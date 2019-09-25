@@ -21,18 +21,26 @@ void FallingFloor::Update( float dt )
 
 void FallingFloor::Draw( Graphics& gfx ) const
 {
-	{
-		const auto drawPos = GetDrawPos();
-
-		gfx.DrawSprite( drawPos.x,drawPos.y,
-			img->GetRect(),Rect( Graphics::GetScreenRect()
-			.GetExpanded( int( size.x ) ) ),*img,
-			SpriteEffect::SafeChroma{ Colors::Magenta },
-			rotationMatrix );
-	}
+#if NDEBUG
+	// {
+	// 	const auto drawPos = GetDrawPos();
+	// 
+	// 	gfx.DrawSprite( drawPos.x,drawPos.y,
+	// 		img->GetRect(),Rect( Graphics::GetScreenRect()
+	// 		.GetExpanded( int( size.x ) ) ),*img,
+	// 		SpriteEffect::SafeChroma{ Colors::Magenta },
+	// 		rotationMatrix );
+	// }
 	gfx.DrawSpriteNormal( int( drawPos.x ),int( drawPos.y ),
 		rotatedImage.GetRect(),Graphics::GetScreenRect(),
 		rotatedImage,SpriteEffect::SafeChroma{ Colors::Magenta } );
+#else
+	if( !falling )
+	{
+		Floor::Draw( gfx );
+		gfx.DrawCircle( center,10,Colors::Gray );
+	}
+#endif
 }
 
 bool FallingFloor::HandleColl( Player& guy,float dt )

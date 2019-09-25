@@ -52,14 +52,16 @@ void MarsDiver::Update( const Vec2& playerPos,float dt )
 
 void MarsDiver::Draw( Graphics& gfx ) const
 {
-	// gfx.DrawCircle( Vei2( pos ),radius,
-	// 	retarget.IsDone() ?
-	// 	Colors::Green : Colors::Red );
-
+#if NDEBUG
 	gfx.DrawSprite( int( pos.x ) - radius,
 		int( pos.y ) - radius,*pSurf,
 		SpriteEffect::Chroma{ Colors::Magenta },
 		Matrix::Rotation( angle + chili::pi / 2.0f ) );
+#else
+	gfx.DrawCircle( Vei2( pos ),radius,
+		retarget.IsDone() ?
+		Colors::Green : Colors::Red );
+#endif
 }
 
 Circle MarsDiver::GetCollider() const

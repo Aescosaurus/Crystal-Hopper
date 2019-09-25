@@ -76,7 +76,7 @@ private:
 	std::vector<GravityFlipper> gravFlippers;
 	std::vector<GravSlowField> gravSlows;
 
-	int curLevel = 53;
+	int curLevel = 53; // From 0.
 
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;

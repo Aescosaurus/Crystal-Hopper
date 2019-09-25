@@ -36,19 +36,16 @@ void MarsTurret::Update( const Vec2& playerPos,float dt )
 void MarsTurret::Draw( Graphics& gfx ) const
 {
 	const auto drawPos = GetCenter();
-
-	// gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
-
-	// gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
-	// 	*pBaseSurf,SpriteEffect::Chroma{ Colors::Magenta },
-	// 	rotMat );
-
+#if NDEBUG
 	gfx.DrawSpriteNormal( myDrawPos.x,myDrawPos.y,
 		rotatedImage,SpriteEffect::Chroma{ Colors::Magenta } );
 
 	gfx.DrawSprite( int( drawPos.x ),int( drawPos.y ),
 		*pTopSurf,SpriteEffect::Chroma{ Colors::Magenta },
 		Matrix::Rotation( turretAngle ) );
+#else
+	gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
+#endif
 }
 
 void MarsTurret::Destroy()
@@ -95,13 +92,19 @@ void MarsTurret::Bullet::Update( float dt )
 
 void MarsTurret::Bullet::Draw( Graphics& gfx ) const
 {
+#if NDEBUG
 	const auto drawPos = Vei2( pos ) - Vei2{ radius,radius } * 2;
-
-	// gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
 
 	gfx.DrawSprite( drawPos.x,drawPos.y,*pSurf,
 		SpriteEffect::Chroma{ Colors::Magenta },
 		Matrix::Rotation( rotAngle ) );
+#else
+	if( Graphics::GetScreenRect().GetExpanded( -radius )
+		.ContainsPoint( Vei2( pos ) ) )
+	{
+		gfx.DrawCircle( Vei2( pos ),radius,Colors::Green );
+	}
+#endif
 }
 
 void MarsTurret::Bullet::Destroy()

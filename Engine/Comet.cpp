@@ -52,15 +52,16 @@ void Comet::Update( float dt )
 
 void Comet::Draw( Graphics& gfx ) const
 {
-	// gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Red );
-
-	// rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
-	// 	Graphics::GetScreenRect().GetExpanded( radius * 5 ),
-	// 	SpriteEffect::SafeChroma{ Colors::Magenta },
-	// 	rotMat,false );
-
+#if NDEBUG
 	rotate.Draw( Vei2( pos ) - Vei2{ radius,radius },gfx,
 		SpriteEffect::SafeChroma{ Colors::Magenta } );
+#else
+	if( Graphics::GetScreenRect().GetExpanded( -radius )
+		.ContainsPoint( Vei2( pos ) ) )
+	{
+		gfx.DrawCircleSafe( Vei2( pos ),radius,Colors::Gray );
+	}
+#endif
 }
 
 void Comet::Destroy()
