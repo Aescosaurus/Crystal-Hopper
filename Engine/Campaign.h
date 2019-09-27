@@ -78,7 +78,7 @@ private:
 	std::vector<GravSlowField> gravSlows;
 	std::vector<GravRotator> gravRotators;
 
-	int curLevel = 54; // From 0.
+	int curLevel = 56; // From 0.
 
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;
@@ -104,22 +104,25 @@ private:
 	bool canRestart = false;
 
 	static constexpr int lunarStart = 15;
-	static constexpr int marsStart = 30;
-	static constexpr int jupiterStart = 45;
+	static constexpr int marsStart = 15 * 2;
+	static constexpr int jupiterStart = 15 * 3;
+	static constexpr int saturnStart = 15 * 4;
 
-	static constexpr int nPlanets = 4;
+	static constexpr int nPlanets = 5;
 	static constexpr float gravities[nPlanets] =
 	{
 		0.14f, // Earth
 		0.07f, // Lunar
 		0.09f, // Mars
-		0.31f  // Jupiter
+		0.31f, // Jupiter
+		0.18f  // Saturn
 	};
 	const CSurfPtr backgrounds[nPlanets] =
 	{
 		SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundMars.bmp" ),
+		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" )
 	};
 };

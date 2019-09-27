@@ -203,7 +203,7 @@ void Player::ApplyInvul()
 
 void Player::FlipGravity()
 {
-	gravScale.x *= -1.0f;
+	gravScale *= -1.0f;
 }
 
 void Player::FlipSlowPercent()

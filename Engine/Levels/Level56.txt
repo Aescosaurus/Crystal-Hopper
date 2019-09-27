@@ -1,0 +1,23 @@
+Don't Get Stuck!
+-1
+1
+39
+51
+60
+77
+JupiterFloor|160|363|0.698132
+JupiterFloor|318|460|0.174533
+JupiterFloor|56|206|1.396263
+JupiterFloor|827|426|5.497787
+JupiterFloor|876|261|4.188791
+JupiterCrystal|117|221
+JupiterCrystal|166|292
+JupiterCrystal|225|335
+JupiterCrystal|218|272
+JupiterCrystal|331|400
+JupiterCrystal|824|300
+JupiterCrystal|790|378
+GravityFlipper|283|357
+GravitySlower|330|140
+GravitySlower|640|132
+GravityRotator|712|309

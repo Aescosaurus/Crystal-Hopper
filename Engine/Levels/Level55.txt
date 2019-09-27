@@ -1,0 +1,22 @@
+Its All About the Angles
+-1
+1
+43
+51
+77
+81
+JupiterFloor|329|432|0.000000
+JupiterFloor|125|363|0.959931
+JupiterFloor|136|144|0.959931
+JupiterFloor|370|91|3.403392
+JupiterFloor|664|80|3.403392
+JupiterFloor|827|400|5.235987
+JupiterCrystal|331|369
+JupiterCrystal|181|336
+JupiterCrystal|206|135
+JupiterCrystal|306|137
+JupiterCrystal|387|160
+JupiterCrystal|641|135
+JupiterCrystal|788|356
+GravitySlower|134|257
+GravityRotator|629|447
