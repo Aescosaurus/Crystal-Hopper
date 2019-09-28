@@ -17,7 +17,6 @@ public:
 
 	bool PressedRetry() const;
 	bool PressedContinue() const;
-private:
 	int Points2Stars( float percent ) const;
 private:
 	const Vei2 size = Vei2( Vec2( Graphics::ScreenSize ) / 1.5f );

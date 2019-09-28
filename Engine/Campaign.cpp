@@ -322,7 +322,9 @@ void Campaign::Update()
 // #if !NDEBUG
 				Logger::Write( "Level" + std::to_string( curLevel - 1 ) +
 					": " + std::to_string( points ) + "pts | " +
-					std::to_string( int( percent * 100.0f ) ) + "%" );
+					std::to_string( int( percent * 100.0f ) ) + "%" +
+					" | " + std::to_string( endLevelScreen
+						.Points2Stars( percent ) ) + " stars" );
 // #endif
 				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
