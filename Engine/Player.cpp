@@ -2,7 +2,7 @@
 #include "SpriteEffect.h"
 #include "ChiliUtils.h"
 
-Player::Player( const Mouse& ms,std::vector<Explosion>& explosions,float grav )
+Player::Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosions,float grav )
 	:
 	pMouse( &ms ),
 	mt( ms ),
@@ -36,8 +36,8 @@ void Player::Update( float dt )
 		{
 			explSpawnTime.Reset();
 			++curJumpExplosions;
-			explosions->emplace_back( Explosion{ pos,
-				Explosion::Type::Explosion } );
+			explosions->emplace_back( std::make_unique<Explosion>( pos,
+				Explosion::Type::Explosion ) );
 			if( curJumpExplosions > nExplosionsPerJump )
 			{
 				curJumpExplosions = 0;
@@ -77,7 +77,7 @@ void Player::Draw( Graphics& gfx ) const
 	//  don't worry about it.
 	for( int i = 0; i < int( explosions->size() ); ++i )
 	{
-		explosions->at( i ).Draw( gfx );
+		explosions->at( i )->Draw( gfx );
 	}
 
 	// gfx.DrawCircle( Vei2( pos ),size / 2,Colors::Orange );
@@ -118,8 +118,8 @@ void Player::CollideWith( const Line& l,float dt )
 	ClampSpeed();
 	pos += vel * dt * 60.0f;
 
-	explosions->emplace_back( Explosion{ pos,
-		Explosion::Type::GroundBounce } );
+	explosions->emplace_back( std::make_unique<Explosion>( pos,
+		Explosion::Type::GroundBounce ) );
 }
 
 void Player::CollideWith( const Circle& c,float dt )
@@ -131,8 +131,8 @@ void Player::CollideWith( const Circle& c,float dt )
 	ClampSpeed(); // Just in case.
 	pos += vel * dt * 60.0f;
 
-	explosions->emplace_back( Explosion{ pos,
-		Explosion::Type::GroundBounce } );
+	explosions->emplace_back( std::make_unique<Explosion>( pos,
+		Explosion::Type::GroundBounce ) );
 }
 
 void Player::ClampSpeed()
@@ -145,7 +145,7 @@ void Player::ClampSpeed()
 	}
 }
 
-void Player::Reset( std::vector<Explosion>& explosions,float grav )
+void Player::Reset( std::vector<std::unique_ptr<Explosion>>& explosions,float grav )
 {
 	// pos = Vec2( Graphics::GetCenter() );
 	// vel = { 0.0f,0.0f };

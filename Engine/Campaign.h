@@ -88,7 +88,7 @@ private:
 	Timer pointSubtracter = 1.0f;
 	static constexpr int timePointVal = 1;
 
-	std::vector<Explosion> particles;
+	std::vector<std::unique_ptr<Explosion>> particles;
 
 	std::string levelName = "";
 	int jumpLimit = -1;

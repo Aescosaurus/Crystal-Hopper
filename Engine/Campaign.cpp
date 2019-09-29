@@ -93,8 +93,8 @@ void Campaign::Update()
 			{
 				// TODO: Give points or something.
 				cry->Collect();
-				particles.emplace_back( Explosion{ cry->GetPos(),
-					cry->explType } );
+				particles.emplace_back( std::make_unique<Explosion>(
+					cry->GetPos(),cry->explType ) );
 			}
 		}
 
@@ -113,9 +113,8 @@ void Campaign::Update()
 				{
 					guy.ApplyInvul();
 					points -= SpikyBoi::pointValue;
-					particles.emplace_back( Explosion{
-						guy.GetPos(),
-						Explosion::Type::Confetti } );
+					particles.emplace_back( std::make_unique<Explosion>(
+						guy.GetPos(),Explosion::Type::Confetti ) );
 				}
 			}
 		}
@@ -134,11 +133,10 @@ void Campaign::Update()
 				{
 					guy.ApplyInvul();
 					points -= Comet::pointValue;
-					comet.CreateDust();
-					comet.CreateDustAt( guy.GetPos() );
-					particles.emplace_back( Explosion{
-						guy.GetPos(),
-						Explosion::Type::Confetti } );
+					// comet.CreateDust();
+					// comet.CreateDustAt( guy.GetPos() );
+					particles.emplace_back( std::make_unique<Explosion>(
+						guy.GetPos(),Explosion::Type::Confetti ) );
 					comet.Destroy();
 				}
 			}
@@ -153,9 +151,8 @@ void Campaign::Update()
 				{
 					guy.ApplyInvul();
 					points -= Stalagmite::pointValue;
-					particles.emplace_back( Explosion{
-						guy.GetPos(),
-						Explosion::Type::Confetti } );
+					particles.emplace_back( std::make_unique<Explosion>(
+						guy.GetPos(),Explosion::Type::Confetti ) );
 				}
 			}
 		}
@@ -174,9 +171,8 @@ void Campaign::Update()
 					{
 						guy.ApplyInvul();
 						points -= Marvin::pointValue;
-						particles.emplace_back( Explosion{
-							guy.GetPos(),
-							Explosion::Type::Confetti } );
+						particles.emplace_back( std::make_unique<Explosion>(
+							guy.GetPos(),Explosion::Type::Confetti ) );
 					}
 				}
 			}
@@ -193,9 +189,8 @@ void Campaign::Update()
 			{
 				guy.CollideWith( marsTurColl,dt );
 				marsTur.Destroy();
-				particles.emplace_back( Explosion{
-					marsTur.GetPos(),
-					Explosion::Type::MarsTurretBoop } );
+				particles.emplace_back( std::make_unique<Explosion>(
+					marsTur.GetPos(),Explosion::Type::MarsTurretBoop ) );
 			}
 		}
 
@@ -214,9 +209,8 @@ void Campaign::Update()
 					guy.ApplyInvul();
 					marsTurBull.Destroy();
 					points -= MarsTurret::Bullet::pointValue;
-					particles.emplace_back( Explosion{
-						guy.GetPos(),
-						Explosion::Type::Confetti } );
+					particles.emplace_back( std::make_unique<Explosion>(
+						guy.GetPos(),Explosion::Type::Confetti ) );
 				}
 			}
 
@@ -242,9 +236,8 @@ void Campaign::Update()
 					guy.ApplyInvul();
 					guy.AddVelocity( div.GetVel(),dt );
 					points -= MarsDiver::pointValue;
-					particles.emplace_back( Explosion{
-						guy.GetPos(),
-						Explosion::Type::Confetti } );
+					particles.emplace_back( std::make_unique<Explosion>(
+						guy.GetPos(),Explosion::Type::Confetti ) );
 				}
 			}
 		}
@@ -287,7 +280,7 @@ void Campaign::Update()
 		// Update all particles.
 		for( auto& part : particles )
 		{
-			part.Update( dt );
+			part->Update( dt );
 		}
 
 		// Remove crystals that have been collected.
@@ -324,7 +317,7 @@ void Campaign::Update()
 					": " + std::to_string( points ) + "pts | " +
 					std::to_string( int( percent * 100.0f ) ) + "%" +
 					" | " + std::to_string( endLevelScreen
-						.Points2Stars( percent ) ) + " stars" );
+					.Points2Stars( percent ) ) + " stars" );
 // #endif
 				endLevelScreen.UpdatePoints( percent,points );
 				points = startPoints;
@@ -564,7 +557,7 @@ void Campaign::ReadFile( const std::string& filename )
 		{
 			comets.emplace_back( Comet{ Vec2{
 				stof( list[1] ),stof( list[2] ) },
-				stof( list[3] ),particles } );
+				stof( list[3] ) } );
 		}
 		else if( title == "FallingFloor" )
 		{

@@ -13,8 +13,7 @@
 class Comet
 {
 public:
-	Comet( const Vei2& pos,float dir,
-		std::vector<Explosion>& particles );
+	Comet( const Vei2& pos,float dir );
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
@@ -32,7 +31,6 @@ public:
 private:
 	static constexpr int radius = 32;
 	static constexpr float speed = 360.5f;
-	std::vector<Explosion>* particles;
 	Vec2 pos;
 	Vec2 startPos;
 	Vec2 vel;
