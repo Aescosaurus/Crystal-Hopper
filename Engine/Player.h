@@ -41,6 +41,7 @@ public:
 	int GetPointLoss() const;
 	bool HasJumped() const;
 	bool IsInvincible() const;
+	Vec2 GetCurGravity() const;
 private:
 	const Mouse* pMouse;
 	MouseTracker mt;

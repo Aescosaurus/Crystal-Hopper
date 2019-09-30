@@ -19,6 +19,13 @@ public:
 		gfx.DrawSpriteNormal( pos.x,pos.y,
 			frames[frameIndex],*sheet,eff,flipped );
 	}
+	template<typename Effect>
+	void DrawRotated( const Vei2& pos,Graphics& gfx,
+		Effect eff,Matrix rotation ) const
+	{
+		gfx.DrawSprite( pos.x,pos.y,frames[frameIndex],
+			*sheet,eff,rotation );
+	}
 
 	void Reset();
 	void SetFrame( int frame );

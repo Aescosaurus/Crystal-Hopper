@@ -266,3 +266,8 @@ bool Player::IsInvincible() const
 {
 	return( invincible );
 }
+
+Vec2 Player::GetCurGravity() const
+{
+	return( gravScale * gravAcc * slowPercent );
+}

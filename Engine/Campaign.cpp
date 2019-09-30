@@ -278,9 +278,10 @@ void Campaign::Update()
 		}
 
 		// Update all particles.
+		ExplosionUpdateInfo exUpdateInfo{ guy.GetCurGravity() };
 		for( auto& part : particles )
 		{
-			part->Update( dt );
+			part->Update( exUpdateInfo,dt );
 		}
 
 		// Remove crystals that have been collected.

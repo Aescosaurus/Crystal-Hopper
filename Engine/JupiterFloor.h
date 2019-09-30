@@ -16,10 +16,9 @@ public:
 
 	void Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt )
 	{
-		// TODO: Make particles fall in the direction of gravity.
 		particles.emplace_back( std::make_unique<Explosion>(
 			lines[int( Random{ 0,int( lines.size() ) - 1 } )]
-			.GetRandSpot() + Vec2::Down() * 15.0f,
+			.GetRandSpot(),
 			Explosion::Type::ParticleDissipate,
 			Explosion::Behavior::Falling
 			) );

@@ -24,7 +24,7 @@ Explosion::Explosion( const Vec2& pos,Type t,
 	behavior( b )
 {}
 
-void Explosion::Update( float dt )
+void Explosion::Update( const ExplosionUpdateInfo& exInfo,float dt )
 {
 	fadeAway.Update( dt );
 
@@ -32,13 +32,14 @@ void Explosion::Update( float dt )
 	{
 		willDestroy = true;
 	}
-	
+
 	switch( behavior )
 	{
 	case Behavior::Static:
 		break;
 	case Behavior::Falling:
-		pos.y += fallSpeed * dt;
+		fallDir = exInfo.gravity;
+		pos += exInfo.gravity * fallSpeed * dt;
 		break;
 	}
 }

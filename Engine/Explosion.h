@@ -5,6 +5,12 @@
 #include "Animation.h"
 #include "Codex.h"
 
+class ExplosionUpdateInfo
+{
+public:
+	Vec2 gravity;
+};
+
 class Explosion
 {
 public:
@@ -31,7 +37,7 @@ public:
 	Explosion( const Vec2& pos,Type t,
 		Behavior b = Behavior::Static );
 
-	void Update( float dt );
+	void Update( const ExplosionUpdateInfo& exInfo,float dt );
 	void Draw( Graphics& gfx ) const;
 
 	bool Done() const;
@@ -48,5 +54,6 @@ private:
 	Animation fadeAway;
 	bool willDestroy = false;
 	Behavior behavior; // Wow how imaginitive.
-	static constexpr float fallSpeed = 50.0f;
+	static constexpr float fallSpeed = 110.0f;
+	Vec2 fallDir = { 0.0f,0.0f };
 };
