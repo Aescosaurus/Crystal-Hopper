@@ -19,10 +19,17 @@ public:
 		CometDust,
 		GroundBounce,
 		MarsTurretBoop,
+		ParticleDissipate,
 		Count
 	};
+	enum class Behavior
+	{
+		Static,
+		Falling
+	};
 public:
-	Explosion( const Vec2& pos,Type t );
+	Explosion( const Vec2& pos,Type t,
+		Behavior b = Behavior::Static );
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
@@ -30,7 +37,7 @@ public:
 	bool Done() const;
 private:
 	static constexpr Vei2 size = { 32,32 };
-	Vei2 pos;
+	Vec2 pos;
 	// CSurfPtr surfSheet = SurfCodex::Fetch( "Images/ExplodeAnim.bmp" );
 	static CSurfPtr surfSheets[int( Type::Count )];
 	// static constexpr char* sources[int( Type::Count )]
@@ -40,4 +47,6 @@ private:
 	// };
 	Animation fadeAway;
 	bool willDestroy = false;
+	Behavior behavior; // Wow how imaginitive.
+	static constexpr float fallSpeed = 50.0f;
 };

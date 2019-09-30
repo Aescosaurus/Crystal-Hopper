@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vec2.h"
+#include "Random.h"
 
 class Line
 {
@@ -22,6 +23,11 @@ public:
 	Vec2 GetDiff() const
 	{
 		return( end - start );
+	}
+	Vec2 GetRandSpot() const
+	{
+		const auto diff = GetDiff();
+		return( start + diff * float( Random{ 0.0f,1.0f } ) );
 	}
 public:
 	Vec2 start;

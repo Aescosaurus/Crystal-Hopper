@@ -11,14 +11,17 @@ CSurfPtr Explosion::surfSheets[int( Type::Count )] =
 	SurfCodex::Fetch( "Images/JupiterCrystalDissolveAnim.bmp" ),
 	SurfCodex::Fetch( "Images/CometDustAnim.bmp" ),
 	SurfCodex::Fetch( "Images/GroundBounceAnim.bmp" ),
-	SurfCodex::Fetch( "Images/MarsTurretBoopAnim.bmp" )
+	SurfCodex::Fetch( "Images/MarsTurretBoopAnim.bmp" ),
+	SurfCodex::Fetch( "Images/ParticleDissipateAnim.bmp" )
 };
 
-Explosion::Explosion( const Vec2& pos,Type t )
+Explosion::Explosion( const Vec2& pos,Type t,
+	Behavior b )
 	:
-	pos( Vei2( pos ) ),
+	pos( pos ),
 	fadeAway( 0,0,size.x,size.y,5,
-		*surfSheets[int( t )],0.2f )
+		*surfSheets[int( t )],0.2f ),
+	behavior( b )
 {}
 
 void Explosion::Update( float dt )
@@ -28,6 +31,15 @@ void Explosion::Update( float dt )
 	if( fadeAway.IsFinished() )
 	{
 		willDestroy = true;
+	}
+	
+	switch( behavior )
+	{
+	case Behavior::Static:
+		break;
+	case Behavior::Falling:
+		pos.y += fallSpeed * dt;
+		break;
 	}
 }
 

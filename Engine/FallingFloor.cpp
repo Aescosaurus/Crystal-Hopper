@@ -8,7 +8,7 @@ FallingFloor::FallingFloor( const Vec2& pos,float angle,float gravAcc )
 	gravAcc( gravAcc )
 {}
 
-void FallingFloor::Update( float dt )
+void FallingFloor::Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt )
 {
 	if( center.y < float( Graphics::ScreenHeight * 2 ) &&
 		falling )

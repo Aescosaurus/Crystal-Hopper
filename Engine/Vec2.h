@@ -124,6 +124,22 @@ public:
 	{
 		return( Vec2_<T>{ T( -9999 ),T( -9999 ) } );
 	}
+	static constexpr Vec2_<T> Up()
+	{
+		return( Vec2_<T>{ T( 0.0 ),T( -1.0 ) } );
+	}
+	static constexpr Vec2_<T> Down()
+	{
+		return( Vec2_<T>{ T( 0.0 ),T( 1.0 ) } );
+	}
+	static constexpr Vec2_<T> Left()
+	{
+		return( Vec2_<T>{ T( -1.0 ),T( 0.0 ) } );
+	}
+	static constexpr Vec2_<T> Right()
+	{
+		return( Vec2_<T>{ T( 1.0 ),T( 0.0 ) } );
+	}
 public:
 	T x;
 	T y;

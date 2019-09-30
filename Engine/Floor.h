@@ -8,6 +8,8 @@
 #include "Circle.h"
 #include "Surface.h"
 #include "Codex.h"
+#include "Explosion.h"
+#include <memory>
 
 class Floor
 {
@@ -15,7 +17,7 @@ public:
 	Floor( const Vec2& pos,float angle );
 
 	// Children can override this for their anims or w/e.
-	virtual void Update( float dt ) {}
+	virtual void Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt ) {}
 	virtual void Draw( Graphics& gfx ) const;
 
 	// No idea why I didn't const this but there was

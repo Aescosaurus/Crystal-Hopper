@@ -79,7 +79,7 @@ void Campaign::Update()
 		// Platforms each deal with their own collision.
 		for( auto& plat : floors )
 		{
-			plat->Update( dt );
+			plat->Update( particles,dt );
 			plat->HandleColl( guy,dt );
 		}
 
