@@ -34,6 +34,7 @@
 #include "GravityFlipper.h"
 #include "GravSlowField.h"
 #include "GravRotator.h"
+#include "LevelEnder.h"
 
 class Campaign
 {
@@ -52,6 +53,7 @@ public:
 	void RestartLevel();
 private:
 	void GotoNextLevel();
+	void OpenEndLevelScreen();
 	// Adds floors and crystals and stuff.
 	void ReadFile( const std::string& filename );
 	// Call this with curLevel++ so I can keep const.
@@ -77,8 +79,9 @@ private:
 	std::vector<GravityFlipper> gravFlippers;
 	std::vector<GravSlowField> gravSlows;
 	std::vector<GravRotator> gravRotators;
+	std::vector<LevelEnder> levelEnders;
 
-	int curLevel = 56; // From 0.
+	int curLevel = 57; // From 0.
 
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;

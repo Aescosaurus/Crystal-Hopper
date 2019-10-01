@@ -3,8 +3,14 @@
 
 void EndLevelMenu::Update( const Mouse& mouse )
 {
-	retry.Update( mouse.GetPos(),mouse.LeftIsPressed() );
-	resume.Update( mouse.GetPos(),mouse.LeftIsPressed() );
+	if( retry.Update( mouse.GetPos(),mouse.LeftIsPressed() ) )
+	{
+		lost = false;
+	}
+	if( !lost )
+	{
+		resume.Update( mouse.GetPos(),mouse.LeftIsPressed() );
+	}
 }
 
 void EndLevelMenu::Draw( Graphics& gfx ) const
@@ -12,7 +18,10 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 	gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
 
 	retry.Draw( gfx );
-	resume.Draw( gfx );
+	if( !lost )
+	{
+		resume.Draw( gfx );
+	}
 
 	// All this work just to draw x/5 stars.
 	// const float starRadius = 45.0f;
@@ -29,8 +38,9 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 		// 	starRadius,starCol );
 
 		const Vei2 drawPos = Vei2{ start +
-			int( starSize.x * 1.25f ) * i,210 } - starSize;
-		gfx.DrawSprite( drawPos.x,drawPos.y,stars >= i + 1
+			int( starSize.x * 1.25f ) * i,210 } -starSize;
+		gfx.DrawSprite( drawPos.x,drawPos.y,
+			stars >= i + 1 && !lost
 			? *filledStar : *emptyStar,
 			SpriteEffect::Chroma{ Colors::Magenta } );
 	}
@@ -41,6 +51,11 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 
 void EndLevelMenu::UpdatePoints( float percent,int points )
 {
+	if( lost )
+	{
+		percent = 0.0f;
+		points = 0;
+	}
 	this->points = points;
 	stars = Points2Stars( percent );
 }
@@ -53,6 +68,11 @@ void EndLevelMenu::UpdateStarWeights( const std
 	{
 		starBracketPercents[i] = weights[i];
 	}
+}
+
+void EndLevelMenu::Lose()
+{
+	lost = true;
 }
 
 bool EndLevelMenu::PressedRetry() const

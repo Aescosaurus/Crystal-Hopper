@@ -144,6 +144,7 @@
     <ClInclude Include="GravSlowField.h" />
     <ClInclude Include="JupiterCrystal.h" />
     <ClInclude Include="JupiterFloor.h" />
+    <ClInclude Include="LevelEnder.h" />
     <ClInclude Include="LunarCrystal.h" />
     <ClInclude Include="LunarFloor.h" />
     <ClInclude Include="MarsDiver.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="GravSlowField.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
+    <ClCompile Include="LevelEnder.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MarsDiver.cpp" />

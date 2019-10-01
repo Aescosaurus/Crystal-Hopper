@@ -1,0 +1,20 @@
+Level Title
+-1
+1
+2
+3
+4
+5
+JupiterFloor|243|424|0.261799
+JupiterFloor|690|424|6.021386
+JupiterFloor|676|125|0.261799
+JupiterFloor|252|113|6.108653
+JupiterFloor|88|269|1.396263
+JupiterCrystal|264|171
+JupiterCrystal|259|358
+JupiterCrystal|637|376
+JupiterCrystal|712|198
+JupiterCrystal|181|252
+GravityFlipper|319|263
+GravityRotator|364|448
+LevelEnder|664|273

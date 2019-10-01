@@ -277,6 +277,18 @@ void Campaign::Update()
 			}
 		}
 
+		// Update level enders.
+		for( const auto& le : levelEnders )
+		{
+			float temp = 0.0f;
+			const auto& leColl = le.GetColl();
+			if( guy.CheckColl( leColl,temp ) )
+			{
+				crystals.clear();
+				endLevelScreen.Lose();
+			}
+		}
+
 		// Update all particles.
 		ExplosionUpdateInfo exUpdateInfo{ guy.GetCurGravity() };
 		for( auto& part : particles )
@@ -311,19 +323,7 @@ void Campaign::Update()
 
 			if( endLevelTimer.IsDone() )
 			{
-				endLevelTimer.Reset();
-				const auto percent = float( points ) / startPoints;
-// #if !NDEBUG
-				Logger::Write( "Level" + std::to_string( curLevel - 1 ) +
-					": " + std::to_string( points ) + "pts | " +
-					std::to_string( int( percent * 100.0f ) ) + "%" +
-					" | " + std::to_string( endLevelScreen
-					.Points2Stars( percent ) ) + " stars" );
-// #endif
-				endLevelScreen.UpdatePoints( percent,points );
-				points = startPoints;
-
-				gameState = State::EndLevel;
+				OpenEndLevelScreen();
 			}
 		}
 		break;
@@ -371,6 +371,7 @@ void Campaign::Draw()
 	for( const auto& gfl : gravFlippers ) gfl.Draw( gfx );
 	for( const auto& gs : gravSlows ) gs.Draw( gfx );
 	for( const auto& gr : gravRotators ) gr.Draw( gfx );
+	for( const auto& le : levelEnders ) le.Draw( gfx );
 	guy.Draw( gfx );
 
 	// Draw level title.
@@ -417,6 +418,7 @@ void Campaign::GotoNextLevel()
 	gravFlippers.clear();
 	gravSlows.clear();
 	gravRotators.clear();
+	levelEnders.clear();
 
 	particles.clear();
 
@@ -437,6 +439,24 @@ void Campaign::GotoNextLevel()
 
 	// Reset delta time.
 	time.Mark();
+}
+
+void Campaign::OpenEndLevelScreen()
+{
+	endLevelTimer.Reset();
+
+	const auto percent = float( points ) / startPoints;
+	// #if !NDEBUG
+	Logger::Write( "Level" + std::to_string( curLevel - 1 ) +
+		": " + std::to_string( points ) + "pts | " +
+		std::to_string( int( percent * 100.0f ) ) + "%" +
+		" | " + std::to_string( endLevelScreen
+			.Points2Stars( percent ) ) + " stars" );
+	// #endif
+	endLevelScreen.UpdatePoints( percent,points );
+	points = startPoints;
+
+	gameState = State::EndLevel;
 }
 
 void Campaign::ReadFile( const std::string& filename )
@@ -602,6 +622,11 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "GravityRotator" )
 		{
 			gravRotators.emplace_back( GravRotator{
+				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+		}
+		else if( title == "LevelEnder" )
+		{
+			levelEnders.emplace_back( LevelEnder{
 				Vec2{ stof( list[1] ),stof( list[2] ) } } );
 		}
 		// else if( title == "" )

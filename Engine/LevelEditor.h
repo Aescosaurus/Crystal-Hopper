@@ -31,6 +31,7 @@ private:
 		GravityFlipper,
 		GravitySlower,
 		GravityRotator,
+		LevelEnder,
 		Count
 	};
 public:
@@ -84,6 +85,7 @@ private:
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{},
+		std::vector<std::pair<Vei2,float>>{},
 		std::vector<std::pair<Vei2,float>>{}
 	};
 
@@ -113,7 +115,8 @@ private:
 		Surface{ "Images/MarsDiver.bmp" },
 		Surface{ "Images/GravityFlipper.bmp" },
 		Surface{ "Images/GravitySlowField.bmp" },
-		Surface{ "Images/GravityRotator.bmp" }
+		Surface{ "Images/GravityRotator.bmp" },
+		Surface{ Surface{ "Images/LevelEnder.bmp" },RectI{ 0,32,0,32 } }
 	};
 	Button save = Button{ Vei2{ Graphics::ScreenWidth / 2,50 },"Save" };
 

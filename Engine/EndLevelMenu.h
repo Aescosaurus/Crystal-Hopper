@@ -14,6 +14,7 @@ public:
 
 	void UpdatePoints( float percent,int points );
 	void UpdateStarWeights( const std::vector<int>& weights );
+	void Lose();
 
 	bool PressedRetry() const;
 	bool PressedContinue() const;
@@ -35,6 +36,8 @@ private:
 	};
 	int points;
 	int stars;
+	bool lost = false;
+
 	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 	CSurfPtr filledStar = SurfCodex::Fetch( "Images/FilledStar.bmp" );
 	CSurfPtr emptyStar = SurfCodex::Fetch( "Images/EmptyStar.bmp" );
