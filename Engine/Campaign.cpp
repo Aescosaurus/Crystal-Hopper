@@ -630,7 +630,8 @@ void Campaign::ReadFile( const std::string& filename )
 		else if( title == "LevelEnder" )
 		{
 			levelEnders.emplace_back( LevelEnder{
-				Vec2{ stof( list[1] ),stof( list[2] ) } } );
+				Vec2{ stof( list[1] ),stof( list[2] ) },
+				particles } );
 		}
 		// else if( title == "" )
 		// {

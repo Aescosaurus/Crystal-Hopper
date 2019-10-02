@@ -26,6 +26,7 @@ public:
 		GroundBounce,
 		MarsTurretBoop,
 		ParticleDissipate,
+		DustDissipate,
 		Count
 	};
 public:
