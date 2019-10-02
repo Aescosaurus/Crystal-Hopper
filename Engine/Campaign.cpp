@@ -386,12 +386,16 @@ void Campaign::Draw()
 			Colors::White,titlePercent },gfx );
 	}
 
+	// Draw points counter.
+	luckyPixel->DrawText( std::to_string( points ),
+		Vei2{ 5,10 },Colors::White,gfx );
+
 	// Draw number of remaining jumps available.
-	if( jumpLimit != -1 )
-	{
-		luckyPixel->DrawText( std::to_string( jumpLimit - curJumps ),
-			Vei2{ 15,15 },Colors::White,gfx );
-	}
+	// if( jumpLimit != -1 )
+	// {
+	// 	luckyPixel->DrawText( std::to_string( jumpLimit - curJumps ),
+	// 		Vei2{ 15,15 },Colors::White,gfx );
+	// }
 
 	// Draw end of level screen if level has been completed.
 	if( gameState == State::EndLevel )
