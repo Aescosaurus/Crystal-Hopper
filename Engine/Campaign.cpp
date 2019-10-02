@@ -77,9 +77,10 @@ void Campaign::Update()
 		points = std::max( points,1 );
 
 		// Platforms each deal with their own collision.
+		FloorUpdateInfo flUpdateInfo{ particles,guy.GetCurGravity() };
 		for( auto& plat : floors )
 		{
-			plat->Update( particles,dt );
+			plat->Update( flUpdateInfo,dt );
 			plat->HandleColl( guy,dt );
 		}
 
@@ -278,8 +279,10 @@ void Campaign::Update()
 		}
 
 		// Update level enders.
-		for( const auto& le : levelEnders )
+		for( auto& le : levelEnders )
 		{
+			le.Update( dt );
+
 			float temp = 0.0f;
 			const auto& leColl = le.GetColl();
 			if( guy.CheckColl( leColl,temp ) )

@@ -28,20 +28,16 @@ public:
 		ParticleDissipate,
 		Count
 	};
-	enum class Behavior
-	{
-		Static,
-		Falling
-	};
 public:
-	Explosion( const Vec2& pos,Type t,
-		Behavior b = Behavior::Static );
+	Explosion( const Vec2& pos,Type t );
 
 	void Update( const ExplosionUpdateInfo& exInfo,float dt );
 	void Draw( Graphics& gfx ) const;
 
 	bool Done() const;
-private:
+protected:
+	virtual void UpdateChild( const ExplosionUpdateInfo& exInfo,float dt ) {}
+protected:
 	static constexpr Vei2 size = { 32,32 };
 	Vec2 pos;
 	// CSurfPtr surfSheet = SurfCodex::Fetch( "Images/ExplodeAnim.bmp" );
@@ -53,7 +49,17 @@ private:
 	// };
 	Animation fadeAway;
 	bool willDestroy = false;
-	Behavior behavior; // Wow how imaginitive.
-	static constexpr float fallSpeed = 110.0f;
-	Vec2 fallDir = { 0.0f,0.0f };
+};
+
+class MovingExplosion
+	:
+	public Explosion
+{
+public:
+	MovingExplosion( const Vec2& pos,Type t,
+		const Vec2& vel );
+protected:
+	void UpdateChild( const ExplosionUpdateInfo& exInfo,float dt ) override;
+private:
+	Vec2 vel;
 };

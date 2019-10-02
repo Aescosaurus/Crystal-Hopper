@@ -9,7 +9,7 @@ class FallingFloor
 public:
 	FallingFloor( const Vec2& pos,float angle,float gravAcc );
 
-	void Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt ) override;
+	void Update( FloorUpdateInfo& flInfo,float dt ) override;
 	void Draw( Graphics& gfx ) const override;
 
 	bool HandleColl( class Player& guy,float dt ) override;

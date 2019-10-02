@@ -15,32 +15,22 @@ CSurfPtr Explosion::surfSheets[int( Type::Count )] =
 	SurfCodex::Fetch( "Images/ParticleDissipateAnim.bmp" )
 };
 
-Explosion::Explosion( const Vec2& pos,Type t,
-	Behavior b )
+Explosion::Explosion( const Vec2& pos,Type t )
 	:
 	pos( pos ),
 	fadeAway( 0,0,size.x,size.y,5,
-		*surfSheets[int( t )],0.2f ),
-	behavior( b )
+		*surfSheets[int( t )],0.2f )
 {}
 
 void Explosion::Update( const ExplosionUpdateInfo& exInfo,float dt )
 {
+	UpdateChild( exInfo,dt );
+
 	fadeAway.Update( dt );
 
 	if( fadeAway.IsFinished() )
 	{
 		willDestroy = true;
-	}
-
-	switch( behavior )
-	{
-	case Behavior::Static:
-		break;
-	case Behavior::Falling:
-		fallDir = exInfo.gravity;
-		pos += exInfo.gravity * fallSpeed * dt;
-		break;
 	}
 }
 
@@ -65,4 +55,16 @@ void Explosion::Draw( Graphics& gfx ) const
 bool Explosion::Done() const
 {
 	return( willDestroy );
+}
+
+MovingExplosion::MovingExplosion( const Vec2& pos,Type t,
+	const Vec2& vel )
+	:
+	Explosion( pos,t ),
+	vel( vel )
+{}
+
+void MovingExplosion::UpdateChild( const ExplosionUpdateInfo& exInfo,float dt )
+{
+	pos += vel * dt;
 }

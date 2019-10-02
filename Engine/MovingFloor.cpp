@@ -10,7 +10,7 @@ MovingFloor::MovingFloor( const Vec2& pos,float angle,
 	vel( Vec2::FromAngle( angle ) * speed )
 {}
 
-void MovingFloor::Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt )
+void MovingFloor::Update( FloorUpdateInfo& flInfo,float dt )
 {
 	const Vec2 oldPos = center;
 

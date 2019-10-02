@@ -10,7 +10,7 @@ public:
 	MovingFloor( const Vec2& pos,float angle,
 		int leftStop,int rightStop,float speed );
 
-	void Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt ) override;
+	void Update( FloorUpdateInfo& flInfo,float dt ) override;
 private:
 	int leftPos;
 	int rightPos;

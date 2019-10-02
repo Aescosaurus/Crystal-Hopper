@@ -14,18 +14,19 @@ public:
 			"Images/JupiterPlatform.bmp" ) )
 	{}
 
-	void Update( std::vector<std::unique_ptr<Explosion>>& particles,float dt )
+	void Update( FloorUpdateInfo& flInfo,float dt )
 	{
 		if( int( Random{ 0,100 } ) < particleSpawnChance )
 		{
-			particles.emplace_back( std::make_unique<Explosion>(
+			flInfo.particles.emplace_back( std::make_unique<MovingExplosion>(
 				lines[int( Random{ 0,int( lines.size() ) - 1 } )]
 				.GetRandSpot(),
 				Explosion::Type::ParticleDissipate,
-				Explosion::Behavior::Falling
+				flInfo.curGravity * particleFallSpeed
 				) );
 		}
 	}
 private:
 	static constexpr int particleSpawnChance = 30;
+	static constexpr float particleFallSpeed = 110.0f;
 };

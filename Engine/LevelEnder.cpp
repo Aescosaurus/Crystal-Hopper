@@ -7,6 +7,11 @@ LevelEnder::LevelEnder( const Vec2& pos )
 	spin( 0,0,32,32,5,*sprSheet,0.2f )
 {}
 
+void LevelEnder::Update( float dt )
+{
+	spin.Update( dt );
+}
+
 void LevelEnder::Draw( Graphics& gfx ) const
 {
 #if NDEBUG

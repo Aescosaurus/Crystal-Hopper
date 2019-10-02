@@ -140,6 +140,10 @@ public:
 	{
 		return( Vec2_<T>{ T( 1.0 ),T( 0.0 ) } );
 	}
+	static constexpr Vec2_<T> Zero()
+	{
+		return( Vec2_<T>{ T( 0.0 ),T( 0.0 ) } );
+	}
 public:
 	T x;
 	T y;
