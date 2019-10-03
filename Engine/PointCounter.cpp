@@ -6,14 +6,24 @@ PointCounter::PointCounter( int maxPoints )
 	maxPoints( maxPoints )
 {}
 
-void PointCounter::Update( int points )
+void PointCounter::Update( int points,float dt )
 {
 	this->points = points;
+	if( oldPoints > float( this->points ) )
+	{
+		oldPoints -= barMoveSpeed * dt;
+	}
+	if( oldPoints < float( points ) ) oldPoints = float( points );
 }
 
 void PointCounter::Draw( Graphics& gfx ) const
 {
+	const auto barWidth = int( float( area.GetWidth() ) *
+		( float( points ) / float( maxPoints ) ) );
 	gfx.DrawRect( area.left,area.top,
-		float( area.GetWidth() ) * float( points ) / float( maxPoints ),
-		area.GetHeight(),Colors::White );
+		barWidth,area.GetHeight(),Colors::White );
+
+	gfx.DrawRect( area.left + barWidth,area.top,
+		int( float( area.GetWidth() ) * ( oldPoints / float( maxPoints ) ) ) - barWidth,
+		area.GetHeight(),Colors::Red );
 }

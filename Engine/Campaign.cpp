@@ -321,7 +321,7 @@ void Campaign::Update()
 		titlePercent = std::max( 0.0f,titlePercent - titleFadeSpeed * dt );
 
 		// Update points counter.
-		pointCounter.Update( points );
+		pointCounter.Update( points,dt );
 
 		// Bring up end level menu when we've collected
 		//  all the crystals.
