@@ -153,6 +153,7 @@
     <ClInclude Include="MartianFloor.h" />
     <ClInclude Include="Marvin.h" />
     <ClInclude Include="MovingFloor.h" />
+    <ClInclude Include="PointCounter.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Campaign.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="MovingFloor.cpp" />
     <ClCompile Include="OverlayMenu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PointCounter.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpikyBoi.cpp" />

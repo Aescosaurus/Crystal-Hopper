@@ -16,6 +16,7 @@
 #include "Codex.h"
 #include <memory>
 #include "MovingFloor.h"
+#include "PointCounter.h"
 
 #include "Comet.h"
 #include "LunarFloor.h"
@@ -90,6 +91,7 @@ private:
 	int points = startPoints;
 	Timer pointSubtracter = 1.0f;
 	static constexpr int timePointVal = 1;
+	PointCounter pointCounter; // What a genius name. D:<
 
 	std::vector<std::unique_ptr<Explosion>> particles;
 

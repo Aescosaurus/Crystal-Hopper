@@ -71,6 +71,7 @@ public:
 	void DrawCircle( const Vei2& pos,int radius,Color c );
 	void DrawCircleSafe( const Vei2& pos,int radius,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
+	void DrawRectDim( int x1,int y1,int x2,int y2,Color c );
 	void DrawStar( int x,int y,float radius,Color c );
 
 	template<typename E>

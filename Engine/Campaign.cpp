@@ -13,7 +13,8 @@ Campaign::Campaign( Keyboard& kbd,
 	kbd( kbd ),
 	mouse( mouse ),
 	gfx( gfx ),
-	guy( mouse,particles,gravities[Level2Index()] )
+	guy( mouse,particles,gravities[Level2Index()] ),
+	pointCounter( startPoints )
 {
 	GotoNextLevel();
 }
@@ -288,6 +289,7 @@ void Campaign::Update()
 			if( guy.CheckColl( leColl,temp ) )
 			{
 				crystals.clear();
+				points = 0;
 				endLevelScreen.Lose();
 			}
 		}
@@ -317,6 +319,9 @@ void Campaign::Update()
 
 		// Fade out title.
 		titlePercent = std::max( 0.0f,titlePercent - titleFadeSpeed * dt );
+
+		// Update points counter.
+		pointCounter.Update( points );
 
 		// Bring up end level menu when we've collected
 		//  all the crystals.
@@ -387,8 +392,9 @@ void Campaign::Draw()
 	}
 
 	// Draw points counter.
-	luckyPixel->DrawText( std::to_string( points ),
-		Vei2{ 5,10 },Colors::White,gfx );
+	// luckyPixel->DrawText( std::to_string( points ),
+	// 	Vei2{ 5,10 },Colors::White,gfx );
+	pointCounter.Draw( gfx );
 
 	// Draw number of remaining jumps available.
 	// if( jumpLimit != -1 )

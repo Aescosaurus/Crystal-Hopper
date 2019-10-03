@@ -521,6 +521,17 @@ void Graphics::DrawRect( int x,int y,int width,int height,Color c )
 	}
 }
 
+void Graphics::DrawRectDim( int x1,int y1,int x2,int y2,Color c )
+{
+	for( int y = y1; y < y2; ++y )
+	{
+		for( int x = x1; x < x2; ++x )
+		{
+			PutPixel( x,y,c );
+		}
+	}
+}
+
 void Graphics::DrawStar( int x,int y,float radius,Color c )
 {
 	const int nFlares = 5;
