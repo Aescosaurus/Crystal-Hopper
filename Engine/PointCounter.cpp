@@ -1,4 +1,5 @@
 #include "PointCounter.h"
+#include "SpriteEffect.h"
 
 PointCounter::PointCounter( int maxPoints )
 	:
@@ -18,6 +19,9 @@ void PointCounter::Update( int points,float dt )
 
 void PointCounter::Draw( Graphics& gfx ) const
 {
+	gfx.DrawSpriteNormal( area.left - 4,area.top - 4,
+		*barBorder,SpriteEffect::Chroma{ Colors::Magenta } );
+
 	const auto barWidth = int( float( area.GetWidth() ) *
 		( float( points ) / float( maxPoints ) ) );
 	gfx.DrawRect( area.left,area.top,
