@@ -15,6 +15,7 @@ public:
 	void UpdatePoints( float percent,int points );
 	void UpdateStarWeights( const std::vector<int>& weights );
 	void Lose();
+	void UnLose();
 
 	bool PressedRetry() const;
 	bool PressedContinue() const;

@@ -82,7 +82,7 @@ private:
 	std::vector<GravRotator> gravRotators;
 	std::vector<LevelEnder> levelEnders;
 
-	int curLevel = 57; // From 0.
+	int curLevel = 58; // From 0.
 
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;

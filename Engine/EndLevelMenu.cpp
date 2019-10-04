@@ -3,10 +3,7 @@
 
 void EndLevelMenu::Update( const Mouse& mouse )
 {
-	if( retry.Update( mouse.GetPos(),mouse.LeftIsPressed() ) )
-	{
-		lost = false;
-	}
+	retry.Update( mouse.GetPos(),mouse.LeftIsPressed() );
 	if( !lost )
 	{
 		resume.Update( mouse.GetPos(),mouse.LeftIsPressed() );
@@ -73,6 +70,11 @@ void EndLevelMenu::UpdateStarWeights( const std
 void EndLevelMenu::Lose()
 {
 	lost = true;
+}
+
+void EndLevelMenu::UnLose()
+{
+	lost = false;
 }
 
 bool EndLevelMenu::PressedRetry() const

@@ -445,6 +445,8 @@ void Campaign::GotoNextLevel()
 	curJumps = 0;
 	points = startPoints;
 
+	endLevelScreen.UnLose();
+
 	ReadFile( GetNextLevelName( curLevel++ ) );
 
 	// Reset player to center of screen.
