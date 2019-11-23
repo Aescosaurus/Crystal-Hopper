@@ -22,3 +22,6 @@ Level58: 838pts | 69% | 5 stars
 Level58: 891pts | 74% | 5 stars
 Level58: 842pts | 70% | 5 stars
 Level58: 942pts | 78% | 5 stars
+Level58: 1pts | 0% | 1 stars
+Level58: 1045pts | 87% | 5 stars
+Level58: 842pts | 70% | 3 stars

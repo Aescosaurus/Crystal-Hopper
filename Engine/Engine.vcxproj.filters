@@ -201,6 +201,9 @@
     <ClInclude Include="PointCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="JupiterBoss.h">
+      <Filter>Header Files\Jupiter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
