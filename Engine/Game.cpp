@@ -75,6 +75,10 @@ void Game::UpdateModel()
 		{
 			gameState = State::Campaign;
 		}
+		if( levelSelect.Update( msPos,msDown ) )
+		{
+			gameState = State::LevelSelect;
+		}
 		if( startLevelEditor.Update( msPos,msDown ) )
 		{
 			gameState = State::LevelEditor;
@@ -85,6 +89,9 @@ void Game::UpdateModel()
 		}
 	}
 	break;
+	case State::LevelSelect:
+
+		break;
 	case State::Campaign:
 		if( menu.WillRestart() )
 		{
@@ -112,8 +119,11 @@ void Game::ComposeFrame()
 	{
 	case State::MainMenu:
 		startCampaign.Draw( gfx );
+		levelSelect.Draw( gfx );
 		startLevelEditor.Draw( gfx );
 		quitButton.Draw( gfx );
+		break;
+	case State::LevelSelect:
 		break;
 	case State::Campaign:
 		mainGame.Draw();

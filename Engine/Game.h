@@ -31,6 +31,7 @@ private:
 	enum class State
 	{
 		MainMenu,
+		LevelSelect,
 		Campaign,
 		LevelEditor
 	};
@@ -55,9 +56,10 @@ private:
 	OverlayMenu menu;
 	State gameState = State::MainMenu;
 
-	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start Campaign" };
-	Button startLevelEditor = Button{ Graphics::GetCenter() - Vei2{ 0,10 },"Level Editor" };
-	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Quit" };
+	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start New Game" };
+	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,10 },"Level Select" };
+	Button startLevelEditor = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Level Editor" };
+	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,170 },"Quit" };
 
 	Vei2 oldMousePos;
 	Vei2 oldMouse2;

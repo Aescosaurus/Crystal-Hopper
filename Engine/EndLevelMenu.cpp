@@ -96,3 +96,8 @@ int EndLevelMenu::Points2Stars( float percent ) const
 	}
 	return( 1 );
 }
+
+const int* EndLevelMenu::GetStarWeights() const
+{
+	return( &starBracketPercents[0] );
+}

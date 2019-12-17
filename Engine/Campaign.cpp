@@ -506,6 +506,7 @@ void Campaign::ReadFile( const std::string& filename )
 		weights.emplace_back( stoi( read_line( in ) ) );
 	}
 	endLevelScreen.UpdateStarWeights( weights );
+	pointCounter.UpdatePointWeights( endLevelScreen.GetStarWeights() );
 
 	for( char c = in.get(); in.good(); c = in.get() )
 	{

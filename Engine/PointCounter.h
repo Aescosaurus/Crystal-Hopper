@@ -13,6 +13,8 @@ public:
 
 	void Update( int points,float dt );
 	void Draw( Graphics& gfx ) const;
+
+	void UpdatePointWeights( const int* weights );
 private:
 	static constexpr int width = 160;
 	static constexpr int height = 12;
@@ -22,4 +24,5 @@ private:
 	float oldPoints = 0.0f;
 	static constexpr float barMoveSpeed = 29.0f;
 	CSurfPtr barBorder = SurfCodex::Fetch( "Images/PointCounterBar.bmp" );
+	float pointWeights[5];
 };

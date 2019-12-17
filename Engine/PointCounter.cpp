@@ -27,7 +27,26 @@ void PointCounter::Draw( Graphics& gfx ) const
 	gfx.DrawRect( area.left,area.top,
 		barWidth,area.GetHeight(),Colors::White );
 
+	for( int i = 0; i < 5; ++i )
+	{
+		if( float( points ) / float( maxPoints ) >= pointWeights[i] )
+		{
+			gfx.DrawRect( area.left + int( float( area.GetWidth() ) * pointWeights[i] ),
+				area.top,
+				2,area.GetHeight(),
+				Colors::MakeRGB( 255,200,37 ) );
+		}
+	}
+
 	gfx.DrawRect( area.left + barWidth,area.top,
 		int( float( area.GetWidth() ) * ( oldPoints / float( maxPoints ) ) ) - barWidth,
 		area.GetHeight(),Colors::Red );
+}
+
+void PointCounter::UpdatePointWeights( const int* weights )
+{
+	for( int i = 0; i < 5; ++i )
+	{
+		pointWeights[i] = float( weights[i] ) / 100.0f;
+	}
 }

@@ -20,6 +20,7 @@ public:
 	bool PressedRetry() const;
 	bool PressedContinue() const;
 	int Points2Stars( float percent ) const;
+	const int* GetStarWeights() const;
 private:
 	const Vei2 size = Vei2( Vec2( Graphics::ScreenSize ) / 1.5f );
 	const Vei2 pos = Graphics::GetCenter() - size / 2;
