@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Earth">
       <UniqueIdentifier>{72da3f35-2b36-47ab-9f5c-f5bb9833c88e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{71a8b637-6a69-4044-a251-ef0332e6e81c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -106,9 +109,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Campaign.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
@@ -203,6 +203,15 @@
     </ClInclude>
     <ClInclude Include="JupiterBoss.h">
       <Filter>Header Files\Jupiter</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckBox.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +321,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PointCounter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,7 +13,8 @@
 class Player
 {
 public:
-	Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosions,float grav );
+	Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosions,
+		float grav );
 
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
@@ -32,6 +33,7 @@ public:
 	void FlipGravity();
 	void FlipSlowPercent();
 	void RotateGravity();
+	void SetInvertControls( bool inverse );
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -72,4 +74,5 @@ private:
 	Timer invincibilityFrames = 2.5f;
 	Vec2 gravScale = Vec2{ 0.0f,1.0f };
 	float slowPercent = 1.0f;
+	bool invertControls = false;
 };

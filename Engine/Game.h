@@ -24,6 +24,7 @@
 #include "Button.h"
 #include "LevelEditor.h"
 #include "OverlayMenu.h"
+#include "OptionsMenu.h"
 
 class Game
 {
@@ -33,7 +34,8 @@ private:
 		MainMenu,
 		LevelSelect,
 		Campaign,
-		LevelEditor
+		LevelEditor,
+		Options
 	};
 public:
 	Game( class MainWindow& wnd );
@@ -54,11 +56,13 @@ private:
 	Campaign mainGame;
 	LevelEditor editor;
 	OverlayMenu menu;
+	OptionsMenu options;
 	State gameState = State::MainMenu;
 
-	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Start New Game" };
-	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,10 },"Level Select" };
-	Button startLevelEditor = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Level Editor" };
+	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,180 },"Start New Game" };
+	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,90 },"Level Select" };
+	Button startLevelEditor = Button{ Graphics::GetCenter() + Vei2{ 0,0 },"Level Editor" };
+	Button optionsButton = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Options" };
 	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,170 },"Quit" };
 
 	Vei2 oldMousePos;

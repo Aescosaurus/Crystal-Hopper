@@ -7,14 +7,15 @@
 #include "Logger.h"
 #include "SpriteEffect.h"
 
-Campaign::Campaign( Keyboard& kbd,
-	Mouse& mouse,Graphics& gfx )
+Campaign::Campaign( Keyboard& kbd,Mouse& mouse,Graphics& gfx,
+	const OptionsMenu& optionsMenu )
 	:
 	kbd( kbd ),
 	mouse( mouse ),
 	gfx( gfx ),
 	guy( mouse,particles,gravities[Level2Index()] ),
-	pointCounter( startPoints )
+	pointCounter( startPoints ),
+	optionsMenu( optionsMenu )
 {
 	GotoNextLevel();
 }
@@ -416,6 +417,11 @@ void Campaign::RestartLevel()
 	GotoNextLevel();
 }
 
+void Campaign::UpdateOptions()
+{
+	guy.SetInvertControls( optionsMenu.DoInvertControls() );
+}
+
 void Campaign::GotoNextLevel()
 {
 	// Destroy existing entities leftover from last level.
@@ -451,6 +457,8 @@ void Campaign::GotoNextLevel()
 
 	// Reset player to center of screen.
 	guy.Reset( particles,gravities[Level2Index()] );
+
+	UpdateOptions();
 
 	// Reset delta time.
 	time.Mark();

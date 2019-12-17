@@ -2,7 +2,8 @@
 #include "SpriteEffect.h"
 #include "ChiliUtils.h"
 
-Player::Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosions,float grav )
+Player::Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosions,
+	float grav )
 	:
 	pMouse( &ms ),
 	mt( ms ),
@@ -20,7 +21,7 @@ void Player::Update( float dt )
 
 	if( canJump && mt.Released() && !jumpDisabled )
 	{
-		vel += mt.GetDiff() * speed;
+		vel += mt.GetDiff() * speed * ( invertControls ? 1.0f : -1.0f );
 		canJump = false;
 		pointsLost += jumpPenalty;
 		hasJumped = true;
@@ -100,8 +101,9 @@ void Player::Draw( Graphics& gfx ) const
 	{
 		gfx.DrawSprite( int( pos.x ) - pArrowSurf->GetWidth() / 2 + 2,
 			int( pos.y ) - pArrowSurf->GetHeight() / 2,
-			*pArrowSurf,safeChroma,Matrix::Rotation( mt
-				.GetDiff().GetAngle<float>() ) );
+			*pArrowSurf,safeChroma,Matrix::Rotation( ( mt
+			.GetDiff() * ( invertControls ? 1.0f : -1.0f ) )
+			.GetAngle<float>() ) );
 	}
 
 	// Draw mouse tracker.
@@ -220,6 +222,11 @@ void Player::RotateGravity()
 {
 	std::swap( gravScale.x,gravScale.y );
 	gravScale.x *= -1.0f;
+}
+
+void Player::SetInvertControls( bool invert )
+{
+	invertControls = invert;
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const

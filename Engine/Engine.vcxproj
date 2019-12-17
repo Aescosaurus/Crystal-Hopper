@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="CheckBox.h" />
     <ClInclude Include="FallingFloor.h" />
     <ClInclude Include="Comet.h" />
     <ClInclude Include="GravityFlipper.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="MartianFloor.h" />
     <ClInclude Include="Marvin.h" />
     <ClInclude Include="MovingFloor.h" />
+    <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="PointCounter.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
@@ -199,6 +201,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Campaign.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="Comet.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="Crystal.cpp" />
@@ -224,6 +227,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MouseTracker.cpp" />
     <ClCompile Include="MovingFloor.cpp" />
+    <ClCompile Include="OptionsMenu.cpp" />
     <ClCompile Include="OverlayMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PointCounter.cpp" />

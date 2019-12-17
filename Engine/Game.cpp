@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	mainGame( wnd.kbd,wnd.mouse,gfx ),
+	mainGame( wnd.kbd,wnd.mouse,gfx,options ),
 	editor( wnd.kbd,wnd.mouse,gfx )
 {}
 
@@ -83,6 +83,11 @@ void Game::UpdateModel()
 		{
 			gameState = State::LevelEditor;
 		}
+		if( optionsButton.Update( msPos,msDown ) )
+		{
+			gameState = State::Options;
+			options.Load();
+		}
 		if( quitButton.Update( msPos,msDown ) )
 		{
 			wnd.Kill();
@@ -110,6 +115,15 @@ void Game::UpdateModel()
 		}
 		editor.Update();
 		break;
+	case State::Options:
+		options.Update( wnd.mouse );
+		if( options.BackToMenu() )
+		{
+			options.Save();
+			mainGame.UpdateOptions();
+			gameState = State::MainMenu;
+		}
+		break;
 	}
 }
 
@@ -121,6 +135,7 @@ void Game::ComposeFrame()
 		startCampaign.Draw( gfx );
 		levelSelect.Draw( gfx );
 		startLevelEditor.Draw( gfx );
+		optionsButton.Draw( gfx );
 		quitButton.Draw( gfx );
 		break;
 	case State::LevelSelect:
@@ -132,6 +147,9 @@ void Game::ComposeFrame()
 	case State::LevelEditor:
 		editor.Draw();
 		menu.Draw( gfx );
+		break;
+	case State::Options:
+		options.Draw( gfx );
 		break;
 	}
 

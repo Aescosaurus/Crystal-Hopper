@@ -17,6 +17,7 @@
 #include <memory>
 #include "MovingFloor.h"
 #include "PointCounter.h"
+#include "OptionsMenu.h"
 
 #include "Comet.h"
 #include "LunarFloor.h"
@@ -46,12 +47,14 @@ private:
 		EndLevel
 	};
 public:
-	Campaign( Keyboard& kbd,Mouse& mouse,Graphics& gfx );
+	Campaign( Keyboard& kbd,Mouse& mouse,Graphics& gfx,
+		const OptionsMenu& optionsMenu );
 
 	void Update();
 	void Draw();
 
 	void RestartLevel();
+	void UpdateOptions();
 private:
 	void GotoNextLevel();
 	void OpenEndLevelScreen();
@@ -82,7 +85,7 @@ private:
 	std::vector<GravRotator> gravRotators;
 	std::vector<LevelEnder> levelEnders;
 
-	int curLevel = 58; // From 0.
+	int curLevel = 0; // From 0.
 
 	State gameState = State::Gameplay;
 	EndLevelMenu endLevelScreen;
@@ -92,6 +95,7 @@ private:
 	Timer pointSubtracter = 1.0f;
 	static constexpr int timePointVal = 1;
 	PointCounter pointCounter; // What a genius name. D:<
+	const OptionsMenu& optionsMenu;
 
 	std::vector<std::unique_ptr<Explosion>> particles;
 
