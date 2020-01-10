@@ -25,6 +25,7 @@
 #include "LevelEditor.h"
 #include "OverlayMenu.h"
 #include "OptionsMenu.h"
+#include "LevelSelector.h"
 
 class Game
 {
@@ -57,6 +58,7 @@ private:
 	LevelEditor editor;
 	OverlayMenu menu;
 	OptionsMenu options;
+	LevelSelector selector;
 	State gameState = State::MainMenu;
 
 	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,180 },"Start New Game" };

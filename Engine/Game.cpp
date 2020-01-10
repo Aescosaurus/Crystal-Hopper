@@ -26,7 +26,8 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	mainGame( wnd.kbd,wnd.mouse,gfx,options ),
-	editor( wnd.kbd,wnd.mouse,gfx )
+	editor( wnd.kbd,wnd.mouse,gfx ),
+	selector( wnd.mouse,gfx )
 {}
 
 void Game::Go()
@@ -95,7 +96,7 @@ void Game::UpdateModel()
 	}
 	break;
 	case State::LevelSelect:
-
+		selector.Update();
 		break;
 	case State::Campaign:
 		if( menu.WillRestart() )
@@ -139,6 +140,7 @@ void Game::ComposeFrame()
 		quitButton.Draw( gfx );
 		break;
 	case State::LevelSelect:
+		selector.Draw();
 		break;
 	case State::Campaign:
 		mainGame.Draw();
