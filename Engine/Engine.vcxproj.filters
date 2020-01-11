@@ -216,6 +216,9 @@
     <ClInclude Include="LevelSelector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlanetMenu.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -333,6 +336,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LevelSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

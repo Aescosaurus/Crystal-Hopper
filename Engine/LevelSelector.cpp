@@ -22,6 +22,8 @@ void LevelSelector::Update()
 		if( starPos.x > maxStarPos ) starPos.x = maxStarPos;
 	}
 
+	// earth.Update( mousePos );
+
 	oldMousePos = mousePos;
 }
 
@@ -29,4 +31,6 @@ void LevelSelector::Draw() const
 {
 	gfx.DrawSpriteNormal( starPos.x,starPos.y,
 		*starsImg,SpriteEffect::Copy{} );
+
+	earth.Draw( starPos,gfx );
 }
