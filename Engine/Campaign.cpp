@@ -422,6 +422,12 @@ void Campaign::UpdateOptions()
 	guy.SetInvertControls( optionsMenu.DoInvertControls() );
 }
 
+void Campaign::LoadLevel( int levelToLoad )
+{
+	curLevel = levelToLoad;
+	GotoNextLevel();
+}
+
 void Campaign::GotoNextLevel()
 {
 	// Destroy existing entities leftover from last level.

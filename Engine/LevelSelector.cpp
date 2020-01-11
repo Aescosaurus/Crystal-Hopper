@@ -12,8 +12,9 @@ void LevelSelector::Update()
 {
 	// todo: dt stuff
 	const auto mousePos = mouse.GetPos();
+	const auto mouseDown = mouse.LeftIsPressed();
 
-	if( mouse.LeftIsPressed() )
+	if( mouseDown )
 	{
 		const auto diff = mousePos - oldMousePos;
 		starPos.x += diff.x;
@@ -22,7 +23,7 @@ void LevelSelector::Update()
 		if( starPos.x > maxStarPos ) starPos.x = maxStarPos;
 	}
 
-	// earth.Update( mousePos );
+	earth.Update( starPos,mousePos,mouseDown );
 
 	oldMousePos = mousePos;
 }
@@ -33,4 +34,12 @@ void LevelSelector::Draw() const
 		*starsImg,SpriteEffect::Copy{} );
 
 	earth.Draw( starPos,gfx );
+}
+
+int LevelSelector::GotoLevel() const
+{
+	int total = -1;
+	total += earth.GetReaction() * 1;
+	// total += moon.GetReaction() * 2;
+	return( total );
 }

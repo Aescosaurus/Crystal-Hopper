@@ -55,6 +55,7 @@ public:
 
 	void RestartLevel();
 	void UpdateOptions();
+	void LoadLevel( int levelToLoad );
 private:
 	void GotoNextLevel();
 	void OpenEndLevelScreen();

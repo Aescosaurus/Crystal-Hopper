@@ -14,6 +14,7 @@ public:
 	// Returns true if pressed.
 	bool Update( const Vei2& mousePos,bool mouseDown );
 	void Draw( Graphics& gfx ) const;
+	void DrawBackground( Graphics& gfx ) const;
 
 	void Reset();
 

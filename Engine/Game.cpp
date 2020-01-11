@@ -96,8 +96,17 @@ void Game::UpdateModel()
 	}
 	break;
 	case State::LevelSelect:
+	{
 		selector.Update();
-		break;
+		const auto level = selector.GotoLevel();
+		if( level >= 0 )
+		{
+			mainGame.UpdateOptions();
+			mainGame.LoadLevel( level );
+			gameState = State::Campaign;
+		}
+	}
+	break;
 	case State::Campaign:
 		if( menu.WillRestart() )
 		{

@@ -12,6 +12,9 @@ public:
 
 	void Update();
 	void Draw() const;
+	
+	// Tells what level to go to, -1 = no go.
+	int GotoLevel() const;
 private:
 	const Mouse& mouse;
 	Graphics& gfx;

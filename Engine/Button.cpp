@@ -28,7 +28,18 @@ void Button::Draw( Graphics& gfx ) const
 	const auto drawCol = hovering
 		? Colors::White
 		: Colors::LightGray;
-	// gfx.DrawRect( pos.x,pos.y,size.x,size.y,drawCol );
+
+	luckyPixel->DrawText( text,pos + padding / 2,
+		drawCol,gfx );
+}
+
+void Button::DrawBackground( Graphics& gfx ) const
+{
+	const auto drawCol = hovering
+		? Colors::White
+		: Colors::LightGray;
+	gfx.DrawRect( pos.x,pos.y,size.x,size.y,
+		hovering ? Colors::LightGray : Colors::DarkGray );
 
 	luckyPixel->DrawText( text,pos + padding / 2,
 		drawCol,gfx );

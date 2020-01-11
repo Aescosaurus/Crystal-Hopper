@@ -298,4 +298,5 @@ public:
 	static constexpr int ScreenHeight = 540;
 	static constexpr Vei2 ScreenSize = {
 		ScreenWidth,ScreenHeight };
+	static constexpr Vei2 ScreenCenter = Vei2{ ScreenWidth,ScreenHeight } / 2;
 };
