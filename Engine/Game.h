@@ -54,10 +54,10 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	OptionsMenu options; // Options need to be initialized first.
 	Campaign mainGame;
 	LevelEditor editor;
 	OverlayMenu menu;
-	OptionsMenu options;
 	LevelSelector selector;
 	State gameState = State::MainMenu;
 

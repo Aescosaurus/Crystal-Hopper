@@ -101,7 +101,6 @@ void Game::UpdateModel()
 		const auto level = selector.GotoLevel();
 		if( level >= 0 )
 		{
-			mainGame.UpdateOptions();
 			mainGame.LoadLevel( level );
 			gameState = State::Campaign;
 		}

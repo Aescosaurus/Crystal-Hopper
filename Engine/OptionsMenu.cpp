@@ -1,5 +1,10 @@
 #include "OptionsMenu.h"
 
+OptionsMenu::OptionsMenu()
+{
+	Load();
+}
+
 void OptionsMenu::Update( const Mouse& mouse )
 {
 	const auto& msPos = mouse.GetPos();

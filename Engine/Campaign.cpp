@@ -452,6 +452,8 @@ void Campaign::GotoNextLevel()
 	endLevelTimer.Reset();
 	pointSubtracter.Reset();
 
+	// TODO: Save data to file.
+
 	// Reset title fade, jumps and points.
 	titlePercent = 1.0f;
 	curJumps = 0;

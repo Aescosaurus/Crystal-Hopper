@@ -9,6 +9,8 @@
 class OptionsMenu
 {
 public:
+	OptionsMenu();
+
 	void Update( const Mouse& mouse );
 	void Draw( Graphics& gfx ) const;
 
@@ -18,7 +20,7 @@ public:
 	bool BackToMenu() const;
 	bool DoInvertControls() const;
 private:
-	static constexpr auto saveFileName = "Options/Options.txt";
+	static constexpr auto saveFileName = "Misc/Options.txt";
 	Button menuButton = Button{ Vei2{ 850,480 },"Menu" };
 	CheckBox invertControls = CheckBox{ Vei2{ 250,150 },"Invert Controls" };
 };
