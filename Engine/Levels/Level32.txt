@@ -1,10 +1,10 @@
 Here's an Interesting Level
 -1
 1
-2
-3
-4
-5
+43
+60
+85
+90
 MarsFloor|746|442|5.846853
 MarsFloor|891|274|5.061455
 MarsFloor|590|154|0.087266
