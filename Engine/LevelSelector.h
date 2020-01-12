@@ -26,5 +26,6 @@ private:
 	int maxStarPos = 0;
 
 	PlanetMenu earth = PlanetMenu{ Vei2{ 300,350 },0,"Images/PlanetEarth.bmp" };
-	PlanetMenu moon = PlanetMenu{ Vei2{ 410,260 },1,"Images/PlanetMoon.bmp" };
+	PlanetMenu moon = PlanetMenu{ Vei2{ 440,230 },1,"Images/PlanetMoon.bmp" };
+	PlanetMenu mars = PlanetMenu{ Vei2{ 840,270 },2,"Images/PlanetMars.bmp" };
 };
