@@ -28,7 +28,8 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown 
 			}
 		}
 
-		if( mouseDown && !RectI{ menuPos,menuSize.x,menuSize.y }
+		if( menuOpen && mouseDown && canClick &&
+			!RectI{ menuPos,menuSize.x,menuSize.y }
 			.ContainsPoint( mousePos ) )
 		{
 			menuOpen = false;
@@ -42,9 +43,9 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown 
 			ReloadSaveInfo();
 			menuOpen = true;
 		}
-
-		canClick = !mouseDown;
 	}
+
+	canClick = !mouseDown;
 }
 
 void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
