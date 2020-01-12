@@ -703,6 +703,7 @@ void Campaign::UpdateSaveInfo()
 		}
 
 		while( lines.size() < expectedLines ) lines.emplace_back( 0 );
+		while( lines.size() > expectedLines ) lines.pop_back();
 	}
 
 	lines[curLevel - 1] = max( endLevelScreen.Points2Stars(
