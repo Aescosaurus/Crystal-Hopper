@@ -24,6 +24,7 @@ void LevelSelector::Update()
 	}
 
 	earth.Update( starPos,mousePos,mouseDown );
+	moon.Update( starPos,mousePos,mouseDown );
 
 	oldMousePos = mousePos;
 }
@@ -34,12 +35,16 @@ void LevelSelector::Draw() const
 		*starsImg,SpriteEffect::Copy{} );
 
 	earth.Draw( starPos,gfx );
+	moon.Draw( starPos,gfx );
+
+	earth.DrawMenu( gfx );
+	moon.DrawMenu( gfx );
 }
 
 int LevelSelector::GotoLevel()
 {
 	int total = -1;
-	total += earth.GetReaction() * 1;
-	// total += moon.GetReaction() * 2;
+	total += earth.GetReaction();
+	total += moon.GetReaction();
 	return( total );
 }

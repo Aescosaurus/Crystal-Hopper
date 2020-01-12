@@ -708,15 +708,18 @@ void Campaign::UpdateSaveInfo()
 		while( lines.size() > expectedLines ) lines.pop_back();
 	}
 
-	lines[curLevel - 1] = max( endLevelScreen.Points2Stars(
-		float( points ) / startPoints ),lines[curLevel - 1] );
+	const auto actualLevel = max( curLevel - 1,0 );
+	lines[actualLevel] = max( endLevelScreen.Points2Stars(
+		float( points ) / startPoints ),lines[actualLevel] );
 
-	ofstream out{ "Misc/Save.txt" };
-	assert( out.good() );
-
-	for( auto line : lines )
 	{
-		out << std::to_string( line ) << '\n';
+		ofstream out{ "Misc/Save.txt" };
+		assert( out.good() );
+
+		for( auto line : lines )
+		{
+			out << std::to_string( line ) << '\n';
+		}
 	}
 }
 

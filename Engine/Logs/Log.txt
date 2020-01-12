@@ -27,3 +27,7 @@ Level5: 995pts | 82% | 3 stars
 Level36: 636pts | 53% | 3 stars
 Level6: 996pts | 83% | 4 stars
 Level7: 1044pts | 87% | 5 stars
+Level0: 1097pts | 91% | 5 stars
+Level15: 995pts | 82% | 3 stars
+Level18: 993pts | 82% | 4 stars
+Level17: 790pts | 65% | 2 stars

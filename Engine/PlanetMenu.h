@@ -14,6 +14,7 @@ public:
 
 	void Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown );
 	void Draw( const Vei2& offset,Graphics& gfx ) const;
+	void DrawMenu( Graphics& gfx ) const;
 
 	void ReloadSaveInfo();
 	// 1-15 = level 0 = nothing

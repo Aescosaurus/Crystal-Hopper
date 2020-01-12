@@ -49,6 +49,13 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown 
 
 void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
 {
+	// TODO: Rotating planets?
+	gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
+		*img,SpriteEffect::Chroma{ Colors::Magenta } );
+}
+
+void PlanetMenu::DrawMenu( Graphics& gfx ) const
+{
 	if( menuOpen )
 	{
 		gfx.DrawRect( menuPos.x,menuPos.y,menuSize.x,menuSize.y,Colors::Gray );
@@ -69,12 +76,6 @@ void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
 					SpriteEffect::Chroma{ Colors::Magenta } );
 			}
 		}
-	}
-	else
-	{
-		// TODO: Rotating planets?
-		gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
-			*img,SpriteEffect::Chroma{ Colors::Magenta } );
 	}
 }
 
@@ -113,7 +114,7 @@ int PlanetMenu::GetReaction()
 		if( levelButtons[i].IsPressed() )
 		{
 			levelButtons[i].Reset();
-			return( i + 1 );
+			return( i + 1 + planetNum * 15 );
 		}
 	}
 	return( 0 );
