@@ -10,15 +10,17 @@
 class PlanetMenu
 {
 public:
-	PlanetMenu( const Vei2& pos,const std::string& img );
+	PlanetMenu( const Vei2& pos,int planetNum,const std::string& img );
 
 	void Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown );
 	void Draw( const Vei2& offset,Graphics& gfx ) const;
 
-	// 1-15 0 = nothing
-	int GetReaction() const;
+	void ReloadSaveInfo();
+	// 1-15 = level 0 = nothing
+	int GetReaction();
 private:
 	Vei2 pos;
+	int planetNum;
 	CSurfPtr img;
 	RectI clickArea;
 
@@ -28,4 +30,7 @@ private:
 	static constexpr Vei2 menuSize = Vei2( Vec2( Graphics::ScreenSize ) / 1.5 );
 	static constexpr Vei2 menuPos = Graphics::ScreenCenter - menuSize / 2;
 	std::vector<Button> levelButtons;
+	std::vector<std::pair<Vei2,int>> levelStars;
+	CSurfPtr filledStar = SurfCodex::Fetch( "Images/FilledPlanetStar.bmp" );
+	CSurfPtr emptyStar = SurfCodex::Fetch( "Images/EmptyPlanetStar.bmp" );
 };

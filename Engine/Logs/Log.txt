@@ -15,3 +15,15 @@ Level32: 1045pts | 87% | 5 stars
 Level0: 993pts | 82% | 3 stars
 Level0: 944pts | 78% | 3 stars
 Level0: 1097pts | 91% | 5 stars
+Level0: 1097pts | 91% | 5 stars
+Level0: 994pts | 82% | 3 stars
+Level1: 995pts | 82% | 4 stars
+Level0: 1047pts | 87% | 4 stars
+Level1: 1097pts | 91% | 5 stars
+Level2: 996pts | 83% | 3 stars
+Level3: 1098pts | 91% | 4 stars
+Level4: 1146pts | 95% | 5 stars
+Level5: 995pts | 82% | 3 stars
+Level36: 636pts | 53% | 3 stars
+Level6: 996pts | 83% | 4 stars
+Level7: 1044pts | 87% | 5 stars

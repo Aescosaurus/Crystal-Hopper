@@ -17,6 +17,7 @@ Campaign::Campaign( Keyboard& kbd,Mouse& mouse,Graphics& gfx,
 	pointCounter( startPoints ),
 	optionsMenu( optionsMenu )
 {
+	UpdateSaveInfo();
 	GotoNextLevel();
 }
 

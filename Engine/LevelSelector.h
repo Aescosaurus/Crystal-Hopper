@@ -14,7 +14,7 @@ public:
 	void Draw() const;
 	
 	// Tells what level to go to, -1 = no go.
-	int GotoLevel() const;
+	int GotoLevel();
 private:
 	const Mouse& mouse;
 	Graphics& gfx;
@@ -25,5 +25,5 @@ private:
 	int minStarPos;
 	int maxStarPos = 0;
 
-	PlanetMenu earth = PlanetMenu{ Vei2{ 300,350 },"Images/PlanetEarth.bmp" };
+	PlanetMenu earth = PlanetMenu{ Vei2{ 300,350 },0,"Images/PlanetEarth.bmp" };
 };

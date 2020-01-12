@@ -36,7 +36,7 @@ void LevelSelector::Draw() const
 	earth.Draw( starPos,gfx );
 }
 
-int LevelSelector::GotoLevel() const
+int LevelSelector::GotoLevel()
 {
 	int total = -1;
 	total += earth.GetReaction() * 1;
