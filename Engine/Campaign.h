@@ -61,6 +61,7 @@ private:
 	void OpenEndLevelScreen();
 	// Adds floors and crystals and stuff.
 	void ReadFile( const std::string& filename );
+	void UpdateSaveInfo();
 	// Call this with curLevel++ so I can keep const.
 	std::string GetNextLevelName( int curLevel ) const;
 	int Level2Index() const;

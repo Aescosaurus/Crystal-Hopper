@@ -345,8 +345,8 @@ void Campaign::Update()
 		if( endLevelScreen.PressedContinue() ||
 			kbd.KeyIsPressed( VK_RETURN ) )
 		{
-			gameState = State::Gameplay;
 			GotoNextLevel();
+			gameState = State::Gameplay;
 		}
 		else if( endLevelScreen.PressedRetry() ||
 			kbd.KeyIsPressed( 'R' ) )
@@ -452,7 +452,7 @@ void Campaign::GotoNextLevel()
 	endLevelTimer.Reset();
 	pointSubtracter.Reset();
 
-	// TODO: Save data to file.
+	// UpdateSaveInfo();
 
 	// Reset title fade, jumps and points.
 	titlePercent = 1.0f;
@@ -477,6 +477,7 @@ void Campaign::OpenEndLevelScreen()
 	endLevelTimer.Reset();
 
 	const auto percent = float( points ) / startPoints;
+	UpdateSaveInfo();
 	// #if !NDEBUG
 	Logger::Write( "Level" + std::to_string( curLevel - 1 ) +
 		": " + std::to_string( points ) + "pts | " +
@@ -670,6 +671,49 @@ void Campaign::ReadFile( const std::string& filename )
 		{
 			assert( false );
 		}
+	}
+}
+
+void Campaign::UpdateSaveInfo()
+{
+	using namespace std;
+
+	const auto read_line = []( ifstream& file_stream )
+	{
+		string temp_str = "0";
+		for( char c = file_stream.get();
+			c != '\n' && file_stream.good();
+			c = file_stream.get() )
+		{
+			temp_str += c;
+		}
+		return( temp_str );
+	};
+
+	const int expectedLines = nPlanets * 15;
+	vector<int> lines;
+
+	{
+		ifstream in{ "Misc/Save.txt" };
+		assert( in.good() );
+
+		while( in.good() )
+		{
+			lines.emplace_back( std::stoi( read_line( in ) ) );
+		}
+
+		while( lines.size() < expectedLines ) lines.emplace_back( 0 );
+	}
+
+	lines[curLevel - 1] = max( endLevelScreen.Points2Stars(
+		float( points ) / startPoints ),lines[curLevel - 1] );
+
+	ofstream out{ "Misc/Save.txt" };
+	assert( out.good() );
+
+	for( auto line : lines )
+	{
+		out << std::to_string( line ) << '\n';
 	}
 }
 
