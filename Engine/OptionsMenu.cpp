@@ -13,6 +13,7 @@ void OptionsMenu::Update( const Mouse& mouse )
 	menuButton.Update( msPos,msDown );
 
 	invertControls.Update( msPos,msDown );
+	clickMovement.Update( msPos,msDown );
 }
 
 void OptionsMenu::Draw( Graphics& gfx ) const
@@ -20,6 +21,7 @@ void OptionsMenu::Draw( Graphics& gfx ) const
 	menuButton.Draw( gfx );
 
 	invertControls.Draw( gfx );
+	clickMovement.Draw( gfx );
 }
 
 void OptionsMenu::Save()
@@ -28,6 +30,7 @@ void OptionsMenu::Save()
 	assert( out.good() );
 
 	out << invertControls.Write() << '\n';
+	out << clickMovement.Write() << '\n';
 }
 
 void OptionsMenu::Load()
@@ -48,6 +51,7 @@ void OptionsMenu::Load()
 	else
 	{
 		invertControls.Read( read_line( in ) );
+		clickMovement.Read( read_line( in ) );
 	}
 }
 
@@ -59,4 +63,9 @@ bool OptionsMenu::BackToMenu() const
 bool OptionsMenu::DoInvertControls() const
 {
 	return( invertControls.IsChecked() );
+}
+
+bool OptionsMenu::DoClickMovement() const
+{
+	return( clickMovement.IsChecked() );
 }

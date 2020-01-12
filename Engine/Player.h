@@ -34,6 +34,7 @@ public:
 	void FlipSlowPercent();
 	void RotateGravity();
 	void SetInvertControls( bool inverse );
+	void SetClickMovement( bool click );
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;

@@ -12,3 +12,6 @@ Level32: 532pts | 44% | 5 stars
 Level32: 790pts | 65% | 5 stars
 Level32: 483pts | 40% | 5 stars
 Level32: 1045pts | 87% | 5 stars
+Level0: 993pts | 82% | 3 stars
+Level0: 944pts | 78% | 3 stars
+Level0: 1097pts | 91% | 5 stars

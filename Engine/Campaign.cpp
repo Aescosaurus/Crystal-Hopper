@@ -420,6 +420,7 @@ void Campaign::RestartLevel()
 void Campaign::UpdateOptions()
 {
 	guy.SetInvertControls( optionsMenu.DoInvertControls() );
+	guy.SetClickMovement( optionsMenu.DoClickMovement() );
 }
 
 void Campaign::LoadLevel( int levelToLoad )

@@ -6,7 +6,7 @@ MouseTracker::MouseTracker( const Mouse& mouse )
 	pMouse( &mouse )
 {}
 
-void MouseTracker::Update()
+void MouseTracker::Update( const Vec2& playerPos )
 {
 	if( pMouse->LeftIsPressed() )
 	{
@@ -15,7 +15,8 @@ void MouseTracker::Update()
 
 		if( lastMousePos == Vei2::Fake() )
 		{
-			lastMousePos = pMouse->GetPos();
+			if( clickMovement ) lastMousePos = playerPos;
+			else lastMousePos = pMouse->GetPos();
 		}
 
 		const Vei2 curMousePos = pMouse->GetPos();
@@ -35,11 +36,16 @@ void MouseTracker::Update()
 
 void MouseTracker::Draw( Color c,Graphics& gfx ) const
 {
-	if( lastMousePos != Vei2::Fake() )
+	if( lastMousePos != Vei2::Fake() && !clickMovement )
 	{
 		gfx.DrawLine( Vec2( lastMousePos ),
 			Vec2( pMouse->GetPos() ),c );
 	}
+}
+
+void MouseTracker::SetClickMovement( bool enabled )
+{
+	clickMovement = enabled;
 }
 
 const Vec2& MouseTracker::GetDiff() const

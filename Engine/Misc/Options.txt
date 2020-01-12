@@ -1,1 +1,2 @@
 Invert Controls: ON
+Click Movement: OFF

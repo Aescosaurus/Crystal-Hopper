@@ -9,8 +9,10 @@ class MouseTracker
 public:
 	MouseTracker( const Mouse& mouse );
 
-	void Update();
+	void Update( const Vec2& playerPos );
 	void Draw( Color c,Graphics& gfx ) const;
+
+	void SetClickMovement( bool enabled );
 
 	const Vec2& GetDiff() const;
 	bool Released() const;
@@ -22,4 +24,5 @@ private:
 	Vec2 diff = Vec2::Fake();
 	bool pressedLastFrame = false;
 	bool canUnpress = false;
+	bool clickMovement = false;
 };

@@ -15,7 +15,7 @@ Player::Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosi
 
 void Player::Update( float dt )
 {
-	mt.Update();
+	mt.Update( pos );
 
 	hasJumped = false;
 
@@ -227,6 +227,11 @@ void Player::RotateGravity()
 void Player::SetInvertControls( bool invert )
 {
 	invertControls = invert;
+}
+
+void Player::SetClickMovement( bool click )
+{
+	mt.SetClickMovement( click );
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const
