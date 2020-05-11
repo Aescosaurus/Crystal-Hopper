@@ -10,7 +10,7 @@ public:
 	{}
 	bool Update( float dt )
 	{
-		curTime += dt;
+		if( curTime <= maxTime ) curTime += dt;
 
 		return( IsDone() );
 	}

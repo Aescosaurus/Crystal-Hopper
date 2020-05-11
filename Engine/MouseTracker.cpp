@@ -13,10 +13,17 @@ void MouseTracker::Update( const Vec2& playerPos )
 		pressedLastFrame = true;
 		canUnpress = false;
 
-		if( lastMousePos == Vei2::Fake() )
+		if( !clickMovement )
 		{
-			if( clickMovement ) lastMousePos = playerPos;
-			else lastMousePos = pMouse->GetPos();
+			if( lastMousePos == Vei2::Fake() )
+			{
+				/*if( clickMovement ) lastMousePos = playerPos;
+				else */lastMousePos = pMouse->GetPos();
+			}
+		}
+		else
+		{
+			lastMousePos = playerPos;
 		}
 
 		const Vei2 curMousePos = pMouse->GetPos();
@@ -70,4 +77,9 @@ const Mouse& MouseTracker::GetMouse() const
 bool MouseTracker::DiffIsReal() const
 {
 	return( diff != Vec2::Fake() );
+}
+
+bool MouseTracker::ClickMovement() const
+{
+	return( clickMovement );
 }

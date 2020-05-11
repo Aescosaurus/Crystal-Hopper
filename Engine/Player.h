@@ -76,4 +76,5 @@ private:
 	Vec2 gravScale = Vec2{ 0.0f,1.0f };
 	float slowPercent = 1.0f;
 	bool invertControls = false;
+	Timer mtStart = 0.1f;
 };

@@ -18,6 +18,7 @@ public:
 	bool Released() const;
 	const Mouse& GetMouse() const;
 	bool DiffIsReal() const;
+	bool ClickMovement() const;
 private:
 	const Mouse* pMouse;
 	Vei2 lastMousePos;

@@ -34,3 +34,7 @@ Level17: 790pts | 65% | 2 stars
 Level37: 1097pts | 91% | 4 stars
 Level22: 985pts | 82% | 4 stars
 Level21: 540pts | 45% | 3 stars
+Level0: 1097pts | 91% | 5 stars
+Level1: 1045pts | 87% | 4 stars
+Level0: 1097pts | 91% | 5 stars
+Level24: 794pts | 66% | 4 stars

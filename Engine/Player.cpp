@@ -15,13 +15,14 @@ Player::Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosi
 
 void Player::Update( float dt )
 {
-	mt.Update( pos );
+	if( mtStart.Update( dt ) ) mt.Update( pos );
 
 	hasJumped = false;
 
 	if( canJump && mt.Released() && !jumpDisabled )
 	{
-		vel += mt.GetDiff() * speed * ( invertControls ? 1.0f : -1.0f );
+		vel += mt.GetDiff() * speed * ( invertControls ? 1.0f : -1.0f ) *
+			( mt.ClickMovement() ? 2.0f : 1.0f );
 		canJump = false;
 		pointsLost += jumpPenalty;
 		hasJumped = true;
