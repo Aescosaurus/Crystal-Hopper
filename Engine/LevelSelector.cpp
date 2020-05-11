@@ -28,6 +28,7 @@ void LevelSelector::Update()
 	earth.Update( starPos,mousePos,mouseDown );
 	moon.Update( starPos,mousePos,mouseDown );
 	mars.Update( starPos,mousePos,mouseDown );
+	jupiter.Update( starPos,mousePos,mouseDown );
 
 	oldMousePos = mousePos;
 }
@@ -42,10 +43,12 @@ void LevelSelector::Draw() const
 	earth.Draw( starPos,gfx );
 	moon.Draw( starPos,gfx );
 	mars.Draw( starPos,gfx );
+	jupiter.Draw( starPos,gfx );
 
 	earth.DrawMenu( gfx );
 	moon.DrawMenu( gfx );
 	mars.DrawMenu( gfx );
+	jupiter.DrawMenu( gfx );
 }
 
 int LevelSelector::GotoLevel()
@@ -54,6 +57,7 @@ int LevelSelector::GotoLevel()
 	total += earth.GetReaction();
 	total += moon.GetReaction();
 	total += mars.GetReaction();
+	total += jupiter.GetReaction();
 	return( total );
 }
 

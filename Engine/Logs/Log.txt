@@ -38,3 +38,7 @@ Level0: 1097pts | 91% | 5 stars
 Level1: 1045pts | 87% | 4 stars
 Level0: 1097pts | 91% | 5 stars
 Level24: 794pts | 66% | 4 stars
+Level44: 29pts | 2% | 1 stars
+Level45: 739pts | 61% | 2 stars
+Level53: 890pts | 74% | 3 stars
+Level54: 941pts | 78% | 3 stars
