@@ -56,12 +56,15 @@ void Game::UpdateModel()
 	// 	wnd.Minimize();
 	// }
 
-	menu.Update( wnd.kbd,wnd.mouse );
-	if( menu.WillExit() )
+	if( gameState == State::Campaign || gameState == State::LevelEditor )
 	{
-		mainGame.RestartLevel();
-		menu.Close();
-		gameState = State::MainMenu;
+		menu.Update( wnd.kbd,wnd.mouse );
+		if( menu.WillExit() )
+		{
+			mainGame.RestartLevel();
+			menu.Close();
+			gameState = State::MainMenu;
+		}
 	}
 	// Don't update if menu is open.
 	if( menu.IsOpen() && !menu.WillRestart() ) return;
@@ -103,6 +106,10 @@ void Game::UpdateModel()
 		{
 			mainGame.LoadLevel( level );
 			gameState = State::Campaign;
+		}
+		else if( selector.BackToMenu() )
+		{
+			gameState = State::MainMenu;
 		}
 	}
 	break;

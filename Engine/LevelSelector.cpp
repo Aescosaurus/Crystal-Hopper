@@ -23,6 +23,8 @@ void LevelSelector::Update()
 		if( starPos.x > maxStarPos ) starPos.x = maxStarPos;
 	}
 
+	menuButton.Update( mousePos,mouseDown );
+
 	earth.Update( starPos,mousePos,mouseDown );
 	moon.Update( starPos,mousePos,mouseDown );
 	mars.Update( starPos,mousePos,mouseDown );
@@ -34,6 +36,8 @@ void LevelSelector::Draw() const
 {
 	gfx.DrawSpriteNormal( starPos.x,starPos.y,
 		*starsImg,SpriteEffect::Copy{} );
+
+	menuButton.Draw( gfx );
 
 	earth.Draw( starPos,gfx );
 	moon.Draw( starPos,gfx );
@@ -51,4 +55,9 @@ int LevelSelector::GotoLevel()
 	total += moon.GetReaction();
 	total += mars.GetReaction();
 	return( total );
+}
+
+bool LevelSelector::BackToMenu() const
+{
+	return( menuButton.IsPressed() );
 }
