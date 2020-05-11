@@ -5,10 +5,17 @@ void OverlayMenu::Update( const Keyboard& kbd,const Mouse& mouse )
 	const auto& msPos = mouse.GetPos();
 	const auto msDown = mouse.LeftIsPressed();
 
+	if( !kbd.KeyIsPressed( VK_ESCAPE ) ) canEscape = true;
+
+	if( canEscape && kbd.KeyIsPressed( VK_ESCAPE ) )
+	{
+		open = !open;
+		canEscape = false;
+	}
+
 	if( !open )
 	{
-		if( menuOpener.Update( msPos,msDown ) ||
-			kbd.KeyIsPressed( VK_SPACE ) )
+		if( menuOpener.Update( msPos,msDown ) )
 		{
 			open = true;
 		}

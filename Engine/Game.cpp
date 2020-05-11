@@ -51,10 +51,10 @@ void Game::UpdateModel()
 	{
 		wnd.Maximize();
 	}
-	if( wnd.kbd.KeyIsPressed( VK_ESCAPE ) )
-	{
-		wnd.Minimize();
-	}
+	// if( wnd.kbd.KeyIsPressed( VK_ESCAPE ) )
+	// {
+	// 	wnd.Minimize();
+	// }
 
 	menu.Update( wnd.kbd,wnd.mouse );
 	if( menu.WillExit() )

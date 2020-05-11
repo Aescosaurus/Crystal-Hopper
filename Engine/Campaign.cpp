@@ -26,8 +26,12 @@ void Campaign::Update()
 	const float origDt = time.Mark();
 	// if( origDt > 1.0f / 15.0f ) dt = 0.0f;
 	// else dt *= 60.0f;
-	const float dt = ( origDt > 1.0f / 15.0f )
+	float dt = ( origDt > 1.0f / 15.0f )
 		? 0.0f : origDt/* * 60.0f*/;
+	if( mouse.LeftIsPressed() )
+	{
+		dt *= jumpSlowdown;
+	}
 
 	// if( origDt > 1.0f / 15.0f ) return;
 
@@ -37,15 +41,15 @@ void Campaign::Update()
 	{
 		// Easily skip levels while testing.
 // #if !NDEBUG
-		if( kbd.KeyIsPressed( VK_RETURN ) )
-		{
-			if( kbd.KeyIsPressed( VK_CONTROL ) || canSkip )
-			{
-				GotoNextLevel();
-			}
-			canSkip = false;
-		}
-		else canSkip = true;
+		// if( kbd.KeyIsPressed( VK_RETURN ) )
+		// {
+		// 	if( kbd.KeyIsPressed( VK_CONTROL ) || canSkip )
+		// 	{
+		// 		GotoNextLevel();
+		// 	}
+		// 	canSkip = false;
+		// }
+		// else canSkip = true;
 // #endif
 
 		// Restart level easily.

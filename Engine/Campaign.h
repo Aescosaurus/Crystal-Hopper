@@ -107,6 +107,7 @@ private:
 	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 	float titlePercent = 1.0f;
 	static constexpr float titleFadeSpeed = 0.41f;
+	static constexpr float jumpSlowdown = 0.2f;
 
 	// CSurfPtr earthBG = SurfCodex::Fetch( "Images/BackgroundEarth.bmp" );
 	// CSurfPtr moonBG = SurfCodex::Fetch( "Images/BackgroundMoon.bmp" );

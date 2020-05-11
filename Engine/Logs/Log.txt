@@ -32,3 +32,4 @@ Level15: 995pts | 82% | 3 stars
 Level18: 993pts | 82% | 4 stars
 Level17: 790pts | 65% | 2 stars
 Level37: 1097pts | 91% | 4 stars
+Level22: 985pts | 82% | 4 stars

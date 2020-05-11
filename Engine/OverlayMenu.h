@@ -21,6 +21,7 @@ private:
 	const Vei2 size = Vei2( Vec2( Graphics::ScreenSize ) / 1.5f );
 	const Vei2 pos = Graphics::GetCenter() - size / 2;
 	bool open = false;
+	bool canEscape = false;
 	Button menuOpener = Button{ Vei2{ Graphics::ScreenWidth - 35,35 },"~" };
 	Button resume = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Resume" };
 	Button restart = Button{ Graphics::GetCenter() - Vei2{ 0,20 },"Restart" };
