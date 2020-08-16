@@ -201,9 +201,6 @@
     <ClInclude Include="PointCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="JupiterBoss.h">
-      <Filter>Header Files\Jupiter</Filter>
-    </ClInclude>
     <ClInclude Include="OptionsMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>

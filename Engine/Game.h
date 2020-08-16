@@ -62,7 +62,7 @@ private:
 	State gameState = State::MainMenu;
 
 	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,180 },"Start New Game" };
-	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,90 },"Level Select" };
+	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,90 },"Play" };
 	Button startLevelEditor = Button{ Graphics::GetCenter() + Vei2{ 0,0 },"Level Editor" };
 	Button optionsButton = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Options" };
 	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,170 },"Quit" };

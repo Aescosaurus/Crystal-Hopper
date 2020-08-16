@@ -12,6 +12,8 @@ public:
 
 	void Update();
 	void Draw() const;
+
+	void Reset();
 	
 	// Tells what level to go to, -1 = no go.
 	int GotoLevel();

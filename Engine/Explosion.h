@@ -27,6 +27,7 @@ public:
 		MarsTurretBoop,
 		ParticleDissipate,
 		DustDissipate,
+		JumpRestore,
 		Count
 	};
 public:

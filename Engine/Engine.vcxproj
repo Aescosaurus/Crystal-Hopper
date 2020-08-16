@@ -143,7 +143,6 @@
     <ClInclude Include="GravityFlipper.h" />
     <ClInclude Include="GravRotator.h" />
     <ClInclude Include="GravSlowField.h" />
-    <ClInclude Include="JupiterBoss.h" />
     <ClInclude Include="JupiterCrystal.h" />
     <ClInclude Include="JupiterFloor.h" />
     <ClInclude Include="LevelEnder.h" />

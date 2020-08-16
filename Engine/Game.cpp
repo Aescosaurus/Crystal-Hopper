@@ -75,18 +75,19 @@ void Game::UpdateModel()
 	{
 		const auto msPos = wnd.mouse.GetPos();
 		const auto msDown = wnd.mouse.LeftIsPressed();
-		if( startCampaign.Update( msPos,msDown ) )
-		{
-			gameState = State::Campaign;
-		}
+		// if( startCampaign.Update( msPos,msDown ) )
+		// {
+		// 	gameState = State::Campaign;
+		// }
 		if( levelSelect.Update( msPos,msDown ) )
 		{
 			gameState = State::LevelSelect;
+			selector.Reset();
 		}
-		if( startLevelEditor.Update( msPos,msDown ) )
-		{
-			gameState = State::LevelEditor;
-		}
+		// if( startLevelEditor.Update( msPos,msDown ) )
+		// {
+		// 	gameState = State::LevelEditor;
+		// }
 		if( optionsButton.Update( msPos,msDown ) )
 		{
 			gameState = State::Options;
@@ -148,9 +149,9 @@ void Game::ComposeFrame()
 	switch( gameState )
 	{
 	case State::MainMenu:
-		startCampaign.Draw( gfx );
+		// startCampaign.Draw( gfx );
 		levelSelect.Draw( gfx );
-		startLevelEditor.Draw( gfx );
+		// startLevelEditor.Draw( gfx );
 		optionsButton.Draw( gfx );
 		quitButton.Draw( gfx );
 		break;

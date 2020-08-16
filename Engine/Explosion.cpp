@@ -13,7 +13,8 @@ CSurfPtr Explosion::surfSheets[int( Type::Count )] =
 	SurfCodex::Fetch( "Images/GroundBounceAnim.bmp" ),
 	SurfCodex::Fetch( "Images/MarsTurretBoopAnim.bmp" ),
 	SurfCodex::Fetch( "Images/ParticleDissipateAnim.bmp" ),
-	SurfCodex::Fetch( "Images/DustDissipateAnim.bmp" )
+	SurfCodex::Fetch( "Images/DustDissipateAnim.bmp" ),
+	SurfCodex::Fetch( "Images/JumpRestoreAnim.bmp" )
 };
 
 Explosion::Explosion( const Vec2& pos,Type t )

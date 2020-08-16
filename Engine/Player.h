@@ -35,6 +35,7 @@ public:
 	void RotateGravity();
 	void SetInvertControls( bool inverse );
 	void SetClickMovement( bool click );
+	void RestoreJump();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;

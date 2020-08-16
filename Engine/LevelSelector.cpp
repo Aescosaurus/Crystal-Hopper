@@ -51,6 +51,12 @@ void LevelSelector::Draw() const
 	jupiter.DrawMenu( gfx );
 }
 
+void LevelSelector::Reset()
+{
+	oldMousePos = mouse.GetPos();
+	starPos = Vei2{ 0,0 };
+}
+
 int LevelSelector::GotoLevel()
 {
 	int total = -1;

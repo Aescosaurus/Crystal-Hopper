@@ -1,2 +1,2 @@
-Invert Controls: OFF
-Click Movement: ON
+Invert Controls: ON
+Click Movement: OFF
