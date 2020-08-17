@@ -4,6 +4,7 @@
 void EndLevelMenu::Update( const Mouse& mouse )
 {
 	retry.Update( mouse.GetPos(),mouse.LeftIsPressed() );
+	menu.Update( mouse.GetPos(),mouse.LeftIsPressed() );
 	if( !lost )
 	{
 		resume.Update( mouse.GetPos(),mouse.LeftIsPressed() );
@@ -15,6 +16,7 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 	gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
 
 	retry.Draw( gfx );
+	menu.Draw( gfx );
 	if( !lost )
 	{
 		resume.Draw( gfx );
@@ -85,6 +87,11 @@ bool EndLevelMenu::PressedRetry() const
 bool EndLevelMenu::PressedContinue() const
 {
 	return( resume.IsPressed() );
+}
+
+bool EndLevelMenu::PressedMenu() const
+{
+	return( menu.IsPressed() );
 }
 
 int EndLevelMenu::Points2Stars( float percent ) const

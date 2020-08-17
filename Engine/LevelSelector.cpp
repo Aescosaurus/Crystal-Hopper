@@ -4,8 +4,8 @@
 LevelSelector::LevelSelector( const Mouse& mouse,Graphics& gfx )
 	:
 	mouse( mouse ),
-	gfx( gfx ),
-	minStarPos( -starsImg->GetWidth() + Graphics::ScreenWidth )
+	gfx( gfx )
+	// minStarPos( -starsImg->GetWidth() + Graphics::ScreenWidth )
 {}
 
 void LevelSelector::Update()
@@ -55,6 +55,10 @@ void LevelSelector::Reset()
 {
 	oldMousePos = mouse.GetPos();
 	starPos = Vei2{ 0,0 };
+	earth.ReloadSaveInfo();
+	moon.ReloadSaveInfo();
+	mars.ReloadSaveInfo();
+	jupiter.ReloadSaveInfo();
 }
 
 int LevelSelector::GotoLevel()

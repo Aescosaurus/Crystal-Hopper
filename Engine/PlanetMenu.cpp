@@ -6,7 +6,8 @@ PlanetMenu::PlanetMenu( const Vei2& pos,int planetNum,const std::string& img )
 	:
 	pos( pos ),
 	planetNum( planetNum ),
-	img( SurfCodex::Fetch( img ) ),
+	img( SurfCodex::Fetch( img + ".bmp" ) ),
+	grayImg( SurfCodex::Fetch( img + "Gray.bmp" ) ),
 	clickArea( pos,this->img->GetWidth(),this->img->GetHeight() )
 {
 	( this->pos ).x -= ( this->img )->GetWidth() / 2;
@@ -38,7 +39,7 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown 
 	else
 	{
 		if( clickArea.GetMovedBy( offset ).ContainsPoint( mousePos ) &&
-			mouseDown && canClick )
+			mouseDown && canClick && levelButtons.size() > 0 )
 		{
 			ReloadSaveInfo();
 			menuOpen = true;
@@ -51,8 +52,20 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown 
 void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
 {
 	// TODO: Rotating planets?
-	gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
-		*img,SpriteEffect::Chroma{ Colors::Magenta } );
+	if( levelButtons.size() < 1 )
+	{
+		gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
+			*grayImg,SpriteEffect::Chroma{ Colors::Magenta } );
+
+		gfx.DrawSpriteNormal( pos.x + offset.x + img->GetWidth() / 2 - lockIcon->GetWidth() / 2,
+			pos.y + offset.y + img->GetHeight() / 2 - lockIcon->GetHeight() / 2,
+			*lockIcon,SpriteEffect::Chroma{ Colors::Magenta } );
+	}
+	else
+	{
+		gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
+			*img,SpriteEffect::Chroma{ Colors::Magenta } );
+	}
 }
 
 void PlanetMenu::DrawMenu( Graphics& gfx ) const
@@ -90,20 +103,24 @@ void PlanetMenu::ReloadSaveInfo()
 
 	std::ifstream in{ "Misc/Save.txt" };
 	assert( in.good() );
-	std::string temp;
+	std::string temp = "";
 	for( int i = 0; i < planetNum * 15; ++i ) std::getline( in,temp );
 	for( int y = 0; y < 3; ++y )
 	{
 		for( int x = 0; x < 5; ++x )
 		{
-			levelButtons.emplace_back( Button{
-				buttonPos + padding.X() * x + padding.Y() * y,
-				std::to_string( y * 5 + x + 1 ) } );
+			if( temp != "0" )
+			{
+				levelButtons.emplace_back( Button{
+					buttonPos + padding.X() * x + padding.Y() * y,
+					std::to_string( y * 5 + x + 1 ) } );
 
-			std::getline( in,temp );
-			levelStars.emplace_back( std::make_pair<Vei2,int>(
-				buttonPos + padding.X() * x + padding.Y() * y - starPadding,
-				std::stoi( temp ) ) );
+				std::getline( in,temp );
+				levelStars.emplace_back( std::make_pair<Vei2,int>(
+					buttonPos + padding.X() * x + padding.Y() * y - starPadding,
+					std::stoi( temp ) ) );
+			}
+			else break;
 		}
 	}
 }

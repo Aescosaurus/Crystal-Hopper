@@ -17,7 +17,7 @@ Campaign::Campaign( Keyboard& kbd,Mouse& mouse,Graphics& gfx,
 	pointCounter( startPoints ),
 	optionsMenu( optionsMenu )
 {
-	UpdateSaveInfo();
+	UpdateSaveInfo( true );
 	GotoNextLevel();
 }
 
@@ -353,8 +353,8 @@ void Campaign::Update()
 			GotoNextLevel();
 			gameState = State::Gameplay;
 		}
-		else if( endLevelScreen.PressedRetry() ||
-			kbd.KeyIsPressed( 'R' ) )
+		else if( endLevelScreen.PressedRetry()/* ||
+			kbd.KeyIsPressed( 'R' )*/ )
 		{
 			gameState = State::Gameplay;
 			RestartLevel();
@@ -432,6 +432,11 @@ void Campaign::LoadLevel( int levelToLoad )
 {
 	curLevel = levelToLoad;
 	GotoNextLevel();
+}
+
+bool Campaign::BackToMenu() const
+{
+	return( endLevelScreen.PressedMenu() );
 }
 
 void Campaign::GotoNextLevel()
@@ -680,7 +685,7 @@ void Campaign::ReadFile( const std::string& filename )
 	}
 }
 
-void Campaign::UpdateSaveInfo()
+void Campaign::UpdateSaveInfo( bool initSave )
 {
 	using namespace std;
 
@@ -713,7 +718,8 @@ void Campaign::UpdateSaveInfo()
 	}
 
 	const auto actualLevel = max( curLevel - 1,0 );
-	lines[actualLevel] = max( endLevelScreen.Points2Stars(
+	lines[actualLevel] = initSave ? lines[actualLevel] :
+		max( endLevelScreen.Points2Stars(
 		float( points ) / startPoints ),lines[actualLevel] );
 
 	{

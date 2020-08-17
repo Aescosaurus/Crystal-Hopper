@@ -46,11 +46,11 @@ void Game::UpdateModel()
 	{
 		wnd.Kill();
 	}
-	if( wnd.kbd.KeyIsPressed( VK_CONTROL ) &&
-		wnd.kbd.KeyIsPressed( 'F' ) )
-	{
-		wnd.Maximize();
-	}
+	// if( wnd.kbd.KeyIsPressed( VK_CONTROL ) &&
+	// 	wnd.kbd.KeyIsPressed( 'F' ) )
+	// {
+	// 	wnd.Maximize();
+	// }
 	// if( wnd.kbd.KeyIsPressed( VK_ESCAPE ) )
 	// {
 	// 	wnd.Minimize();
@@ -59,11 +59,11 @@ void Game::UpdateModel()
 	if( gameState == State::Campaign || gameState == State::LevelEditor )
 	{
 		menu.Update( wnd.kbd,wnd.mouse );
-		if( menu.WillExit() )
+		if( menu.WillExit() || mainGame.BackToMenu() )
 		{
 			mainGame.RestartLevel();
 			menu.Close();
-			gameState = State::MainMenu;
+			gameState = State::LevelSelect;
 		}
 	}
 	// Don't update if menu is open.

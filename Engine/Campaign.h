@@ -56,12 +56,13 @@ public:
 	void RestartLevel();
 	void UpdateOptions();
 	void LoadLevel( int levelToLoad );
+	bool BackToMenu() const;
 private:
 	void GotoNextLevel();
 	void OpenEndLevelScreen();
 	// Adds floors and crystals and stuff.
 	void ReadFile( const std::string& filename );
-	void UpdateSaveInfo();
+	void UpdateSaveInfo( bool initSave = false );
 	// Call this with curLevel++ so I can keep const.
 	std::string GetNextLevelName( int curLevel ) const;
 	int Level2Index() const;

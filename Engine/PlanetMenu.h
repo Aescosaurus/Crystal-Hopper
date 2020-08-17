@@ -23,6 +23,7 @@ private:
 	Vei2 pos;
 	int planetNum;
 	CSurfPtr img;
+	CSurfPtr grayImg;
 	RectI clickArea;
 
 	bool menuOpen = false;
@@ -34,4 +35,6 @@ private:
 	std::vector<std::pair<Vei2,int>> levelStars;
 	CSurfPtr filledStar = SurfCodex::Fetch( "Images/FilledPlanetStar.bmp" );
 	CSurfPtr emptyStar = SurfCodex::Fetch( "Images/EmptyPlanetStar.bmp" );
+
+	CSurfPtr lockIcon = SurfCodex::Fetch( "Images/Lock.bmp" );
 };
