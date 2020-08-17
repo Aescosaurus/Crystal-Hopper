@@ -13,7 +13,9 @@ void EndLevelMenu::Update( const Mouse& mouse )
 
 void EndLevelMenu::Draw( Graphics& gfx ) const
 {
-	gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
+	// gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
+	gfx.DrawSpriteNormal( pos.x,pos.y,*menuBGSpr,
+		SpriteEffect::Chroma{} );
 
 	retry.Draw( gfx );
 	menu.Draw( gfx );
@@ -77,6 +79,13 @@ void EndLevelMenu::Lose()
 void EndLevelMenu::UnLose()
 {
 	lost = false;
+}
+
+void EndLevelMenu::Reset()
+{
+	retry.Reset();
+	resume.Reset();
+	menu.Reset();
 }
 
 bool EndLevelMenu::PressedRetry() const

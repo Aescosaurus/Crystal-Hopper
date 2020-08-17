@@ -1,4 +1,5 @@
 #include "OverlayMenu.h"
+#include "SpriteEffect.h"
 
 void OverlayMenu::Update( const Keyboard& kbd,const Mouse& mouse )
 {
@@ -36,7 +37,9 @@ void OverlayMenu::Draw( Graphics& gfx ) const
 	}
 	else
 	{
-		gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
+		// gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
+		gfx.DrawSpriteNormal( pos.x,pos.y,*menuBGSpr,
+			SpriteEffect::Chroma{} );
 
 		resume.Draw( gfx );
 		restart.Draw( gfx );

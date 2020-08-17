@@ -26,4 +26,6 @@ private:
 	Button resume = Button{ Graphics::GetCenter() - Vei2{ 0,100 },"Resume" };
 	Button restart = Button{ Graphics::GetCenter() - Vei2{ 0,20 },"Restart" };
 	Button quit = Button{ Graphics::GetCenter() + Vei2{ 0,60 },"Menu" };
+
+	CSurfPtr menuBGSpr = SurfCodex::Fetch( "Images/MenuBG.bmp" );
 };

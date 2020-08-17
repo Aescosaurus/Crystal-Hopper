@@ -56,7 +56,7 @@ public:
 	void RestartLevel();
 	void UpdateOptions();
 	void LoadLevel( int levelToLoad );
-	bool BackToMenu() const;
+	bool BackToMenu();
 private:
 	void GotoNextLevel();
 	void OpenEndLevelScreen();

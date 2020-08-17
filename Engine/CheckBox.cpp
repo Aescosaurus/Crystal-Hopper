@@ -4,7 +4,7 @@
 CheckBox::CheckBox( const Vei2& center,const std::string& text )
 	:
 	size( GetSize( text ) ),
-	pos( center - size / 2 ),
+	pos( center ),
 	text( text )
 {}
 

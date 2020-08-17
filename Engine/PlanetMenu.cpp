@@ -76,7 +76,8 @@ void PlanetMenu::DrawMenu( Graphics& gfx ) const
 
 		for( const auto& button : levelButtons )
 		{
-			button.DrawBackground( gfx );
+			// button.DrawBackground( gfx );
+			button.Draw( gfx );
 		}
 		for( const auto& stars : levelStars )
 		{

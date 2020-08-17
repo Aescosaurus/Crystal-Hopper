@@ -66,3 +66,12 @@ Level0: 1097pts | 91% | 5 stars
 Level0: 1097pts | 91% | 5 stars
 Level0: 1098pts | 91% | 5 stars
 Level2: 1096pts | 91% | 5 stars
+Level9: 788pts | 65% | 3 stars
+Level2: 1044pts | 87% | 4 stars
+Level0: 1097pts | 91% | 5 stars
+Level0: 1097pts | 91% | 5 stars
+Level0: 1097pts | 91% | 5 stars
+Level0: 1097pts | 91% | 5 stars
+Level1: 1047pts | 87% | 4 stars
+Level0: 1097pts | 91% | 5 stars
+Level1: 1097pts | 91% | 5 stars

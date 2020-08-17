@@ -434,9 +434,14 @@ void Campaign::LoadLevel( int levelToLoad )
 	GotoNextLevel();
 }
 
-bool Campaign::BackToMenu() const
+bool Campaign::BackToMenu()
 {
-	return( endLevelScreen.PressedMenu() );
+	if( endLevelScreen.PressedMenu() )
+	{
+		endLevelScreen.Reset();
+		return( true );
+	}
+	return( false );
 }
 
 void Campaign::GotoNextLevel()
@@ -768,3 +773,14 @@ int Campaign::Level2Index() const
 	assert( false );
 	return( -1 );
 }
+
+/*
+title screen bg img
+ability to bring up options menu from upper right menu
+button sprites
+mouse sensitivity slider
+reset save option
+options menu title
+
+potential name - crystal hopper
+*/
