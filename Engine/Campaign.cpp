@@ -391,10 +391,12 @@ void Campaign::Draw()
 	// Draw level title.
 	if( titlePercent > 0.0f )
 	{
+		const auto titleCol = curLevel < lunarStart ? Colors::Gray : Colors::White;
+
 		luckyPixel->DrawTextCentered( levelName,
-			Graphics::GetCenter() - Vei2{ 0,100 },Colors::White,
+			Graphics::GetCenter() - Vei2{ 0,50 },titleCol,
 			SpriteEffect::SubstituteFade{ Colors::White,
-			Colors::White,titlePercent },gfx );
+			titleCol,titlePercent },gfx );
 	}
 
 	// Draw points counter.
@@ -780,5 +782,12 @@ ability to bring up options menu from upper right menu
 mouse sensitivity slider
 reset save option
 
-potential name - crystal hopper
+explanation of each option(?)
+remove dust when player sits on ground
+put continue on top center and menu retry on the bottom corners
+make level titles more visible
+
+tutorial
+ending
+change white drag line to a bunch of arrows/pixels stacked on top of each other
 */

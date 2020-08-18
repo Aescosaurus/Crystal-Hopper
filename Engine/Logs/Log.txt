@@ -80,3 +80,5 @@ Level0: 1097pts | 91% | 5 stars
 Level1: 943pts | 78% | 3 stars
 Level1: 1047pts | 87% | 4 stars
 Level2: 1097pts | 91% | 5 stars
+Level3: 1097pts | 91% | 4 stars
+Level4: 1146pts | 95% | 5 stars
