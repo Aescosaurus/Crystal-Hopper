@@ -1,5 +1,6 @@
 #include "MouseTracker.h"
 #include <cassert>
+#include "SpriteEffect.h"
 
 MouseTracker::MouseTracker( const Mouse& mouse )
 	:
@@ -45,8 +46,24 @@ void MouseTracker::Draw( Color c,Graphics& gfx ) const
 {
 	if( lastMousePos != Vei2::Fake() && !clickMovement )
 	{
-		gfx.DrawLine( Vec2( lastMousePos ),
-			Vec2( pMouse->GetPos() ),c );
+		// gfx.DrawLine( Vec2( lastMousePos ),
+		// 	Vec2( pMouse->GetPos() ),c );
+
+		const auto diff = Vec2( lastMousePos - pMouse->GetPos() );
+		const auto len = diff.GetLength<float>();
+		if( len > 0.0f )
+		{
+			const auto norm = diff.GetNormalized();
+			auto pos = Vec2( lastMousePos );
+			static constexpr auto step = 5;
+			for( int i = 0; i < int( len ) / step; ++i )
+			{
+				gfx.DrawSprite( int( pos.x ),int( pos.y ),
+					c == Colors::White ? *whiteSpr : *redSpr,
+					SpriteEffect::Copy{} );
+				pos -= norm * step;
+			}
+		}
 	}
 }
 

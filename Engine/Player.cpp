@@ -71,6 +71,8 @@ void Player::Update( float dt )
 			invincible = false;
 		}
 	}
+
+	oldPos = pos;
 }
 
 void Player::Draw( Graphics& gfx ) const
@@ -121,8 +123,11 @@ void Player::CollideWith( const Line& l,float dt )
 	ClampSpeed();
 	pos += vel * dt * 60.0f;
 
-	explosions->emplace_back( std::make_unique<Explosion>( pos,
-		Explosion::Type::GroundBounce ) );
+	if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
+	{
+		explosions->emplace_back( std::make_unique<Explosion>( pos,
+			Explosion::Type::GroundBounce ) );
+	}
 }
 
 void Player::CollideWith( const Circle& c,float dt )
@@ -134,8 +139,11 @@ void Player::CollideWith( const Circle& c,float dt )
 	ClampSpeed(); // Just in case.
 	pos += vel * dt * 60.0f;
 
-	explosions->emplace_back( std::make_unique<Explosion>( pos,
-		Explosion::Type::GroundBounce ) );
+	if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
+	{
+		explosions->emplace_back( std::make_unique<Explosion>( pos,
+			Explosion::Type::GroundBounce ) );
+	}
 }
 
 void Player::ClampSpeed()
@@ -184,8 +192,11 @@ void Player::DontHitWalls( float dt )
 		pos.x -= vel.x * dt * 60.0f * 1.1f;
 		vel.x *= -1.0f;
 		vel *= bounceLoss;
-		explosions->emplace_back( std::make_unique<Explosion>( pos,
-			Explosion::Type::GroundBounce ) );
+		if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
+		{
+			explosions->emplace_back( std::make_unique<Explosion>( pos,
+				Explosion::Type::GroundBounce ) );
+		}
 	}
 	if( pos.y + hSize.y >= float( Graphics::ScreenHeight - 40 ) ||
 		pos.y - hSize.y <= 0.0f )
@@ -194,8 +205,11 @@ void Player::DontHitWalls( float dt )
 		pos.y -= vel.y * dt * 60.0f * 1.1f;
 		vel.y *= -1.0f;
 		vel *= bounceLoss;
-		explosions->emplace_back( std::make_unique<Explosion>( pos,
-			Explosion::Type::GroundBounce ) );
+		if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
+		{
+			explosions->emplace_back( std::make_unique<Explosion>( pos,
+				Explosion::Type::GroundBounce ) );
+		}
 	}
 }
 

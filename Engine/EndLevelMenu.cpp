@@ -47,7 +47,7 @@ void EndLevelMenu::Draw( Graphics& gfx ) const
 	}
 
 	luckyPixel->DrawText( "Points:" + std::to_string( points ),
-		Vei2{ 350,250 },Colors::Yellow,gfx );
+		Vei2{ 350,220 },Colors::Yellow,gfx );
 }
 
 void EndLevelMenu::UpdatePoints( float percent,int points )

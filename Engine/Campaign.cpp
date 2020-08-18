@@ -782,12 +782,6 @@ ability to bring up options menu from upper right menu
 mouse sensitivity slider
 reset save option
 
-explanation of each option(?)
-remove dust when player sits on ground
-put continue on top center and menu retry on the bottom corners
-make level titles more visible
-
 tutorial
 ending
-change white drag line to a bunch of arrows/pixels stacked on top of each other
 */

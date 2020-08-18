@@ -3,6 +3,7 @@
 #include "Mouse.h"
 #include "Vec2.h"
 #include "Graphics.h"
+#include "Codex.h"
 
 class MouseTracker
 {
@@ -26,4 +27,7 @@ private:
 	bool pressedLastFrame = false;
 	bool canUnpress = false;
 	bool clickMovement = false;
+
+	CSurfPtr whiteSpr = SurfCodex::Fetch( "Images/LineWhite.bmp" );
+	CSurfPtr redSpr = SurfCodex::Fetch( "Images/LineRed.bmp" );
 };

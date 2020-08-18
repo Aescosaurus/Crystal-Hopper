@@ -51,6 +51,8 @@ private:
 	MouseTracker mt;
 	static constexpr int size = 24; // Diameter, not radius.
 	Vec2 pos;
+	Vec2 oldPos = Vec2::Zero();
+	static constexpr float bounceTolerance = 0.02f;
 	Vec2 vel;
 	static constexpr float velDecay = 0.995f;
 	static constexpr float speed = 2.2f;
