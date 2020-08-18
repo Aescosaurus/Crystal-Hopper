@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "SpriteEffect.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -27,7 +28,7 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	mainGame( wnd.kbd,wnd.mouse,gfx,options ),
 	editor( wnd.kbd,wnd.mouse,gfx ),
-	selector( wnd.mouse,gfx )
+	selector( wnd.mouse,wnd.kbd,gfx )
 {}
 
 void Game::Go()
@@ -149,6 +150,8 @@ void Game::ComposeFrame()
 	switch( gameState )
 	{
 	case State::MainMenu:
+		gfx.DrawSpriteNormal( 0,0,*titleBG,
+			SpriteEffect::Copy{} );
 		// startCampaign.Draw( gfx );
 		levelSelect.Draw( gfx );
 		// startLevelEditor.Draw( gfx );

@@ -62,13 +62,15 @@ private:
 	State gameState = State::MainMenu;
 
 	Button startCampaign = Button{ Graphics::GetCenter() - Vei2{ 0,180 },"Start New Game" };
-	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,0 },"Play" };
+	Button levelSelect = Button{ Graphics::GetCenter() - Vei2{ 0,80 },"Play" };
 	Button startLevelEditor = Button{ Graphics::GetCenter() + Vei2{ 0,0 },"Level Editor" };
-	Button optionsButton = Button{ Graphics::GetCenter() + Vei2{ 0,80 },"Options" };
-	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,170 },"Quit" };
+	Button optionsButton = Button{ Graphics::GetCenter() + Vei2{ 0,20 },"Options" };
+	Button quitButton = Button{ Graphics::GetCenter() + Vei2{ 0,200 },"Quit" };
 
 	Vei2 oldMousePos;
 	Vei2 oldMouse2;
 	Vei2 oldMouse3;
+
+	CSurfPtr titleBG = SurfCodex::Fetch( "Images/TitleBG.bmp" );
 	/********************************/
 };

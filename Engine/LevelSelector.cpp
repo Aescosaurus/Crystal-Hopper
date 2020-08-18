@@ -1,9 +1,10 @@
 #include "LevelSelector.h"
 #include "SpriteEffect.h"
 
-LevelSelector::LevelSelector( const Mouse& mouse,Graphics& gfx )
+LevelSelector::LevelSelector( const Mouse& mouse,const Keyboard& kbd,Graphics& gfx )
 	:
 	mouse( mouse ),
+	kbd( kbd ),
 	gfx( gfx )
 	// minStarPos( -starsImg->GetWidth() + Graphics::ScreenWidth )
 {}
@@ -73,5 +74,5 @@ int LevelSelector::GotoLevel()
 
 bool LevelSelector::BackToMenu() const
 {
-	return( menuButton.IsPressed() );
+	return( menuButton.IsPressed() || kbd.KeyIsPressed( VK_ESCAPE ) );
 }

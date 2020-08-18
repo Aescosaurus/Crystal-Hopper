@@ -65,6 +65,13 @@ void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
 	{
 		gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
 			*img,SpriteEffect::Chroma{ Colors::Magenta } );
+
+		if( levelButtons.size() < 14 )
+		{
+			gfx.DrawSpriteNormal( pos.x + offset.x + img->GetWidth() / 2 - arrowSpr->GetWidth() / 2,
+				pos.y + offset.y - img->GetHeight() / 2 + 5,
+				*arrowSpr,SpriteEffect::Chroma{} );
+		}
 	}
 }
 

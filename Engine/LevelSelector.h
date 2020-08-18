@@ -4,11 +4,12 @@
 #include "Graphics.h"
 #include "Codex.h"
 #include "PlanetMenu.h"
+#include "Keyboard.h"
 
 class LevelSelector
 {
 public:
-	LevelSelector( const Mouse& mouse,Graphics& gfx );
+	LevelSelector( const Mouse& mouse,const Keyboard& kbd,Graphics& gfx );
 
 	void Update();
 	void Draw() const;
@@ -20,6 +21,7 @@ public:
 	bool BackToMenu() const;
 private:
 	const Mouse& mouse;
+	const Keyboard& kbd;
 	Graphics& gfx;
 
 	Vei2 oldMousePos = Vei2::Zero();

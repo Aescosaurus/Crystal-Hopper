@@ -775,12 +775,10 @@ int Campaign::Level2Index() const
 }
 
 /*
-title screen bg img
+turn options into an overlay menu
 ability to bring up options menu from upper right menu
-button sprites
 mouse sensitivity slider
 reset save option
-options menu title
 
 potential name - crystal hopper
 */

@@ -22,6 +22,8 @@ void OptionsMenu::Draw( Graphics& gfx ) const
 
 	invertControls.Draw( gfx );
 	clickMovement.Draw( gfx );
+
+	font->DrawText( "Options:",Vei2{ 50,50 },Colors::LightGray,gfx );
 }
 
 void OptionsMenu::Save()
