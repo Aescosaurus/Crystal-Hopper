@@ -36,7 +36,8 @@ private:
 		LevelSelect,
 		Campaign,
 		LevelEditor,
-		Options
+		Options,
+		Win
 	};
 public:
 	Game( class MainWindow& wnd );
@@ -72,5 +73,7 @@ private:
 	Vei2 oldMouse3;
 
 	CSurfPtr titleBG = SurfCodex::Fetch( "Images/TitleBG.bmp" );
+	CSurfPtr winBG = SurfCodex::Fetch( "Images/WinScreen.bmp" );
+	Button menuButton = Button{ Vei2{ 450,480 },"Menu" };
 	/********************************/
 };

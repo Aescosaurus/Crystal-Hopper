@@ -117,3 +117,8 @@ const int* EndLevelMenu::GetStarWeights() const
 {
 	return( &starBracketPercents[0] );
 }
+
+bool EndLevelMenu::HasLost() const
+{
+	return( lost );
+}

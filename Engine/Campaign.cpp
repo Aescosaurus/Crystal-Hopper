@@ -420,6 +420,7 @@ void Campaign::Draw()
 
 void Campaign::RestartLevel()
 {
+	win = false;
 	--curLevel; // Lets us reload the same level.
 	GotoNextLevel();
 }
@@ -444,6 +445,11 @@ bool Campaign::BackToMenu()
 		return( true );
 	}
 	return( false );
+}
+
+bool Campaign::Win() const
+{
+	return( win );
 }
 
 void Campaign::GotoNextLevel()
@@ -492,6 +498,11 @@ void Campaign::GotoNextLevel()
 
 void Campaign::OpenEndLevelScreen()
 {
+	if( curLevel > 58 && !endLevelScreen.HasLost() )
+	{
+		win = true;
+	}
+
 	endLevelTimer.Reset();
 
 	const auto percent = float( points ) / startPoints;
@@ -783,5 +794,4 @@ mouse sensitivity slider
 reset save option
 
 tutorial
-ending
 */

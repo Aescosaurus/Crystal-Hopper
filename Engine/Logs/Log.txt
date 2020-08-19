@@ -91,3 +91,8 @@ Level0: 1097pts | 91% | 5 stars
 Level0: 1098pts | 91% | 5 stars
 Level0: 994pts | 82% | 3 stars
 Level15: 1046pts | 87% | 4 stars
+Level59: 942pts | 78% | 4 stars
+Level59: 1pts | 0% | 1 stars
+Level59: 1pts | 0% | 1 stars
+Level59: 1pts | 0% | 1 stars
+Level59: 840pts | 70% | 3 stars

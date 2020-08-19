@@ -123,6 +123,11 @@ void Game::UpdateModel()
 			return;
 		}
 		mainGame.Update();
+		if( mainGame.Win() )
+		{
+			mainGame.RestartLevel();
+			gameState = State::Win;
+		}
 		break;
 	case State::LevelEditor:
 		if( menu.WillRestart() )
@@ -139,6 +144,12 @@ void Game::UpdateModel()
 		{
 			options.Save();
 			mainGame.UpdateOptions();
+			gameState = State::MainMenu;
+		}
+		break;
+	case State::Win:
+		if( menuButton.Update( wnd.mouse.GetPos(),wnd.mouse.LeftIsPressed() ) )
+		{
 			gameState = State::MainMenu;
 		}
 		break;
@@ -172,6 +183,10 @@ void Game::ComposeFrame()
 	case State::Options:
 		options.Draw( gfx );
 		break;
+	case State::Win:
+		gfx.DrawSpriteNormal( 0,0,*winBG,
+			SpriteEffect::Copy{} );
+		menuButton.Draw( gfx );
 	}
 
 	gfx.DrawCircleSafe( wnd.mouse.GetPos(),6,Colors::Red2 );

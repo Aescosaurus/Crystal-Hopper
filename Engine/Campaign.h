@@ -57,6 +57,7 @@ public:
 	void UpdateOptions();
 	void LoadLevel( int levelToLoad );
 	bool BackToMenu();
+	bool Win() const;
 private:
 	void GotoNextLevel();
 	void OpenEndLevelScreen();
@@ -138,4 +139,6 @@ private:
 		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" ),
 		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" )
 	};
+
+	bool win = false;
 };
