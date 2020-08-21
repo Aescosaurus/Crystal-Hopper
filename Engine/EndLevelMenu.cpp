@@ -83,6 +83,8 @@ void EndLevelMenu::UnLose()
 
 void EndLevelMenu::Reset()
 {
+	lost = false;
+
 	retry.Reset();
 	resume.Reset();
 	menu.Reset();

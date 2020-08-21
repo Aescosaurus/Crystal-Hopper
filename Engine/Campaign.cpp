@@ -484,6 +484,7 @@ void Campaign::GotoNextLevel()
 	points = startPoints;
 
 	endLevelScreen.UnLose();
+	endLevelScreen.Reset();
 
 	ReadFile( GetNextLevelName( curLevel++ ) );
 
