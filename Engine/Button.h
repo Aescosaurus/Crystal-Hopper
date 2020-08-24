@@ -32,4 +32,10 @@ private:
 	bool hovering = false;
 	bool canClick = false;
 	bool clicking = false;
+	CSurfPtr edgeSpr = SurfCodex::Fetch( "Images/ButtonEdge.bmp" );
+	CSurfPtr mainSpr = SurfCodex::Fetch( "Images/ButtonMid.bmp" );
+	CSurfPtr edgeLit = SurfCodex::Fetch( "Images/ButtonEdgeLit.bmp" );
+	CSurfPtr mainLit = SurfCodex::Fetch( "Images/ButtonMidLit.bmp" );
+	Surface bg;
+	Surface lit;
 };

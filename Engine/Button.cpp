@@ -1,11 +1,30 @@
 #include "Button.h"
+#include "SpriteEffect.h"
 
 Button::Button( const Vei2& center,const std::string& text )
 	:
 	size( GetSize( text ) ),
 	pos( center - size / 2 ),
-	text( text )
-{}
+	text( text ),
+	bg( size.x + edgeSpr->GetWidth() * 3,size.y ),
+	lit( size.x + edgeSpr->GetWidth() * 3,size.y )
+{
+	bg.DrawRect( 0,0,bg.GetWidth(),bg.GetHeight(),Colors::Magenta );
+	lit.DrawRect( 0,0,bg.GetWidth(),bg.GetHeight(),Colors::Magenta );
+
+	Vei2 sprPos = Vei2::Zero();
+	bg.Overlay( *edgeSpr,sprPos );
+	lit.Overlay( *edgeLit,sprPos );
+	sprPos.x += edgeSpr->GetWidth();
+	for( int i = 0; i < text.size(); ++i )
+	{
+		bg.Overlay( *mainSpr,sprPos );
+		lit.Overlay( *mainLit,sprPos );
+		sprPos.x += luckyPixel->GetCharSize().x;
+	}
+	bg.Overlay( edgeSpr->GetXReversed(),sprPos );
+	lit.Overlay( edgeLit->GetXReversed(),sprPos );
+}
 
 bool Button::Update( const Vei2& mousePos,bool mouseDown )
 {
@@ -25,6 +44,9 @@ bool Button::Update( const Vei2& mousePos,bool mouseDown )
 
 void Button::Draw( Graphics& gfx ) const
 {
+	gfx.DrawSpriteNormal( pos.x/* - edgeSpr->GetWidth()*/,pos.y,
+		hovering ? lit : bg,SpriteEffect::Chroma{} );
+
 	const auto drawCol = hovering
 		? Colors::White
 		: Colors::LightGray;
@@ -72,6 +94,6 @@ Vei2 Button::GetSize( const std::string& msg ) const
 
 bool Button::ContainsPoint( const Vei2& point ) const
 {
-	return( point.x > pos.x && point.x < pos.x + size.x &&
-		point.y > pos.y && point.y < pos.y + size.y );
+	return( point.x > pos.x && point.x < pos.x + size.x + edgeSpr->GetWidth() &&
+		point.y > pos.y && point.y < pos.y + size.y + 4 );
 }

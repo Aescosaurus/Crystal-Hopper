@@ -30,6 +30,8 @@ public:
 	void PutPixelApprox( float x,float y,Color c );
 	void PutPixelApproxSafe( float x,float y,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
+	// Overlays other onto this.
+	void Overlay( const Surface& other,const Vei2& pos );
 
 	Color GetPixel( int x,int y ) const;
 	int GetWidth() const;

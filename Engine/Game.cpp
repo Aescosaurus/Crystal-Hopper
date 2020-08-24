@@ -161,8 +161,10 @@ void Game::ComposeFrame()
 	switch( gameState )
 	{
 	case State::MainMenu:
+#if NDEBUG
 		gfx.DrawSpriteNormal( 0,0,*titleBG,
 			SpriteEffect::Copy{} );
+#endif
 		// startCampaign.Draw( gfx );
 		levelSelect.Draw( gfx );
 		// startLevelEditor.Draw( gfx );

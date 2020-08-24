@@ -178,6 +178,21 @@ void Surface::DrawRect( int x,int y,int width,int height,Color c )
 	}
 }
 
+void Surface::Overlay( const Surface& other,const Vei2& pos )
+{
+	for( int y = 0; y < std::min( height - pos.y,other.height ); ++y )
+	{
+		for( int x = 0; x < std::min( width - pos.x,other.width ); ++x )
+		{
+			const auto pix = other.GetPixel( x,y );
+			// if( pix != Colors::Magenta )
+			{
+				PutPixel( x + pos.x,y + pos.y,pix );
+			}
+		}
+	}
+}
+
 Color Surface::GetPixel( int x,int y ) const
 {
 	assert( x >= 0 );
