@@ -28,6 +28,7 @@ public:
 		ParticleDissipate,
 		DustDissipate,
 		JumpRestore,
+		PlayerOuch,
 		Count
 	};
 public:
@@ -62,6 +63,19 @@ public:
 		const Vec2& vel );
 protected:
 	void UpdateChild( const ExplosionUpdateInfo& exInfo,float dt ) override;
-private:
+protected:
 	Vec2 vel;
+};
+
+class GravityExplosion
+	:
+	public MovingExplosion
+{
+public:
+	GravityExplosion( const Vec2& pos,Type t,float grav );
+protected:
+	void UpdateChild( const ExplosionUpdateInfo& exInfo,float dt ) override;
+private:
+	float gravAcc;
+	static constexpr float fallSpeed = 500.0f;
 };

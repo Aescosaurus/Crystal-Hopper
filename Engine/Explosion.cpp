@@ -1,5 +1,6 @@
 #include "Explosion.h"
 #include "SpriteEffect.h"
+#include "Random.h"
 
 CSurfPtr Explosion::surfSheets[int( Type::Count )] =
 {
@@ -14,7 +15,8 @@ CSurfPtr Explosion::surfSheets[int( Type::Count )] =
 	SurfCodex::Fetch( "Images/MarsTurretBoopAnim.bmp" ),
 	SurfCodex::Fetch( "Images/ParticleDissipateAnim.bmp" ),
 	SurfCodex::Fetch( "Images/DustDissipateAnim.bmp" ),
-	SurfCodex::Fetch( "Images/JumpRestoreAnim.bmp" )
+	SurfCodex::Fetch( "Images/JumpRestoreAnim.bmp" ),
+	SurfCodex::Fetch( "Images/OuchAnim.bmp" )
 };
 
 Explosion::Explosion( const Vec2& pos,Type t )
@@ -69,4 +71,18 @@ MovingExplosion::MovingExplosion( const Vec2& pos,Type t,
 void MovingExplosion::UpdateChild( const ExplosionUpdateInfo& exInfo,float dt )
 {
 	pos += vel * dt;
+}
+
+GravityExplosion::GravityExplosion( const Vec2& pos,Type t,float grav )
+	:
+	MovingExplosion( pos,t,
+		Vec2{ float( Random{ -90.0f,90.0f } ),float( Random{ -90.0f,10.0f } ) } ),
+	gravAcc( grav * fallSpeed )
+{}
+
+void GravityExplosion::UpdateChild( const ExplosionUpdateInfo& exInfo,float dt )
+{
+	MovingExplosion::UpdateChild( exInfo,dt );
+
+	vel.y += gravAcc * dt;
 }

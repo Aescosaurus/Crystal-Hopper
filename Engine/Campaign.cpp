@@ -28,9 +28,26 @@ void Campaign::Update()
 	// else dt *= 60.0f;
 	float dt = ( origDt > 1.0f / 15.0f )
 		? 0.0f : origDt/* * 60.0f*/;
-	if( mouse.LeftIsPressed() )
+	if( mouse.LeftIsPressed() || slowdown > 0.0f )
 	{
 		dt *= jumpSlowdown;
+	}
+
+	if( slowdown > 0.0f )
+	{
+		slowdown -= dt;
+	}
+	else if( slowdown < 0.0f )
+	{
+		slowdown = 0.0f;
+
+		for( int i = 0; i < int( Random{ 5,8 } ); ++i )
+		{
+			particles.emplace_back( std::make_unique<Explosion>(
+				guy.GetPos() + Vec2::Up() * float( Random{ -40.0f,40.0f } ) +
+				Vec2::Right() * float( Random{ -40.0f,40.0f } ),
+				Explosion::Type::Confetti ) );
+		}
 	}
 
 	// if( origDt > 1.0f / 15.0f ) return;
@@ -120,9 +137,7 @@ void Campaign::Update()
 				if( !guy.IsInvincible() )
 				{
 					guy.ApplyInvul();
-					points -= SpikyBoi::pointValue;
-					particles.emplace_back( std::make_unique<Explosion>(
-						guy.GetPos(),Explosion::Type::Confetti ) );
+					PlayerOuch( SpikyBoi::pointValue );
 				}
 			}
 		}
@@ -140,11 +155,7 @@ void Campaign::Update()
 				if( !guy.IsInvincible() )
 				{
 					guy.ApplyInvul();
-					points -= Comet::pointValue;
-					// comet.CreateDust();
-					// comet.CreateDustAt( guy.GetPos() );
-					particles.emplace_back( std::make_unique<Explosion>(
-						guy.GetPos(),Explosion::Type::Confetti ) );
+					PlayerOuch( Comet::pointValue );
 					comet.Destroy();
 				}
 			}
@@ -158,9 +169,7 @@ void Campaign::Update()
 				if( !guy.IsInvincible() )
 				{
 					guy.ApplyInvul();
-					points -= Stalagmite::pointValue;
-					particles.emplace_back( std::make_unique<Explosion>(
-						guy.GetPos(),Explosion::Type::Confetti ) );
+					PlayerOuch( Stalagmite::pointValue );
 				}
 			}
 		}
@@ -178,9 +187,7 @@ void Campaign::Update()
 					if( !guy.IsInvincible() )
 					{
 						guy.ApplyInvul();
-						points -= Marvin::pointValue;
-						particles.emplace_back( std::make_unique<Explosion>(
-							guy.GetPos(),Explosion::Type::Confetti ) );
+						PlayerOuch( Marvin::pointValue );
 					}
 				}
 			}
@@ -216,9 +223,7 @@ void Campaign::Update()
 				{
 					guy.ApplyInvul();
 					marsTurBull.Destroy();
-					points -= MarsTurret::Bullet::pointValue;
-					particles.emplace_back( std::make_unique<Explosion>(
-						guy.GetPos(),Explosion::Type::Confetti ) );
+					PlayerOuch( MarsTurret::Bullet::pointValue );
 				}
 			}
 
@@ -243,9 +248,7 @@ void Campaign::Update()
 				{
 					guy.ApplyInvul();
 					guy.AddVelocity( div.GetVel(),dt );
-					points -= MarsDiver::pointValue;
-					particles.emplace_back( std::make_unique<Explosion>(
-						guy.GetPos(),Explosion::Type::Confetti ) );
+					PlayerOuch( MarsDiver::pointValue );
 				}
 			}
 		}
@@ -786,6 +789,19 @@ int Campaign::Level2Index() const
 	}
 	assert( false );
 	return( -1 );
+}
+
+void Campaign::PlayerOuch( int damage )
+{
+	points -= damage;
+
+	slowdown = slowdownDuration;
+
+	// for( int i = 0; i < int( Random{ 25,45 } ); ++i )
+	// {
+	// 	particles.emplace_back( std::make_unique<GravityExplosion>(
+	// 		guy.GetPos(),Explosion::Type::PlayerOuch,gravities[Level2Index()] ) );
+	// }
 }
 
 /*

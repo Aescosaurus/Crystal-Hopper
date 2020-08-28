@@ -67,6 +67,7 @@ private:
 	// Call this with curLevel++ so I can keep const.
 	std::string GetNextLevelName( int curLevel ) const;
 	int Level2Index() const;
+	void PlayerOuch( int damage );
 private:
 	Keyboard& kbd;
 	Mouse& mouse;
@@ -141,4 +142,6 @@ private:
 	};
 
 	bool win = false;
+	float slowdown = 0.0f;
+	static constexpr float slowdownDuration = 0.07f;
 };
