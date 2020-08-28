@@ -796,6 +796,5 @@ reset save option
 
 tutorial (include in its own menu or in options menu?)
 level 59(?)
-improve the button situation
 lots of nifty polish like particles and animations and such
 */

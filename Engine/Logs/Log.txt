@@ -105,3 +105,5 @@ Level57: 1046pts | 87% | 5 stars
 Level58: 1pts | 0% | 1 stars
 Level58: 1pts | 0% | 1 stars
 Level58: 792pts | 66% | 3 stars
+Level0: 1096pts | 91% | 5 stars
+Level37: 1040pts | 86% | 3 stars

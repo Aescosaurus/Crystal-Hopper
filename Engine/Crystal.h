@@ -8,6 +8,7 @@
 #include "Animation.h"
 #include "Timer.h"
 #include "Explosion.h"
+#include "Random.h"
 
 // Collect these to complete the level.
 class Crystal
@@ -33,4 +34,7 @@ private:
 	bool collected = false;
 	Animation sparkle;
 	Timer sparkleHold = 1.0f;
+	float wobble = float( Random{ 0.0f,10.0f } );
+	static constexpr float wobblePower = 6.0f;
+	static constexpr float wobbleSpeed = 2.0f;
 };

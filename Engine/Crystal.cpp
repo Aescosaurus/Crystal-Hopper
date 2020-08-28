@@ -23,6 +23,8 @@ void Crystal::Update( float dt )
 			sparkle.Reset();
 		}
 	}
+
+	wobble += dt;
 }
 
 void Crystal::Draw( Graphics& gfx ) const
@@ -30,7 +32,8 @@ void Crystal::Draw( Graphics& gfx ) const
 #if NDEBUG
 	if( !collected )
 	{
-		sparkle.Draw( Vei2( pos ) - Vei2{ radius,radius },
+		sparkle.Draw( Vei2( pos ) - Vei2{ radius,radius } +
+			Vei2( Vec2::Up() * sin( wobble * wobbleSpeed ) * wobblePower ),
 			gfx,SpriteEffect::Chroma{ Colors::Magenta } );
 	}
 #else
