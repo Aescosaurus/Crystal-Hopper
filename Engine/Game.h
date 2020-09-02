@@ -26,6 +26,7 @@
 #include "OverlayMenu.h"
 #include "OptionsMenu.h"
 #include "LevelSelector.h"
+#include "Codex.h"
 
 class Game
 {
@@ -43,6 +44,7 @@ public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
+	~Game();
 	void Go();
 private:
 	void ComposeFrame();
@@ -75,5 +77,8 @@ private:
 	CSurfPtr titleBG = SurfCodex::Fetch( "Images/TitleBG.bmp" );
 	CSurfPtr winBG = SurfCodex::Fetch( "Images/WinScreen.bmp" );
 	Button menuButton = Button{ Vei2{ 450,480 },"Menu" };
+
+	CMusicPtr menuMusic = MusicCodex::Fetch( "Audio/MusicMenu.wav" );
+	bool playingMusic = false;
 	/********************************/
 };

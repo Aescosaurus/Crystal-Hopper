@@ -159,6 +159,10 @@ public:
 	Sound( const std::wstring& fileName,LoopType loopType = LoopType::NotLooping );
 	Sound( const std::wstring& fileName,unsigned int loopStart,unsigned int loopEnd );
 	Sound( const std::wstring& fileName,float loopStart,float loopEnd );
+	Sound( const std::string& src,bool looping = false )
+		:
+		Sound( std::wstring{ src.begin(),src.end() },LoopType::NotLooping )
+	{}
 	Sound( Sound&& donor );
 	Sound& operator=( Sound&& donor );
 	void Play( float freqMod = 1.0f,float vol = 1.0f );

@@ -440,6 +440,15 @@ void Campaign::LoadLevel( int levelToLoad )
 	GotoNextLevel();
 }
 
+void Campaign::StopMusic()
+{
+	for( auto& music : musics )
+	{
+		music->StopAll();
+	}
+	oldIndex = -1;
+}
+
 bool Campaign::BackToMenu()
 {
 	if( endLevelScreen.PressedMenu() )
@@ -495,6 +504,14 @@ void Campaign::GotoNextLevel()
 	guy.Reset( particles,gravities[Level2Index()] );
 
 	UpdateOptions();
+
+	const auto curIndex = Level2Index();
+	if( oldIndex != curIndex )
+	{
+		if( oldIndex >= 0 ) musics[oldIndex]->StopAll();
+		musics[curIndex]->Play();
+	}
+	oldIndex = curIndex;
 
 	// Reset delta time.
 	time.Mark();

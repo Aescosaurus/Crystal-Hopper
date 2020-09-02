@@ -111,3 +111,14 @@ Level6: 890pts | 74% | 3 stars
 Level7: 789pts | 65% | 2 stars
 Level27: 230pts | 19% | 1 stars
 Level4: 894pts | 74% | 2 stars
+Level0: 1047pts | 87% | 4 stars
+Level1: 1046pts | 87% | 4 stars
+Level2: 1045pts | 87% | 4 stars
+Level22: 889pts | 74% | 3 stars
+Level23: 992pts | 82% | 4 stars
+Level0: 890pts | 74% | 3 stars
+Level14: 744pts | 62% | 3 stars
+Level29: 590pts | 49% | 3 stars
+Level30: 842pts | 70% | 3 stars
+Level31: 994pts | 82% | 3 stars
+Level58: 993pts | 82% | 4 stars

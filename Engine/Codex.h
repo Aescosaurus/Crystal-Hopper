@@ -4,6 +4,8 @@
 #include <string>
 #include "Font.h"
 #include "Surface.h"
+#include "Audio.h"
+#include "Music.h"
 
 template<typename T>
 class Codex
@@ -77,6 +79,10 @@ private:
 
 typedef Codex<Font> FontCodex;
 typedef Codex<Surface> SurfCodex;
+typedef Codex<Audio> SoundCodex;
+typedef Codex<Music> MusicCodex;
 
 typedef const Font* CFontPtr;
 typedef const Surface* CSurfPtr;
+typedef const Audio* CSoundPtr;
+typedef const Music* CMusicPtr;

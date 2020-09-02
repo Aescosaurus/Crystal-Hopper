@@ -1,0 +1,15 @@
+show controls on first level
+show score in corner
+disable sprite clipping on rotated things
+mars platforms are hard to see against the background - maybe black outline?
+Ok so I have two big like game play critiques one is that i feel like I dont get enough power behind a launch
+	especially when I'm really like pulling all the way across the screen in my brain atleast when I do that
+	I want to be pinging around the stage out of control almost
+Second is that it feels like the platforms are just a bit to big with its hit box sometimes I try to slid
+	underneath one and I bounce off im sure their sizes are fair but it doesn't feel that way lol
+Oh and one last thing is that one a few of those one launch levels it deemed like you had to do the launch mid
+	air as you were falling from spawning in which just made it a bit more tedious so maybe some kind of
+	smash spawn platform that Lasts for a short time
+The launch feels off to me when you shoot the rocket. It feels like it should go much farther than it should when
+	I pull all the way back.
+And the asteroids during the moon level seem a bit too random

@@ -56,6 +56,8 @@ public:
 	void RestartLevel();
 	void UpdateOptions();
 	void LoadLevel( int levelToLoad );
+	void StopMusic();
+
 	bool BackToMenu();
 	bool Win() const;
 private:
@@ -143,5 +145,15 @@ private:
 
 	bool win = false;
 	float slowdown = 0.0f;
-	static constexpr float slowdownDuration = 0.07f;
+	static constexpr float slowdownDuration = 0.05f;
+
+	const CMusicPtr musics[nPlanets] =
+	{
+		MusicCodex::Fetch( "Audio/MusicEarth.wav" ),
+		MusicCodex::Fetch( "Audio/MusicMoon.wav" ),
+		MusicCodex::Fetch( "Audio/MusicMars.wav" ),
+		MusicCodex::Fetch( "Audio/MusicJupiter.wav" ),
+		MusicCodex::Fetch( "Audio/MusicJupiter.wav" )
+	};
+	int oldIndex = -1;
 };

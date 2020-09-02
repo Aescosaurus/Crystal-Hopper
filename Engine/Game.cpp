@@ -31,6 +31,13 @@ Game::Game( MainWindow& wnd )
 	selector( wnd.mouse,wnd.kbd,gfx )
 {}
 
+Game::~Game()
+{
+	// Need to include these for some reason.
+	SoundCodex::Purge();
+	MusicCodex::Purge();
+}
+
 void Game::Go()
 {
 	gfx.BeginFrame();
@@ -63,9 +70,15 @@ void Game::UpdateModel()
 		if( menu.WillExit() || mainGame.BackToMenu() )
 		{
 			mainGame.RestartLevel();
+			mainGame.StopMusic();
 			menu.Close();
 			gameState = State::LevelSelect;
 		}
+	}
+	if( gameState != State::Campaign && !playingMusic )
+	{
+		menuMusic->Play();
+		playingMusic = true;
 	}
 	// Don't update if menu is open.
 	if( menu.IsOpen() && !menu.WillRestart() ) return;
@@ -116,6 +129,11 @@ void Game::UpdateModel()
 	}
 	break;
 	case State::Campaign:
+		if( playingMusic )
+		{
+			menuMusic->StopAll();
+			playingMusic = false;
+		}
 		if( menu.WillRestart() )
 		{
 			menu.Close();
@@ -126,6 +144,7 @@ void Game::UpdateModel()
 		if( mainGame.Win() )
 		{
 			mainGame.RestartLevel();
+			mainGame.StopMusic();
 			gameState = State::Win;
 		}
 		break;

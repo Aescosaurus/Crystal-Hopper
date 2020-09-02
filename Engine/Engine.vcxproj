@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="CheckBox.h" />
     <ClInclude Include="FallingFloor.h" />
     <ClInclude Include="Comet.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="MartianFloor.h" />
     <ClInclude Include="Marvin.h" />
     <ClInclude Include="MovingFloor.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="PlanetMenu.h" />
     <ClInclude Include="PointCounter.h" />
