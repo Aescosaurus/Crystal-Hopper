@@ -8,7 +8,7 @@ class Audio
 	public Sound
 {
 public:
-	Audio( const std::string& src,bool loop )
+	Audio( const std::string& src,bool loop = false )
 		:
 		aud( src,loop )
 	{}

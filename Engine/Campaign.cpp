@@ -509,7 +509,7 @@ void Campaign::GotoNextLevel()
 	if( oldIndex != curIndex )
 	{
 		if( oldIndex >= 0 ) musics[oldIndex]->StopAll();
-		musics[curIndex]->Play();
+		musics[curIndex]->Play( musicVol );
 	}
 	oldIndex = curIndex;
 

@@ -30,4 +30,7 @@ private:
 
 	CSurfPtr whiteSpr = SurfCodex::Fetch( "Images/LineWhite.bmp" );
 	CSurfPtr redSpr = SurfCodex::Fetch( "Images/LineRed.bmp" );
+
+	CSoundPtr clickSound = SoundCodex::Fetch( "Audio/Mouse1.wav" );
+	CSoundPtr releaseSound = SoundCodex::Fetch( "Audio/Mouse2.wav" );
 };

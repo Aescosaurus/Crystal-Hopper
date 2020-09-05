@@ -77,7 +77,7 @@ void Game::UpdateModel()
 	}
 	if( gameState != State::Campaign && !playingMusic )
 	{
-		menuMusic->Play();
+		menuMusic->Play( Campaign::musicVol );
 		playingMusic = true;
 	}
 	// Don't update if menu is open.

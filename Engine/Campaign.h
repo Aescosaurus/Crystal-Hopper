@@ -70,6 +70,8 @@ private:
 	std::string GetNextLevelName( int curLevel ) const;
 	int Level2Index() const;
 	void PlayerOuch( int damage );
+public:
+	static constexpr float musicVol = 0.05f;
 private:
 	Keyboard& kbd;
 	Mouse& mouse;
