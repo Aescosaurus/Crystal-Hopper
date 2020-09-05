@@ -122,3 +122,10 @@ Level29: 590pts | 49% | 3 stars
 Level30: 842pts | 70% | 3 stars
 Level31: 994pts | 82% | 3 stars
 Level58: 993pts | 82% | 4 stars
+Level16: 945pts | 78% | 3 stars
+Level22: 894pts | 74% | 3 stars
+Level16: 943pts | 78% | 3 stars
+Level17: 739pts | 61% | 2 stars
+Level18: 788pts | 65% | 2 stars
+Level37: 1097pts | 91% | 4 stars
+Level38: 995pts | 82% | 4 stars

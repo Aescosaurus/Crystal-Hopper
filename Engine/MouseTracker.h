@@ -25,7 +25,7 @@ private:
 	Vei2 lastMousePos;
 	Vec2 diff = Vec2::Fake();
 	bool pressedLastFrame = false;
-	bool canUnpress = false;
+	bool canUnpress = true; // From false (maybe broke something).
 	bool clickMovement = false;
 
 	CSurfPtr whiteSpr = SurfCodex::Fetch( "Images/LineWhite.bmp" );

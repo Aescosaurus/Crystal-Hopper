@@ -65,4 +65,5 @@ private:
 	bool destroyed = false;
 	float turretAngle;
 	Timer shotRefire = 3.17f;
+	CSoundPtr shotSound = SoundCodex::Fetch( "Audio/Turret.wav" );
 };

@@ -814,6 +814,8 @@ void Campaign::PlayerOuch( int damage )
 
 	slowdown = slowdownDuration;
 
+	ouchSound->Play();
+
 	// for( int i = 0; i < int( Random{ 25,45 } ); ++i )
 	// {
 	// 	particles.emplace_back( std::make_unique<GravityExplosion>(

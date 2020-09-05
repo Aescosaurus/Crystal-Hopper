@@ -158,4 +158,6 @@ private:
 		MusicCodex::Fetch( "Audio/MusicJupiter.wav" )
 	};
 	int oldIndex = -1;
+
+	CSoundPtr ouchSound = SoundCodex::Fetch( "Audio/PlayerOuch.wav" );
 };

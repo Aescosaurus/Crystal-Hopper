@@ -18,4 +18,5 @@ private:
 	float grav = 0.0f;
 	float gravAcc;
 	static constexpr float jumpPower = 3.4f;
+	CSoundPtr ouchSound = SoundCodex::Fetch( "Audio/Moonrock.wav" );
 };

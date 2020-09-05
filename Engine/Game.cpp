@@ -29,7 +29,9 @@ Game::Game( MainWindow& wnd )
 	mainGame( wnd.kbd,wnd.mouse,gfx,options ),
 	editor( wnd.kbd,wnd.mouse,gfx ),
 	selector( wnd.mouse,wnd.kbd,gfx )
-{}
+{
+	mainGame.StopMusic();
+}
 
 Game::~Game()
 {

@@ -44,6 +44,8 @@ void Crystal::Draw( Graphics& gfx ) const
 void Crystal::Collect()
 {
 	collected = true;
+
+	pickupSound->Play( 0.9f );
 }
 
 Circle Crystal::GetCollider() const

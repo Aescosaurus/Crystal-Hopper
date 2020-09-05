@@ -18,7 +18,7 @@ void MouseTracker::Update( const Vec2& playerPos )
 		{
 			if( lastMousePos == Vei2::Fake() )
 			{
-				clickSound->Play();
+				clickSound->Play( 0.7f );
 				/*if( clickMovement ) lastMousePos = playerPos;
 				else */lastMousePos = pMouse->GetPos();
 			}
@@ -40,7 +40,8 @@ void MouseTracker::Update( const Vec2& playerPos )
 		if( canUnpress ) pressedLastFrame = false;
 		else
 		{
-			releaseSound->Play();
+			clickSound->StopAll();
+			releaseSound->Play( 0.6f );
 			canUnpress = true;
 		}
 		lastMousePos = Vei2::Fake();

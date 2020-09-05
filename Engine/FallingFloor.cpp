@@ -52,6 +52,7 @@ bool FallingFloor::HandleColl( Player& guy,float dt )
 		{
 			falling = true;
 			grav -= jumpPower;
+			ouchSound->Play();
 			return( true );
 		}
 	}

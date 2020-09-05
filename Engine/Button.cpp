@@ -33,6 +33,7 @@ bool Button::Update( const Vei2& mousePos,bool mouseDown )
 	if( mouseDown && hovering && canClick )
 	{
 		clicking = true;
+		hoverSound->Play( 0.8f );
 	}
 	else clicking = false;
 

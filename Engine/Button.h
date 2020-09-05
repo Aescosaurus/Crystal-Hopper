@@ -38,4 +38,5 @@ private:
 	CSurfPtr mainLit = SurfCodex::Fetch( "Images/ButtonMidLit.bmp" );
 	Surface bg;
 	Surface lit;
+	CSoundPtr hoverSound = SoundCodex::Fetch( "Audio/Bounce.wav" );
 };

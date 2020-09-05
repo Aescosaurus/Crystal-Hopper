@@ -125,8 +125,7 @@ void Player::CollideWith( const Line& l,float dt )
 
 	if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
 	{
-		explosions->emplace_back( std::make_unique<Explosion>( pos,
-			Explosion::Type::GroundBounce ) );
+		ApplyBounceFX();
 	}
 }
 
@@ -141,8 +140,7 @@ void Player::CollideWith( const Circle& c,float dt )
 
 	if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
 	{
-		explosions->emplace_back( std::make_unique<Explosion>( pos,
-			Explosion::Type::GroundBounce ) );
+		ApplyBounceFX();
 	}
 }
 
@@ -194,8 +192,7 @@ void Player::DontHitWalls( float dt )
 		vel *= bounceLoss;
 		if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
 		{
-			explosions->emplace_back( std::make_unique<Explosion>( pos,
-				Explosion::Type::GroundBounce ) );
+			ApplyBounceFX();
 		}
 	}
 	if( pos.y + hSize.y >= float( Graphics::ScreenHeight - 40 ) ||
@@ -207,8 +204,7 @@ void Player::DontHitWalls( float dt )
 		vel *= bounceLoss;
 		if( ( pos - oldPos ).GetLengthSq<float>() > bounceTolerance )
 		{
-			explosions->emplace_back( std::make_unique<Explosion>( pos,
-				Explosion::Type::GroundBounce ) );
+			ApplyBounceFX();
 		}
 	}
 }
@@ -255,6 +251,14 @@ void Player::RestoreJump()
 
 	// explosions->emplace_back( std::make_unique<Explosion>(
 	// 	pos,Explosion::Type::JumpRestore ) );
+}
+
+void Player::ApplyBounceFX()
+{
+	explosions->emplace_back( std::make_unique<Explosion>( pos,
+		Explosion::Type::GroundBounce ) );
+
+	bounceSound->Play();
 }
 
 bool Player::CheckColl( const Line& l,float& dist ) const

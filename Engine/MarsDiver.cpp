@@ -26,6 +26,8 @@ void MarsDiver::Update( const Vec2& playerPos,float dt )
 
 			target = playerPos;
 			vel = ( target - pos ).GetNormalized() * speed;
+
+			jumpSound->Play();
 		}
 	}
 

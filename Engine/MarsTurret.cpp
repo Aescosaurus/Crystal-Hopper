@@ -30,6 +30,8 @@ void MarsTurret::Update( const Vec2& playerPos,float dt )
 			::FromAngle( turretAngle - chili::pi / 2.0f ) *
 			float( radius ),
 			playerPos } );
+
+		shotSound->Play();
 	}
 }
 

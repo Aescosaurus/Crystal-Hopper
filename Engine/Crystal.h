@@ -37,4 +37,5 @@ private:
 	float wobble = float( Random{ 0.0f,10.0f } );
 	static constexpr float wobblePower = 6.0f;
 	static constexpr float wobbleSpeed = 2.0f;
+	CSoundPtr pickupSound = SoundCodex::Fetch( "Audio/Crystal.wav" );
 };

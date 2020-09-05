@@ -36,6 +36,7 @@ public:
 	void SetInvertControls( bool inverse );
 	void SetClickMovement( bool click );
 	void RestoreJump();
+	void ApplyBounceFX();
 
 	// Returns true if there's a collision.
 	bool CheckColl( const Line& l,float& dist ) const;
@@ -80,4 +81,5 @@ private:
 	float slowPercent = 1.0f;
 	bool invertControls = false;
 	Timer mtStart = 0.1f;
+	CSoundPtr bounceSound = SoundCodex::Fetch( "Audio/Bounce.wav" );
 };
