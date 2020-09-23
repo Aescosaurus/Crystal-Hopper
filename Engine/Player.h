@@ -82,4 +82,5 @@ private:
 	bool invertControls = false;
 	Timer mtStart = 0.1f;
 	CSoundPtr bounceSound = SoundCodex::Fetch( "Audio/Bounce.wav" );
+	Timer gravStart = 1.0f;
 };

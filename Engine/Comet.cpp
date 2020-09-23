@@ -10,7 +10,7 @@ Comet::Comet( const Vei2& pos,float dir )
 {
 	auto tempVel = -Vec2::FromAngle( dir );
 
-	const int screenEx = Random{ 10,300 };
+	const int screenEx = 50; // Random{ 10,300 };
 	// This probably isn't the best way to do things but...
 	while( OverlapsScreen( screenEx ) )
 	{
@@ -34,7 +34,8 @@ void Comet::Update( float dt )
 		if( respawn.IsDone() )
 		{
 			pos = startPos + vel * dt;
-			respawn.ResetRng( Random{ -1.3f,-0.6f } );
+			// respawn.ResetRng( Random{ -1.3f,-0.6f } );
+			respawn.Reset();
 		}
 	}
 	else respawn.Reset();

@@ -35,7 +35,7 @@ private:
 	Vec2 startPos;
 	Vec2 vel;
 	Timer respawn = 1.6f;
-	Timer startMoving = Random{ 0.0f,1.1f };
+	Timer startMoving = 1.1f; // Random{ 0.0f,1.1f };
 	// Matrix rotMat;
 	CSurfPtr surfSheet = SurfCodex::Fetch( "Images/CometAnim.bmp" );
 	Animation rotate;

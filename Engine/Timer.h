@@ -34,6 +34,10 @@ public:
 	{
 		return( int( ( curTime / maxTime ) * 100.0f ) );
 	}
+	float GetDur() const
+	{
+		return( maxTime );
+	}
 private:
 	float curTime;
 	float maxTime;

@@ -11,7 +11,10 @@ Player::Player( const Mouse& ms,std::vector<std::unique_ptr<Explosion>>& explosi
 	vel( 0.0f,0.0f ),
 	explosions( &explosions ),
 	gravAcc( grav )
-{}
+{
+	ApplyInvul();
+	invincibilityFrames.Update( invincibilityFrames.GetDur() - gravStart.GetDur() );
+}
 
 void Player::Update( float dt )
 {
@@ -48,7 +51,10 @@ void Player::Update( float dt )
 		}
 	}
 
-	vel += gravScale * gravAcc * slowPercent * dt * 60.0f;
+	if( gravStart.Update( dt ) )
+	{
+		vel += gravScale * gravAcc * slowPercent * dt * 60.0f;
+	}
 
 	ClampSpeed();
 
