@@ -108,7 +108,7 @@ Floor::Floor( const Vec2& pos,float angle,CSurfPtr img )
 {
 	const auto& rotMat = rotationMatrix;
 
-	const auto hSize = size / 2.0f;
+	const auto hSize = size / 2.3f;
 
 	typedef const Vec2 CVec2;
 	CVec2 ul = RotatePoint( pos - hSize,pos,rotMat );

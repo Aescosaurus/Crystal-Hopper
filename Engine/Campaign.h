@@ -147,7 +147,7 @@ private:
 
 	bool win = false;
 	float slowdown = 0.0f;
-	static constexpr float slowdownDuration = 0.05f;
+	static constexpr float slowdownDuration = 0.001f;
 
 	const CMusicPtr musics[nPlanets] =
 	{

@@ -129,3 +129,6 @@ Level17: 739pts | 61% | 2 stars
 Level18: 788pts | 65% | 2 stars
 Level37: 1097pts | 91% | 4 stars
 Level38: 995pts | 82% | 4 stars
+Level37: 883pts | 73% | 2 stars
+Level38: 1042pts | 86% | 4 stars
+Level1: 741pts | 61% | 2 stars
