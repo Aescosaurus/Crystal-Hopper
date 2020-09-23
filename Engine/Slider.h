@@ -78,7 +78,7 @@ public:
 	}
 	float GetPercent() const
 	{
-		return( float( handArea.GetCenter().x - minX ) / float( maxX - minX ) );
+		return( float( handArea.left - minX ) / float( maxX - minX ) );
 	}
 	int Percent2X( float percent )
 	{
