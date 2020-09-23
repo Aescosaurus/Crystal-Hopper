@@ -1,4 +1,4 @@
 Invert Controls: ON
 Click Movement: OFF
-Music: 1.000000
-Sound: 1.000000
+Music: 0.000000
+Sound: 0.000000

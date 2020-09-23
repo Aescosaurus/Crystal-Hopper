@@ -69,7 +69,8 @@ public:
 		}
 		catch( ... ) {}
 
-		handArea.MoveTo( Vei2{ Percent2X( GetPercent() ),handArea.top } );
+		handArea.MoveTo( Vei2{ Percent2X( percent ),handArea.top } );
+		*target = percent;
 	}
 
 	std::string Write() const

@@ -16,7 +16,7 @@ The launch feels off to me when you shoot the rocket. It feels like it should go
 And the asteroids during the moon level seem a bit too random
 
 
-remove limit on jump power
+remove limit on jump power - maybe have options slider?
 reduce platform hitbox size
 maybe player starts going up a bit at the start of the level? or grav takes a sec to register
 make asteroids not random
