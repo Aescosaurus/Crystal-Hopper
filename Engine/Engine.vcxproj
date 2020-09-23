@@ -160,6 +160,7 @@
     <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="PlanetMenu.h" />
     <ClInclude Include="PointCounter.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="SpikyBoi.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Campaign.h" />

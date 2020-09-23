@@ -99,24 +99,24 @@ public:
 		if( !reversed )
 		{
 			// Clipping is different depending on mirroring status.
-			if( x < clip.left )
-			{
-				srcRect.left += clip.left - x;
-				x = clip.left;
-			}
-			if( y < clip.top )
-			{
-				srcRect.top += clip.top - y;
-				y = clip.top;
-			}
-			if( x + srcRect.GetWidth() > clip.right )
-			{
-				srcRect.right -= x + srcRect.GetWidth() - clip.right;
-			}
-			if( y + srcRect.GetHeight() > clip.bottom )
-			{
-				srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
-			}
+			// if( x < clip.left )
+			// {
+			// 	srcRect.left += clip.left - x;
+			// 	x = clip.left;
+			// }
+			// if( y < clip.top )
+			// {
+			// 	srcRect.top += clip.top - y;
+			// 	y = clip.top;
+			// }
+			// if( x + srcRect.GetWidth() > clip.right )
+			// {
+			// 	srcRect.right -= x + srcRect.GetWidth() - clip.right;
+			// }
+			// if( y + srcRect.GetHeight() > clip.bottom )
+			// {
+			// 	srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
+			// }
 
 			const Vei2 center = { x + s.GetWidth() / 2,y + s.GetHeight() / 2 };
 
@@ -141,24 +141,24 @@ public:
 		}
 		else
 		{
-			if( x < clip.left )
-			{
-				srcRect.right -= clip.left - x;
-				x = clip.left;
-			}
-			if( y < clip.top )
-			{
-				srcRect.top += clip.top - y;
-				y = clip.top;
-			}
-			if( x + srcRect.GetWidth() > clip.right )
-			{
-				srcRect.left += x + srcRect.GetWidth() - clip.right;
-			}
-			if( y + srcRect.GetHeight() > clip.bottom )
-			{
-				srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
-			}
+			// if( x < clip.left )
+			// {
+			// 	srcRect.right -= clip.left - x;
+			// 	x = clip.left;
+			// }
+			// if( y < clip.top )
+			// {
+			// 	srcRect.top += clip.top - y;
+			// 	y = clip.top;
+			// }
+			// if( x + srcRect.GetWidth() > clip.right )
+			// {
+			// 	srcRect.left += x + srcRect.GetWidth() - clip.right;
+			// }
+			// if( y + srcRect.GetHeight() > clip.bottom )
+			// {
+			// 	srcRect.bottom -= y + srcRect.GetHeight() - clip.bottom;
+			// }
 			const int xOffset = srcRect.left + srcRect.right - 1;
 			for( int sy = srcRect.top; sy < srcRect.bottom; sy++ )
 			{

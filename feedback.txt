@@ -1,7 +1,8 @@
 show controls on first level
-show score in corner
-disable sprite clipping on rotated things
+show score in corner - turn red for a moment on major score loss
+-- disable sprite clipping on rotated things
 mars platforms are hard to see against the background - maybe black outline?
+
 Ok so I have two big like game play critiques one is that i feel like I dont get enough power behind a launch
 	especially when I'm really like pulling all the way across the screen in my brain atleast when I do that
 	I want to be pinging around the stage out of control almost
@@ -13,3 +14,9 @@ Oh and one last thing is that one a few of those one launch levels it deemed lik
 The launch feels off to me when you shoot the rocket. It feels like it should go much farther than it should when
 	I pull all the way back.
 And the asteroids during the moon level seem a bit too random
+
+
+remove limit on jump power
+reduce platform hitbox size
+maybe player starts going up a bit at the start of the level? or grav takes a sec to register
+make asteroids not random

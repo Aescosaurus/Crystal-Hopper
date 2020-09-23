@@ -14,6 +14,8 @@ void OptionsMenu::Update( const Mouse& mouse )
 
 	invertControls.Update( msPos,msDown );
 	clickMovement.Update( msPos,msDown );
+	musicSlider.Update( mouse );
+	soundSlider.Update( mouse );
 }
 
 void OptionsMenu::Draw( Graphics& gfx ) const
@@ -22,6 +24,9 @@ void OptionsMenu::Draw( Graphics& gfx ) const
 
 	invertControls.Draw( gfx );
 	clickMovement.Draw( gfx );
+
+	musicSlider.Draw( gfx );
+	soundSlider.Draw( gfx );
 
 	font->DrawText( "Options:",Vei2{ 50,50 },Colors::LightGray,gfx );
 }
@@ -33,6 +38,8 @@ void OptionsMenu::Save()
 
 	out << invertControls.Write() << '\n';
 	out << clickMovement.Write() << '\n';
+	out << musicSlider.Write() << '\n';
+	out << soundSlider.Write() << '\n';
 }
 
 void OptionsMenu::Load()
@@ -54,6 +61,8 @@ void OptionsMenu::Load()
 	{
 		invertControls.Read( read_line( in ) );
 		clickMovement.Read( read_line( in ) );
+		musicSlider.Read( read_line( in ) );
+		soundSlider.Read( read_line( in ) );
 	}
 }
 
