@@ -10,14 +10,15 @@
 class Slider
 {
 public:
-	Slider( const Vei2& pos,const std::string& text,float defaultVal = 0.5f )
+	Slider( const Vei2& pos,const std::string& text,float* target,float defaultVal = 0.5f )
 		:
 		pos( pos ),
 		text( text ),
 		textWidth( int( text.length() + 1 ) * ( font->GetCharSize().x ) ),
 		handArea( pos,pos + hand->GetSize() ),
 		minX( pos.x + textWidth - handArea.GetWidth() / 2 ),
-		maxX( pos.x + bg->GetWidth() + textWidth - handArea.GetWidth() / 2 )
+		maxX( pos.x + bg->GetWidth() + textWidth - handArea.GetWidth() / 2 ),
+		target( target )
 	{
 		handArea.MoveTo( Vei2{ minX + int( float( maxX - minX ) * defaultVal ),handArea.top } );
 	}
@@ -39,6 +40,7 @@ public:
 			if( newX < minX ) newX = minX;
 			if( newX > maxX ) newX = maxX;
 			handArea.MoveTo( Vei2{ newX,handArea.top } );
+			*target = GetPercent();
 		}
 	}
 
@@ -93,4 +95,5 @@ private:
 	bool dragging = false;
 	int minX = 0;
 	int maxX = 0;
+	float* target = nullptr;
 };

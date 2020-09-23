@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Campaign.cpp" />
     <ClCompile Include="CheckBox.cpp" />
@@ -232,6 +233,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MouseTracker.cpp" />
     <ClCompile Include="MovingFloor.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />
     <ClCompile Include="OverlayMenu.cpp" />
     <ClCompile Include="PlanetMenu.cpp" />

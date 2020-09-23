@@ -13,9 +13,9 @@ public:
 		aud( src,loop )
 	{}
 
-	void Play( float vol = 1.0f ) const
+	virtual void Play( float vol = 1.0f ) const
 	{
-		aud.Play( 1.0f,vol );
+		aud.Play( 1.0f,vol * globalVol );
 	}
 	void Stop() const
 	{
@@ -25,6 +25,8 @@ public:
 	{
 		aud.StopAll();
 	}
+public:
+	static float globalVol;
 private:
 	mutable Sound aud;
 };
