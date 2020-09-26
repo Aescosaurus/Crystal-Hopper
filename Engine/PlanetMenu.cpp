@@ -1,6 +1,7 @@
 #include "PlanetMenu.h"
 #include "SpriteEffect.h"
 #include <fstream>
+#include "Random.h"
 
 PlanetMenu::PlanetMenu( const Vei2& pos,int planetNum,const std::string& img )
 	:
@@ -17,7 +18,7 @@ PlanetMenu::PlanetMenu( const Vei2& pos,int planetNum,const std::string& img )
 	ReloadSaveInfo();
 }
 
-void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown )
+void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown,float dt )
 {
 	if( menuOpen )
 	{
@@ -51,25 +52,26 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown 
 
 void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
 {
+	const auto drawPos = pos + offset;
 	// TODO: Rotating planets?
 	if( levelButtons.size() < 1 )
 	{
-		gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
+		gfx.DrawSpriteNormal( drawPos.x,drawPos.y,
 			*grayImg,SpriteEffect::Chroma{ Colors::Magenta } );
 
-		gfx.DrawSpriteNormal( pos.x + offset.x + img->GetWidth() / 2 - lockIcon->GetWidth() / 2,
-			pos.y + offset.y + img->GetHeight() / 2 - lockIcon->GetHeight() / 2,
+		gfx.DrawSpriteNormal( drawPos.x + img->GetWidth() / 2 - lockIcon->GetWidth() / 2,
+			drawPos.y + img->GetHeight() / 2 - lockIcon->GetHeight() / 2,
 			*lockIcon,SpriteEffect::Chroma{ Colors::Magenta } );
 	}
 	else
 	{
-		gfx.DrawSpriteNormal( pos.x + offset.x,pos.y + offset.y,
+		gfx.DrawSpriteNormal( drawPos.x,drawPos.y,
 			*img,SpriteEffect::Chroma{ Colors::Magenta } );
 
 		if( levelButtons.size() < 14 )
 		{
-			gfx.DrawSpriteNormal( pos.x + offset.x + img->GetWidth() / 2 - arrowSpr->GetWidth() / 2,
-				pos.y + offset.y - img->GetHeight() / 2 + 5,
+			gfx.DrawSpriteNormal( drawPos.x + img->GetWidth() / 2 - arrowSpr->GetWidth() / 2,
+				drawPos.y + img->GetHeight() / 2 + 5,
 				*arrowSpr,SpriteEffect::Chroma{} );
 		}
 	}

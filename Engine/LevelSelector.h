@@ -5,6 +5,7 @@
 #include "Codex.h"
 #include "PlanetMenu.h"
 #include "Keyboard.h"
+#include "FrameTimer.h"
 
 class LevelSelector
 {
@@ -20,6 +21,7 @@ public:
 	int GotoLevel();
 	bool BackToMenu() const;
 private:
+	FrameTimer ft;
 	const Mouse& mouse;
 	const Keyboard& kbd;
 	Graphics& gfx;
@@ -32,8 +34,8 @@ private:
 
 	Button menuButton = Button{ Vei2{ 850,480 },"Menu" };
 
-	PlanetMenu earth = PlanetMenu{ Vei2{ 300,350 },0,"Images/PlanetEarth" };
-	PlanetMenu moon = PlanetMenu{ Vei2{ 440,230 },1,"Images/PlanetMoon" };
-	PlanetMenu mars = PlanetMenu{ Vei2{ 840,270 },2,"Images/PlanetMars" };
-	PlanetMenu jupiter = PlanetMenu{ Vei2{ 1210,210 },3,"Images/PlanetJupiter" };
+	PlanetMenu earth = PlanetMenu{ Vei2{ 170,350 },0,"Images/PlanetEarth" };
+	PlanetMenu moon = PlanetMenu{ Vei2{ 280,260 },1,"Images/PlanetMoon" };
+	PlanetMenu mars = PlanetMenu{ Vei2{ 490,270 },2,"Images/PlanetMars" };
+	PlanetMenu jupiter = PlanetMenu{ Vei2{ 800,210 },3,"Images/PlanetJupiter" };
 };

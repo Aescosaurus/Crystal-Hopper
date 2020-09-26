@@ -11,25 +11,26 @@ LevelSelector::LevelSelector( const Mouse& mouse,const Keyboard& kbd,Graphics& g
 
 void LevelSelector::Update()
 {
+	const auto dt = ft.Mark();
 	// todo: dt stuff
 	const auto mousePos = mouse.GetPos();
 	const auto mouseDown = mouse.LeftIsPressed();
 
-	if( mouseDown )
-	{
-		const auto diff = mousePos - oldMousePos;
-		starPos.x += diff.x;
-
-		if( starPos.x < minStarPos ) starPos.x = minStarPos;
-		if( starPos.x > maxStarPos ) starPos.x = maxStarPos;
-	}
+	// if( mouseDown )
+	// {
+	// 	const auto diff = mousePos - oldMousePos;
+	// 	starPos.x += diff.x;
+	// 
+	// 	if( starPos.x < minStarPos ) starPos.x = minStarPos;
+	// 	if( starPos.x > maxStarPos ) starPos.x = maxStarPos;
+	// }
 
 	menuButton.Update( mousePos,mouseDown );
 
-	earth.Update( starPos,mousePos,mouseDown );
-	moon.Update( starPos,mousePos,mouseDown );
-	mars.Update( starPos,mousePos,mouseDown );
-	jupiter.Update( starPos,mousePos,mouseDown );
+	earth.Update( starPos,mousePos,mouseDown,dt );
+	moon.Update( starPos,mousePos,mouseDown,dt );
+	mars.Update( starPos,mousePos,mouseDown,dt );
+	jupiter.Update( starPos,mousePos,mouseDown,dt );
 
 	oldMousePos = mousePos;
 }

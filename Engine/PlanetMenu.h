@@ -6,13 +6,14 @@
 #include "Codex.h"
 #include "Button.h"
 #include <vector>
+#include "Timer.h"
 
 class PlanetMenu
 {
 public:
 	PlanetMenu( const Vei2& pos,int planetNum,const std::string& img );
 
-	void Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown );
+	void Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown,float dt );
 	void Draw( const Vei2& offset,Graphics& gfx ) const;
 	void DrawMenu( Graphics& gfx ) const;
 
