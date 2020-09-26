@@ -349,7 +349,7 @@ void Campaign::Update()
 	}
 	case State::EndLevel: // End level menu.
 	{
-		endLevelScreen.Update( mouse );
+		endLevelScreen.Update( mouse,dt );
 
 		// Handle button/key presses.
 		if( endLevelScreen.PressedContinue() ||

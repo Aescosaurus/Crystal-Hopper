@@ -3,6 +3,8 @@
 
 void OverlayMenu::Update( const Keyboard& kbd,const Mouse& mouse )
 {
+	const auto dt = ft.Mark();
+
 	const auto& msPos = mouse.GetPos();
 	const auto msDown = mouse.LeftIsPressed();
 
@@ -12,6 +14,7 @@ void OverlayMenu::Update( const Keyboard& kbd,const Mouse& mouse )
 	{
 		open = !open;
 		canEscape = false;
+		menuBGAnim.Reset();
 	}
 
 	if( !open )
@@ -23,9 +26,11 @@ void OverlayMenu::Update( const Keyboard& kbd,const Mouse& mouse )
 	}
 	else
 	{
-		if( resume.Update( msPos,msDown ) ) open = false;
+		if( resume.Update( msPos,msDown ) ) Close();
 		restart.Update( msPos,msDown );
 		quit.Update( msPos,msDown );
+
+		menuBGAnim.Update( dt );
 	}
 }
 
@@ -38,12 +43,16 @@ void OverlayMenu::Draw( Graphics& gfx ) const
 	else
 	{
 		// gfx.DrawRect( pos.x,pos.y,size.x,size.y,Colors::Gray );
-		gfx.DrawSpriteNormal( pos.x,pos.y,*menuBGSpr,
-			SpriteEffect::Chroma{} );
+		// gfx.DrawSpriteNormal( pos.x,pos.y,*menuBGSpr,
+		// 	SpriteEffect::Chroma{} );
+		menuBGAnim.Draw( pos,gfx,SpriteEffect::Chroma{} );
 
-		resume.Draw( gfx );
-		restart.Draw( gfx );
-		quit.Draw( gfx );
+		if( menuBGAnim.IsFinished() )
+		{
+			resume.Draw( gfx );
+			restart.Draw( gfx );
+			quit.Draw( gfx );
+		}
 	}
 }
 
@@ -54,6 +63,7 @@ void OverlayMenu::Close()
 	resume.Reset();
 	restart.Reset();
 	quit.Reset();
+	menuBGAnim.Reset();
 }
 
 bool OverlayMenu::IsOpen() const

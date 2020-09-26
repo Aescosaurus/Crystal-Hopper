@@ -4,6 +4,8 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Button.h"
+#include "Animation.h"
+#include "FrameTimer.h"
 
 class OverlayMenu
 {
@@ -28,4 +30,7 @@ private:
 	Button quit = Button{ Graphics::GetCenter() + Vei2{ 0,60 },"Menu" };
 
 	CSurfPtr menuBGSpr = SurfCodex::Fetch( "Images/MenuBG.bmp" );
+	Animation menuBGAnim = Animation{ 0,0,menuBGSpr->GetWidth(),menuBGSpr->GetHeight(),5,
+		*SurfCodex::Fetch( "Images/MenuBGAnim.bmp" ),0.05f,false };
+	FrameTimer ft;
 };

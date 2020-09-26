@@ -7,6 +7,7 @@
 #include "Button.h"
 #include <vector>
 #include "Timer.h"
+#include "Animation.h"
 
 class PlanetMenu
 {
@@ -41,4 +42,6 @@ private:
 	CSurfPtr arrowSpr = SurfCodex::Fetch( "Images/PlanetArrow.bmp" );
 
 	CSurfPtr menuBG = SurfCodex::Fetch( "Images/MenuBG.bmp" );
+	Animation menuBGAnim = Animation{ 0,0,menuBG->GetWidth(),menuBG->GetHeight(),5,
+		*SurfCodex::Fetch( "Images/MenuBGAnim.bmp" ),0.05f,false };
 };

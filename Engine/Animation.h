@@ -9,7 +9,7 @@ class Animation
 {
 public:
 	Animation( int x,int y,int width,int height,int count,
-		const Surface& sheet,float holdTime,Color chroma = Colors::Magenta );
+		const Surface& sheet,float holdTime,bool repeating = true,Color chroma = Colors::Magenta );
 
 	void Update( float dt );
 	template<typename Effect>
@@ -40,4 +40,5 @@ private:
 	float curFrameTime = 0.0f;
 	int frameIndex = 0;
 	bool finished = false;
+	bool repeating;
 };

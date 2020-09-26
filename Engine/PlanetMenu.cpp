@@ -22,11 +22,14 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown,
 {
 	if( menuOpen )
 	{
+		menuBGAnim.Update( dt );
+
 		for( auto& button : levelButtons )
 		{
 			if( button.Update( mousePos,mouseDown ) )
 			{
 				menuOpen = false;
+				menuBGAnim.Reset();
 			}
 		}
 
@@ -35,6 +38,7 @@ void PlanetMenu::Update( const Vei2& offset,const Vei2& mousePos,bool mouseDown,
 			.ContainsPoint( mousePos ) )
 		{
 			menuOpen = false;
+			menuBGAnim.Reset();
 		}
 	}
 	else
@@ -82,24 +86,28 @@ void PlanetMenu::DrawMenu( Graphics& gfx ) const
 	if( menuOpen )
 	{
 		// gfx.DrawRect( menuPos.x,menuPos.y,menuSize.x,menuSize.y,Colors::Gray );
-		gfx.DrawSpriteNormal( menuPos.x,menuPos.y,*menuBG,
-			SpriteEffect::Copy{} );
+		// gfx.DrawSpriteNormal( menuPos.x,menuPos.y,*menuBG,
+		// 	SpriteEffect::Copy{} );
+		menuBGAnim.Draw( menuPos,gfx,SpriteEffect::Chroma{} );
 
-		for( const auto& button : levelButtons )
+		if( menuBGAnim.IsFinished() )
 		{
-			// button.DrawBackground( gfx );
-			button.Draw( gfx );
-		}
-		for( const auto& stars : levelStars )
-		{
-			for( int i = 0; i < 5; ++i )
+			for( const auto& button : levelButtons )
 			{
-				// gfx.DrawRect( stars.first.x + i * 16,stars.first.y,
-				// 	16,16,Colors::Yellow );
-				gfx.DrawSpriteNormal( stars.first.x + i * 16,
-					stars.first.y,
-					i < stars.second ? *filledStar : *emptyStar,
-					SpriteEffect::Chroma{ Colors::Magenta } );
+				// button.DrawBackground( gfx );
+				button.Draw( gfx );
+			}
+			for( const auto& stars : levelStars )
+			{
+				for( int i = 0; i < 5; ++i )
+				{
+					// gfx.DrawRect( stars.first.x + i * 16,stars.first.y,
+					// 	16,16,Colors::Yellow );
+					gfx.DrawSpriteNormal( stars.first.x + i * 16,
+						stars.first.y,
+						i < stars.second ? *filledStar : *emptyStar,
+						SpriteEffect::Chroma{ Colors::Magenta } );
+				}
 			}
 		}
 	}

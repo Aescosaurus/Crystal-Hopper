@@ -2,11 +2,12 @@
 #include "Random.h"
 
 Animation::Animation( int x,int y,int width,int height,int count,
-	const Surface& sheet,float holdTime,Color chroma )
+	const Surface& sheet,float holdTime,bool repeating,Color chroma )
 	:
 	sheet( &sheet ),
 	holdTime( holdTime ),
-	chroma( chroma )
+	chroma( chroma ),
+	repeating( repeating )
 {
 	for( int i = 0; i < count; ++i )
 	{
@@ -19,7 +20,7 @@ void Animation::Update( float dt )
 {
 	curFrameTime += dt;
 
-	while( curFrameTime > holdTime )
+	while( curFrameTime > holdTime && !finished )
 	{
 		curFrameTime -= holdTime;
 		++frameIndex;
@@ -27,8 +28,15 @@ void Animation::Update( float dt )
 
 	if( frameIndex >= frames.size() )
 	{
-		curFrameTime = 0.0f;
-		frameIndex = 0;
+		if( repeating )
+		{
+			curFrameTime = 0.0f;
+			frameIndex = 0;
+		}
+		else
+		{
+			frameIndex = int( frames.size() ) - 1;
+		}
 		finished = true;
 	}
 }
@@ -36,6 +44,7 @@ void Animation::Update( float dt )
 void Animation::Reset()
 {
 	curFrameTime = 0.0f;
+	frameIndex = 0;
 	finished = false;
 }
 

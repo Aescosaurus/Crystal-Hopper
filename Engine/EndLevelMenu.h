@@ -5,11 +5,12 @@
 #include "Button.h"
 #include "Mouse.h"
 #include "Codex.h"
+#include "Animation.h"
 
 class EndLevelMenu
 {
 public:
-	void Update( const Mouse& mouse );
+	void Update( const Mouse& mouse,float dt );
 	void Draw( Graphics& gfx ) const;
 
 	void UpdatePoints( float percent,int points );
@@ -49,4 +50,6 @@ private:
 	CSurfPtr emptyStar = SurfCodex::Fetch( "Images/EmptyStar.bmp" );
 
 	CSurfPtr menuBGSpr = SurfCodex::Fetch( "Images/MenuBG.bmp" );
+	Animation menuBGAnim = Animation{ 0,0,menuBGSpr->GetWidth(),menuBGSpr->GetHeight(),5,
+		*SurfCodex::Fetch( "Images/MenuBGAnim.bmp" ),0.05f,false };
 };
