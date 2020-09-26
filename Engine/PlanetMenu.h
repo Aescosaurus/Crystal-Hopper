@@ -39,4 +39,6 @@ private:
 
 	CSurfPtr lockIcon = SurfCodex::Fetch( "Images/Lock.bmp" );
 	CSurfPtr arrowSpr = SurfCodex::Fetch( "Images/PlanetArrow.bmp" );
+
+	CSurfPtr menuBG = SurfCodex::Fetch( "Images/MenuBG.bmp" );
 };

@@ -71,7 +71,7 @@ void PlanetMenu::Draw( const Vei2& offset,Graphics& gfx ) const
 		if( levelButtons.size() < 14 )
 		{
 			gfx.DrawSpriteNormal( drawPos.x + img->GetWidth() / 2 - arrowSpr->GetWidth() / 2,
-				drawPos.y + img->GetHeight() / 2 + 5,
+				drawPos.y - img->GetHeight() / 2 + 5,
 				*arrowSpr,SpriteEffect::Chroma{} );
 		}
 	}
@@ -81,7 +81,9 @@ void PlanetMenu::DrawMenu( Graphics& gfx ) const
 {
 	if( menuOpen )
 	{
-		gfx.DrawRect( menuPos.x,menuPos.y,menuSize.x,menuSize.y,Colors::Gray );
+		// gfx.DrawRect( menuPos.x,menuPos.y,menuSize.x,menuSize.y,Colors::Gray );
+		gfx.DrawSpriteNormal( menuPos.x,menuPos.y,*menuBG,
+			SpriteEffect::Copy{} );
 
 		for( const auto& button : levelButtons )
 		{

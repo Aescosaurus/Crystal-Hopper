@@ -66,7 +66,7 @@ void MouseTracker::Draw( Color c,Graphics& gfx ) const
 			{
 				gfx.DrawSprite( int( pos.x ),int( pos.y ),
 					c == Colors::White ? *whiteSpr : *redSpr,
-					SpriteEffect::Copy{} );
+					SpriteEffect::SafeChroma{ Colors::Magenta } );
 				pos -= norm * step;
 			}
 		}
