@@ -20,7 +20,7 @@ void Animation::Update( float dt )
 {
 	curFrameTime += dt;
 
-	while( curFrameTime > holdTime && !finished )
+	while( curFrameTime > holdTime && ( repeating || !finished ) )
 	{
 		curFrameTime -= holdTime;
 		++frameIndex;
