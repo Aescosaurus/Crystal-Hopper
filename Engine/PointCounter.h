@@ -25,4 +25,5 @@ private:
 	static constexpr float barMoveSpeed = 29.0f;
 	CSurfPtr barBorder = SurfCodex::Fetch( "Images/PointCounterBar.bmp" );
 	float pointWeights[5];
+	CSurfPtr starSpr = SurfCodex::Fetch( "Images/FilledPlanetStar.bmp" );
 };

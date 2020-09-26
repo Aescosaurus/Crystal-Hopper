@@ -31,10 +31,12 @@ void PointCounter::Draw( Graphics& gfx ) const
 	{
 		if( float( points ) / float( maxPoints ) >= pointWeights[i] )
 		{
-			gfx.DrawRect( area.left + int( float( area.GetWidth() ) * pointWeights[i] ),
-				area.top,
-				2,area.GetHeight(),
-				Colors::MakeRGB( 255,200,37 ) );
+			// gfx.DrawRect( area.left + int( float( area.GetWidth() ) * pointWeights[i] ),
+			// 	area.top,
+			// 	2,area.GetHeight(),
+			// 	Colors::MakeRGB( 255,200,37 ) );
+			gfx.DrawSpriteNormal( area.left + int( float( area.GetWidth() ) * pointWeights[i] ) - starSpr->GetWidth() / 2,
+				area.top,*starSpr,SpriteEffect::Chroma{} );
 		}
 	}
 
