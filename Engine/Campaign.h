@@ -38,6 +38,8 @@
 #include "GravRotator.h"
 #include "LevelEnder.h"
 
+#include "SpiffyBG.h"
+
 class Campaign
 {
 private:
@@ -136,13 +138,34 @@ private:
 		0.31f, // Jupiter
 		0.18f  // Saturn
 	};
-	const CSurfPtr backgrounds[nPlanets] =
+	// const CSurfPtr backgrounds[nPlanets] =
+	// {
+	// 	SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
+	// 	SurfCodex::Fetch( "Images/BackgroundMoon.bmp" ),
+	// 	SurfCodex::Fetch( "Images/BackgroundMars.bmp" ),
+	// 	SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" ),
+	// 	SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" )
+	// };
+	SpiffyBG backgrounds[nPlanets] =
 	{
-		SurfCodex::Fetch( "Images/BackgroundEarth.bmp" ),
-		SurfCodex::Fetch( "Images/BackgroundMoon.bmp" ),
-		SurfCodex::Fetch( "Images/BackgroundMars.bmp" ),
-		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" ),
-		SurfCodex::Fetch( "Images/BackgroundJupiter.bmp" )
+		SpiffyBG{ {
+			SpiffyBG::Layer{ Animation::Single( "Images/BGEarth1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() },
+			SpiffyBG::Layer{ Animation{ 0,0,8 * 4,14 * 4,3,*SurfCodex::Fetch( "Images/BGEarth2.bmp" ),0.2f,true },Vec2{ 117.0f,76.0f },Vec2::Up() * 95.0f,Vec2::Up() * 500.0f },
+			SpiffyBG::Layer{ Animation::Single( "Images/BGEarth3.bmp" ),Vec2{ 13.0f - 480.0f,61.0f },Vec2::Right() * 20.0f,Vec2{ 13.0f,0.0f } }
+			} },
+		SpiffyBG{ {
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() },
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon2.bmp" ),Vec2::Zero(),Vec2::Left() * 15.0f,Vec2{ -480.0f,0.0f },0.35f }
+			} },
+		SpiffyBG{ {
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			} },
+		SpiffyBG{ {
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			} },
+		SpiffyBG{ {
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			} }
 	};
 
 	bool win = false;

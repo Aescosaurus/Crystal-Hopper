@@ -1,5 +1,6 @@
 #include "Animation.h"
 #include "Random.h"
+#include "Codex.h"
 
 Animation::Animation( int x,int y,int width,int height,int count,
 	const Surface& sheet,float holdTime,bool repeating,Color chroma )
@@ -61,4 +62,10 @@ bool Animation::IsFinished() const
 float Animation::GetPercent() const
 {
 	return( float( frameIndex ) / float( frames.size() ) );
+}
+
+Animation Animation::Single( const std::string& img )
+{
+	const CSurfPtr bmp = SurfCodex::Fetch( img );
+	return( Animation{ 0,0,bmp->GetWidth(),bmp->GetHeight(),1,*bmp,1.0f,false } );
 }

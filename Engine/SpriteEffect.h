@@ -162,4 +162,24 @@ namespace SpriteEffect
 	private:
 		Color chroma;
 	};
+	class ChromaFade
+	{
+	public:
+		ChromaFade( Color chroma,float fadeAmount )
+			:
+			chroma( chroma ),
+			fadeAmount( fadeAmount )
+		{}
+		void operator()( Color cSrc,float xDest,float yDest,Graphics& gfx )
+		{
+			if( cSrc != chroma )
+			{
+				// gfx.PutPixelApprox( xDest,yDest,cSrc );
+				gfx.PutPixelAlpha( int( xDest ),int( yDest ),cSrc,fadeAmount );
+			}
+		}
+	private:
+		Color chroma;
+		float fadeAmount;
+	};
 }

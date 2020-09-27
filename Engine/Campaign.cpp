@@ -80,6 +80,8 @@ void Campaign::Update()
 		}
 		else canRestart = true;
 
+		backgrounds[Level2Index()].Update( dt );
+
 		guy.Update( dt );
 
 		// Limit number of jumps on some levels.
@@ -373,8 +375,9 @@ void Campaign::Draw()
 {
 #if NDEBUG
 	// Draw background.
-	gfx.DrawSpriteNormal( 0,0,*backgrounds[Level2Index()],
-		SpriteEffect::Copy{} );
+	// gfx.DrawSpriteNormal( 0,0,*backgrounds[Level2Index()],
+	// 	SpriteEffect::Copy{} );
+	backgrounds[Level2Index()].Draw( gfx );
 #endif
 
 	// Draw all the entities.

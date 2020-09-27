@@ -32,6 +32,7 @@ public:
 
 	bool IsFinished() const;
 	float GetPercent() const;
+	static Animation Single( const std::string& img );
 private:
 	const Surface* sheet;
 	std::vector<RectI> frames;
