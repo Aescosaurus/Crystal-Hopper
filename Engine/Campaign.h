@@ -158,13 +158,16 @@ private:
 			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon2.bmp" ),Vec2::Zero(),Vec2::Left() * 15.0f,Vec2{ -480.0f,0.0f },0.35f }
 			} },
 		SpiffyBG{ {
-			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMars2.bmp" ),Vec2{ 0.0f,0.0f },Vec2::Up() * 3.0f,Vec2{ 0.0f,-534.0f } },
+			SpiffyBG::Layer{ Animation::Single( "Images/BGMars1.bmp" ),Vec2{ 0.0f,50.0f },Vec2::Zero(),Vec2::Zero() }
 			} },
 		SpiffyBG{ {
-			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			SpiffyBG::Layer{ Animation{ 0,0,240 * 4,117 * 4,5,*SurfCodex::Fetch( "Images/BGJupiter1.bmp" ),0.8f },Vec2::Zero(),Vec2::Zero(),Vec2::Zero() },
+			SpiffyBG::Layer{ Animation::Single( "Images/BGJupiter2.bmp" ),Vec2{ 83.0f,151.0f },Vec2::Up() * 10.0f,Vec2::Up() * 200.0f },
+			SpiffyBG::Layer{ Animation::Single( "Images/BGJupiter3.bmp" ),Vec2{ 0.0f,87.0f },Vec2::Zero(),Vec2::Zero() }
 			} },
 		SpiffyBG{ {
-			SpiffyBG::Layer{ Animation::Single( "Images/BGMoon1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			SpiffyBG::Layer{ Animation::Single( "Images/BackgroundJupiter.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
 			} }
 	};
 
