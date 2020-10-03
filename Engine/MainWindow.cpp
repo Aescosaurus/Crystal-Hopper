@@ -277,16 +277,23 @@ void MainWindow::KeepMouseOnScreen()
 {
 	POINT realMousePos;
 	GetCursorPos( &realMousePos );
+	bool lockMouse = false;
+	if( options != nullptr ) lockMouse = options->DoLockMouse();
 	while( mouse.GetPosX() > Graphics::ScreenWidth - 5 )
 	{
 		--realMousePos.x;
-		SetCursorPos( realMousePos.x,realMousePos.y );
+		if( lockMouse ) SetCursorPos( realMousePos.x,realMousePos.y );
 		mouse.OnMouseMove( realMousePos.x,realMousePos.y );
 	}
 	while( mouse.GetPosY() > Graphics::ScreenHeight - 5 )
 	{
 		--realMousePos.y;
-		SetCursorPos( realMousePos.x,realMousePos.y );
+		if( lockMouse ) SetCursorPos( realMousePos.x,realMousePos.y );
 		mouse.OnMouseMove( realMousePos.x,realMousePos.y );
 	}
+}
+
+void MainWindow::InitOptionsMenu( const OptionsMenu* options )
+{
+	this->options = options;
 }

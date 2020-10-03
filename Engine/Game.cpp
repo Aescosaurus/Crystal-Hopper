@@ -30,6 +30,7 @@ Game::Game( MainWindow& wnd )
 	editor( wnd.kbd,wnd.mouse,gfx ),
 	selector( wnd.mouse,wnd.kbd,gfx )
 {
+	wnd.InitOptionsMenu( &options );
 	mainGame.StopMusic();
 }
 

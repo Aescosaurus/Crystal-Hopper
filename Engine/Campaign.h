@@ -167,7 +167,7 @@ private:
 			SpiffyBG::Layer{ Animation::Single( "Images/BGJupiter3.bmp" ),Vec2{ 0.0f,87.0f },Vec2::Zero(),Vec2::Zero() }
 			} },
 		SpiffyBG{ {
-			SpiffyBG::Layer{ Animation::Single( "Images/BackgroundJupiter.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
+			SpiffyBG::Layer{ Animation::Single( "Images/BGJupiter1.bmp" ),Vec2::Zero(),Vec2::Zero(),Vec2::Zero() }
 			} }
 	};
 

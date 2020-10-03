@@ -25,6 +25,7 @@
 #include "Mouse.h"
 #include "ChiliException.h"
 #include <string>
+#include "OptionsMenu.h"
 
 // for granting special access to hWnd only for Graphics constructor
 class HWNDKey
@@ -69,6 +70,7 @@ public:
 	}
 	void Maximize();
 	void Minimize();
+	void InitOptionsMenu( const OptionsMenu* options );
 private:
 	static LRESULT WINAPI _HandleMsgSetup( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam );
 	static LRESULT WINAPI _HandleMsgThunk( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam );
@@ -80,8 +82,9 @@ public:
 	Keyboard kbd;
 	Mouse mouse;
 private:
-	static constexpr wchar_t* wndClassName = L"Chili DirectX Framework Window";
+	static constexpr wchar_t* wndClassName = L"Crystal Hopper";
 	HINSTANCE hInst = nullptr;
 	std::wstring args;
 	bool fullscreen = true;
+	const OptionsMenu* options = nullptr;
 };

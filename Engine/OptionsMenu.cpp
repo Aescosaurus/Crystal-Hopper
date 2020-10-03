@@ -16,6 +16,7 @@ void OptionsMenu::Update( const Mouse& mouse )
 	clickMovement.Update( msPos,msDown );
 	musicSlider.Update( mouse );
 	soundSlider.Update( mouse );
+	lockMouse.Update( msPos,msDown );
 }
 
 void OptionsMenu::Draw( Graphics& gfx ) const
@@ -27,6 +28,8 @@ void OptionsMenu::Draw( Graphics& gfx ) const
 
 	musicSlider.Draw( gfx );
 	soundSlider.Draw( gfx );
+
+	lockMouse.Draw( gfx );
 
 	font->DrawText( "Options:",Vei2{ 50,50 },Colors::LightGray,gfx );
 }
@@ -40,6 +43,7 @@ void OptionsMenu::Save()
 	out << clickMovement.Write() << '\n';
 	out << musicSlider.Write() << '\n';
 	out << soundSlider.Write() << '\n';
+	out << lockMouse.Write() << '\n';
 }
 
 void OptionsMenu::Load()
@@ -63,6 +67,7 @@ void OptionsMenu::Load()
 		clickMovement.Read( read_line( in ) );
 		musicSlider.Read( read_line( in ) );
 		soundSlider.Read( read_line( in ) );
+		lockMouse.Read( read_line( in ) );
 	}
 }
 
@@ -79,4 +84,9 @@ bool OptionsMenu::DoInvertControls() const
 bool OptionsMenu::DoClickMovement() const
 {
 	return( clickMovement.IsChecked() );
+}
+
+bool OptionsMenu::DoLockMouse() const
+{
+	return( lockMouse.IsChecked() );
 }
