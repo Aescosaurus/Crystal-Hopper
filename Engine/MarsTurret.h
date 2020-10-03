@@ -7,6 +7,7 @@
 #include "Codex.h"
 #include <vector>
 #include "Timer.h"
+#include "Line.h"
 
 // Turret that sticks to platforms or walls and shoots
 //  bullets at the player periodically (which make
@@ -23,6 +24,7 @@ public:
 		void Draw( Graphics& gfx ) const;
 
 		void Destroy();
+		bool CheckColl( const std::vector<Line>& lines );
 
 		Circle GetCollider() const;
 		bool IsDestroyed() const;

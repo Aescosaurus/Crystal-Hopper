@@ -114,6 +114,29 @@ void MarsTurret::Bullet::Destroy()
 	destroyed = true;
 }
 
+bool MarsTurret::Bullet::CheckColl( const std::vector<Line>& lines )
+{
+	float dist = 0.0f;
+	for( const auto& l : lines )
+	{
+		const float lenSq = l.GetDiff().GetLengthSq<float>();
+		if( lenSq == 0.0f )
+		{
+			dist = ( pos - l.start ).GetLength<float>();
+		}
+		else
+		{
+			const float t = std::max( 0.0f,std::min( 1.0f,Vec2
+				::Dot( pos - l.start,l.GetDiff() ) / lenSq ) );
+			const Vec2 proj = l.start + ( l.GetDiff() ) * t;
+			dist = ( proj - pos ).GetLength<float>();
+		}
+		if( dist < float( radius ) ) return( true );
+	}
+
+	return( false );
+}
+
 Circle MarsTurret::Bullet::GetCollider() const
 {
 	return( Circle{ pos,float( radius ) } );

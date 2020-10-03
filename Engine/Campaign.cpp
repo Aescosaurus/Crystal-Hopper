@@ -223,10 +223,10 @@ void Campaign::Update()
 			if( guy.CheckColl( mTurBullColl,temp ) )
 			{
 				guy.CollideWith( mTurBullColl,dt );
+				marsTurBull.Destroy();
 				if( !guy.IsInvincible() )
 				{
 					guy.ApplyInvul();
-					marsTurBull.Destroy();
 					PlayerOuch( MarsTurret::Bullet::pointValue );
 				}
 			}
@@ -236,6 +236,15 @@ void Campaign::Update()
 				Vei2( marsTurBull.GetPos() ) ) )
 			{
 				marsTurBull.Destroy();
+			}
+
+			for( auto& plat : floors )
+			{
+				if( marsTurBull.CheckColl( plat->GetLines() ) )
+				{
+					marsTurBull.Destroy();
+					break;
+				}
 			}
 		}
 
