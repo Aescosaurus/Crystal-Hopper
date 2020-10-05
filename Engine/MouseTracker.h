@@ -33,4 +33,6 @@ private:
 
 	CSoundPtr clickSound = SoundCodex::Fetch( "Audio/Mouse1.wav" );
 	CSoundPtr releaseSound = SoundCodex::Fetch( "Audio/Mouse2.wav" );
+
+	static constexpr float maxDist = 650.0f;
 };

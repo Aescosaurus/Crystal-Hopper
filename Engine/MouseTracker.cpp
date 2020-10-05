@@ -28,12 +28,18 @@ void MouseTracker::Update( const Vec2& playerPos )
 			lastMousePos = playerPos;
 		}
 
-		const Vei2 curMousePos = pMouse->GetPos();
+		Vei2 curMousePos = pMouse->GetPos();
 
 		// diff = Vec2( lastMousePos - curMousePos )
 		// 	.GetNormalized();
-		diff = Vec2( lastMousePos - curMousePos ) /
-			50.0f;
+		diff = Vec2( lastMousePos - curMousePos );
+
+		if( diff.GetLengthSq<float>() > maxDist * maxDist )
+		{
+			diff = diff.GetNormalized() * maxDist;
+		}
+
+		diff /= 50.0f;
 	}
 	else
 	{
@@ -55,7 +61,8 @@ void MouseTracker::Draw( Color c,Graphics& gfx ) const
 		// gfx.DrawLine( Vec2( lastMousePos ),
 		// 	Vec2( pMouse->GetPos() ),c );
 
-		const auto diff = Vec2( lastMousePos - pMouse->GetPos() );
+		// const auto diff = Vec2( lastMousePos - pMouse->GetPos() );
+		const auto diff = this->diff * 50.0f;
 		const auto len = diff.GetLength<float>();
 		if( len > 0.0f )
 		{
