@@ -76,6 +76,7 @@ void Game::UpdateModel()
 			mainGame.StopMusic();
 			menu.Close();
 			gameState = State::LevelSelect;
+			selector.Reset();
 		}
 	}
 	if( gameState != State::Campaign && !playingMusic )
