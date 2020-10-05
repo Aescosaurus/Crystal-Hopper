@@ -35,5 +35,6 @@ private:
 	static constexpr float velDecay = 0.04f;
 	Timer retarget = 2.6f;
 	CSurfPtr pSurf = SurfCodex::Fetch( "Images/MarsDiver.bmp" );
+	CSurfPtr pSurf2 = SurfCodex::Fetch( "Images/MarsDiverMad.bmp" );
 	CSoundPtr jumpSound = SoundCodex::Fetch( "Audio/Diver.wav" );
 };

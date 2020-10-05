@@ -56,7 +56,8 @@ void MarsDiver::Draw( Graphics& gfx ) const
 {
 #if NDEBUG
 	gfx.DrawSprite( int( pos.x ) - radius,
-		int( pos.y ) - radius,*pSurf,
+		int( pos.y ) - radius,
+		retarget.IsDone() ? *pSurf2 : *pSurf,
 		SpriteEffect::Chroma{ Colors::Magenta },
 		Matrix::Rotation( angle + chili::pi / 2.0f ) );
 #else
