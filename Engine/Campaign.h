@@ -73,7 +73,7 @@ private:
 	int Level2Index() const;
 	void PlayerOuch( int damage );
 public:
-	static constexpr float musicVol = 0.05f;
+	static constexpr float musicVol = 0.5f;
 private:
 	Keyboard& kbd;
 	Mouse& mouse;
