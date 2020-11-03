@@ -406,7 +406,7 @@ void Campaign::Draw()
 	guy.Draw( gfx );
 
 	// Draw level title.
-	if( titlePercent > 0.0f )
+	if( titlePercent > 0.0f/* && false/* for no ui */ )
 	{
 		const auto titleCol = curLevel < lunarStart ? Colors::Gray : Colors::White;
 

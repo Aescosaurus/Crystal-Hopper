@@ -38,6 +38,8 @@ void OverlayMenu::Draw( Graphics& gfx ) const
 {
 	if( !open )
 	{
+		// return; // For no ui
+
 		menuOpener.Draw( gfx );
 	}
 	else

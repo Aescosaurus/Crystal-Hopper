@@ -19,6 +19,8 @@ void PointCounter::Update( int points,float dt )
 
 void PointCounter::Draw( Graphics& gfx ) const
 {
+	// return; // For no ui
+	
 	gfx.DrawSpriteNormal( area.left - 4,area.top - 4,
 		*barBorder,SpriteEffect::Chroma{ Colors::Magenta } );
 
